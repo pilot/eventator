@@ -1,3 +1,0 @@
-event_main_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EventMainBundle:Default:index }
