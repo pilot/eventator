@@ -1,0 +1,3 @@
+backend_dashboard:
+    pattern:  /
+    defaults: { _controller: EventEventBundle:Backend/Dashboard:index }
