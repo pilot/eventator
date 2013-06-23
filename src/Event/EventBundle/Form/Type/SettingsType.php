@@ -47,6 +47,15 @@ class SettingsType extends AbstractType
             ->add('twitter', 'text', array('required' => false))
             ->add('facebook', 'text', array('required' => false))
             ->add('google', 'text', array('required' => false))
+
+            // Add translation
+            ->add('eventTranslates', 'collection', array(
+                'type' => new SettingsTranslateType(),
+                'prototype' => '__proto__',
+                'allow_add' => true,
+                'mapped' => false,
+                'required' => false
+            ))
         ;
     }
 

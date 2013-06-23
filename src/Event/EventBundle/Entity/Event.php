@@ -3,6 +3,7 @@
 namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Event
@@ -119,6 +120,18 @@ class Event
      */
     private $google;
 
+    /**
+     * @var EventTranslate
+     *
+     * @ORM\OneToMany(targetEntity="EventTranslate", mappedBy="event", cascade={"all"})
+     */
+    private $eventTranslates;
+
+    
+    public function __construct()
+    {
+        $this->eventTranslates = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -458,5 +471,40 @@ class Event
     public function getGoogle()
     {
         return $this->google;
+    }
+
+    /**
+     * Set eventTranslates
+     *
+     * @param \Doctrine\Common\Collections\Collection $eventTranslates
+     * @return Event
+     */
+    public function setEventTranslates($eventTranslates)
+    {
+        $this->eventTranslates = $eventTranslates;
+    
+        return $this;
+    }
+
+    /**
+     * Get eventTranslates
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventTranslates()
+    {
+        return $this->eventTranslates;
+    }
+
+    /**
+     * Add eventTranslate
+     *
+     * @param EventTranslate $eventTranslate
+     */
+    public function addEventTranslate(EventTranslate $eventTranslate)
+    {
+        $this->eventTranslate[] = $eventTranslate;
+
+        $eventTranslate->setEvent($this);
     }
 }
