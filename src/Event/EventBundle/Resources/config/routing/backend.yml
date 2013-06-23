@@ -2,18 +2,18 @@ backend_dashboard:
     pattern:  /
     defaults: { _controller: EventEventBundle:Backend/Dashboard:index }
 
-backend_settings:
-    pattern:  /
+backend_setting:
+    pattern:  /setting
     defaults: { _controller: EventEventBundle:Backend/Dashboard:setting }
 
 backend_program:
-    pattern:  /
+    pattern:  /program
     defaults: { _controller: EventEventBundle:Backend/Program:index }
 
 backend_speaker:
-    pattern:  /
+    pattern:  /speaker
     defaults: { _controller: EventEventBundle:Backend/Speaker:index }
 
 backend_sponsor:
-    pattern:  /
+    pattern:  /sponsor
     defaults: { _controller: EventEventBundle:Backend/Sponsor:index }

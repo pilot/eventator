@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Speaker
  *
- * @ORM\Table(name="speaker")
+ * @ORM\Table(name="ev_speaker")
  * @ORM\Entity
  */
 class Speaker

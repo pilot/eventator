@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Event
  *
  * @ORM\Table(name="ev_event")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Event\EventBundle\Entity\Repository\EventRepository")
  */
 class Event
 {
@@ -31,7 +31,7 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="brief_description", type="text")
+     * @ORM\Column(name="brief_description", type="text", nullable=true)
      */
     private $briefDescription;
 
@@ -45,35 +45,35 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="state", type="string", length=255)
+     * @ORM\Column(name="state", type="string", length=255, nullable=true)
      */
     private $state;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_date", type="datetime")
+     * @ORM\Column(name="start_date", type="date")
      */
     private $startDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end_date", type="datetime")
+     * @ORM\Column(name="end_date", type="date")
      */
     private $endDate;
 
@@ -87,35 +87,35 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="longitude", type="string", length=50)
+     * @ORM\Column(name="longitude", type="string", length=50, nullable=true)
      */
     private $longitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="latitude", type="string", length=50)
+     * @ORM\Column(name="latitude", type="string", length=50, nullable=true)
      */
     private $latitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="twitter", type="string", length=255)
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
     private $twitter;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="facebook", type="string", length=255)
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
      */
     private $facebook;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="google", type="string", length=255)
+     * @ORM\Column(name="google", type="string", length=255, nullable=true)
      */
     private $google;
 
@@ -276,6 +276,10 @@ class Event
      */
     public function setStartDate($startDate)
     {
+        if (!$startDate instanceOf \DateTime) {
+            $startDate = \DateTime::createFromFormat('m/d/Y', $startDate);
+        }
+
         $this->startDate = $startDate;
     
         return $this;
@@ -299,6 +303,10 @@ class Event
      */
     public function setEndDate($endDate)
     {
+        if (!$endDate instanceOf \DateTime) {
+            $endDate = \DateTime::createFromFormat('m/d/Y', $endDate);
+        }
+
         $this->endDate = $endDate;
     
         return $this;

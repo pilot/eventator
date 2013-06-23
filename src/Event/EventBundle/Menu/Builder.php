@@ -29,7 +29,7 @@ class Builder extends ContainerAware
         $menu->setChildrenAttribute('class', 'nav nav-list nav-stacked');
 
         $event = $menu->addChild('Event');
-        $event->addChild('Settings', array('route' => 'backend_settings'));
+        $event->addChild('Settings', array('route' => 'backend_setting'));
         $event->addChild('Program', array('route' => 'backend_program'));
         $event->addChild('Speaker', array('route' => 'backend_speaker'));
         $event->addChild('Sponsor', array('route' => 'backend_sponsor'));
