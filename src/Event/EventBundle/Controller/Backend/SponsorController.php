@@ -4,16 +4,9 @@ namespace Event\EventBundle\Controller\Backend;
 
 use Event\EventBundle\Controller\Controller;
 
-class DashboardController extends Controller
+class SponsorController extends Controller
 {
     public function indexAction()
-    {
-        return $this->render('EventEventBundle:Backend:index.html.twig', 
-            array()
-        );
-    }
-
-    public function settingAction()
     {
         return $this->render('EventEventBundle:Backend:index.html.twig', 
             array()

@@ -4,4 +4,16 @@ event_main_homepage:
 
 _backend:
     resource: routing/backend.yml
-    prefix:   /backend
+    prefix:   /admin
+
+admin_login:
+    pattern:  /admin/login
+    defaults: { _controller: EventEventBundle:Security:login }
+
+admin_check:
+    pattern:  /admin/login_check
+    defaults: { _controller: EventEventBundle:Security:check }
+
+admin_logout:
+    pattern:  /admin/logout
+    defaults: { _controller: EventEventBundle:Security:logout }

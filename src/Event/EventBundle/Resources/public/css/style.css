@@ -1,0 +1,47 @@
+.space {
+    margin-top: 50px;
+}
+
+.soft-delete {
+    color: #ccc;
+}
+
+.buttons-bar {
+    margin-bottom: 10px;
+}
+
+.site-mode {
+    margin: 9px 0 0 40%;
+    position: absolute;
+}
+
+/* form */
+form input {
+    width: 300px;
+}
+
+/* menu */
+.nav-list>.current_ancestor>.menu_level_1>.active>a, .nav-list>.current_ancestor>.menu_level_1>.active>a:hover, .nav-list>.current_ancestor>.menu_level_1>.active>a:focus {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+    background-color: #08c;
+}
+
+.nav-list>li>ul>li>a {
+    padding: 3px 15px;
+}
+
+.nav-list>li>ul {
+    margin-left: 0px;
+    list-style: none;
+}
+
+.span-plan {
+    width: 110px;
+}
+.truncate {
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
