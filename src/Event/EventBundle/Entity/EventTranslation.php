@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * EventTranslate
  *
- * @ORM\Table(name="ev_event_translate")
+ * @ORM\Table(name="ev_event_translation")
  * @ORM\Entity
  */
-class EventTranslate
+class EventTranslation
 {
     /**
      * @var integer
@@ -24,7 +24,7 @@ class EventTranslate
     /**
      * @var Event
      *
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="eventTranslates")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="translations")
      */
     private $event;
 

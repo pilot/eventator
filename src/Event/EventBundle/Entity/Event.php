@@ -121,16 +121,16 @@ class Event
     private $google;
 
     /**
-     * @var EventTranslate
+     * @var translations
      *
-     * @ORM\OneToMany(targetEntity="EventTranslate", mappedBy="event", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="EventTranslation", mappedBy="event", cascade={"all"})
      */
-    private $eventTranslates;
+    private $translations;
 
     
     public function __construct()
     {
-        $this->eventTranslates = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -474,37 +474,34 @@ class Event
     }
 
     /**
-     * Set eventTranslates
-     *
-     * @param \Doctrine\Common\Collections\Collection $eventTranslates
-     * @return Event
-     */
-    public function setEventTranslates($eventTranslates)
-    {
-        $this->eventTranslates = $eventTranslates;
-    
-        return $this;
-    }
-
-    /**
-     * Get eventTranslates
+     * Get translations
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEventTranslates()
+    public function getTranslations()
     {
-        return $this->eventTranslates;
+        return $this->translations;
     }
 
     /**
-     * Add eventTranslate
+     * Add translation
      *
-     * @param EventTranslate $eventTranslate
+     * @param EventTranslation $translation
      */
-    public function addEventTranslate(EventTranslate $eventTranslate)
+    public function addTranslation(EventTranslation $translation)
     {
-        $this->eventTranslate[] = $eventTranslate;
+        $this->translation[] = $translation;
 
-        $eventTranslate->setEvent($this);
+        $translation->setEvent($this);
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param EventTranslation $translation
+     */
+    public function removeTranslation(EventTranslation $translation)
+    {
+        $this->translation->removeElement($translation);
     }
 }

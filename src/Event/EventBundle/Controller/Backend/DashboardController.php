@@ -23,7 +23,7 @@ class DashboardController extends Controller
         }
 
         $form = $this->createForm(new SettingsType(), $event);    
-        if ($request->isMethod('POST') && $form->submit($request)) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)) {
 
             if ($form->isValid()) {
 

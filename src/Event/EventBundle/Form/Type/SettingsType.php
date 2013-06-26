@@ -49,12 +49,9 @@ class SettingsType extends AbstractType
             ->add('google', 'text', array('required' => false))
 
             // Add translation
-            ->add('eventTranslates', 'collection', array(
-                'type' => new SettingsTranslateType(),
-                'prototype' => '__proto__',
-                'allow_add' => true,
-                'mapped' => false,
-                'required' => false
+            ->add('translations', 'collection', array(
+                'type' => new SettingsTranslationType(),
+                'allow_add' => true
             ))
         ;
     }
@@ -63,6 +60,7 @@ class SettingsType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Event\EventBundle\Entity\Event',
+            'cascade_validation' => true
         ));
     }
 

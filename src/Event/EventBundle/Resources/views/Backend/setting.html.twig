@@ -9,8 +9,8 @@
         <form id="event" action="{{ url('backend_setting') }}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
 
-            {% for translate in form.eventTranslates %}
-                {{ form_row(translate.title) }}
+            {% for translation in form.translations %}
+                {{ form_row(translation.title) }}
             {% endfor %}
             
             {{ form_rest(form) }}
