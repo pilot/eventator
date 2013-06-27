@@ -59,8 +59,7 @@ class SettingsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\Event',
-            'cascade_validation' => true
+            'data_class' => 'Event\EventBundle\Entity\Event'
         ));
     }
 

@@ -42,6 +42,41 @@ class EventTranslation
      */
     private $title;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="brief_description", type="text", nullable=true)
+     */
+    private $briefDescription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", length=255, nullable=true)
+     */
+    private $state;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="venue", type="string", length=255)
+     */
+    private $venue;
+
 
     /**
      * Get id
@@ -120,5 +155,120 @@ class EventTranslation
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set briefDescription
+     *
+     * @param string $briefDescription
+     * @return Event
+     */
+    public function setBriefDescription($briefDescription)
+    {
+        $this->briefDescription = $briefDescription;
+    
+        return $this;
+    }
+
+    /**
+     * Get briefDescription
+     *
+     * @return string 
+     */
+    public function getBriefDescription()
+    {
+        return $this->briefDescription;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Event
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     * @return Event
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string 
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Event
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set venue
+     *
+     * @param string $venue
+     * @return Event
+     */
+    public function setVenue($venue)
+    {
+        $this->venue = $venue;
+    
+        return $this;
+    }
+
+    /**
+     * Get venue
+     *
+     * @return string 
+     */
+    public function getVenue()
+    {
+        return $this->venue;
     }
 }

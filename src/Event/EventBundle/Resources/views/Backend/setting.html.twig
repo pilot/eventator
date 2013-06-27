@@ -6,17 +6,55 @@
             <h3>Event settings</h3>
         </div>
 
+        {% include 'EventEventBundle:Backend:_tabs.html.twig' %}
+
         <form id="event" action="{{ url('backend_setting') }}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
+            <div class="tab-content">
+                <div class="tab-pane active" id="en_US">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.briefDescription) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.country) }}
+                    {{ form_row(form.state) }}
+                    {{ form_row(form.city) }}
+                    {{ form_row(form.startDate) }}
+                    {{ form_row(form.endDate) }}
+                    {{ form_row(form.venue) }}
+                    {{ form_row(form.longitude) }}
+                    {{ form_row(form.latitude) }}
+                    {{ form_row(form.twitter) }}
+                    {{ form_row(form.facebook) }}
+                    {{ form_row(form.google) }}
+                </div>
 
-            {% for translation in form.translations %}
-                {{ form_row(translation.title) }}
-            {% endfor %}
-            
-            {{ form_rest(form) }}
+                {% for translation in form.translations %}
+                    <div class="tab-pane fade" id="{{ translation.vars.value.locale }}">
+                        {{ form_row(translation.title) }}
+                    </div>
+                {% endfor %}
+                
+                {{ form_rest(form) }}
 
-            <input class="btn btn-success" type="submit" value="Update" />
-        </form>
+                <input class="btn btn-success" type="submit" value="Update" />
+            </div>
+        </form> 
 
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            // $('#localesTab a').click(function (e) {
+            //     e.preventDefault();
+            //     $(this).tab('show');
+            // })
+
+            // $('a[data-toggle="tab"]').on('shown', function (e) {
+            //     e.target // activated tab
+            //     e.relatedTarget // previous tab
+            // })
+        })
+    </script>
 {% endblock %}
