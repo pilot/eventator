@@ -12,6 +12,23 @@ class SettingsTranslationType extends AbstractType
     {
         $builder
             ->add('title', 'text', array('required' => false))
+            ->add('briefDescription', 'textarea', array(
+                'label' => 'Brief Description',
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
+                'required' => false
+            ))
+            ->add('description', 'textarea', array(
+                'label' => 'Event Description',
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'required' => false
+            ))
+            ->add('state', 'text', array('required' => false))
+            ->add('city', 'text', array('required' => false))
+            ->add('venue', 'textarea', array(
+                'label' => 'Event Venue',
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
+                'required' => false
+            ))
         ;
     }
 

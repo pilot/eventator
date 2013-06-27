@@ -41,4 +41,11 @@ class DashboardController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    public function localeTabsAction()
+    {
+        return $this->render('EventEventBundle:Backend:_tabs.html.twig', array(
+            'locales' => $this->container->getParameter('event.locales')
+        ));
+    }
 }

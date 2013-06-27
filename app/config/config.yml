@@ -64,3 +64,8 @@ swiftmailer:
     password:  %mailer_password%
     port:      %mailer_port%
     spool:     { type: memory }
+
+# Event configuration
+event_event:
+    # list of additional locales, which append to the default_locale
+    locales: {'ru_RU': 'ru', 'de_DE': 'de'}

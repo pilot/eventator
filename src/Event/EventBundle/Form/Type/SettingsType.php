@@ -50,8 +50,7 @@ class SettingsType extends AbstractType
 
             // Add translation
             ->add('translations', 'collection', array(
-                'type' => new SettingsTranslationType(),
-                'allow_add' => true
+                'type' => new SettingsTranslationType()
             ))
         ;
     }
