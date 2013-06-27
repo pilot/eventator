@@ -1,95 +1,70 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome to the Admin Panel!{% endblock %}</title>
+{% extends 'EventEventBundle:Backend:base.html.twig'  %}
 
-        <link href="{{ asset('bundles/eventevent/css/bootstrap.min.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/bootstrap-responsive.min.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/datepicker.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/style.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/dt.bootstrap.css') }}" media="screen" rel="stylesheet" type="text/css">
+{% block body %}
+    {% block menu %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav">
+                        <li>
+                            <a href="#">Hey, {{ app.user.username|default('unknown') }}</a>
+                        </li>
+                        <li><a href="{{ path('admin_logout') }}">Sign Out</a></li>
+                    </ul>
+                </div>
 
-        {% block stylesheets %}{% endblock %}
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}
-            {% block menu %}
-            <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <div class="nav-collapse collapse pull-right">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#">Hey, {{ app.user.username|default('unknown') }}</a>
-                                </li>
-                                <li><a href="{{ path('admin_logout') }}">Sign Out</a></li>
-                            </ul>
-                        </div>
+                <a class="brand" href="#">Eventator</a>
 
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
-
-                        <a class="brand" href="#">Eventator</a>
-
-                        <div class="nav-collapse collapse">
-                            {{ knp_menu_render('EventEventBundle:Builder:dashboardNavigation', {'currentClass': 'active'}) }}
-                        </div>
-                    </div>
+                <div class="nav-collapse collapse">
+                    {{ knp_menu_render('EventEventBundle:Builder:dashboardNavigation', {'currentClass': 'active'}) }}
                 </div>
             </div>
-            {% endblock %}
+        </div>
+    </div>
+    {% endblock %}
 
-            <div class="container space">
-                {% for message in app.session.flashbag.get('success') %}
-                    <div class="alert alert-success">
-                        {{ message|trans }}
-                    </div>
-                {% endfor %}
-                {% for message in app.session.flashbag.get('error') %}
-                    <div class="alert alert-error">
-                        {{ message|trans }}
-                    </div>
-                {% endfor %}
-                {% for message in app.session.flashbag.get('notice') %}
-                    <div class="alert alert-info">
-                        {{ message|trans }}
-                    </div>
-                {% endfor %}
+    <div class="container space">
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashbag.get('error') %}
+            <div class="alert alert-error">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashbag.get('notice') %}
+            <div class="alert alert-info">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
 
-                <div class="row">
-                    <div class="span2 bs-docs-sidebar">
-                        <div class="well sidebar-nav">
-                            {{ knp_menu_render('EventEventBundle:Builder:sideBar', {'currentClass': 'active'}) }}
-                        </div>
-                    </div>
-                    <div class="span9">
-                        {% block content %}{% endblock %}
-                    </div>
+        <div class="row">
+            <div class="span2 bs-docs-sidebar">
+                <div class="well sidebar-nav">
+                    {{ knp_menu_render('EventEventBundle:Builder:sideBar', {'currentClass': 'active'}) }}
                 </div>
             </div>
-        {% endblock %}
+            <div class="span9">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-        {% block javascripts %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-            <script>window.jQuery || document.write("<script src=\"{{ asset('bundles/sitebackend/js/jquery-1.10.1.min.js') }}\"><\/script>")</script>
-            <script src="{{ asset('bundles/eventevent/js/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('bundles/eventevent/js/bootstrap-datepicker.js') }}"></script>
-            <script src="{{ asset('bundles/eventevent/js/bootstrap-tab.js') }}"></script>
-            <script src="{{ asset('bundles/eventevent/js/jquery.dataTables.min.js') }}"></script>
-            <script src="{{ asset('bundles/eventevent/js/dt.bootstrap.js') }}"></script>
-            <script src="{{ asset('bundles/eventevent/js/holder.js') }}"></script>
-
-            <script>
-                $(function () {
-                    $('.datepicker').datepicker();    
-                })
-            </script>
-        {% endblock %}
-    </body>
-</html>
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('.datepicker').datepicker();    
+        })
+    </script>
+{% endblock %}

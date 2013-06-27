@@ -8,8 +8,8 @@ class SecurityController extends Controller
 {
     public function loginAction()
     {
-        return $this->render('EventEventBundle:Backend:login.html.twig', 
-            array()
-        );
+        return $this->render('EventEventBundle:Backend/Security:login.html.twig', array(
+            'error' => false   
+        ));
     }
 }

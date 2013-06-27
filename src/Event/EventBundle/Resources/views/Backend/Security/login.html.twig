@@ -1,0 +1,24 @@
+{% extends 'EventEventBundle:Backend:base.html.twig' %}
+
+{% block body %}
+<div class="row space">
+    <div class="span4 offset4">
+      <div class="well">
+        <legend>Sign in to Eventator</legend>
+        <form action="{{ path('admin_check') }}" method="post">
+            {% if error %}
+                <div class="alert alert-error">
+                    {{ error|trans }}
+                </div>
+            {% endif %}
+            <input class="span3" placeholder="{{ 'security.login.username'|trans }}" type="text" id="username" name="_username" required="required" />
+            <input class="span3" placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required"> 
+            <label class="checkbox">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on"> {{ 'security.login.remember_me'|trans }}
+            </label>
+            <input class="btn-info btn" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />    
+        </form>    
+      </div>
+    </div>
+</div>
+{% endblock %}
