@@ -47,13 +47,18 @@ class SettingsType extends AbstractType
             ->add('twitter', 'text', array('required' => false))
             ->add('facebook', 'text', array('required' => false))
             ->add('google', 'text', array('required' => false))
+
+            // Add translation
+            ->add('translations', 'collection', array(
+                'type' => new SettingsTranslationType()
+            ))
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\Event',
+            'data_class' => 'Event\EventBundle\Entity\Event'
         ));
     }
 

@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs" id="localesTab">
+  <li class="active"><a data-toggle="tab" href="#{{ app.request.locale }}">{{ app.request.locale }}</a></li>
+  
+  {% if locales|length > 0 %}
+    {% for locale, title in locales %}
+        <li><a data-toggle="tab" href="#{{ locale }}">{{ title }}</a></li>
+    {% endfor %}
+  {% endif %}
+</ul>

@@ -6,13 +6,43 @@
             <h3>Event settings</h3>
         </div>
 
-        <form id="event" action="{{ url('backend_setting') }}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-            
-            {{ form_rest(form) }}
+        {% render(controller('EventEventBundle:Backend/Dashboard:localeTabs')) %}
 
-            <input class="btn btn-success" type="submit" value="Update" />
-        </form>
+        <form id="event" action="{{ url('backend_setting') }}" method="post" {{ form_enctype(form) }}>
+            <div class="tab-content">
+                <div class="tab-pane active" id="{{ app.request.locale }}">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.briefDescription) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.country) }}
+                    {{ form_row(form.state) }}
+                    {{ form_row(form.city) }}
+                    {{ form_row(form.startDate) }}
+                    {{ form_row(form.endDate) }}
+                    {{ form_row(form.venue) }}
+                    {{ form_row(form.longitude) }}
+                    {{ form_row(form.latitude) }}
+                    {{ form_row(form.twitter) }}
+                    {{ form_row(form.facebook) }}
+                    {{ form_row(form.google) }}
+                </div>
+
+                {% for translation in form.translations %}
+                    <div class="tab-pane fade" id="{{ translation.vars.value.locale }}">
+                        {{ form_row(translation.title) }}
+                        {{ form_row(translation.briefDescription) }}
+                        {{ form_row(translation.description) }}
+                        {{ form_row(translation.state) }}
+                        {{ form_row(translation.city) }}
+                        {{ form_row(translation.venue) }}
+                    </div>
+                {% endfor %}
+                
+                {{ form_rest(form) }}
+
+                <input class="btn btn-success" type="submit" value="Update" />
+            </div>
+        </form> 
 
     </section>
 {% endblock %}
