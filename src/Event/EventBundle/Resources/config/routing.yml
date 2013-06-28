@@ -1,5 +1,5 @@
-event_main_homepage:
-    pattern:  /hello/{name}
+event_homepage:
+    pattern:  /
     defaults: { _controller: EventEventBundle:Default:index }
 
 _backend:

@@ -3,7 +3,7 @@ backend_dashboard:
     defaults: { _controller: EventEventBundle:Backend/Dashboard:index }
 
 backend_setting:
-    pattern:  /setting
+    pattern:  /settings
     defaults: { _controller: EventEventBundle:Backend/Dashboard:setting }
 
 backend_program:
