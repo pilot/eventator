@@ -38,6 +38,25 @@ class Builder extends ContainerAware
     }
 
     /**
+     * Event frontend menu's
+     */
+    public function topMenu(FactoryInterface $factory, array $options)
+    {
+        $request = $this->container->get('request');
+
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav');
+
+        $menu->addChild('About Event', array('route' => 'event_homepage'));
+        $menu->addChild('Program', array('route' => 'event_homepage'));
+        $menu->addChild('Speakers', array('route' => 'event_homepage'));
+        $menu->addChild('Sponsors', array('route' => 'event_homepage'));
+        $menu->addChild('Contact us', array('route' => 'event_homepage'));
+
+        return $menu;
+    }
+
+    /**
      * @return \Symfony\Component\Security\Core\SecurityContextInterface
      */
     private function getSecurityContext()
