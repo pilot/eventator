@@ -19,25 +19,25 @@ security:
             security: false
 
         login:
-            pattern:  ^/admin/login$
+            pattern:  ^/event/admin/login$
             security: false
 
         admin:
-            pattern:   ^/admin/
+            pattern:   ^/event/admin/
             anonymous: true
             form_login:
-                login_path: /admin/login
-                check_path: /admin/login_check
-                default_target_path: /admin/
+                login_path: /event/admin/login
+                check_path: /event/admin/login_check
+                default_target_path: /event/admin/
             logout:
-                path:    /admin/logout
-                target:  /admin/login
+                path:    /event/admin/logout
+                target:  /event/admin/login
             switch_user: { role: ROLE_ADMIN }
 
     access_control:
         # Backend
-        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/event/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/event/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/event/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/event/admin/, role: ROLE_ADMIN }
