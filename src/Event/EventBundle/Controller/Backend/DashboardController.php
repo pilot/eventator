@@ -15,7 +15,7 @@ class DashboardController extends Controller
         // @todo: handle init on kernel listener
         $this->initEvent();
 
-        return $this->render('EventEventBundle:Backend:index.html.twig', array());
+        return $this->render('EventEventBundle:Backend:index.html.twig', []);
     }
 
     public function settingAction(Request $request)
@@ -48,9 +48,9 @@ class DashboardController extends Controller
 
     public function localeTabsAction()
     {
-        return $this->render('EventEventBundle:Backend:_tabs.html.twig', array(
+        return $this->render('EventEventBundle:Backend:_tabs.html.twig', [
             'locales' => $this->container->getParameter('event.locales')
-        ));
+        ]);
     }
 
     /**
