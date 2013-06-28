@@ -1,0 +1,47 @@
+{% extends 'EventEventBundle::base.html.twig'  %}
+
+{% block body %}
+    {% block menu %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <a class="brand" href="#">Eventator</a>
+
+                <div class="nav-collapse collapse">
+                    {{ knp_menu_render('EventEventBundle:Builder:topMenu', {'currentClass': 'active'}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <div class="container space">
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashbag.get('error') %}
+            <div class="alert alert-error">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashbag.get('notice') %}
+            <div class="alert alert-info">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="span9">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

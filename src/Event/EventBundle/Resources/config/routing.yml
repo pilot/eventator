@@ -1,6 +1,6 @@
 event_homepage:
     pattern:  /
-    defaults: { _controller: EventEventBundle:Default:index }
+    defaults: { _controller: EventEventBundle:Event:index }
 
 _backend:
     resource: routing/backend.yml
