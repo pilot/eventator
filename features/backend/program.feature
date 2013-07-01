@@ -37,10 +37,12 @@ Background:
     | locale |
     | ru_RU  |
 
-Scenario: Admin should have access to the program manage
+Scenario: Admin should have access to the program management
   Given I am sign in as admin
    When I follow "Program"
    Then I should see "Event program"
+    And I should see "symfony propagation"
+    And I should see "after party"
 
 Scenario: Admin should able to add event topic program record
   Given I am sign in as admin
@@ -69,7 +71,7 @@ Scenario: Admin should able to add event regular program record
     And I should see "doctrine must have"
     And I should see "2014-10-10 13:30"
 
-Scenario: Admin should able to add event program record
+Scenario: Admin should able to update event program record
   Given I am sign in as admin
    When I follow "Program"
     And I edit "1" record of "Program"
