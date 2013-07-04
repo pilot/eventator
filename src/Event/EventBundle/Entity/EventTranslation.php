@@ -5,7 +5,7 @@ namespace Event\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EventTranslate
+ * EventTranslation
  *
  * @ORM\Table(name="ev_event_translation")
  * @ORM\Entity

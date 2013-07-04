@@ -3,6 +3,7 @@
 namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Speaker
@@ -38,66 +39,78 @@ class Speaker
     /**
      * @var string
      *
-     * @ORM\Column(name="company", type="string", length=255)
+     * @ORM\Column(name="company", type="string", length=255, nullable=true)
      */
     private $company;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="homepage", type="string", length=255)
+     * @ORM\Column(name="homepage", type="string", length=255, nullable=true)
      */
     private $homepage;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="github", type="string", length=255)
+     * @ORM\Column(name="github", type="string", length=255, nullable=true)
      */
     private $github;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="twitter", type="string", length=255)
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
     private $twitter;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="facebook", type="string", length=255)
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
      */
     private $facebook;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="google", type="string", length=255)
+     * @ORM\Column(name="google", type="string", length=255, nullable=true)
      */
     private $google;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bio", type="text")
+     * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
 
+    /**
+     * @var translations
+     *
+     * @ORM\OneToMany(targetEntity="SpeakerTranslation", mappedBy="speaker", cascade={"all"})
+     */
+    private $translations;
+
+    
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
 
     /**
      * Get id

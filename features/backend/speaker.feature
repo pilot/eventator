@@ -24,7 +24,7 @@ Scenario: Admin should have access to the speakers management
    Then I should see "Event speakers"
     And I should see "Alex Demchenko"
     And I should see "Phill Pilow"
-    And I should ses "KnpLabs"
+    And I should see "KnpLabs"
 
 Scenario: Admin should able to add event speaker
   Given I am sign in as admin
