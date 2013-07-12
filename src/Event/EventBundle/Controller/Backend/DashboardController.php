@@ -7,6 +7,8 @@ use Event\EventBundle\Controller\Controller;
 use Event\EventBundle\Form\Type\SettingsType;
 use Event\EventBundle\Entity\Event;
 use Event\EventBundle\Entity\EventTranslation;
+use Event\EventBundle\Entity\Speaker;
+use Event\EventBundle\Entity\SpeakerTranslation;
 
 class DashboardController extends Controller
 {
@@ -21,12 +23,12 @@ class DashboardController extends Controller
     public function settingAction(Request $request)
     {
         $event = $this->getRepository('EventEventBundle:Event')->getEvent();
-        
+
         if (!$event) {
             $event = new Event();
         }
 
-        $form = $this->createForm(new SettingsType(), $event);    
+        $form = $this->createForm(new SettingsType(), $event);
         if ($request->isMethod('POST') && $form->handleRequest($request)) {
 
             if ($form->isValid()) {
@@ -75,6 +77,13 @@ class DashboardController extends Controller
                 ->setVenue('Burj Khalifa Tower')
             ;
 
+            $speaker = new Speaker();
+            $speaker
+                ->setFirstName('Phill')
+                ->setLastName('Pilow')
+                ->setCompany('Reseach Supplier')
+            ;
+
             if ($locales) {
                 foreach ($locales as $locale => $title) {
                     $eventTranslation = new EventTranslation();
@@ -82,10 +91,17 @@ class DashboardController extends Controller
                     $eventTranslation->setlocale($locale);
 
                     $this->getManager()->persist($eventTranslation);
+
+                    $speakerTranslation = new SpeakerTranslation();
+                    $speakerTranslation->setSpeaker($speaker);
+                    $speakerTranslation->setlocale($locale);
+
+                    $this->getManager()->persist($speakerTranslation);
                 }
             }
 
             $this->getManager()->persist($event);
+            $this->getManager()->persist($speaker);
             $this->getManager()->flush();
         }
     }

@@ -11,8 +11,8 @@ Background:
     | locale |
     | ru_RU  |
   And following "Speaker":
-    | ref   | firstName | lastName  | Organization     | email | homepage           | twitter   |
-    | phill | Phill     | Pilow     | Reseach Supplier |       |                    |           |  
+    | ref   | firstName | lastName  | Company          | email | homepage           | twitter   |
+    | phill | Phill     | Pilow     | Reseach Supplier |       |                    |           |
     | alex  | Alex      | Demchenko | KnpLabs          |       | http://451f.com.ua | pilouanic |
   And following "SpeakerTranslation":
     | locale |
@@ -33,7 +33,7 @@ Scenario: Admin should able to add event speaker
    Then I should see "Add new speaker"
    When I fill in "First Name" with "Natan"
     And I fill in "Last Name" with "Posseo"
-    And I fill in "Organization" with "Seraphim"
+    And I fill in "Company" with "Seraphim"
     And I fill in "Twitter" with "natanposseo"
     And I press "Add"
    Then I should see "Event speaker updated."
@@ -56,7 +56,7 @@ Scenario: Admin should able to update event speaker
    When I follow "Speakers"
     And I edit "1" record of "Speaker"
    Then I should see "Edit speaker"
-   When I fill in "Organization" with "NASSA Reseach Center"
+   When I fill in "Company" with "NASSA Reseach Center"
     And I fill in "homepage" with "http://nassa.gov.us"
     And I press "Update"
    Then I should see "Event speaker updated."
