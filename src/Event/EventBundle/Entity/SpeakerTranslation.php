@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SpeakerTranslation
 {
+    use Locale;
+
     /**
      * @var integer
      *
@@ -31,14 +33,14 @@ class SpeakerTranslation
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255)
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=255)
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
     private $lastName;
 
@@ -67,7 +69,7 @@ class SpeakerTranslation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -75,22 +77,45 @@ class SpeakerTranslation
     }
 
     /**
+     * Set Speaker
+     *
+     * @param Speaker $speaker
+     * @return SpeakerTranslation
+     */
+    public function setSpeaker(Speaker $speaker)
+    {
+        $this->speaker = $speaker;
+
+        return $this;
+    }
+
+    /**
+     * Get Speaker
+     *
+     * @return Speaker
+     */
+    public function getSpeaker()
+    {
+        return $this->speaker;
+    }
+
+    /**
      * Set firstName
      *
      * @param string $firstName
-     * @return Speaker
+     * @return SpeakerTranslation
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-    
+
         return $this;
     }
 
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -101,19 +126,19 @@ class SpeakerTranslation
      * Set lastName
      *
      * @param string $lastName
-     * @return Speaker
+     * @return SpeakerTranslation
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    
+
         return $this;
     }
 
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -124,19 +149,19 @@ class SpeakerTranslation
      * Set company
      *
      * @param string $company
-     * @return Speaker
+     * @return SpeakerTranslation
      */
     public function setCompany($company)
     {
         $this->company = $company;
-    
+
         return $this;
     }
 
     /**
      * Get company
      *
-     * @return string 
+     * @return string
      */
     public function getCompany()
     {
@@ -147,19 +172,19 @@ class SpeakerTranslation
      * Set position
      *
      * @param string $position
-     * @return Speaker
+     * @return SpeakerTranslation
      */
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return string 
+     * @return string
      */
     public function getPosition()
     {
@@ -170,19 +195,19 @@ class SpeakerTranslation
      * Set bio
      *
      * @param string $bio
-     * @return Speaker
+     * @return SpeakerTranslation
      */
     public function setBio($bio)
     {
         $this->bio = $bio;
-    
+
         return $this;
     }
 
     /**
      * Get bio
      *
-     * @return string 
+     * @return string
      */
     public function getBio()
     {
