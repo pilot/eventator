@@ -26,6 +26,7 @@ Scenario: Admin should have access to the speakers management
     And I should see "Phill Pilow"
     And I should see "KnpLabs"
 
+@wip
 Scenario: Admin should able to add event speaker
   Given I am sign in as admin
    When I follow "Speakers"
@@ -41,6 +42,7 @@ Scenario: Admin should able to add event speaker
     And I should see "Seraphim"
     And I should not see "natanposseo"
 
+@wip
 Scenario: Admin should not able to add event speaker without first and last name
   Given I am sign in as admin
    When I follow "Speakers"
@@ -51,6 +53,7 @@ Scenario: Admin should not able to add event speaker without first and last name
     And I should see "Add new speaker"
     And the "Last Name" field should contain "Georgian"
 
+@wip
 Scenario: Admin should able to update event speaker
   Given I am sign in as admin
    When I follow "Speakers"
@@ -63,6 +66,7 @@ Scenario: Admin should able to update event speaker
     And I should see "NASSA Reseach Center"
     And I should not see "nassa.gov.us"
 
+@wip
 Scenario: Admin should able to delete event speaker
   Given I am sign in as admin
    When I follow "Speakers"

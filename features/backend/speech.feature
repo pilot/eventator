@@ -3,6 +3,7 @@ Feature: Event speaker speech
   I should be able to manage event speaker speech
   In order to see speaker speech
 
+@wip
 Background:
   Given following "Event":
     | ref   | title    | description               | startDate  | endDate    | venue              |
@@ -12,14 +13,14 @@ Background:
     | ru_RU  |
   And following "Speaker":
     | ref   | firstName | lastName  | Organization     | email | homepage           | twitter     |
-    | phill | Phill     | Pilow     | Reseach Supplier |       |                    |             |  
+    | phill | Phill     | Pilow     | Reseach Supplier |       |                    |             |
     | alex  | Alex      | Demchenko | KnpLabs          |       | http://451f.com.ua | pilouanic   |
     | natan | Natan     | Posseo    | Seraphim         |       |                    | natanposseo |
   And following "SpeakerTranslation":
     | locale |
     | ru_RU  |
   And following "Speech":
-    | ref      | speaker | title               | description                           | slide | video | 
+    | ref      | speaker | title               | description                           | slide | video |
     | symfony  | alex    | symfony propagation | world symfony expansion               |       |       |
     | php      | phill   | php servers piece   | php most popular language             |       |       |
     | doctrine | phill   | doctrine must have  | what you docrtine project should have |       |       |
@@ -27,6 +28,7 @@ Background:
     | locale |
     | ru_RU  |
 
+@wip
 Scenario: Admin should have access to the speaker speech
   Given I am sign in as admin
    When I follow "Speeches"
@@ -35,6 +37,7 @@ Scenario: Admin should have access to the speaker speech
     And I should see "Phill Pilow"
     And I should ses "doctrine must have"
 
+@wip
 Scenario: Admin should able to add event speaker speech
   Given I am sign in as admin
    When I follow "Speeches"
@@ -49,6 +52,7 @@ Scenario: Admin should able to add event speaker speech
     And I should see "Symfony for the eco Earth"
     And I should not see "Save energy with php projects base on Symfony"
 
+@wip
 Scenario: Admin should not able to add event speaker without speaker and title
   Given I am sign in as admin
    When I follow "Speeches"
@@ -64,6 +68,7 @@ Scenario: Admin should not able to add event speaker without speaker and title
     And I should see "Add new speech"
     And the "Title" field should contain "Deriver drive with Symfony"
 
+@wip
 Scenario: Admin should able to update event speaker speech
   Given I am sign in as admin
    When I follow "Speeches"
@@ -76,6 +81,7 @@ Scenario: Admin should able to update event speaker speech
     And I should see "php as de facto standard"
     And I should not see "speakerdeck.com"
 
+@wip
 Scenario: Admin should able to delete event speaker speech
   Given I am sign in as admin
    When I follow "Speeches"

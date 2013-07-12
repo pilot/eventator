@@ -3,6 +3,7 @@ Feature: Event program
   I should be able to manage event program
   In order to update my event program
 
+@wip
 Background:
   Given following "Event":
     | ref   | title    | description               | startDate  | endDate    | venue              |
@@ -12,13 +13,13 @@ Background:
     | ru_RU  |
   And following "Speaker":
     | ref   | firstName | lastName  | Organization     | email | homepage           | twitter   |
-    | phill | Phill     | Pilow     | Reseach Supplier |       |                    |           |  
+    | phill | Phill     | Pilow     | Reseach Supplier |       |                    |           |
     | alex  | Alex      | Demchenko | KnpLabs          |       | http://451f.com.ua | pilouanic |
   And following "SpeakerTranslation":
     | locale |
     | ru_RU  |
   And following "Speech":
-    | ref      | speaker | title               | description                           | slide | video | 
+    | ref      | speaker | title               | description                           | slide | video |
     | symfony  | alex    | symfony propagation | world symfony expansion               |       |       |
     | php      | phill   | php servers piece   | php most popular language             |       |       |
     | doctrine | phill   | doctrine must have  | what you docrtine project should have |       |       |
@@ -37,6 +38,7 @@ Background:
     | locale |
     | ru_RU  |
 
+@wip
 Scenario: Admin should have access to the program management
   Given I am sign in as admin
    When I follow "Program"
@@ -44,6 +46,7 @@ Scenario: Admin should have access to the program management
     And I should see "symfony propagation"
     And I should see "after party"
 
+@wip
 Scenario: Admin should able to add event topic program record
   Given I am sign in as admin
    When I follow "Program"
@@ -58,6 +61,7 @@ Scenario: Admin should able to add event topic program record
     And I should see "Coffee Break"
     And I should see "2014-10-10 12:30"
 
+@wip
 Scenario: Admin should able to add event regular program record
   Given I am sign in as admin
    When I follow "Program"
@@ -71,6 +75,7 @@ Scenario: Admin should able to add event regular program record
     And I should see "doctrine must have"
     And I should see "2014-10-10 13:30"
 
+@wip
 Scenario: Admin should able to update event program record
   Given I am sign in as admin
    When I follow "Program"
@@ -81,6 +86,7 @@ Scenario: Admin should able to update event program record
    Then I should see "Event program updated."
     And I should see "Registration"
 
+@wip
 Scenario: Admin should able to delete event program record
   Given I am sign in as admin
    When I follow "Program"
