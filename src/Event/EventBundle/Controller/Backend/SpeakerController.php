@@ -8,8 +8,8 @@ class SpeakerController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EventEventBundle:Backend:index.html.twig', 
-            array()
-        );
+        return $this->render('EventEventBundle:Backend/Speaker:index.html.twig', array(
+            'speakers' => $this->getRepository('EventEventBundle:Speaker')->findAll()
+        ));
     }
 }

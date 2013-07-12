@@ -15,7 +15,9 @@ class DashboardController extends Controller
     public function indexAction()
     {
         // @todo: handle init on kernel listener
-        $this->initEvent();
+        if ('test' != $this->container->getParameter('kernel.environment')) {
+            $this->initEvent();
+        }
 
         return $this->render('EventEventBundle:Backend:index.html.twig', []);
     }

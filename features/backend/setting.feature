@@ -5,8 +5,8 @@ Feature: Event settings
 
 Background:
   Given following "Event":
-    | ref   | title    | description               | startDate  | endDate    | venue              |
-    | event | My event | My another awesome event! | 2014-10-10 | 2014-10-12 | Burj Khalifa Tower |
+    | ref   | title    | description             | startDate  | endDate    | venue              |
+    | event | My event | My super awesome event! | 2014-10-10 | 2014-10-12 | Burj Khalifa Tower |
   And following "EventTranslation":
     | locale |
     | ru_RU  |
@@ -15,6 +15,8 @@ Scenario: Admin should have access to the settings manage
   Given I am sign in as admin
    When I follow "Settings"
    Then I should see "Event settings"
+    And the "description" field should contain "My super awesome event!"
+    And the "venue" field should contain "Burj Khalifa Tower"
 
 Scenario: Admin should have able to update event settings
   Given I am sign in as admin

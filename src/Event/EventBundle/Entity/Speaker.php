@@ -106,7 +106,7 @@ class Speaker
      */
     private $translations;
 
-    
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
@@ -115,7 +115,7 @@ class Speaker
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -131,14 +131,14 @@ class Speaker
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-    
+
         return $this;
     }
 
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -154,14 +154,14 @@ class Speaker
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    
+
         return $this;
     }
 
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -177,14 +177,14 @@ class Speaker
     public function setCompany($company)
     {
         $this->company = $company;
-    
+
         return $this;
     }
 
     /**
      * Get company
      *
-     * @return string 
+     * @return string
      */
     public function getCompany()
     {
@@ -200,14 +200,14 @@ class Speaker
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return string 
+     * @return string
      */
     public function getPosition()
     {
@@ -223,14 +223,14 @@ class Speaker
     public function setHomepage($homepage)
     {
         $this->homepage = $homepage;
-    
+
         return $this;
     }
 
     /**
      * Get homepage
      *
-     * @return string 
+     * @return string
      */
     public function getHomepage()
     {
@@ -246,14 +246,14 @@ class Speaker
     public function setGithub($github)
     {
         $this->github = $github;
-    
+
         return $this;
     }
 
     /**
      * Get github
      *
-     * @return string 
+     * @return string
      */
     public function getGithub()
     {
@@ -269,14 +269,14 @@ class Speaker
     public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
-    
+
         return $this;
     }
 
     /**
      * Get twitter
      *
-     * @return string 
+     * @return string
      */
     public function getTwitter()
     {
@@ -292,14 +292,14 @@ class Speaker
     public function setFacebook($facebook)
     {
         $this->facebook = $facebook;
-    
+
         return $this;
     }
 
     /**
      * Get facebook
      *
-     * @return string 
+     * @return string
      */
     public function getFacebook()
     {
@@ -315,14 +315,14 @@ class Speaker
     public function setGoogle($google)
     {
         $this->google = $google;
-    
+
         return $this;
     }
 
     /**
      * Get google
      *
-     * @return string 
+     * @return string
      */
     public function getGoogle()
     {
@@ -338,14 +338,14 @@ class Speaker
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -361,17 +361,29 @@ class Speaker
     public function setBio($bio)
     {
         $this->bio = $bio;
-    
+
         return $this;
     }
 
     /**
      * Get bio
      *
-     * @return string 
+     * @return string
      */
     public function getBio()
     {
         return $this->bio;
+    }
+
+    public function getFullName()
+    {
+        $names = array_filter(
+            array($this->firstName, $this->lastName),
+            function ($element) {
+                return (boolean) trim($element);
+            }
+        );
+
+        return trim(implode(' ', $names));
     }
 }
