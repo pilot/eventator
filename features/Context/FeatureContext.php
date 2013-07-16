@@ -145,6 +145,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $entities = array();
         foreach ($table->getHash() as $row) {
             $object = new $class;
+            $this->getEntityManager()->persist($object);
+
             $this->addFieldsDataFromRow($metadata, $object, $row);
             $this->addAssociationsFromRow($metadata, $object, $row);
 
