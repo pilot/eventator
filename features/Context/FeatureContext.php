@@ -84,6 +84,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function restoreDatabase()
     {
+        $this->getEntityManager()->getConnection()->executeUpdate("SET foreign_key_checks = 0;");
+
         $application = new Application($this->kernel);
         $application->setAutoExit(false);
 
@@ -94,6 +96,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             '--quiet' => true,
             '--env' => 'test',
         );
+
+        $this->getEntityManager()->getConnection()->executeUpdate("SET foreign_key_checks = 1;");
 
         $application->run(new ArrayInput($drop));
 
