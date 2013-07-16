@@ -33,7 +33,7 @@ class Sponsor
      *
      * @ORM\Column(name="description", type="string", length=255)
      */
-    private $desciption;
+    private $description;
 
     /**
      * @var string
@@ -67,7 +67,7 @@ class Sponsor
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,14 +83,14 @@ class Sponsor
     public function setCompany($company)
     {
         $this->company = $company;
-    
+
         return $this;
     }
 
     /**
      * Get company
      *
-     * @return string 
+     * @return string
      */
     public function getCompany()
     {
@@ -98,26 +98,26 @@ class Sponsor
     }
 
     /**
-     * Set desciption
+     * Set description
      *
-     * @param string $desciption
+     * @param string $description
      * @return Sponsor
      */
-    public function setDesciption($desciption)
+    public function setDescription($description)
     {
-        $this->desciption = $desciption;
-    
+        $this->description = $description;
+
         return $this;
     }
 
     /**
-     * Get desciption
+     * Get description
      *
-     * @return string 
+     * @return string
      */
-    public function getDesciption()
+    public function getDescription()
     {
-        return $this->desciption;
+        return $this->description;
     }
 
     /**
@@ -129,14 +129,14 @@ class Sponsor
     public function setLogo($logo)
     {
         $this->logo = $logo;
-    
+
         return $this;
     }
 
     /**
      * Get logo
      *
-     * @return string 
+     * @return string
      */
     public function getLogo()
     {
@@ -152,14 +152,14 @@ class Sponsor
     public function setHomepage($homepage)
     {
         $this->homepage = $homepage;
-    
+
         return $this;
     }
 
     /**
      * Get homepage
      *
-     * @return string 
+     * @return string
      */
     public function getHomepage()
     {
@@ -175,14 +175,14 @@ class Sponsor
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return integer 
+     * @return integer
      */
     public function getType()
     {
@@ -198,14 +198,14 @@ class Sponsor
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
-    
+
         return $this;
     }
 
     /**
      * Get isActive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
