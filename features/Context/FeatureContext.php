@@ -159,6 +159,14 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->getEntityManager()->flush();
     }
 
+    /**
+     * @Given /^I delete "([^"]*)" record of "([^"]*)"$/
+     */
+    public function iDeleteRecordOf($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
     public function getRepository($name)
     {
         return $this->getEntityManager()->getRepository($name);

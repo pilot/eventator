@@ -3,7 +3,6 @@ Feature: Event speaker speech
   I should be able to manage event speaker speech
   In order to see speaker speech
 
-@wip
 Background:
   Given following "Event":
     | ref   | title    | description               | startDate  | endDate    | venue              |

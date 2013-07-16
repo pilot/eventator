@@ -26,43 +26,40 @@ Scenario: Admin should have access to the speakers management
     And I should see "Phill Pilow"
     And I should see "KnpLabs"
 
-@wip
 Scenario: Admin should able to add event speaker
   Given I am sign in as admin
    When I follow "Speakers"
     And I follow "Add speaker"
-   Then I should see "Add new speaker"
+   Then I should see "Add speaker"
    When I fill in "First Name" with "Natan"
     And I fill in "Last Name" with "Posseo"
     And I fill in "Company" with "Seraphim"
     And I fill in "Twitter" with "natanposseo"
     And I press "Add"
-   Then I should see "Event speaker updated."
+   Then I should see "Speaker Natan Posseo updated."
     And I should see "Natan Posseo"
     And I should see "Seraphim"
     And I should not see "natanposseo"
 
-@wip
 Scenario: Admin should not able to add event speaker without first and last name
   Given I am sign in as admin
    When I follow "Speakers"
     And I follow "Add speaker"
     And I fill in "Last Name" with "Georgian"
     And I press "Add"
-   Then I should not see "Event speaker updated."
-    And I should see "Add new speaker"
+   Then I should not see "Speaker Georgian updated."
+    And I should see "Add speaker"
     And the "Last Name" field should contain "Georgian"
 
-@wip
 Scenario: Admin should able to update event speaker
   Given I am sign in as admin
    When I follow "Speakers"
-    And I edit "1" record of "Speaker"
+    And I follow "Phill Pilow"
    Then I should see "Edit speaker"
    When I fill in "Company" with "NASSA Reseach Center"
-    And I fill in "homepage" with "http://nassa.gov.us"
+    And I fill in "Homepage" with "http://nassa.gov.us"
     And I press "Update"
-   Then I should see "Event speaker updated."
+   Then I should see "Speaker Phill Pilow updated."
     And I should see "NASSA Reseach Center"
     And I should not see "nassa.gov.us"
 
@@ -70,7 +67,7 @@ Scenario: Admin should able to update event speaker
 Scenario: Admin should able to delete event speaker
   Given I am sign in as admin
    When I follow "Speakers"
-    And I delete "3" record of "Speaker"
-   Then I should see "Event speaker deleted."
-    And I should not see "Natan Posseo"
+    And I delete "1" record of "Speaker"
+   Then I should see "Speaker deleted."
+    And I should not see "Phill Pilow"
     And I should see "Alex Demchenko"

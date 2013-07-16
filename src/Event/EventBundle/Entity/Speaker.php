@@ -4,6 +4,7 @@ namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Speaker
@@ -13,6 +14,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Speaker
 {
+    use Translation;
+
     /**
      * @var integer
      *
@@ -25,6 +28,7 @@ class Speaker
     /**
      * @var string
      *
+     * @Assert\NotNull()
      * @ORM\Column(name="first_name", type="string", length=255)
      */
     private $firstName;
@@ -32,6 +36,7 @@ class Speaker
     /**
      * @var string
      *
+     * @Assert\NotNull()
      * @ORM\Column(name="last_name", type="string", length=255)
      */
     private $lastName;

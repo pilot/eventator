@@ -3,7 +3,6 @@ Feature: Event program
   I should be able to manage event program
   In order to update my event program
 
-@wip
 Background:
   Given following "Event":
     | ref   | title    | description               | startDate  | endDate    | venue              |

@@ -32,13 +32,13 @@ Scenario: Admin should have able to update event settings
     And I should see "Awesome event"
     And the "City" field should contain "Dubai"
 
-# @javascript
-# Scenario: Admin should have able to update Russian event settings
-#   Given I am sign in as admin
-#    When I follow "Settings"
-#     And I follow "ru"
-#     And I fill in "title" with "Мое событие"
-#     And I press "Update"
-#    Then I should see "Event settings updated."
-#    When I follow "ru"
-#    Then the "title" field should contain "Мое событие"
+@wip @javascript
+Scenario: Admin should have able to update Russian event settings
+  Given I am sign in as admin
+   When I follow "Settings"
+    And I follow "ru"
+    And I fill in "title" with "Мое событие"
+    And I press "Update"
+   Then I should see "Event settings updated."
+   When I follow "ru"
+   Then the "title" field should contain "Мое событие"
