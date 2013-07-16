@@ -111,10 +111,18 @@ class Speaker
      */
     private $translations;
 
+    /**
+     * @var speeches
+     *
+     * @ORM\OneToMany(targetEntity="Speech", mappedBy="speaker", cascade={"all"})
+     */
+    private $speeches;
+
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->speeches = new ArrayCollection();
     }
 
     /**
@@ -390,5 +398,37 @@ class Speaker
         );
 
         return trim(implode(' ', $names));
+    }
+
+    /**
+     * Get speeches
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSpeeches()
+    {
+        return $this->speeches;
+    }
+
+    /**
+     * Add speech
+     *
+     * @param Speech $speech
+     */
+    public function addSpeech(Speech $speech)
+    {
+        $this->speeches[] = $speech;
+
+        $speech->setSpeaker($this);
+    }
+
+    /**
+     * Remove speech
+     *
+     * @param Speech $speech
+     */
+    public function removeSpeech(Speech $speech)
+    {
+        $this->speeches->removeElement($speech);
     }
 }

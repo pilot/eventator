@@ -29,8 +29,7 @@ class SpeakerType extends AbstractType
 
             // Add translation
             ->add('translations', 'collection', array(
-                'type' => new SpeakerTranslationType(),
-                'allow_add' => true
+                'type' => new SpeakerTranslationType()
             ))
         ;
     }

@@ -30,8 +30,9 @@ class Builder extends ContainerAware
 
         $event = $menu->addChild('Event');
         $event->addChild('Settings', array('route' => 'backend_setting'));
-        $event->addChild('Program', array('route' => 'backend_program'));
         $event->addChild('Speakers', array('route' => 'backend_speaker'));
+        $event->addChild('Speeches', array('route' => 'backend_speech'));
+        $event->addChild('Schedule', array('route' => 'backend_program'));
         $event->addChild('Sponsors', array('route' => 'backend_sponsor'));
 
         return $menu;
