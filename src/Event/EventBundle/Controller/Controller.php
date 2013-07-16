@@ -3,6 +3,7 @@
 namespace Event\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class Controller extends BaseController
 {
@@ -32,6 +33,18 @@ class Controller extends BaseController
     protected function getSecurityContext()
     {
         return $this->get('security.context');
+    }
+
+    protected function isGranted($role, $object = null)
+    {
+        return $this->getSecurityContext()->isGranted($role, $object);
+    }
+
+    protected function isGrantedAdmin()
+    {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
     }
 
     /**
@@ -65,7 +78,7 @@ class Controller extends BaseController
     {
         $entity = $this->getRepository($entity)->findOneBy(is_array($id) ? $id : array('id' => $id));
         if (!$entity) {
-            throw $this->createNotFoundException('Resource not found.');
+            throw $this->createNotFoundException(sprintf('Resource %s for %s not found.', $id, $entity->getName()));
         }
 
         return $entity;
@@ -74,6 +87,32 @@ class Controller extends BaseController
     protected function getSession()
     {
         return $this->getRequest()->getSession();
+    }
+
+    protected function initObjectLocales($entity, $translation)
+    {
+        $locales = $this->container->getParameter('event.locales');
+        $translation = get_class($translation);
+
+        if ($locales) {
+            foreach ($locales as $locale => $title) {
+                $translation = new $translation();
+                $translation->setlocale($locale);
+
+                $this->getManager()->persist($translation);
+
+                $entity->addTranslation($translation, $this->getClassName($entity));
+            }
+        }
+
+        return $entity;
+    }
+
+    protected function getClassName($class)
+    {
+        $ref = new \ReflectionClass(get_class($class));
+
+        return $ref->getShortName();
     }
 
     protected function getFlashBag()

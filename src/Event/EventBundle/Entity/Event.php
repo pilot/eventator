@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Event
 {
+    use Translation;
+
     /**
      * @var integer
      *
@@ -127,7 +129,7 @@ class Event
      */
     private $translations;
 
-    
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
@@ -136,7 +138,7 @@ class Event
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -152,14 +154,14 @@ class Event
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -175,14 +177,14 @@ class Event
     public function setBriefDescription($briefDescription)
     {
         $this->briefDescription = $briefDescription;
-    
+
         return $this;
     }
 
     /**
      * Get briefDescription
      *
-     * @return string 
+     * @return string
      */
     public function getBriefDescription()
     {
@@ -198,14 +200,14 @@ class Event
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -221,14 +223,14 @@ class Event
     public function setCountry($country)
     {
         $this->country = $country;
-    
+
         return $this;
     }
 
     /**
      * Get country
      *
-     * @return string 
+     * @return string
      */
     public function getCountry()
     {
@@ -244,14 +246,14 @@ class Event
     public function setState($state)
     {
         $this->state = $state;
-    
+
         return $this;
     }
 
     /**
      * Get state
      *
-     * @return string 
+     * @return string
      */
     public function getState()
     {
@@ -267,14 +269,14 @@ class Event
     public function setCity($city)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -294,14 +296,14 @@ class Event
         }
 
         $this->startDate = $startDate;
-    
+
         return $this;
     }
 
     /**
      * Get startDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -321,14 +323,14 @@ class Event
         }
 
         $this->endDate = $endDate;
-    
+
         return $this;
     }
 
     /**
      * Get endDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEndDate()
     {
@@ -344,14 +346,14 @@ class Event
     public function setVenue($venue)
     {
         $this->venue = $venue;
-    
+
         return $this;
     }
 
     /**
      * Get venue
      *
-     * @return string 
+     * @return string
      */
     public function getVenue()
     {
@@ -367,14 +369,14 @@ class Event
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
-    
+
         return $this;
     }
 
     /**
      * Get longitude
      *
-     * @return string 
+     * @return string
      */
     public function getLongitude()
     {
@@ -390,14 +392,14 @@ class Event
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
-    
+
         return $this;
     }
 
     /**
      * Get latitude
      *
-     * @return string 
+     * @return string
      */
     public function getLatitude()
     {
@@ -413,14 +415,14 @@ class Event
     public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
-    
+
         return $this;
     }
 
     /**
      * Get twitter
      *
-     * @return string 
+     * @return string
      */
     public function getTwitter()
     {
@@ -436,14 +438,14 @@ class Event
     public function setFacebook($facebook)
     {
         $this->facebook = $facebook;
-    
+
         return $this;
     }
 
     /**
      * Get facebook
      *
-     * @return string 
+     * @return string
      */
     public function getFacebook()
     {
@@ -459,49 +461,17 @@ class Event
     public function setGoogle($google)
     {
         $this->google = $google;
-    
+
         return $this;
     }
 
     /**
      * Get google
      *
-     * @return string 
+     * @return string
      */
     public function getGoogle()
     {
         return $this->google;
-    }
-
-    /**
-     * Get translations
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTranslations()
-    {
-        return $this->translations;
-    }
-
-    /**
-     * Add translation
-     *
-     * @param EventTranslation $translation
-     */
-    public function addTranslation(EventTranslation $translation)
-    {
-        $this->translation[] = $translation;
-
-        $translation->setEvent($this);
-    }
-
-    /**
-     * Remove translation
-     *
-     * @param EventTranslation $translation
-     */
-    public function removeTranslation(EventTranslation $translation)
-    {
-        $this->translation->removeElement($translation);
     }
 }
