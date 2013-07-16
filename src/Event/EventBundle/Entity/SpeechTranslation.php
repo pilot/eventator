@@ -3,18 +3,16 @@
 namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Speech
  *
- * @ORM\Table(name="ev_speech")
+ * @ORM\Table(name="ev_speech_translation")
  * @ORM\Entity
  */
-class Speech
+class SpeechTranslation
 {
-    use Translation;
+    use Locale;
 
     /**
      * @var integer
@@ -26,18 +24,16 @@ class Speech
     private $id;
 
     /**
-     * @var Speaker
+     * @var Speech
      *
-     * @Assert\NotNull()
-     * @ORM\ManyToOne(targetEntity="Speaker", inversedBy="speeches")
+     * @ORM\ManyToOne(targetEntity="Speech", inversedBy="translations")
      */
-    private $speaker;
+    private $speech;
 
     /**
      * @var string
      *
-     * @Assert\NotNull()
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
 
@@ -62,18 +58,6 @@ class Speech
      */
     private $video;
 
-    /**
-     * @var translations
-     *
-     * @ORM\OneToMany(targetEntity="SpeechTranslation", mappedBy="speech", cascade={"all"})
-     */
-    private $translations;
-
-
-    public function __construct()
-    {
-        $this->translations = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -86,33 +70,33 @@ class Speech
     }
 
     /**
-     * Set speaker
+     * Set speech
      *
-     * @param Speaker $speaker
-     * @return Speech
+     * @param Speech $speech
+     * @return SpeechTranslation
      */
-    public function setSpeaker(Speaker $speaker)
+    public function setSpeech(Speech $speech)
     {
-        $this->speaker = $speaker;
+        $this->speech = $speech;
 
         return $this;
     }
 
     /**
-     * Get speaker
+     * Get speech
      *
-     * @return Speaker
+     * @return Speech
      */
-    public function getSpeaker()
+    public function getSpeech()
     {
-        return $this->speaker;
+        return $this->speech;
     }
 
     /**
      * Set title
      *
      * @param string $title
-     * @return Speech
+     * @return SpeechTranslation
      */
     public function setTitle($title)
     {
@@ -135,7 +119,7 @@ class Speech
      * Set description
      *
      * @param string $description
-     * @return Speech
+     * @return SpeechTranslation
      */
     public function setDescription($description)
     {
@@ -158,7 +142,7 @@ class Speech
      * Set slide
      *
      * @param string $slide
-     * @return Speech
+     * @return SpeechTranslation
      */
     public function setSlide($slide)
     {
@@ -181,7 +165,7 @@ class Speech
      * Set video
      *
      * @param string $video
-     * @return Speech
+     * @return SpeechTranslation
      */
     public function setVideo($video)
     {

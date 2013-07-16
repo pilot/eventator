@@ -1,0 +1,35 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>{{ speech.id ? 'Edit' : 'Add' }} speech</h3>
+            <a href="{{ path('backend_speech') }}" class="btn btn-small">&larr; Back to the list</a>
+        </div>
+
+        {% render(controller('EventEventBundle:Backend/Dashboard:localeTabs')) %}
+
+        <form action="{{ path('backend_speech_edit', { 'id': speech.id }) }}" method="post" {{ form_enctype(form) }}>
+            <div class="tab-content">
+                <div class="tab-pane active" id="{{ app.request.locale }}">
+                    {{ form_row(form.speaker) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.slide) }}
+                    {{ form_row(form.video) }}
+                </div>
+
+                {% for translation in form.translations %}
+                    <div class="tab-pane fade" id="{{ translation.vars.value.locale }}">
+                        {{ form_widget(translation) }}
+                    </div>
+                {% endfor %}
+
+                {{ form_rest(form) }}
+
+                <input type="submit" value="{{ speech.id ? 'Update' : 'Add' }}" class="btn btn-success" />
+            </div>
+        </form>
+
+    </section>
+{% endblock %}
