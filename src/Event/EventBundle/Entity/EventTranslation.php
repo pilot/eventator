@@ -5,13 +5,15 @@ namespace Event\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EventTranslate
+ * EventTranslation
  *
  * @ORM\Table(name="ev_event_translation")
  * @ORM\Entity
  */
 class EventTranslation
 {
+    use Locale;
+
     /**
      * @var integer
      *
@@ -27,13 +29,6 @@ class EventTranslation
      * @ORM\ManyToOne(targetEntity="Event", inversedBy="translations")
      */
     private $event;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="locale", type="string", length=5, nullable=true)
-     */
-    private $locale;
 
     /**
      * @var string
@@ -81,7 +76,7 @@ class EventTranslation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -97,7 +92,7 @@ class EventTranslation
     public function setEvent($event)
     {
         $this->event = $event;
-    
+
         return $this;
     }
 
@@ -112,29 +107,6 @@ class EventTranslation
     }
 
     /**
-     * Set locale
-     *
-     * @param string $locale
-     * @return EventTranslate
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-    
-        return $this;
-    }
-
-    /**
-     * Get locale
-     *
-     * @return string 
-     */
-    public function getLocale()
-    {
-        return $this->locale;
-    }
-
-    /**
      * Set title
      *
      * @param string $title
@@ -143,14 +115,14 @@ class EventTranslation
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -166,14 +138,14 @@ class EventTranslation
     public function setBriefDescription($briefDescription)
     {
         $this->briefDescription = $briefDescription;
-    
+
         return $this;
     }
 
     /**
      * Get briefDescription
      *
-     * @return string 
+     * @return string
      */
     public function getBriefDescription()
     {
@@ -189,14 +161,14 @@ class EventTranslation
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -212,14 +184,14 @@ class EventTranslation
     public function setState($state)
     {
         $this->state = $state;
-    
+
         return $this;
     }
 
     /**
      * Get state
      *
-     * @return string 
+     * @return string
      */
     public function getState()
     {
@@ -235,14 +207,14 @@ class EventTranslation
     public function setCity($city)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -258,14 +230,14 @@ class EventTranslation
     public function setVenue($venue)
     {
         $this->venue = $venue;
-    
+
         return $this;
     }
 
     /**
      * Get venue
      *
-     * @return string 
+     * @return string
      */
     public function getVenue()
     {
