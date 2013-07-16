@@ -53,3 +53,17 @@ backend_program:
 backend_sponsor:
     pattern:  /sponsors
     defaults: { _controller: EventEventBundle:Backend/Sponsor:index }
+
+backend_sponsor_add:
+    pattern:  /sponsor/add
+    defaults: { _controller: EventEventBundle:Backend/Sponsor:manage }
+
+backend_sponsor_edit:
+    pattern:  /sponsor/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Sponsor:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_sponsor_delete:
+    pattern:  /sponsor/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Sponsor:delete }
+    requirements: { id: \d+ }

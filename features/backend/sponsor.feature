@@ -26,7 +26,6 @@ Scenario: Admin should have access to the sponsors management
     And I should see "Gold"
     And I should see "KnpLabs"
 
-@wip
 Scenario: Admin should able to add event sponsor
   Given I am sign in as admin
    When I follow "Sponsors"
@@ -43,7 +42,6 @@ Scenario: Admin should able to add event sponsor
     And I should see "Silver"
     And I should not see "e-commerce company"
 
-@wip
 Scenario: Admin should not able to add event sponsor without company name
   Given I am sign in as admin
    When I follow "Sponsors"
@@ -54,7 +52,6 @@ Scenario: Admin should not able to add event sponsor without company name
     And I should see "Add sponsor"
     And the "Description" field should contain "No name company"
 
-@wip
 Scenario: Admin should able to update event sponsor
   Given I am sign in as admin
    When I follow "Sponsors"

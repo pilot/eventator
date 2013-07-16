@@ -3,6 +3,8 @@
 namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sponsor
@@ -12,6 +14,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Sponsor
 {
+    use Translation;
+
+    const
+        TYPE_PLATINUM = 1,
+        TYPE_GOLD = 2,
+        TYPE_SILVER = 3,
+        TYPE_GENERAL = 4,
+        TYPE_INFO = 5
+    ;
+
+    public static $types = [
+        self::TYPE_PLATINUM => 'Platinum',
+        self::TYPE_GOLD => 'Gold',
+        self::TYPE_SILVER => 'Silver',
+        self::TYPE_GENERAL => 'General',
+        self::TYPE_INFO => 'Info'
+    ];
+
     /**
      * @var integer
      *
@@ -24,6 +44,7 @@ class Sponsor
     /**
      * @var string
      *
+     * @Assert\NotNull()
      * @ORM\Column(name="company", type="string", length=255)
      */
     private $company;
@@ -31,27 +52,28 @@ class Sponsor
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=255)
+     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
      */
     private $logo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="homepage", type="string", length=255)
+     * @ORM\Column(name="homepage", type="string", length=255, nullable=true)
      */
     private $homepage;
 
     /**
      * @var integer
      *
+     * @Assert\NotNull()
      * @ORM\Column(name="type", type="integer")
      */
     private $type;
@@ -61,8 +83,20 @@ class Sponsor
      *
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $isActive;
+    private $isActive = true;
 
+    /**
+     * @var translations
+     *
+     * @ORM\OneToMany(targetEntity="SponsorTranslation", mappedBy="sponsor", cascade={"all"})
+     */
+    private $translations;
+
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -174,6 +208,10 @@ class Sponsor
      */
     public function setType($type)
     {
+        if (!isset(self::$types[$type])) {
+            throw new \InvalidArgumentException(sprintf('Sponsor type "%d" is not valid', $type));
+        }
+
         $this->type = $type;
 
         return $this;
@@ -187,6 +225,15 @@ class Sponsor
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getTypeName()
+    {
+        if (isset(self::$types[$this->getType()])) {
+            return self::$types[$this->getType()];
+        }
+
+        return null;
     }
 
     /**
