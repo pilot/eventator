@@ -3,40 +3,38 @@
 {% block content %}
 <section>
     <div class="page-header">
-        <h3>Event speakers</h3>
-        <a href="{{ path('backend_speaker_add') }}" class="btn btn-small btn-success">Add speaker</a>
+        <h3>Event sponsors</h3>
+        <a href="{{ path('backend_sponsor_add') }}" class="btn btn-small btn-success">Add sponsor</a>
     </div>
 
-    <table class="table table-striped table-bordered" id="speakers">
+    <table class="table table-striped table-bordered" id="sponsors">
         <thead>
             <tr>
                 <th>id</th>
-                <th>Full Name</th>
                 <th>Company</th>
-                <th>E-mail</th>
+                <th>Sponsor Type</th>
                 <th width="10%">Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for speaker in speakers %}
+        {% for sponsor in sponsors %}
             <tr>
-                <td>{{ speaker.id }}</td>
-                <td><a href="{{ url('backend_speaker_edit', {'id': speaker.id}) }}">{{ speaker.fullName }}</a></td>
-                <td>{{ speaker.Company }}</td>
-                <td>{{ speaker.email }}</td>
+                <td>{{ sponsor.id }}</td>
+                <td><a href="{{ url('backend_sponsor_edit', {'id': sponsor.id}) }}">{{ sponsor.company }}</a></td>
+                <td>{{ sponsor.typeName }}</td>
                 <td>
                     <div class="btn-group">
-                        <a class="btn btn-small" href="{{ url('backend_speaker_edit', {'id': speaker.id}) }}"><i class="icon-user"></i> Edit</a>
+                        <a class="btn btn-small" href="{{ url('backend_sponsor_edit', {'id': sponsor.id}) }}"><i class="icon-user"></i> Edit</a>
                         <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('backend_speaker_delete', {'id': speaker.id}) }}"><i class="icon-trash"></i> Delete</a></li>
+                            <li><a href="{{ url('backend_sponsor_delete', {'id': sponsor.id}) }}"><i class="icon-trash"></i> Delete</a></li>
                         </ul>
                     </div>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">No speakers found.</td>
+                <td colspan="5">No sponsors found.</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -49,10 +47,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var elementsCount = '{{ speakers|length }}';
+            var elementsCount = '{{ sponsors|length }}';
 
             if ( 0 < elementsCount) {
-                $('#speakers').dataTable({
+                $('#sponsors').dataTable({
                     "iDisplayLength": 50,
                     "sDom": "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
                     "sPaginationType": "bootstrap",
@@ -60,7 +58,6 @@
                         "sLengthMenu": "_MENU_ records per page"
                     },
                     "aoColumns": [
-                        null,
                         null,
                         null,
                         null,

@@ -59,6 +59,4 @@ class SpeechController extends Controller
 
         return $this->redirectToRoute('backend_speech');
     }
-
-
 }
