@@ -57,7 +57,7 @@ Scenario: Admin should able to update event speaker
     And I follow "Phill Pilow"
    Then I should see "Edit speaker"
    When I fill in "Company" with "NASSA Reseach Center"
-    And I fill in "Homepage" with "http://nassa.gov.us"
+    And I fill in "Homepage" with "http://nasa.gov.us"
     And I press "Update"
    Then I should see "Speaker Phill Pilow updated."
     And I should see "NASSA Reseach Center"

@@ -7,7 +7,7 @@
         <a href="{{ path('backend_speech_add') }}" class="btn btn-small btn-success">Add speech</a>
     </div>
 
-    <table class="table table-striped table-bordered" id="speech">
+    <table class="table table-striped table-bordered" id="speeches">
         <thead>
             <tr>
                 <th>id</th>
@@ -50,7 +50,7 @@
             var elementsCount = '{{ speeches|length }}';
 
             if ( 0 < elementsCount) {
-                $('#customers').dataTable({
+                $('#speeches').dataTable({
                     "iDisplayLength": 50,
                     "sDom": "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
                     "sPaginationType": "bootstrap",
