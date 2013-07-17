@@ -11,7 +11,7 @@ Background:
     | locale |
     | ru_RU  |
   And following "Speaker":
-    | ref   | firstName | lastName  | Organization     | email | homepage           | twitter   |
+    | ref   | firstName | lastName  | Company          | email | homepage           | twitter   |
     | phill | Phill     | Pilow     | Reseach Supplier |       |                    |           |
     | alex  | Alex      | Demchenko | KnpLabs          |       | http://451f.com.ua | pilouanic |
   And following "SpeakerTranslation":
@@ -26,22 +26,21 @@ Background:
     | locale |
     | ru_RU  |
   And following "Program":
-    | ref          | speech  | title       | isTopic | startDate        | endDate          |
-    | keynote      |         | keynote     | 1       | 2014-10-10 10:00 | 2014-10-10 10:30 |
-    | alex_symfony | symfony |             | 0       | 2014-10-10 10:30 | 2014-10-10 11:00 |
-    | coffee1      |         | coffee      | 1       | 2014-10-10 11:00 | 2014-10-10 12:00 |
-    | phil_php     | php     |             | 0       | 2014-10-10 12:00 | 2014-10-10 12:30 |
-    | end_keynote  |         | keynote     | 1       | 2014-10-10 13:30 | 2014-10-10 14:00 |
-    | after_party  |         | after party | 1       | 2014-10-10 14:00 |                  |
+    | ref          | speeches  | title       | isTopic | startDate        | endDate          |
+    | keynote      |           | keynote     | 1       | 2014-10-10 10:00 | 2014-10-10 10:30 |
+    | alex_symfony | [symfony] |             | 0       | 2014-10-10 10:30 | 2014-10-10 11:00 |
+    | coffee1      |           | coffee      | 1       | 2014-10-10 11:00 | 2014-10-10 12:00 |
+    | phil_php     | [php]     |             | 0       | 2014-10-10 12:00 | 2014-10-10 12:30 |
+    | end_keynote  |           | keynote     | 1       | 2014-10-10 13:30 | 2014-10-10 14:00 |
+    | after_party  |           | after party | 1       | 2014-10-10 14:00 | 2014-10-10 18:00 |
   And following "ProgramTranslation":
     | locale |
     | ru_RU  |
 
-@wip
 Scenario: Admin should have access to the program management
   Given I am sign in as admin
-   When I follow "Program"
-   Then I should see "Event program"
+   When I follow "Schedule"
+   Then I should see "Event schedule"
     And I should see "symfony propagation"
     And I should see "after party"
 

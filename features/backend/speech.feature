@@ -11,7 +11,7 @@ Background:
     | locale |
     | ru_RU  |
   And following "Speaker":
-    | ref   | firstName | lastName  | Organization     | email | homepage           | twitter     |
+    | ref   | firstName | lastName  | Company          | email | homepage           | twitter     |
     | phill | Phill     | Pilow     | Reseach Supplier |       |                    |             |
     | alex  | Alex      | Demchenko | KnpLabs          |       | http://451f.com.ua | pilouanic   |
     | natan | Natan     | Posseo    | Seraphim         |       |                    | natanposseo |

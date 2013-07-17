@@ -217,6 +217,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                 //check if date field
                 if ($date = \DateTime::createFromFormat('Y-m-d', $value)) {
                     $value = $date;
+                } elseif ($date = \DateTime::createFromFormat('Y-m-d H:i', $value)) {
+                    $value = $date;
                 } elseif ($this->isDateModifier($value)) {
                     $date = new \DateTime();
                     $value = $date->modify($value);
