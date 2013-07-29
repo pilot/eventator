@@ -64,7 +64,7 @@ class Program
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="Speech", mappedBy="program", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Speech", mappedBy="program", cascade={"all"})
      */
     private $speeches;
 
@@ -217,6 +217,18 @@ class Program
      */
     public function addSpeech(Speech $speech)
     {
+        $speech->addProgramEntry($this);
+        $this->speeches[] = $speech;
+    }
+
+    /**
+     * Add speech
+     *
+     * @param Speech $speech
+     */
+    public function addSpeeches(Speech $speech)
+    {
+        $speech->addProgramEntry($this);
         $this->speeches[] = $speech;
     }
 

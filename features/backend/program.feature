@@ -26,13 +26,13 @@ Background:
     | locale |
     | ru_RU  |
   And following "Program":
-    | ref          | speeches  | title       | isTopic | startDate        | endDate          |
-    | keynote      |           | keynote     | 1       | 2014-10-10 10:00 | 2014-10-10 10:30 |
-    | alex_symfony | [symfony] |             | 0       | 2014-10-10 10:30 | 2014-10-10 11:00 |
-    | coffee1      |           | coffee      | 1       | 2014-10-10 11:00 | 2014-10-10 12:00 |
-    | phil_php     | [php]     |             | 0       | 2014-10-10 12:00 | 2014-10-10 12:30 |
-    | end_keynote  |           | keynote     | 1       | 2014-10-10 13:30 | 2014-10-10 14:00 |
-    | after_party  |           | after party | 1       | 2014-10-10 14:00 | 2014-10-10 18:00 |
+    | ref          | speeches          | title       | isTopic | startDate        | endDate          |
+    | keynote      |                   | keynote     | 1       | 2014-10-10 10:00 | 2014-10-10 10:30 |
+    | alex_symfony | symfony           |             | 0       | 2014-10-10 10:30 | 2014-10-10 11:00 |
+    | coffee1      |                   | coffee      | 1       | 2014-10-10 11:00 | 2014-10-10 12:00 |
+    | phil_php     | php               |             | 0       | 2014-10-10 12:00 | 2014-10-10 12:30 |
+    | end_keynote  |                   | keynote     | 1       | 2014-10-10 13:30 | 2014-10-10 14:00 |
+    | after_party  |                   | after party | 1       | 2014-10-10 14:00 | 2014-10-10 18:00 |
   And following "ProgramTranslation":
     | locale |
     | ru_RU  |

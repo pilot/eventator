@@ -241,18 +241,19 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             if (in_array($field, $metas)) {
                 $upperFieldName = ucfirst($field);
                 if (method_exists($object, 'set'.$upperFieldName)) {
-                    $relatedObjectName =  $metadata->getAssociationTargetClass($field);
+                    $relatedObjectName = $metadata->getAssociationTargetClass($field);
                     $relatedObject = $this->findRelatedObject($relatedObjectName, $row[$field]);
                     if ($relatedObject !== null) {
                         $object->{'set'.$upperFieldName}($relatedObject);
                     }
                 }
-                $upperFieldName = ucfirst($field);
                 if (method_exists($object, 'add'.$upperFieldName)) {
                     $relatedObjectsNames = explode(',', trim($row[$field]));
-                    $relatedObjectName =  $metadata->getAssociationTargetClass($field);
-                    foreach ($relatedObjectsNames as $name) {
-                        $object->{'add'.$upperFieldName}($this->findRelatedObject($relatedObjectName, $name));
+                    if ($relatedObjectsNames[0]) {
+                        $relatedObjectName =  $metadata->getAssociationTargetClass($field);
+                        foreach ($relatedObjectsNames as $name) {
+                            $object->{'add'.$upperFieldName}($this->findRelatedObject($relatedObjectName, $name));
+                        }
                     }
                 }
             }
