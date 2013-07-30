@@ -24,6 +24,13 @@ class ProgramTranslation
     private $id;
 
     /**
+     * @var Program
+     *
+     * @ORM\ManyToOne(targetEntity="Program", inversedBy="translations")
+     */
+    private $program;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
@@ -39,6 +46,29 @@ class ProgramTranslation
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set program
+     *
+     * @param Program $program
+     * @return ProgramTranslation
+     */
+    public function setProgram(Program $program)
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
+    /**
+     * Get program
+     *
+     * @return Program
+     */
+    public function getProgram()
+    {
+        return $this->program;
     }
 
     /**

@@ -69,26 +69,10 @@ class Speech
      */
     private $translations;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Program", inversedBy="speeches", cascade={"persist"})
-     * @ORM\JoinTable(
-     *      name="ev_program_speech",
-     *      joinColumns={
-     *          @ORM\JoinColumn(name="speech_id", referencedColumnName="id", onDelete="cascade")
-     *      }, inverseJoinColumns={
-     *         @ORM\JoinColumn(name="program_id", referencedColumnName="id", onDelete="cascade")
-     *      }
-     * )
-     */
-    protected $program;
-
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
-        $this->program = new ArrayCollection();
     }
 
     /**
@@ -214,35 +198,5 @@ class Speech
     public function getVideo()
     {
         return $this->video;
-    }
-
-    /**
-     * Get program
-     *
-     * @return \Doctrine\Common\Collections\ArrayCollection
-     */
-    public function getProgram()
-    {
-        return $this->program;
-    }
-
-    /**
-     * Add programEntry
-     *
-     * @param Program $programEntry
-     */
-    public function addProgramEntry(Program $programEntry)
-    {
-        $this->program[] = $programEntry;
-    }
-
-    /**
-     * Remove programEntry
-     *
-     * @param Program $programEntry
-     */
-    public function removeProgram(Program $programEntry)
-    {
-        $this->program->removeElement($programEntry);
     }
 }

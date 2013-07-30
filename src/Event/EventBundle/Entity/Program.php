@@ -57,22 +57,21 @@ class Program
     /**
      * @var translations
      *
-     * @ORM\OneToMany(targetEntity="SpeakerTranslation", mappedBy="speaker", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="ProgramTranslation", mappedBy="program", cascade={"all"})
      */
     private $translations;
 
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="Speech", mappedBy="program", cascade={"all"})
+     * @ORM\OneToOne(targetEntity="Speech")
      */
-    private $speeches;
+    private $speech;
 
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
-        $this->speeches = new ArrayCollection();
     }
 
     /**
@@ -201,44 +200,22 @@ class Program
     }
 
     /**
-     * Get speeches
+     * Get speech
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Speech
      */
-    public function getSpeeches()
+    public function getSpeech()
     {
-        return $this->speeches;
+        return $this->speech;
     }
 
     /**
-     * Add speech
+     * Set speech
      *
      * @param Speech $speech
      */
-    public function addSpeech(Speech $speech)
+    public function setSpeech(Speech $speech)
     {
-        $speech->addProgramEntry($this);
-        $this->speeches[] = $speech;
-    }
-
-    /**
-     * Add speech
-     *
-     * @param Speech $speech
-     */
-    public function addSpeeches(Speech $speech)
-    {
-        $speech->addProgramEntry($this);
-        $this->speeches[] = $speech;
-    }
-
-    /**
-     * Remove speech
-     *
-     * @param Speech $speech
-     */
-    public function removeSpeech(Speech $speech)
-    {
-        $this->speeches->removeElement($speech);
+        $this->speech = $speech;
     }
 }

@@ -20,16 +20,7 @@
         {% for entry in program %}
             <tr>
                 <td>{{ entry.id }}</td>
-                <td>
-                    <a href="{{ url('backend_program_edit', {'id': entry.id}) }}">{{ entry.title ?: 'Speech'}}</a>
-                    {% if entry.title is empty %}
-                        <ul>
-                        {% for speech in entry.speeches %}
-                            <li><a href="{{ url('backend_speech_edit', {'id': speech.id}) }}"><small>{{ speech.title }}</small></a></li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                </td>
+                <td><a href="{{ url('backend_program_edit', {'id': entry.id}) }}">{{ entry.title ?: entry.speech.title }}</a></td>
                 <td>{{ entry.startDate|date ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
                 <td>
                     <div class="btn-group">

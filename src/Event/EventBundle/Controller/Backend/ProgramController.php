@@ -35,7 +35,7 @@ class ProgramController extends Controller
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash(sprintf('Program %s updated.', $entity->getTitle()));
+                $this->setSuccessFlash('Program updated.');
 
                 return $this->redirectToRoute('backend_program');
             }
