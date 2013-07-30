@@ -48,9 +48,16 @@
             title.parent().addClass('title');
 
             // hide title on load
-            $('.title').hide();
+            topicToggle(topic, title);
 
             topic.on('click', function() {
+                topicToggle(topic, title)
+            });
+
+            // @todo: configure to manage date time
+            $('.datepicker').datepicker();
+
+            function topicToggle(topic, title) {
                 if (topic.is(':checked')) {
                     $('.speech').hide();
                     $('.title').show();
@@ -60,10 +67,7 @@
                     $('.title').hide();
                     $('.speech').show();
                 }
-            });
-
-            // @todo: configure to manage date time
-            $('.datepicker').datepicker();
+            }
         })
     </script>
 {% endblock %}
