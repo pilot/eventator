@@ -23,16 +23,16 @@ class ProgramType extends AbstractType
                 'required' => false
             ])
             ->add('title', 'text', ['required' => false])
-            ->add('startDate', 'date', array(
-                'attr' => array('class' => 'datepicker input-small'),
+            ->add('startDate', 'date', [
+                'attr' => ['class' => 'datepicker input-medium'],
                 'widget'   => 'single_text',
-                'format' => 'MM/dd/y',
+                'format' => 'dd/MM/y H:mm',
                 'label' => 'Start Time'
-            ))
+            ])
             ->add('endDate', 'date', array(
-                'attr' => array('class' => 'datepicker input-small'),
+                'attr' => ['class' => 'datepicker input-medium'],
                 'widget'   => 'single_text',
-                'format' => 'MM/dd/y',
+                'format' => 'dd/MM/y H:mm',
                 'label' => 'End Time'
             ))
 

@@ -13,7 +13,7 @@ class ProgramController extends Controller
     public function indexAction()
     {
         return $this->render('EventEventBundle:Backend/Program:index.html.twig', array(
-            'program' => $this->getRepository('EventEventBundle:Program')->findAll()
+            'program' => $this->getRepository('EventEventBundle:Program')->findBy([], ['startDate' => 'ASC'])
         ));
     }
 

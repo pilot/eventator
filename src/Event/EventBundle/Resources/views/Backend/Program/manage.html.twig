@@ -54,8 +54,10 @@
                 topicToggle(topic, title)
             });
 
-            // @todo: configure to manage date time
-            $('.datepicker').datepicker();
+            // mirror datetime
+            $('.datepicker:eq(0)').on('change', function() {
+                $('.datepicker:eq(1)').val($(this).val());
+            });
 
             function topicToggle(topic, title) {
                 if (topic.is(':checked')) {
