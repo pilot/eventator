@@ -64,7 +64,7 @@ class Program
     /**
      * @var string
      *
-     * @ORM\OneToOne(targetEntity="Speech")
+     * @ORM\OneToOne(targetEntity="Speech", inversedBy="program")
      */
     private $speech;
 
