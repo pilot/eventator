@@ -54,7 +54,7 @@ class EventTranslation
     /**
      * @var string
      *
-     * @ORM\Column(name="sponsor_description", type="text")
+     * @ORM\Column(name="sponsor_description", type="text", nullable=true)
      */
     private $sponsorDescription;
 
