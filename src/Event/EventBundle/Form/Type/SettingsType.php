@@ -25,15 +25,15 @@ class SettingsType extends AbstractType
             ->add('state', 'text', array('required' => false))
             ->add('city', 'text', array('required' => false))
             ->add('startDate', 'date', array(
-                'attr' => array('class' => 'datepicker input-small'),
+                'attr' => array('class' => 'datepicker input-medium'),
                 'widget'   => 'single_text',
-                'format' => 'MM/dd/y',
+                'format' => 'dd/MM/y H:mm',
                 'label' => 'Start Date'
             ))
             ->add('endDate', 'date', array(
-                'attr' => array('class' => 'datepicker input-small'),
+                'attr' => array('class' => 'datepicker input-medium'),
                 'widget'   => 'single_text',
-                'format' => 'MM/dd/y',
+                'format' => 'dd/MM/y H:mm',
                 'label' => 'End Date'
             ))
             ->add('venue', 'textarea', array(
@@ -42,7 +42,7 @@ class SettingsType extends AbstractType
             ))
             ->add('longitude', 'text', array('required' => false))
             ->add('latitude', 'text', array('required' => false))
-            
+
             // Event social profiles
             ->add('twitter', 'text', array('required' => false))
             ->add('facebook', 'text', array('required' => false))
