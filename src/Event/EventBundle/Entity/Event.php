@@ -48,6 +48,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="sponsor_description", type="text")
+     */
+    private $sponsorDescription;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
@@ -202,6 +209,29 @@ class Event
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * Set sponsorDescription
+     *
+     * @param string $sponsorDescription
+     * @return Event
+     */
+    public function setSponsorDescription($sponsorDescription)
+    {
+        $this->sponsorDescription = $sponsorDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get sponsorDescription
+     *
+     * @return string
+     */
+    public function getSponsorDescription()
+    {
+        return $this->sponsorDescription;
     }
 
     /**

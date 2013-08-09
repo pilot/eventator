@@ -22,6 +22,10 @@ class SettingsTranslationType extends AbstractType
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
                 'required' => false
             ))
+            ->add('sponsorDescription', 'textarea', array(
+                'label' => 'Sponsor page Description',
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 10)
+            ))
             ->add('state', 'text', array('required' => false))
             ->add('city', 'text', array('required' => false))
             ->add('venue', 'textarea', array(

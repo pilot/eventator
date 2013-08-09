@@ -21,6 +21,10 @@ class SettingsType extends AbstractType
                 'label' => 'Event Description',
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 10)
             ))
+            ->add('sponsorDescription', 'textarea', array(
+                'label' => 'Sponsor page Description',
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 10)
+            ))
             ->add('country', 'country', array('required' => false))
             ->add('state', 'text', array('required' => false))
             ->add('city', 'text', array('required' => false))
