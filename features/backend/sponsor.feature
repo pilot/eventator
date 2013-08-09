@@ -64,7 +64,6 @@ Scenario: Admin should able to update event sponsor
     And I should see "KnpLabs"
     And I should not see "NASA research center"
 
-@wip
 Scenario: Admin should able to delete event sponsor
   Given I am sign in as admin
    When I follow "Sponsors"

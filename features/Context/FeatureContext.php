@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\Mink\Exception\ElementNotFoundException;
 
 use Behat\Behat\Context\BehatContext,
     Behat\Behat\Exception\PendingException,
@@ -162,9 +163,16 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     /**
      * @Given /^I delete "([^"]*)" record of "([^"]*)"$/
      */
-    public function iDeleteRecordOf($arg1, $arg2)
+    public function iDeleteRecordOf($index, $entity)
     {
-        throw new PendingException();
+        $elements = $this->getSession()->getPage()->findAll('css', 'table.table > tbody > tr');
+
+        if (!isset($elements[$index - 1])) {
+            throw new ElementNotFoundException($this->getSession(), sprintf('Record `%s` was ', $index));
+        }
+        $element = $elements[$index - 1];
+
+        $element->clickLink('Delete');
     }
 
     public function getRepository($name)
