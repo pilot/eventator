@@ -56,8 +56,7 @@ Scenario: Admin should able to add event topic program record
     And I press "Add"
    Then I should see "Program updated."
     And I should see "Coffee Break"
-    # @todo: follow to the time update for datepicker
-    And I should see "October 10, 2014 00:00 - 00:00"
+    And I should see "October 10, 2014 12:30 - 13:00"
 
 @wip
 Scenario: Admin should able to add event regular program record
