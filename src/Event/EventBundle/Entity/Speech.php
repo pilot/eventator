@@ -69,6 +69,13 @@ class Speech
      */
     private $translations;
 
+    /**
+     * @var string
+     *
+     * @ORM\OneToOne(targetEntity="Program", mappedBy="speech", cascade={"remove"})
+     */
+    private $program;
+
 
     public function __construct()
     {

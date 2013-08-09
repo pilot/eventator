@@ -19,7 +19,7 @@ class DashboardController extends Controller
             $this->initEvent();
         }
 
-        return $this->render('EventEventBundle:Backend:index.html.twig', []);
+        return $this->render('EventEventBundle:Backend/Dashboard:index.html.twig', []);
     }
 
     public function settingAction(Request $request)
@@ -45,7 +45,7 @@ class DashboardController extends Controller
             }
         }
 
-        return $this->render('EventEventBundle:Backend:setting.html.twig', [
+        return $this->render('EventEventBundle:Backend/Dashboard:setting.html.twig', [
             'form' => $form->createView()
         ]);
     }
