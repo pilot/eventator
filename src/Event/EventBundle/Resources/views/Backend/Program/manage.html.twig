@@ -1,0 +1,75 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>{{ program.id ? 'Edit' : 'Add' }} program entry</h3>
+            <a href="{{ path('backend_program') }}" class="btn btn-small">&larr; Back to the list</a>
+        </div>
+
+        {% render(controller('EventEventBundle:Backend/Dashboard:localeTabs')) %}
+
+        <form action="{{ path('backend_program_edit', { 'id': program.id }) }}" method="post" {{ form_enctype(form) }}>
+            <div class="tab-content">
+                <div class="tab-pane active" id="{{ app.request.locale }}">
+                    {{ form_row(form.isTopic) }}
+                    {{ form_row(form.speech) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.startDate) }}
+                    {{ form_row(form.endDate) }}
+                </div>
+
+                {% for translation in form.translations %}
+                    <div class="tab-pane fade" id="{{ translation.vars.value.locale }}">
+                        {{ form_widget(translation) }}
+                    </div>
+                {% endfor %}
+
+                {{ form_rest(form) }}
+
+                <input type="submit" value="{{ program.id ? 'Update' : 'Add' }}" class="btn btn-success" />
+            </div>
+        </form>
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            // hide topic title field if it's speech and vise versa
+            var topic = $('#program_isTopic'),
+                title = $('#program_title'),
+                speech = $('#program_speech');
+
+            // add class to easy manage
+            speech.parent().addClass('speech');
+            title.parent().addClass('title');
+
+            // hide title on load
+            topicToggle(topic, title);
+
+            topic.on('click', function() {
+                topicToggle(topic, title)
+            });
+
+            // mirror datetime
+            $('.datepicker:eq(0)').on('change', function() {
+                $('.datepicker:eq(1)').val($(this).val());
+            });
+
+            function topicToggle(topic, title) {
+                if (topic.is(':checked')) {
+                    $('.speech').hide();
+                    $('.title').show();
+                    title.prop('required', 'required');
+                } else {
+                    title.removeProp('required');
+                    $('.title').hide();
+                    $('.speech').show();
+                }
+            }
+        })
+    </script>
+{% endblock %}

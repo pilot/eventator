@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\Mink\Exception\ElementNotFoundException;
 
 use Behat\Behat\Context\BehatContext,
     Behat\Behat\Exception\PendingException,
@@ -162,9 +163,16 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     /**
      * @Given /^I delete "([^"]*)" record of "([^"]*)"$/
      */
-    public function iDeleteRecordOf($arg1, $arg2)
+    public function iDeleteRecordOf($index, $entity)
     {
-        throw new PendingException();
+        $elements = $this->getSession()->getPage()->findAll('css', 'table.table > tbody > tr');
+
+        if (!isset($elements[$index - 1])) {
+            throw new ElementNotFoundException($this->getSession(), sprintf('Record `%s` was ', $index));
+        }
+        $element = $elements[$index - 1];
+
+        $element->clickLink('Delete');
     }
 
     public function getRepository($name)
@@ -217,6 +225,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                 //check if date field
                 if ($date = \DateTime::createFromFormat('Y-m-d', $value)) {
                     $value = $date;
+                } elseif ($date = \DateTime::createFromFormat('Y-m-d H:i', $value)) {
+                    $value = $date;
                 } elseif ($this->isDateModifier($value)) {
                     $date = new \DateTime();
                     $value = $date->modify($value);
@@ -239,18 +249,19 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             if (in_array($field, $metas)) {
                 $upperFieldName = ucfirst($field);
                 if (method_exists($object, 'set'.$upperFieldName)) {
-                    $relatedObjectName =  $metadata->getAssociationTargetClass($field);
+                    $relatedObjectName = $metadata->getAssociationTargetClass($field);
                     $relatedObject = $this->findRelatedObject($relatedObjectName, $row[$field]);
                     if ($relatedObject !== null) {
                         $object->{'set'.$upperFieldName}($relatedObject);
                     }
                 }
-                $upperFieldName = ucfirst($field);
                 if (method_exists($object, 'add'.$upperFieldName)) {
                     $relatedObjectsNames = explode(',', trim($row[$field]));
-                    $relatedObjectName =  $metadata->getAssociationTargetClass($field);
-                    foreach ($relatedObjectsNames as $name) {
-                        $object->{'add'.$upperFieldName}($this->findRelatedObject($relatedObjectName, $name));
+                    if ($relatedObjectsNames[0]) {
+                        $relatedObjectName =  $metadata->getAssociationTargetClass($field);
+                        foreach ($relatedObjectsNames as $name) {
+                            $object->{'add'.$upperFieldName}($this->findRelatedObject($relatedObjectName, $name));
+                        }
                     }
                 }
             }

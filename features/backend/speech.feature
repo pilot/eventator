@@ -11,7 +11,7 @@ Background:
     | locale |
     | ru_RU  |
   And following "Speaker":
-    | ref   | firstName | lastName  | Organization     | email | homepage           | twitter     |
+    | ref   | firstName | lastName  | Company          | email | homepage           | twitter     |
     | phill | Phill     | Pilow     | Reseach Supplier |       |                    |             |
     | alex  | Alex      | Demchenko | KnpLabs          |       | http://451f.com.ua | pilouanic   |
     | natan | Natan     | Posseo    | Seraphim         |       |                    | natanposseo |
@@ -75,11 +75,10 @@ Scenario: Admin should able to update event speaker speech
     And I should see "php as de facto standard"
     And I should not see "speakerdeck.com"
 
-@wip
 Scenario: Admin should able to delete event speaker speech
   Given I am sign in as admin
    When I follow "Speeches"
-    And I delete "3" record of "Speaker"
-   Then I should see "Event speaker speech deleted."
+    And I delete "3" record of "Speech"
+   Then I should see "Speech deleted."
     And I should not see "doctrine must have"
     And I should see "symfony propagation"

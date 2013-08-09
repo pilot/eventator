@@ -63,7 +63,6 @@ Scenario: Admin should able to update event speaker
     And I should see "NASSA Reseach Center"
     And I should not see "nassa.gov.us"
 
-@wip
 Scenario: Admin should able to delete event speaker
   Given I am sign in as admin
    When I follow "Speakers"

@@ -3,6 +3,8 @@
 namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Program
@@ -12,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Program
 {
+    use Translation;
+
     /**
      * @var integer
      *
@@ -24,27 +28,21 @@ class Program
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="is_topic", type="boolean")
      */
-    private $description;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="speaker", type="string", length=255)
-     */
-    private $speaker;
+    private $isTopic = false;
 
     /**
      * @var \DateTime
      *
+     * @Assert\NotNull()
      * @ORM\Column(name="startDate", type="datetime")
      */
     private $startDate;
@@ -52,15 +50,34 @@ class Program
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="endDate", type="datetime")
+     * @ORM\Column(name="endDate", type="datetime", nullable=true)
      */
     private $endDate;
 
+    /**
+     * @var translations
+     *
+     * @ORM\OneToMany(targetEntity="ProgramTranslation", mappedBy="program", cascade={"all"})
+     */
+    private $translations;
+
+    /**
+     * @var string
+     *
+     * @ORM\OneToOne(targetEntity="Speech", inversedBy="program")
+     */
+    private $speech;
+
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,14 +93,14 @@ class Program
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -91,26 +108,26 @@ class Program
     }
 
     /**
-     * Set description
+     * Set isTopic
      *
-     * @param string $description
+     * @param boolean $isTopic
      * @return Program
      */
-    public function setDescription($description)
+    public function setIsTopic($isTopic)
     {
-        $this->description = $description;
-    
+        $this->isTopic = $isTopic;
+
         return $this;
     }
 
     /**
-     * Get description
+     * Get isTopic
      *
-     * @return string 
+     * @return boolean
      */
-    public function getDescription()
+    public function getIsTopic()
     {
-        return $this->description;
+        return $this->isTopic;
     }
 
     /**
@@ -122,14 +139,14 @@ class Program
     public function setSpeaker($speaker)
     {
         $this->speaker = $speaker;
-    
+
         return $this;
     }
 
     /**
      * Get speaker
      *
-     * @return string 
+     * @return string
      */
     public function getSpeaker()
     {
@@ -145,14 +162,14 @@ class Program
     public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
-    
+
         return $this;
     }
 
     /**
      * Get startDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -168,17 +185,37 @@ class Program
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
-    
+
         return $this;
     }
 
     /**
      * Get endDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEndDate()
     {
         return $this->endDate;
+    }
+
+    /**
+     * Get speech
+     *
+     * @return Speech
+     */
+    public function getSpeech()
+    {
+        return $this->speech;
+    }
+
+    /**
+     * Set speech
+     *
+     * @param Speech $speech
+     */
+    public function setSpeech(Speech $speech)
+    {
+        $this->speech = $speech;
     }
 }
