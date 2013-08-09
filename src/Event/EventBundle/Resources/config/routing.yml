@@ -2,6 +2,10 @@ event_homepage:
     pattern:  /
     defaults: { _controller: EventEventBundle:Event:index }
 
+event_component_carousel:
+    pattern: /carousel
+    defaults: { _controller: EventEventBundle:Event:carousel }
+
 _backend:
     resource: routing/backend.yml
     prefix:   /admin

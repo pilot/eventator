@@ -24,27 +24,8 @@
     </div>
     {% endblock %}
 
-    <div class="container space">
-        {% for message in app.session.flashbag.get('success') %}
-            <div class="alert alert-success">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashbag.get('error') %}
-            <div class="alert alert-error">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashbag.get('notice') %}
-            <div class="alert alert-info">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
+    {% render controller('EventEventBundle:Event:carousel') %}
 
-        <div class="row">
-            <div class="span9">
-                {% block content %}{% endblock %}
-            </div>
-        </div>
-    </div>
+    {% block content %}{% endblock %}
+
 {% endblock %}

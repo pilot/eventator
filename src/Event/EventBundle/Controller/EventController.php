@@ -8,4 +8,11 @@ class EventController extends Controller
     {
         return $this->render('EventEventBundle:Event:index.html.twig', []);
     }
+
+    public function carouselAction()
+    {
+        return $this->render('EventEventBundle:Component:_carousel.html.twig', [
+            'event' => $this->getRepository('EventEventBundle:Event')->getEvent()
+        ]);
+    }
 }

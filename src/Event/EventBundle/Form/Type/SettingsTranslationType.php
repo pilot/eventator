@@ -24,7 +24,8 @@ class SettingsTranslationType extends AbstractType
             ))
             ->add('sponsorDescription', 'textarea', array(
                 'label' => 'Sponsor page Description',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 10)
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'required' => false
             ))
             ->add('state', 'text', array('required' => false))
             ->add('city', 'text', array('required' => false))
