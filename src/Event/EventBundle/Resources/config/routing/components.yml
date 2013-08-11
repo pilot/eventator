@@ -1,0 +1,23 @@
+event_component_carousel:
+    pattern: /carousel
+    defaults: { _controller: EventEventBundle:Event:carousel }
+
+event_component_speakers:
+    pattern: /speakers
+    defaults: { _controller: EventEventBundle:Event:speakers }
+
+event_component_venue:
+    pattern: /venue
+    defaults: { _controller: EventEventBundle:Event:venue }
+
+event_component_schedule:
+    pattern: /schedule
+    defaults: { _controller: EventEventBundle:Event:schedule }
+
+event_component_sponsors:
+    pattern: /sponsors
+    defaults: { _controller: EventEventBundle:Event:sponsors }
+
+event_component_contact:
+    pattern: /contact
+    defaults: { _controller: EventEventBundle:Event:contact }
