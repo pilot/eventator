@@ -1,13 +1,14 @@
 {% extends 'EventEventBundle::base.html.twig'  %}
+{% set event = app.request.attributes.get('event') %}
 
 {% block body %}
     {% block menu %}
-    <div class="navbar-wrapper">
+    <div class="navbar-wrapper" style="z-index:9999">
         <div class="container">
 
             <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ path('event_homepage') }}">Eventator</a>
+                    <a class="navbar-brand" href="{{ path('event_homepage') }}">{{ event.title }}</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="{{ path('event_homepage') }}">Home</a></li>
@@ -89,8 +90,8 @@
         <hr class="featurette-divider">
         <footer>
             <p class="pull-right"><a href="#">to the top</a></p>
-            <p>&copy; 2013 Eventator</p>
-            <p><small class="text-muted">Under the hood: <a href="https://github.com/pilot/events">Eventator &mdash; Events Manager</a></small></p>
+            <p>&copy; 2013 {{ event.title }}</p>
+            <p><small class="text-muted">Under the hood: <a href="https://github.com/pilot/eventator">Eventator &mdash; Events Manager</a></small></p>
         </footer>
     </div>
 {% endblock %}

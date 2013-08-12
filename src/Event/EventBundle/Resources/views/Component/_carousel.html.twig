@@ -9,10 +9,14 @@
     <div class="carousel-inner">
         {% for index in 1..3 %}
         <div class="item {{ index == 1 ? 'active' : '' }}">
-            <img src="http://lorempixel.com/g/1500/800/business/{{ index }}">
+            <img class="slide" src="http://lorempixel.com/g/1500/800/business/{{ index }}">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>{{ event.title }}</h1>
+                    {% if not event.logo %}
+                        <h1>{{ event.title }}</h1>
+                    {% else %}
+                        <p><img class="onslide" src="{{ event.logo }}" alt="{{ event.title }}" /></p>
+                    {% endif %}
                     <p>{{ event.briefDescription }}</p>
                     <p>
                         {{ event.venue }} /
