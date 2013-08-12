@@ -12,54 +12,70 @@ class SettingsType extends AbstractType
     {
         $builder
             ->add('title', 'text')
-            ->add('briefDescription', 'textarea', array(
+            ->add('logo', 'text', ['required' => false])
+            ->add('briefDescription', 'textarea', [
                 'label' => 'Brief Description',
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
                 'required' => false
-            ))
-            ->add('description', 'textarea', array(
+            ])
+            ->add('description', 'textarea', [
                 'label' => 'Event Description',
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 10)
-            ))
-            ->add('country', 'country', array('required' => false))
-            ->add('state', 'text', array('required' => false))
-            ->add('city', 'text', array('required' => false))
-            ->add('startDate', 'date', array(
-                'attr' => array('class' => 'datepicker input-medium'),
+            ])
+            ->add('sponsorDescription', 'textarea', [
+                'label' => 'Sponsor page Description',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
+                'required' => false
+            ])
+            ->add('sponsorGuide', 'text', [
+                'label' => 'Sponsoring Guide paper',
+                'required' => false
+            ])
+            ->add('country', 'country', ['required' => false])
+            ->add('state', 'text', ['required' => false])
+            ->add('city', 'text', ['required' => false])
+            ->add('startDate', 'date', [
+                'attr' => ['class' => 'datepicker input-medium'],
                 'widget'   => 'single_text',
                 'format' => 'dd/MM/y H:mm',
                 'label' => 'Start Date'
-            ))
-            ->add('endDate', 'date', array(
-                'attr' => array('class' => 'datepicker input-medium'),
+            ])
+            ->add('endDate', 'date', [
+                'attr' => ['class' => 'datepicker input-medium'],
                 'widget'   => 'single_text',
                 'format' => 'dd/MM/y H:mm',
                 'label' => 'End Date'
-            ))
-            ->add('venue', 'textarea', array(
+            ])
+            ->add('venue', 'textarea', [
                 'label' => 'Event Venue',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 5)
-            ))
-            ->add('longitude', 'text', array('required' => false))
-            ->add('latitude', 'text', array('required' => false))
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 5]
+            ])
+            ->add('longitude', 'text', ['required' => false])
+            ->add('latitude', 'text', ['required' => false])
 
             // Event social profiles
-            ->add('twitter', 'text', array('required' => false))
-            ->add('facebook', 'text', array('required' => false))
-            ->add('google', 'text', array('required' => false))
+            ->add('twitter', 'text', ['required' => false])
+            ->add('facebook', 'text', ['required' => false])
+            ->add('google', 'text', ['required' => false])
+            ->add('email', 'text', ['label' => 'Contact Email'])
+            ->add('contact', 'textarea', [
+                'label' => 'Additional Contact Information',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
+                'required' => false
+            ])
 
             // Add translation
-            ->add('translations', 'collection', array(
+            ->add('translations', 'collection', [
                 'type' => new SettingsTranslationType()
-            ))
+            ])
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Event\EventBundle\Entity\Event'
-        ));
+        ]);
     }
 
     public function getName()

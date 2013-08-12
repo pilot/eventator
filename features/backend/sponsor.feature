@@ -5,8 +5,8 @@ Feature: Event sponsor
 
 Background:
   Given following "Event":
-    | ref   | title    | description               | startDate  | endDate    | venue              |
-    | event | My event | My another awesome event! | 2014-10-10 | 2014-10-12 | Burj Khalifa Tower |
+    | ref   | title    | description               | startDate  | endDate    | venue              | email               |
+    | event | My event | My another awesome event! | 2014-10-10 | 2014-10-12 | Burj Khalifa Tower | eventator@email.com |
   And following "EventTranslation":
     | locale |
     | ru_RU  |

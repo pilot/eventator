@@ -1,0 +1,19 @@
+<div id="speakers" class="clearfix"></div>
+<h2 class="featurette-heading">Speakers</h2>
+<p class="lead">{{ 'Apply to speak through our'|trans }} <a href="javascript:void(0)" class="call-for-paper">{{ 'Call for Paper'|trans }}</a></p>
+
+{% if speakers %}
+    <div class="row">
+        {% for speaker in speakers %}
+            <div class="col-lg-2">
+                <a href="{{ speaker.homepage }}">
+                    <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="140" />
+                </a>
+                <h3><a href="{{ speaker.homepage }}">{{ speaker.fullName }}</a></h3>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{# call for paper modal #}
+{% include 'EventEventBundle:Event:_callForPaper.html.twig' with { 'form': form } %}
