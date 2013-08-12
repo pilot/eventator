@@ -40,12 +40,15 @@ body {
 .carousel .item {
   height: 500px;
 }
-.carousel img {
+.carousel img.slide {
   position: absolute;
   top: 0;
   left: 0;
   min-width: 100%;
-  height: 500px;
+  /*height: 500px;*/
+}
+.carousel img.onslide {
+  max-height: 75px;
 }
 
 

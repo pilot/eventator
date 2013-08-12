@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SettingsTranslationType extends AbstractType
+class EventTranslationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -36,6 +36,11 @@ class SettingsTranslationType extends AbstractType
             ))
             ->add('contact', 'textarea', [
                 'label' => 'Additional Contact Information',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
+                'required' => false
+            ])
+            ->add('embedTicket', 'textarea', [
+                'label' => 'Tickets Provider embed code',
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
                 'required' => false
             ])

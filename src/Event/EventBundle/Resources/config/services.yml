@@ -2,3 +2,18 @@ services:
     eventator_mailer:
         class: Event\EventBundle\Mailer\Mailer
         arguments: [ @mailer, @twig, %from_email% ]
+
+    eventator.event_repository:
+        class: Event\EventBundle\Entity\Repository\EventRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method:  getRepository
+        arguments:
+            - 'EventEventBundle:Event'
+
+
+    kernel.listener.init_listener:
+        class: Event\EventBundle\EventListener\InitListener
+        arguments:
+            - @eventator.event_repository
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
