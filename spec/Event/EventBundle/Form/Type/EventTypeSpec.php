@@ -4,7 +4,7 @@ namespace spec\Event\EventBundle\Form\Type;
 
 use PhpSpec\ObjectBehavior;
 
-class SettingsTypeSpec extends ObjectBehavior
+class EventTypeSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
