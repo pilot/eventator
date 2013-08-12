@@ -13,6 +13,7 @@ class SpeakerType extends AbstractType
         $builder
             ->add('firstName', 'text', ['label' => 'First Name'])
             ->add('lastName', 'text', ['label' => 'Last Name'])
+            ->add('photo', 'text', ['required' => false])
             ->add('company', 'text', ['required' => false])
             ->add('position', 'text', ['required' => false])
             ->add('bio', 'textarea', [

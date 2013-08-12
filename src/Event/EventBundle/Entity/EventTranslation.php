@@ -79,6 +79,14 @@ class EventTranslation
      */
     private $venue;
 
+    /**
+     * Just hold all additional contact info which want to be shown on contact page
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="text", nullable=true)
+     */
+    private $contact;
+
 
     /**
      * Get id
@@ -272,5 +280,28 @@ class EventTranslation
     public function getVenue()
     {
         return $this->venue;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param string $contact
+     * @return Event
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get google
+     *
+     * @return string
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

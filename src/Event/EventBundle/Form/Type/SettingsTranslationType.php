@@ -34,6 +34,11 @@ class SettingsTranslationType extends AbstractType
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
                 'required' => false
             ))
+            ->add('contact', 'textarea', [
+                'label' => 'Additional Contact Information',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
+                'required' => false
+            ])
         ;
     }
 

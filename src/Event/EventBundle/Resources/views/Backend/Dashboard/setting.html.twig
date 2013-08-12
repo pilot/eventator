@@ -12,9 +12,11 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="{{ app.request.locale }}">
                     {{ form_row(form.title) }}
+                    {{ form_row(form.logo) }}
                     {{ form_row(form.briefDescription) }}
                     {{ form_row(form.description) }}
                     {{ form_row(form.sponsorDescription) }}
+                    {{ form_row(form.sponsorGuide) }}
                     {{ form_row(form.country) }}
                     {{ form_row(form.state) }}
                     {{ form_row(form.city) }}
@@ -26,6 +28,8 @@
                     {{ form_row(form.twitter) }}
                     {{ form_row(form.facebook) }}
                     {{ form_row(form.google) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.contact) }}
                 </div>
 
                 {% for translation in form.translations %}

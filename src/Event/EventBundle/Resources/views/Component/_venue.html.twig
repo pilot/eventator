@@ -1,2 +1,28 @@
-<hr class="featurette-divider">
-<h1 id="venue">Venue</h1>
+<hr id="venue" class="featurette-divider">
+<h2 class="featurette-heading">Venue</h2>
+<p class="lead">{{ event.venue }} / {{ event.startDate|date }} / {{ event.country ~ ' ' ~ event.city }}</p>
+<div id="map-canvas" style="height: 300px;"></div>
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+    function initialize() {
+        var mapCanvas = document.getElementById('map-canvas'),
+            myLatlng = new google.maps.LatLng('{{ event.latitude }}', '{{ event.longitude }}');
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false,
+            mapMaker: true
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: '{{ event.title }}'
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

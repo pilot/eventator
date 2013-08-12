@@ -7,10 +7,10 @@
 
             <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Eventator</a>
+                    <a class="navbar-brand" href="{{ path('event_homepage') }}">Eventator</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active"><a href="{{ path('event_homepage') }}">Home</a></li>
                             <li><a href="#speakers">Speakers</a></li>
                             <li><a href="#venue">Venue</a></li>
                             <li><a href="#schedule">Schedule</a></li>
@@ -27,10 +27,26 @@
 
     {% render controller('EventEventBundle:Event:carousel') %}
 
-    {# one page event do not required content #}
-    {# {% block content %}{% endblock %} #}
-
     <div class="container marketing">
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashbag.get('error') %}
+            <div class="alert alert-error">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashbag.get('notice') %}
+            <div class="alert alert-info">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+
+        {# one page event do not required content #}
+        {# {% block content %}{% endblock %} #}
+
         {% render controller('EventEventBundle:Event:speakers') %}
 
         {% render controller('EventEventBundle:Event:venue') %}
@@ -41,10 +57,40 @@
 
         {% render controller('EventEventBundle:Event:contact') %}
 
+        <script type="text/javascript">
+            $(function() {
+                $('.call-for-paper').on('click', function(e) {
+                    e.preventDefault();
+
+                    $('#callForPaper').modal('show');
+                });
+
+                $('.send-request').on('click', function(e) {
+                    $(this).html("{{ 'Sending'|trans }}" + "...").prop('disabled', 'disabled');
+
+                    e.preventDefault();
+                    $.post(
+                        $(this.form).attr('action'),
+                        $(this.form).serializeArray(),
+                        function(data){
+                            if (data == 'Success') {
+                                $('#callForPaperForm').html("{{ 'Thank you for request, we answer back asap.'|trans }}");
+                            } else {
+                                $('#callForPaperForm').html(data);
+                            }
+
+                            $(this).html("{{ 'Send|trans' }}").removeProp('disabled');
+                        }
+                    );
+                });
+            })
+        </script>
+
         <hr class="featurette-divider">
         <footer>
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            <p class="pull-right"><a href="#">to the top</a></p>
+            <p>&copy; 2013 Eventator</p>
+            <p><small class="text-muted">Under the hood: <a href="https://github.com/pilot/events">Eventator &mdash; Events Manager</a></small></p>
         </footer>
     </div>
 {% endblock %}
