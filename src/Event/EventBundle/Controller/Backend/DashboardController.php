@@ -77,6 +77,7 @@ class DashboardController extends Controller
                 ->setStartDate($now)
                 ->setEndDate($now->modify('+1 day'))
                 ->setVenue('Burj Khalifa Tower')
+                ->setEmail('eventator@email.com')
             ;
 
             $speaker = new Speaker();
