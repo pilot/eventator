@@ -20,4 +20,4 @@ Goal of Eventator be a pretty simple, minimum dependencies with extremely fast c
 
 **screenshot**
 
-[![Eventator](https://dl.dropboxusercontent.com/s/4c7m4bdf01467en/Eventator.png)]
+![Eventator](https://dl.dropboxusercontent.com/s/4c7m4bdf01467en/Eventator.png)
