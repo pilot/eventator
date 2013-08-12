@@ -160,6 +160,21 @@ class Event
     private $contact;
 
     /**
+     * Embed code for foreign ticketing systems like eventbrite.com, ticketforevent.com
+     * @var string
+     *
+     * @ORM\Column(name="embed_ticket", type="text", nullable=true)
+     */
+    private $embedTicket;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive = true;
+
+    /**
      * @var translations
      *
      * @ORM\OneToMany(targetEntity="EventTranslation", mappedBy="event", cascade={"all"})
@@ -618,12 +633,58 @@ class Event
     }
 
     /**
-     * Get google
+     * Get contact
      *
      * @return string
      */
     public function getContact()
     {
         return $this->contact;
+    }
+
+    /**
+     * Set embedTicket
+     *
+     * @param string $embedTicket
+     * @return Event
+     */
+    public function setEmbedTicket($embedTicket)
+    {
+        $this->embedTicket = $embedTicket;
+
+        return $this;
+    }
+
+    /**
+     * Get embedTicket
+     *
+     * @return string
+     */
+    public function getEmbedTicket()
+    {
+        return $this->embedTicket;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return Sponsor
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }

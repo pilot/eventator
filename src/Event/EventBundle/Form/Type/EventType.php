@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SettingsType extends AbstractType
+class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -63,10 +63,16 @@ class SettingsType extends AbstractType
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
                 'required' => false
             ])
+            ->add('embedTicket', 'textarea', [
+                'label' => 'Tickets Provider embed code',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
+                'required' => false
+            ])
+            ->add('isActive', 'checkbox', ['required' => false])
 
             // Add translation
             ->add('translations', 'collection', [
-                'type' => new SettingsTranslationType()
+                'type' => new EventTranslationType()
             ])
         ;
     }

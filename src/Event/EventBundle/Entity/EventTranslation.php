@@ -87,6 +87,16 @@ class EventTranslation
      */
     private $contact;
 
+    /**
+     * Embed code for foreign ticketing systems like eventbrite.com, ticketforevent.com
+     * Can be used different tickets provider for different languages
+     *
+     * @var string
+     *
+     * @ORM\Column(name="embed_ticket", type="text", nullable=true)
+     */
+    private $embedTicket;
+
 
     /**
      * Get id
@@ -303,5 +313,28 @@ class EventTranslation
     public function getContact()
     {
         return $this->contact;
+    }
+
+    /**
+     * Set embedTicket
+     *
+     * @param string $embedTicket
+     * @return Event
+     */
+    public function setEmbedTicket($embedTicket)
+    {
+        $this->embedTicket = $embedTicket;
+
+        return $this;
+    }
+
+    /**
+     * Get embedTicket
+     *
+     * @return string
+     */
+    public function getEmbedTicket()
+    {
+        return $this->embedTicket;
     }
 }
