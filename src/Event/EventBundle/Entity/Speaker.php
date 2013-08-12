@@ -105,6 +105,13 @@ class Speaker
     private $bio;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", nullable=true)
+     */
+    private $photo;
+
+    /**
      * @var translations
      *
      * @ORM\OneToMany(targetEntity="SpeakerTranslation", mappedBy="speaker", cascade={"all"})
@@ -386,6 +393,29 @@ class Speaker
     public function getBio()
     {
         return $this->bio;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     * @return Speaker
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 
     public function getFullName()

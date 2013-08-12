@@ -48,6 +48,21 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="sponsor_description", type="text", nullable=true)
+     */
+    private $sponsorDescription;
+
+    /**
+     * Document for sponsor with benefits from event sponsoring
+     * @var string
+     *
+     * @ORM\Column(name="sponsor_guide", type="string", nullable=true)
+     */
+    private $sponsorGuide;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
@@ -104,6 +119,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="logo", type="string", nullable=true)
+     */
+    private $logo;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
     private $twitter;
@@ -121,6 +143,21 @@ class Event
      * @ORM\Column(name="google", type="string", length=255, nullable=true)
      */
     private $google;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * Just hold all additional contact info which want to be shown on contact page
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="text", nullable=true)
+     */
+    private $contact;
 
     /**
      * @var translations
@@ -202,6 +239,52 @@ class Event
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * Set sponsorDescription
+     *
+     * @param string $sponsorDescription
+     * @return Event
+     */
+    public function setSponsorDescription($sponsorDescription)
+    {
+        $this->sponsorDescription = $sponsorDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get sponsorDescription
+     *
+     * @return string
+     */
+    public function getSponsorDescription()
+    {
+        return $this->sponsorDescription;
+    }
+
+    /**
+     * Set sponsorGuide
+     *
+     * @param string $sponsorGuide
+     * @return Event
+     */
+    public function setSponsorGuide($sponsorGuide)
+    {
+        $this->sponsorGuide = $sponsorGuide;
+
+        return $this;
+    }
+
+    /**
+     * Get sponsorGuide
+     *
+     * @return string
+     */
+    public function getSponsorGuide()
+    {
+        return $this->sponsorGuide;
     }
 
     /**
@@ -407,10 +490,33 @@ class Event
     }
 
     /**
+     * Set logo
+     *
+     * @param string $logo
+     * @return Event
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
      * Set twitter
      *
      * @param string $twitter
-     * @return Speaker
+     * @return Event
      */
     public function setTwitter($twitter)
     {
@@ -433,7 +539,7 @@ class Event
      * Set facebook
      *
      * @param string $facebook
-     * @return Speaker
+     * @return Event
      */
     public function setFacebook($facebook)
     {
@@ -456,7 +562,7 @@ class Event
      * Set google
      *
      * @param string $google
-     * @return Speaker
+     * @return Event
      */
     public function setGoogle($google)
     {
@@ -473,5 +579,51 @@ class Event
     public function getGoogle()
     {
         return $this->google;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Event
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param string $contact
+     * @return Event
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get google
+     *
+     * @return string
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

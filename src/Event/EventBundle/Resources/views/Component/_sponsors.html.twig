@@ -1,0 +1,16 @@
+<hr id="sponsors" class="featurette-divider">
+<h2 class="featurette-heading">Sponsors</h2>
+<p class="lead">{{ event.sponsorDescription|nl2br }}</p>
+
+{% if sponsors %}
+    <div class="row">
+        {% for sponsor in sponsors %}
+            <div class="col-lg-2">
+                <a href="{{ sponsor.homepage }}">
+                    <img class="img-circle" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" width="140" />
+                </a>
+                <h2><a href="{{ sponsor.homepage }}">{{ sponsor.company }}</a></h2>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

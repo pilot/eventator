@@ -12,8 +12,11 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="{{ app.request.locale }}">
                     {{ form_row(form.title) }}
+                    {{ form_row(form.logo) }}
                     {{ form_row(form.briefDescription) }}
                     {{ form_row(form.description) }}
+                    {{ form_row(form.sponsorDescription) }}
+                    {{ form_row(form.sponsorGuide) }}
                     {{ form_row(form.country) }}
                     {{ form_row(form.state) }}
                     {{ form_row(form.city) }}
@@ -25,24 +28,21 @@
                     {{ form_row(form.twitter) }}
                     {{ form_row(form.facebook) }}
                     {{ form_row(form.google) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.contact) }}
                 </div>
 
                 {% for translation in form.translations %}
                     <div class="tab-pane fade" id="{{ translation.vars.value.locale }}">
-                        {{ form_row(translation.title) }}
-                        {{ form_row(translation.briefDescription) }}
-                        {{ form_row(translation.description) }}
-                        {{ form_row(translation.state) }}
-                        {{ form_row(translation.city) }}
-                        {{ form_row(translation.venue) }}
+                        {{ form_widget(translation) }}
                     </div>
                 {% endfor %}
-                
+
                 {{ form_rest(form) }}
 
                 <input class="btn btn-success" type="submit" value="Update" />
             </div>
-        </form> 
+        </form>
 
     </section>
 {% endblock %}

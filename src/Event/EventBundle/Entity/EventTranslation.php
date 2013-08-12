@@ -54,6 +54,13 @@ class EventTranslation
     /**
      * @var string
      *
+     * @ORM\Column(name="sponsor_description", type="text", nullable=true)
+     */
+    private $sponsorDescription;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="state", type="string", length=255, nullable=true)
      */
     private $state;
@@ -71,6 +78,14 @@ class EventTranslation
      * @ORM\Column(name="venue", type="string", length=255, nullable=true)
      */
     private $venue;
+
+    /**
+     * Just hold all additional contact info which want to be shown on contact page
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="text", nullable=true)
+     */
+    private $contact;
 
 
     /**
@@ -176,6 +191,29 @@ class EventTranslation
     }
 
     /**
+     * Set sponsorDescription
+     *
+     * @param string $sponsorDescription
+     * @return Event
+     */
+    public function setSponsorDescription($sponsorDescription)
+    {
+        $this->sponsorDescription = $sponsorDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get sponsorDescription
+     *
+     * @return string
+     */
+    public function getSponsorDescription()
+    {
+        return $this->sponsorDescription;
+    }
+
+    /**
      * Set state
      *
      * @param string $state
@@ -242,5 +280,28 @@ class EventTranslation
     public function getVenue()
     {
         return $this->venue;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param string $contact
+     * @return Event
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get google
+     *
+     * @return string
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

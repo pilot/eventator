@@ -1,0 +1,31 @@
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <div class="text-danger">
+        {% for error in errors %}
+            {{
+                error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            }}<br />
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+{% block form_row %}
+{% spaceless %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {% set isRadio = expanded is defined and expanded and multiple is defined and not multiple %}
+        <div class="field {% if isRadio %}radio{% endif %}">
+            {% if help is defined %}
+                <small class="hint" original-title="{{ help }}"></small>
+            {% endif %}
+            {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
