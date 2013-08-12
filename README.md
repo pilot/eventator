@@ -3,7 +3,7 @@ eventator
 
 events managing with easiest ticketing systems
 
-[![Build Status](https://travis-ci.org/pilot/events.png?branch=master)](https://travis-ci.org/pilot/events)
+[![Build Status](https://travis-ci.org/pilot/eventator.png?branch=master)](https://travis-ci.org/pilot/eventator)
 
 **why eventator does not use popular libs?**
 
