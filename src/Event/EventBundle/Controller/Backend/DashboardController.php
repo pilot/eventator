@@ -4,7 +4,7 @@ namespace Event\EventBundle\Controller\Backend;
 
 use Symfony\Component\HttpFoundation\Request;
 use Event\EventBundle\Controller\Controller;
-use Event\EventBundle\Form\Type\SettingsType;
+use Event\EventBundle\Form\Type\EventType;
 use Event\EventBundle\Entity\Event;
 use Event\EventBundle\Entity\EventTranslation;
 use Event\EventBundle\Entity\Speaker;
@@ -30,7 +30,7 @@ class DashboardController extends Controller
             $event = new Event();
         }
 
-        $form = $this->createForm(new SettingsType(), $event);
+        $form = $this->createForm(new EventType(), $event);
         if ($request->isMethod('POST') && $form->handleRequest($request)) {
 
             if ($form->isValid()) {
