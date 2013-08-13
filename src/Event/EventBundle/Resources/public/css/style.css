@@ -52,3 +52,11 @@ form input {
     width: 700px;
     margin-left: -90px;
 }
+
+/* circle styles */
+#face-wrapper .face {
+    z-index: 1;
+    -moz-box-shadow: 0px 0px 0px 1px #e8e6e6; /* Firefox */
+    -webkit-box-shadow: 0px 0px 0px 1px #e8e6e6; /* Safari, Chrome */
+    box-shadow: 0px 0px 0px 1px #e8e6e6; /* CSS3 */
+}
