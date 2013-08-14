@@ -8,16 +8,16 @@ _components:
 
 _backend:
     resource: routing/backend.yml
-    prefix:   /admin
+    prefix:   /event/admin
 
 admin_login:
-    pattern:  /admin/login
+    pattern:  /event/admin/login
     defaults: { _controller: EventEventBundle:Backend/Security:login }
 
 admin_check:
-    pattern:  /admin/login_check
+    pattern:  /event/admin/login_check
     defaults: { _controller: EventEventBundle:Backend/Security:check }
 
 admin_logout:
-    pattern:  /admin/logout
+    pattern:  /event/admin/logout
     defaults: { _controller: EventEventBundle:Backend/Security:logout }
