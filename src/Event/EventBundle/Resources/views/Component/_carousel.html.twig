@@ -18,10 +18,10 @@
                     {% else %}
                         <p><img class="onslide" src="{{ event.logo }}" alt="{{ event.title }}" /></p>
                     {% endif %}
-                    <p>{{ event.briefDescription }}</p>
-                    <p>
+                    <p class="text-slider-title text-uppercase">{{ event.briefDescription }}</p>
+                    <p class="text-slider-title">
                         {{ event.venue }} /
-                        {{ event.startDate|date }} /
+                        <strong>{{ event.startDate|date }}</strong> /
                         {{ event.country ~ ' ' ~ event.city }}
                     </p>
                     <p>

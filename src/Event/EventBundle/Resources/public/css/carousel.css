@@ -51,7 +51,22 @@ body {
 .carousel img.onslide {
   max-height: 75px;
 }
-
+.text-slider-title {
+  width: auto;
+  max-width: 760px;
+  padding: 5px 10px;
+  background: url("../img/opacity-event-title.png") repeat right bottom;
+  color: #ffffff;
+  -webkit-border-radius: 4px 4px 4px 0px;
+  -moz-border-radius: 4px 4px 4px 0px;
+  -o-border-radius: 4px 4px 4px 0px;
+  -ms-border-radius: 4px 4px 4px 0px;
+  -khtml-border-radius: 4px 4px 4px 0px;
+  border-radius: 4px 4px 4px 0px;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
 
 
 /* MARKETING CONTENT
