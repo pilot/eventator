@@ -14,10 +14,14 @@ events managing with easiest ticketing systems
 * create datebase `php app/console doctrine:database:create`
 * create schema `php app/console doctrine:schema:create`
 * install assets `php app/console assets:install`
-
 * open browser and follow to the `http://your-events.loc/event/admin` for initial setup
 * login and password to the backend **admin** / **admin**
 * bingo!
+
+**run tests*
+
+* behat `./bin/beahat features`
+* phpspec `./bin/phpspec`
 
 **notes**
 
