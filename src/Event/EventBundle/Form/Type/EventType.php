@@ -13,6 +13,12 @@ class EventType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('logo', 'text', ['required' => false])
+
+            // carousel slides
+            ->add('slideOne', 'text', ['required' => false])
+            ->add('slideTwo', 'text', ['required' => false])
+            ->add('slideThree', 'text', ['required' => false])
+
             ->add('briefDescription', 'textarea', [
                 'label' => 'Brief Description',
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
@@ -46,17 +52,19 @@ class EventType extends AbstractType
                 'format' => 'dd/MM/y H:mm',
                 'label' => 'End Date'
             ])
-            ->add('venue', 'textarea', [
-                'label' => 'Event Venue',
-                'attr' => ['class' => 'input-xxlarge', 'rows' => 5]
+            ->add('venue', 'text', ['label' => 'Venue Place'])
+            ->add('venueAddress', 'textarea', [
+                'label' => 'Venue Address',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
+                'required' => false
             ])
             ->add('longitude', 'text', ['required' => false])
             ->add('latitude', 'text', ['required' => false])
 
             // Event social profiles
-            ->add('twitter', 'text', ['required' => false])
-            ->add('facebook', 'text', ['required' => false])
-            ->add('google', 'text', ['required' => false])
+            ->add('twitter', 'url', ['required' => false])
+            ->add('facebook', 'url', ['required' => false])
+            ->add('google', 'url', ['required' => false])
             ->add('email', 'text', ['label' => 'Contact Email'])
             ->add('contact', 'textarea', [
                 'label' => 'Additional Contact Information',

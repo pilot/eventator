@@ -105,6 +105,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="venue_address", type="text", nullable=true)
+     */
+    private $venueAddress;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="longitude", type="string", length=50, nullable=true)
      */
     private $longitude;
@@ -173,6 +180,27 @@ class Event
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive = true;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slide_one", type="string", length=255, nullable=true)
+     */
+    private $slideOne;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="slide_two", type="string", length=255, nullable=true)
+     */
+    private $slideTwo;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="slide_three", type="string", length=255, nullable=true)
+     */
+    private $slideThree;
 
     /**
      * @var translations
@@ -459,6 +487,29 @@ class Event
     }
 
     /**
+     * Set venueAddress
+     *
+     * @param string $venueAddress
+     * @return Event
+     */
+    public function setVenueAddress($venueAddress)
+    {
+        $this->venueAddress = $venueAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get venueAddress
+     *
+     * @return string
+     */
+    public function getVenueAddress()
+    {
+        return $this->venueAddress;
+    }
+
+    /**
      * Set longitude
      *
      * @param string $longitude
@@ -686,5 +737,74 @@ class Event
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Set slideOne
+     *
+     * @param string $slideOne
+     * @return Event
+     */
+    public function setSlideOne($slide)
+    {
+        $this->slideOne = $slide;
+
+        return $this;
+    }
+
+    /**
+     * Get slideOne
+     *
+     * @return string
+     */
+    public function getSlideOne()
+    {
+        return $this->slideOne;
+    }
+
+    /**
+     * Set slideTwo
+     *
+     * @param string $slideTwo
+     * @return Event
+     */
+    public function setSlideTwo($slide)
+    {
+        $this->slideTwo = $slide;
+
+        return $this;
+    }
+
+    /**
+     * Get slideTwo
+     *
+     * @return string
+     */
+    public function getSlideTwo()
+    {
+        return $this->slideTwo;
+    }
+
+    /**
+     * Set slideThree
+     *
+     * @param string $slideThree
+     * @return Event
+     */
+    public function setSlideThree($slide)
+    {
+        $this->slideThree = $slide;
+
+        return $this;
+    }
+
+    /**
+     * Get slideThree
+     *
+     * @return string
+     */
+    public function getSlideThree()
+    {
+        return $this->slideThree;
     }
 }

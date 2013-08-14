@@ -7,9 +7,10 @@
     </ol>
 
     <div id="home" class="carousel-inner">
-        {% for index in 1..3 %}
-        <div class="item {{ index == 1 ? 'active' : '' }}">
-            <img class="slide" src="http://lorempixel.com/g/1500/800/business/{{ index }}">
+        {% set slides = ['slideOne', 'slideTwo', 'slideThree'] %}
+        {% for index in 0..2 %}
+        <div class="item {{ index == 0 ? 'active' : '' }}">
+            <img class="slide" src="{{ attribute(event, slides[index]) ?: 'http://lorempixel.com/g/1500/800/business/' ~ (index + 1) }}">
             <div class="container">
                 <div class="carousel-caption">
                     {% if not event.logo %}
