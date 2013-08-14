@@ -1,3 +1,6 @@
 _event:
     resource: "@EventEventBundle/Resources/config/routing.yml"
-    prefix:   /event
+    # for standalone event site just leave as is, but if you add event
+    # to the available site it's easy to point event to the specified url like
+    # prefix: /event
+    prefix:   /
