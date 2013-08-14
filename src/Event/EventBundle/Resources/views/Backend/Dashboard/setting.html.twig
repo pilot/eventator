@@ -13,6 +13,15 @@
                 <div class="tab-pane active" id="{{ app.request.locale }}">
                     {{ form_row(form.title) }}
                     {{ form_row(form.logo) }}
+
+                    <div class="well">
+                        <strong>Carousel</strong>
+                        <small>note: images should be more or equal 1500 x 500 px</small>
+                        {{ form_row(form.slideOne) }}
+                        {{ form_row(form.slideTwo) }}
+                        {{ form_row(form.slideThree) }}
+                    </div>
+
                     {{ form_row(form.briefDescription) }}
                     {{ form_row(form.description) }}
                     {{ form_row(form.sponsorDescription) }}
@@ -23,6 +32,7 @@
                     {{ form_row(form.startDate) }}
                     {{ form_row(form.endDate) }}
                     {{ form_row(form.venue) }}
+                    {{ form_row(form.venueAddress) }}
                     {{ form_row(form.longitude) }}
                     {{ form_row(form.latitude) }}
                     {{ form_row(form.twitter) }}

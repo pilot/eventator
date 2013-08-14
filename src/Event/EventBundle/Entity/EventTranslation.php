@@ -80,6 +80,13 @@ class EventTranslation
     private $venue;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="venue_address", type="text", nullable=true)
+     */
+    private $venueAddress;
+
+    /**
      * Just hold all additional contact info which want to be shown on contact page
      * @var string
      *
@@ -290,6 +297,29 @@ class EventTranslation
     public function getVenue()
     {
         return $this->venue;
+    }
+
+    /**
+     * Set venueAddress
+     *
+     * @param string $venueAddress
+     * @return Event
+     */
+    public function setVenueAddress($venueAddress)
+    {
+        $this->venueAddress = $venueAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get venueAddress
+     *
+     * @return string
+     */
+    public function getVenueAddress()
+    {
+        return $this->venueAddress;
     }
 
     /**

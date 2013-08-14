@@ -19,13 +19,13 @@
         <p>
             <h3>{{ 'Find Us'|trans }}</h3>
             {% if event.twitter %}
-                <a href="http://twitter.com/{{ event.twitter }}">twitter</a>
+                <a href="{{ event.twitter }}" title="twitter"><i class="social-icon twitter"></i></a>
             {% endif %}
             {% if event.facebook %}
-                <a href="{{ event.facebook }}">facebook</a>
+                <a href="{{ event.facebook }}" title="facebook"><i class="social-icon facebook"></i></a>
             {% endif %}
             {% if event.google %}
-                <a href="{{ event.google }}">google+</a>
+                <a href="{{ event.google }}" title="google+"><i class="social-icon google"></i></a>
             {% endif %}
         </p>
 

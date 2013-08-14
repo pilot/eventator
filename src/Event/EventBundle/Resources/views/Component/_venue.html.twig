@@ -1,6 +1,6 @@
 <hr id="venue" class="featurette-divider">
 <h2 class="featurette-heading">Venue</h2>
-<p class="lead">{{ event.venue }} / {{ event.startDate|date }} / {{ event.country ~ ' ' ~ event.city }}</p>
+<p class="lead">{{ event.venue }} / {{ event.venueAddress ? event.venueAddress ~ ' / ' : '' }}{{ event.country ~ ' ' ~ event.city }}</p>
 <div id="map-canvas" style="height: 300px;"></div>
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>

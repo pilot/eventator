@@ -17,7 +17,7 @@ Scenario: Admin should have access to the settings manage
    Then I should see "Event settings"
     And the "Title" field should contain "My event"
     And the "Event Description" field should contain "My super awesome event!"
-    And the "Event Venue" field should contain "Burj Khalifa Tower"
+    And the "Venue Place" field should contain "Burj Khalifa Tower"
 
 Scenario: Admin should have able to update event settings
   Given I am sign in as admin
