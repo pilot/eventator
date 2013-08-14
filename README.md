@@ -18,7 +18,7 @@ events managing with easiest ticketing systems
 * login and password to the backend **admin** / **admin**
 * bingo!
 
-**run tests*
+**run tests**
 
 * behat `./bin/beahat features`
 * phpspec `./bin/phpspec`
