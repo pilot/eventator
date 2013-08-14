@@ -52,7 +52,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function iAmSignInAsAdmin()
     {
         return array(
-            new Given('I am on "/event/admin/login"'),
+            new Given('I am on "/admin/login"'),
             new Given('I fill in "_username" with "admin"'),
             new Given('I fill in "_password" with "admin"'),
             new Given('I press "Login"'),
