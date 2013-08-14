@@ -11,29 +11,33 @@ class EventTranslationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array('required' => false))
-            ->add('briefDescription', 'textarea', array(
+            ->add('title', 'text', ['required' => false])
+            ->add('briefDescription', 'textarea', [
                 'label' => 'Brief Description',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
                 'required' => false
-            ))
-            ->add('description', 'textarea', array(
+            ])
+            ->add('description', 'textarea', [
                 'label' => 'Event Description',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
                 'required' => false
-            ))
-            ->add('sponsorDescription', 'textarea', array(
+            ])
+            ->add('sponsorDescription', 'textarea', [
                 'label' => 'Sponsor page Description',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
                 'required' => false
-            ))
-            ->add('state', 'text', array('required' => false))
-            ->add('city', 'text', array('required' => false))
-            ->add('venue', 'textarea', array(
-                'label' => 'Event Venue',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
+            ])
+            ->add('state', 'text', ['required' => false])
+            ->add('city', 'text', ['required' => false])
+            ->add('venue', 'text', [
+                'label' => 'Venue Place',
                 'required' => false
-            ))
+            ])
+            ->add('venueAddress', 'textarea', [
+                'label' => 'Venue Address',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
+                'required' => false
+            ])
             ->add('contact', 'textarea', [
                 'label' => 'Additional Contact Information',
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
