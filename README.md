@@ -5,9 +5,19 @@ events managing with easiest ticketing systems
 
 [![Build Status](https://travis-ci.org/pilot/eventator.png?branch=master)](https://travis-ci.org/pilot/eventator)
 
-**why eventator does not use popular libs?**
+**install**
 
-Goal of Eventator be a pretty simple, minimum dependencies with extremely fast configuration of new event.
+* download or clone repo `git clone https://github.com/pilot/eventator my_event/`
+* create `app/cache` and `app/logs` directories with 777 permissions
+* get composer `curl -S https://getcomposer.org/installer | php`
+* install dependencies `php composer.phar install`
+* create datebase `php app/console doctrine:database:create`
+* create schema `php app/console doctrine:schema:create`
+* install assets `php app/console assets:install`
+
+* open browser and follow to the `http://your-events.loc/event/admin` for initial setup
+* login and password to the backend **admin** / **admin**
+* bingo!
 
 **notes**
 
@@ -17,6 +27,7 @@ Goal of Eventator be a pretty simple, minimum dependencies with extremely fast c
 
 * hold multiply events under the same panel
 * support program with section
+* add internal tickets seller / manager
 
 **screenshot**
 
