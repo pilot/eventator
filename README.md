@@ -11,7 +11,7 @@ events managing with easiest ticketing systems
 * create `app/cache` and `app/logs` directories with 777 permissions
 * get composer `curl -S https://getcomposer.org/installer | php`
 * install dependencies `php composer.phar install`
-* create datebase `php app/console doctrine:database:create`
+* create database `php app/console doctrine:database:create`
 * create schema `php app/console doctrine:schema:create`
 * install assets `php app/console assets:install`
 * open browser and follow to the `http://your-events.loc/event/admin` for initial setup
