@@ -1,6 +1,8 @@
 {% extends 'EventEventBundle::base.html.twig'  %}
 {% set event = app.request.attributes.get('event') %}
 
+{% block title %}Welcome to the {{ event.title }}!{% endblock %}
+
 {% block body %}
     {% block menu %}
     <div class="navbar-wrapper" style="z-index:1030">
