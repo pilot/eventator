@@ -62,9 +62,8 @@ class EventController extends Controller
                     $event->getEmail(),
                     'Contact Request',
                     sprintf(
-                        'Hello!<br /><br />Contact request: %s <br /><br />From: %s',
-                        nl2br($form->get('message')->getData()),
-                        $form->get('email')->getData()
+                        'Hello!<br /><br />Contact request: %s <br />',
+                        nl2br($form->get('message')->getData())
                     ),
                     $form->get('email')->getData()
                 );
