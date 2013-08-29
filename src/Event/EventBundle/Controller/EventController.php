@@ -65,10 +65,11 @@ class EventController extends Controller
                         'Hello!<br /><br />Contact request: %s <br /><br />From: %s',
                         nl2br($form->get('message')->getData()),
                         $form->get('email')->getData()
-                    )
+                    ),
+                    $form->get('email')->getData()
                 );
 
-                $this->setSuccessFlash('Thank you for request, we answer back asap.');
+                $this->setSuccessFlash('Thank you for request, we\'ll answer back asap.');
 
                 return $this->redirect($this->generateUrl('event_homepage'));
             }

@@ -12,7 +12,7 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-            ->add('email', 'text')
+            ->add('email', 'email')
             ->add('message', 'textarea', [
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 5]
             ])
