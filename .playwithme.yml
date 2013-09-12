@@ -13,8 +13,8 @@ install:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
 
     - composer install --dev --prefer-dist
-    - app/console do:da:cr
-    - app/console do:sc:cr
+    - app/console do:da:cr -e prod
+    - app/console do:sc:cr -e prod
 
     - app/console assetic:dump --env=prod
     - app/console --env=prod --no-debug --symlink assets:install web
