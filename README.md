@@ -5,6 +5,15 @@ events managing with easiest ticketing systems
 
 [![Build Status](https://travis-ci.org/pilot/eventator.png?branch=master)](https://travis-ci.org/pilot/eventator)
 
+**demo**
+
+[729888c407e9fac912f6194a711ed35121a76af6](http://729888c407e9fac912f6194a711ed35121a76af6.one.playwithme-4.knpdemo.com)
+
+* *note: put master branch hash to get last demo version*
+* feel free to play with demo
+* access to the admin panel by `/event/admin`
+* with `admin/admin`
+
 **install**
 
 * download or clone repo `git clone https://github.com/pilot/eventator my_event/`
