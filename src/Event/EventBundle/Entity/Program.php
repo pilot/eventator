@@ -40,6 +40,16 @@ class Program
     private $isTopic = false;
 
     /**
+     * Support link for instance if topic also used for workshop/training presentation
+     * link will suite to redirect to the registration
+     *
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=255, nullable=true)
+     */
+    private $link;
+
+    /**
      * @var \DateTime
      *
      * @Assert\NotNull()
@@ -105,6 +115,29 @@ class Program
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return Program
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 
     /**

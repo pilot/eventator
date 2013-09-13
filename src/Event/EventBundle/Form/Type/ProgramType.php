@@ -15,7 +15,6 @@ class ProgramType extends AbstractType
                 'label' => 'Topic?',
                 'required' => false
             ])
-            // @todo: add dependency validator Speech or Title is required
             ->add('speech', 'entity', [
                 'class' => 'EventEventBundle:Speech',
                 'property' => 'title',
@@ -23,31 +22,32 @@ class ProgramType extends AbstractType
                 'required' => false
             ])
             ->add('title', 'text', ['required' => false])
+            ->add('link', 'text', ['required' => false])
             ->add('startDate', 'date', [
                 'attr' => ['class' => 'datepicker input-medium'],
                 'widget'   => 'single_text',
                 'format' => 'dd/MM/y H:mm',
                 'label' => 'Start Time'
             ])
-            ->add('endDate', 'date', array(
+            ->add('endDate', 'date', [
                 'attr' => ['class' => 'datepicker input-medium'],
                 'widget'   => 'single_text',
                 'format' => 'dd/MM/y H:mm',
                 'label' => 'End Time'
-            ))
+            ])
 
             // Add translation
-            ->add('translations', 'collection', array(
+            ->add('translations', 'collection', [
                 'type' => new ProgramTranslationType()
-            ))
+            ])
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Event\EventBundle\Entity\Program'
-        ));
+        ]);
     }
 
     public function getName()

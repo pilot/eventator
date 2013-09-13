@@ -15,6 +15,7 @@
                     {{ form_row(form.isTopic) }}
                     {{ form_row(form.speech) }}
                     {{ form_row(form.title) }}
+                    {{ form_row(form.link) }}
                     {{ form_row(form.startDate) }}
                     {{ form_row(form.endDate) }}
                 </div>
@@ -41,11 +42,13 @@
             // hide topic title field if it's speech and vise versa
             var topic = $('#program_isTopic'),
                 title = $('#program_title'),
+                link = $('#program_link'),
                 speech = $('#program_speech');
 
             // add class to easy manage
             speech.parent().addClass('speech');
             title.parent().addClass('title');
+            link.parent().addClass('title');
 
             // hide title on load
             topicToggle(topic, title);
