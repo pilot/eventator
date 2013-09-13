@@ -22,7 +22,7 @@ class ProgramType extends AbstractType
                 'required' => false
             ])
             ->add('title', 'text', ['required' => false])
-            ->add('link', 'text', ['required' => false])
+            ->add('link', 'url', ['required' => false])
             ->add('startDate', 'date', [
                 'attr' => ['class' => 'datepicker input-medium'],
                 'widget'   => 'single_text',
