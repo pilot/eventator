@@ -1,0 +1,23 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     null
+    database_name:     circle_test
+    database_user:     ubuntu
+    database_password: null
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+    mailer_port:       ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    behat_print_err:   1
+
+    # default email for bot from which email is sent
+    from_email:        bot@email.com
+
+    admin_password:    admin
