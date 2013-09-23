@@ -8,6 +8,7 @@ dependencies:
 
   override:
     - composer install --prefer-source --no-interaction
+    - cp app/config/parameters.circle.yml app/config/parameters.yml
     - cp app/config/parameters.circle.yml app/config/parameters_test.yml
     - app/console doctrine:database:drop --env=test --no-interaction --force
     - app/console doctrine:database:create --env=test --no-interaction
