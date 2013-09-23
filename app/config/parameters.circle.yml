@@ -1,5 +1,7 @@
 parameters:
     database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     null
     database_name:     circle_test
     database_user:     ubuntu
     database_password: null
