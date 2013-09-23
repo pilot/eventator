@@ -1,0 +1,9 @@
+# disable builder
+branches:
+  ignore:
+    - /.*/
+
+machine:
+  environment:
+    CIRCLECI: false
+    CI: false
