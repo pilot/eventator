@@ -14,10 +14,8 @@
                 <div class="alert alert-error captcha-error" style="display:none;"></div>
                 <div class="raw">
                     {# simple captcha #}
-                    {% set first = random(100) %}
-                    {% set last = random(100) %}
                     <div class="col-lg-3">
-                        <img class="img-circle" data-src="holder.js/140x40/text:{{ first ~ ' + ' ~ last ~ ' =' }}" width="140" />
+                        <img class="img-circle" data-src="holder.js/140x40/text:{{ captcha.first ~ ' + ' ~ captcha.last ~ ' =' }}" width="140" />
                     </div>
                     <div class="col-lg-2">
                         <input type="text" name="calc" class="form-control captcha-calc" required="required" />
@@ -46,15 +44,14 @@
     </div>
 </div>
 
-<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 <script type="text/javascript">
     $(function(){
         $('button.btn-contact-send').on('click', function(e) {
             // hide error if shown before
             $('.captcha-error').hide();
 
-            var first = '{{ first }}',
-                last = '{{ last }}',
+            var first = '{{ captcha.first }}',
+                last = '{{ captcha.last }}',
                 sum = first * 1 + last * 1,
                 result = $('.captcha-calc').val(),
                 error = '{{ "Please fill correct calculation result"|trans }}';
@@ -66,5 +63,4 @@
             }
         });
     });
-
 </script>

@@ -57,7 +57,7 @@ class EventController extends Controller
 
         $form = $this->createForm(new ContactType());
         if ($request->isMethod('POST') && $form->handleRequest($request)) {
-            if ($form->isValid()) {
+            if ($form->isValid() && $this->getSession()->get('captchaResult') == $request->request->get('calc')) {
                 $this->get('eventator_mailer')->send(
                     $event->getEmail(),
                     'Contact Request',
@@ -76,7 +76,8 @@ class EventController extends Controller
 
         return $this->render('EventEventBundle:Component:_contact.html.twig', [
             'event' => $event,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'captcha' => $this->getCaptcha()
         ]);
     }
 
@@ -95,7 +96,8 @@ class EventController extends Controller
                 $this->renderView('EventEventBundle:Email:_callForPaper.html.twig', [
                     'data' => $form->getData(),
                     'from' => $form->get('email')->getData()
-                ])
+                ]),
+                $form->get('email')->getData()
             );
 
             return new Response('Success');
