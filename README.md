@@ -7,9 +7,8 @@ events managing with easiest ticketing systems
 
 **demo**
 
-[729888c407e9fac912f6194a711ed35121a76af6](http://729888c407e9fac912f6194a711ed35121a76af6.one.playwithme-4.knpdemo.com)
+[eventator.org](http://eventator.org)
 
-* *note: put master branch hash to get last demo version*
 * feel free to play with demo
 * access to the admin panel by `/event/admin`
 * with `admin/admin`
