@@ -77,7 +77,7 @@
                         $(this.form).serializeArray(),
                         function(data){
                             if (data == 'Success') {
-                                $('#callForPaperForm').html("{{ 'Thank you for request, we answer back asap.'|trans }}");
+                                $('#callForPaperForm').html("{{ 'Thank you for request, we\'ll answer back asap.'|trans }}");
                             } else {
                                 $('#callForPaperForm').html(data);
                             }

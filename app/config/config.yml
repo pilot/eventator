@@ -68,3 +68,5 @@ swiftmailer:
 event_event:
     # list of additional locales, which append to the default_locale
     locales: {'ru_RU': 'ru', 'de_DE': 'de'}
+    speech_languages: ['English', 'Russian', 'Other']
+    speech_levels: ['For all attendees', 'Intermediate', 'Experts']

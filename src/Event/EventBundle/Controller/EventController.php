@@ -23,9 +23,11 @@ class EventController extends Controller
 
     public function speakersAction()
     {
+        $form = $this->callForPaper();
+
         return $this->render('EventEventBundle:Component:_speakers.html.twig', [
             'speakers' => $this->getRepository('EventEventBundle:Speaker')->findAll(),
-            'form' => $this->callForPaper()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -85,7 +87,7 @@ class EventController extends Controller
     {
         $event = $this->getRepository('EventEventBundle:Event')->getEvent();
 
-        $form = $this->createForm(new CallForPaperType());
+        $form = $this->callForPaper();
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -95,7 +97,9 @@ class EventController extends Controller
                 'Call For Paper Request',
                 $this->renderView('EventEventBundle:Email:_callForPaper.html.twig', [
                     'data' => $form->getData(),
-                    'from' => $form->get('email')->getData()
+                    'from' => $form->get('email')->getData(),
+                    'languages' => $this->container->getParameter('event.speech_languages'),
+                    'levels' => $this->container->getParameter('event.speech_levels'),
                 ]),
                 $form->get('email')->getData()
             );
@@ -110,8 +114,9 @@ class EventController extends Controller
 
     protected function callForPaper()
     {
-        $form = $this->createForm(new CallForPaperType());
-
-        return $form->createView();
+        return $this->createForm(new CallForPaperType([
+            'languages' => $this->container->getParameter('event.speech_languages'),
+            'levels' => $this->container->getParameter('event.speech_levels'),
+        ]));
     }
 }

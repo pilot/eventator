@@ -23,6 +23,8 @@ class EventEventExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('event.locales', $config['locales']);
+        $container->setParameter('event.speech_languages', $config['speech_languages']);
+        $container->setParameter('event.speech_levels', $config['speech_levels']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

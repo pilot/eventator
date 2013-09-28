@@ -10,6 +10,13 @@ use Symfony\Component\Validator\Constraints\Email;
 
 class CallForPaperType extends AbstractType
 {
+    protected $options;
+
+    public function __construct(array $options)
+    {
+        $this->options = $options;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -19,11 +26,11 @@ class CallForPaperType extends AbstractType
             ->add('github', 'text', ['required' => false])
             ->add('title', 'text', ['constraints' => [new NotBlank()]])
             ->add('language', 'choice', [
-                'choices' => ['English', 'Russian', 'Other']
+                'choices' => $this->options['languages']
             ])
             ->add('level', 'choice', [
                 'label' => 'Talk level',
-                'choices' => ['For all attendees', 'Intermediate', 'Experts']
+                'choices' => $this->options['levels']
             ])
             ->add('abstract', 'textarea', [
                 'label' => 'Abstract of your talk',

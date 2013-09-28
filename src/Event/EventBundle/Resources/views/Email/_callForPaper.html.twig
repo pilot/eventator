@@ -5,6 +5,11 @@ Call for paper request:
 <br />
 <br />
 {% for item, val in data %}
+    {% if item == 'language' %}
+        {% set val = languages[val] %}
+    {% elseif item == 'level' %}
+        {% set val = levels[val] %}
+    {% endif %}
     <strong>{{ item }}</strong>: {{ val }}<br />
 {% endfor %}
 <br />
