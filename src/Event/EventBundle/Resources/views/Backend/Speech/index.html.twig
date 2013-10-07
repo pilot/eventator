@@ -21,7 +21,10 @@
             <tr>
                 <td>{{ speech.id }}</td>
                 <td><a href="{{ url('backend_speaker_edit', {'id': speech.speaker.id}) }}">{{ speech.speaker.fullName }}</a></td>
-                <td><a href="{{ url('backend_speech_edit', {'id': speech.id}) }}">{{ speech.title }}</a></td>
+                <td>
+                    {{ speech.language|default(app.request.locale) }}&nbsp;/&nbsp;
+                    <a href="{{ url('backend_speech_edit', {'id': speech.id}) }}">{{ speech.title }}</a>
+                </td>
                 <td>
                     <div class="btn-group">
                         <a class="btn btn-small" href="{{ url('backend_speech_edit', {'id': speech.id}) }}"><i class="icon-user"></i> Edit</a>

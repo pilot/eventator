@@ -17,6 +17,10 @@ class SpeechType extends AbstractType
                 'empty_value' => 'Choose Speaker'
             ])
             ->add('title', 'text')
+            ->add('language', 'language', [
+                'label' => 'Speech language',
+                'preferred_choices' => ['en', 'ru', 'de']
+            ])
             ->add('description', 'textarea', [
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
                 'required' => false
