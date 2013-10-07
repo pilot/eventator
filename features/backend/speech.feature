@@ -19,10 +19,10 @@ Background:
     | locale |
     | ru_RU  |
   And following "Speech":
-    | ref      | speaker | title               | description                           | slide | video |
-    | symfony  | alex    | symfony propagation | world symfony expansion               |       |       |
-    | php      | phill   | php servers piece   | php most popular language             |       |       |
-    | doctrine | phill   | doctrine must have  | what you docrtine project should have |       |       |
+    | ref      | speaker | title               | description                           | slide | video | language |
+    | symfony  | alex    | symfony propagation | world symfony expansion               |       |       | ru       |
+    | php      | phill   | php servers piece   | php most popular language             |       |       | en       |
+    | doctrine | phill   | doctrine must have  | what you docrtine project should have |       |       | en       |
   And following "SpeechTranslation":
     | locale |
     | ru_RU  |
@@ -43,10 +43,11 @@ Scenario: Admin should able to add event speaker speech
    When I select "Natan Posseo" from "Speaker"
     And I fill in "Title" with "Symfony for the eco Earth"
     And I fill in "Description" with "Save energy with php projects base on Symfony"
+    And I select "English" from "Speech language"
     And I press "Add"
    Then I should see "Speech Symfony for the eco Earth updated."
     And I should see "Natan Posseo"
-    And I should see "Symfony for the eco Earth"
+    And I should see "en / Symfony for the eco Earth"
     And I should not see "Save energy with php projects base on Symfony"
 
 Scenario: Admin should not able to add event speaker without speaker and title
