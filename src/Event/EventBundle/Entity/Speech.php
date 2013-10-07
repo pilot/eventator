@@ -44,6 +44,14 @@ class Speech
     /**
      * @var string
      *
+     * @Assert\NotNull()
+     * @ORM\Column(name="language", type="string", length=5)
+     */
+    private $language = 'en';
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
@@ -136,6 +144,29 @@ class Speech
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set language
+     *
+     * @param string $language
+     * @return Speech
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 
     /**
