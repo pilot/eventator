@@ -47,7 +47,7 @@ class Speech
      * @Assert\NotNull()
      * @ORM\Column(name="language", type="string", length=5)
      */
-    private $language;
+    private $language = 'en';
 
     /**
      * @var string
