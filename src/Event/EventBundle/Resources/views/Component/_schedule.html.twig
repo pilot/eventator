@@ -22,6 +22,7 @@
                         <i>{{ entry.title }}</i>
                     {% endif %}
                 {% else %}
+                    <small>{{ entry.speech.language|default('en'|trans) }}:&nbsp;</small>
                     {{ entry.speech.title }}
                     <br />
                     <span class="speech-speaker">
