@@ -75,3 +75,11 @@ form input {
 .twitter {background-position:-163px -11px;}
 .facebook {background-position:-44px -54px;}
 .google {background-position:-84px -54px;}
+
+/* schedule */
+.speech-title {
+    font-size: medium;
+}
+.speech-speaker {
+    font-size: small;
+}

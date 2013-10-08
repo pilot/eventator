@@ -1,3 +1,36 @@
 <hr id="schedule" class="featurette-divider">
 <h2 class="featurette-heading">Schedule</h2>
 <p class="lead">{{ 'Apply to speak through our'|trans }} <a href="javascript:void(0)" class="call-for-paper">{{ 'Call for Paper'|trans }}</a></p>
+
+{% if schedule %}
+<table class="table" id="program">
+    <tbody>
+    {% set date = null %}
+    {% for entry in schedule %}
+        {% if date != entry.startDate|date('d') %}
+        <tr>
+            <td colspan="2"><strong>{{ entry.startDate|date('l, F dS') }}</strong></td>
+        </tr>
+        {% endif %}
+        <tr class="{{ entry.link ? 'success' : entry.title ? 'warning' : '' }}">
+            <td width="110">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
+            <td class="{{ entry.title and not entry.link ? '' : 'speech-title' }}">
+                {% if entry.title %}
+                    {% if entry.link %}
+                        <a href="{{ entry.link }}">{{ entry.title }}</a>
+                    {% else %}
+                        <i>{{ entry.title }}</i>
+                    {% endif %}
+                {% else %}
+                    {{ entry.speech.title }}
+                    <br />
+                    <span class="speech-speaker">
+                        <a href="{{ entry.speech.speaker.homepage }}">{{ entry.speech.speaker.fullName }}</a></span>
+                {% endif %}
+            </td>
+        </tr>
+        {% set date = entry.startDate|date('d') %}
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
