@@ -5,7 +5,7 @@ namespace Event\EventBundle\Controller\Backend;
 use Symfony\Component\HttpFoundation\Request;
 use Event\EventBundle\Controller\Controller;
 use Event\EventBundle\Entity\Program;
-use Event\EventBundle\Entity\ProgramTranslation;
+use Event\EventBundle\Entity\Translation\ProgramTranslation;
 use Event\EventBundle\Form\Type\ProgramType;
 
 class ProgramController extends Controller

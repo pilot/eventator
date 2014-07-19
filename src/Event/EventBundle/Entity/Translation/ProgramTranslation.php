@@ -1,8 +1,9 @@
 <?php
 
-namespace Event\EventBundle\Entity;
+namespace Event\EventBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;
+use Event\EventBundle\Entity\Program;
 
 /**
  * ProgramTranslation
@@ -26,7 +27,7 @@ class ProgramTranslation
     /**
      * @var Program
      *
-     * @ORM\ManyToOne(targetEntity="Program", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="\Event\EventBundle\Entity\Program", inversedBy="translations")
      */
     private $program;
 

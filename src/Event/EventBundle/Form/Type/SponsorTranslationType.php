@@ -23,7 +23,7 @@ class SponsorTranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\SponsorTranslation'
+            'data_class' => 'Event\EventBundle\Entity\Translation\SponsorTranslation'
         ));
     }
 

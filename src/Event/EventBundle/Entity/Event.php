@@ -4,6 +4,7 @@ namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Event\EventBundle\Entity\Translation\Translation;
 
 /**
  * Event
@@ -205,7 +206,7 @@ class Event
     /**
      * @var translations
      *
-     * @ORM\OneToMany(targetEntity="EventTranslation", mappedBy="event", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="\Event\EventBundle\Entity\Translation\EventTranslation", mappedBy="event", cascade={"all"})
      */
     private $translations;
 

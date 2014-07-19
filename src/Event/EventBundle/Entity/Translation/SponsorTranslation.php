@@ -1,8 +1,9 @@
 <?php
 
-namespace Event\EventBundle\Entity;
+namespace Event\EventBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;
+use Event\EventBundle\Entity\Sponsor;
 
 /**
  * SponsorTranslation
@@ -26,7 +27,7 @@ class SponsorTranslation
     /**
      * @var Sponsor
      *
-     * @ORM\ManyToOne(targetEntity="Sponsor", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="\Event\EventBundle\Entity\Sponsor", inversedBy="translations")
      */
     private $sponsor;
 

@@ -5,6 +5,7 @@ namespace Event\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Event\EventBundle\Entity\Translation\Translation;
 
 /**
  * Speaker
@@ -114,7 +115,7 @@ class Speaker
     /**
      * @var translations
      *
-     * @ORM\OneToMany(targetEntity="SpeakerTranslation", mappedBy="speaker", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="\Event\EventBundle\Entity\Translation\SpeakerTranslation", mappedBy="speaker", cascade={"all"})
      */
     private $translations;
 

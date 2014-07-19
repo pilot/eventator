@@ -26,7 +26,7 @@ class SpeakerTranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\SpeakerTranslation'
+            'data_class' => 'Event\EventBundle\Entity\Translation\SpeakerTranslation'
         ));
     }
 

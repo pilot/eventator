@@ -54,7 +54,7 @@ class EventTranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\EventTranslation',
+            'data_class' => 'Event\EventBundle\Entity\Translation\EventTranslation',
         ));
     }
 

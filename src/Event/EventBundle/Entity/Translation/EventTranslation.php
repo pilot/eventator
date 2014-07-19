@@ -1,8 +1,9 @@
 <?php
 
-namespace Event\EventBundle\Entity;
+namespace Event\EventBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;
+use Event\EventBundle\Entity\Event;
 
 /**
  * EventTranslation
@@ -26,7 +27,7 @@ class EventTranslation
     /**
      * @var Event
      *
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="\Event\EventBundle\Entity\Event", inversedBy="translations")
      */
     private $event;
 
@@ -121,7 +122,7 @@ class EventTranslation
      * @param Event $event
      * @return EventTranslate
      */
-    public function setEvent($event)
+    public function setEvent(Event $event)
     {
         $this->event = $event;
 

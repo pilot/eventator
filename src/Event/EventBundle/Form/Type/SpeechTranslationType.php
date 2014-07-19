@@ -22,7 +22,7 @@ class SpeechTranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\SpeechTranslation'
+            'data_class' => 'Event\EventBundle\Entity\Translation\SpeechTranslation'
         ));
     }
 
