@@ -1,22 +1,19 @@
 <?php
 
-namespace Event\EventBundle\Form\Type;
+namespace Event\EventBundle\Form\Type\Translation;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Event\EventBundle\Entity\Sponsor;
 
-class SpeakerTranslationType extends AbstractType
+class SponsorTranslationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', 'text', ['required' => false])
-            ->add('lastName', 'text', ['required' => false])
             ->add('company', 'text', ['required' => false])
-            ->add('position', 'text', ['required' => false])
-            ->add('bio', 'textarea', [
-                'label' => 'Brief Bio',
+            ->add('description', 'textarea', [
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
                 'required' => false
             ])
@@ -26,12 +23,12 @@ class SpeakerTranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\Translation\SpeakerTranslation'
+            'data_class' => 'Event\EventBundle\Entity\Translation\SponsorTranslation'
         ));
     }
 
     public function getName()
     {
-        return 'speaker_translation';
+        return 'sponsor_translation';
     }
 }

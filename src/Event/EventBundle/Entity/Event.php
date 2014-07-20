@@ -210,10 +210,18 @@ class Event
      */
     private $translations;
 
+    /**
+     * @var speakers
+     *
+     * @ORM\ManyToMany(targetEntity="Speaker", inversedBy="events")
+     */
+    private $speakers;
+
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->speakers = new ArrayCollection();
     }
 
     /**
@@ -807,5 +815,30 @@ class Event
     public function getSlideThree()
     {
         return $this->slideThree;
+    }
+
+    /**
+     * Get speakers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSpeakers()
+    {
+        return $this->speakers;
+    }
+
+    /**
+     * Add speaker
+     *
+     * @param Speaker $speaker
+     */
+    public function addSpeaker(Speaker $speaker)
+    {
+        $this->speakers[] = $speaker;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

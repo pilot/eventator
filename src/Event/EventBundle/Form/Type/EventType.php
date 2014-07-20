@@ -5,6 +5,7 @@ namespace Event\EventBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Event\EventBundle\Form\Type\Translation\EventTranslationType;
 
 class EventType extends AbstractType
 {

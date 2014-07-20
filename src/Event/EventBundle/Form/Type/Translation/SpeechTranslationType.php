@@ -1,6 +1,6 @@
 <?php
 
-namespace Event\EventBundle\Form\Type;
+namespace Event\EventBundle\Form\Type\Translation;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
