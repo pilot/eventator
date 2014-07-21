@@ -16,6 +16,7 @@ use Event\EventBundle\Entity\Translation\Translation;
 class Program
 {
     use Translation;
+    use EventTrait;
 
     /**
      * @var integer

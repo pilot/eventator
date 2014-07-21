@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <th>id</th>
+                <th>Events</th>
                 <th>Title</th>
                 <th>Date Time</th>
                 <th width="10%">Actions</th>
@@ -20,6 +21,11 @@
         {% for entry in program %}
             <tr>
                 <td>{{ entry.id }}</td>
+                <td>
+                    {% for event in entry.events %}
+                        {{ event ~ (not loop.last ? ', ' : '') }}
+                    {% endfor %}
+                </td>
                 <td><a href="{{ url('backend_program_edit', {'id': entry.id}) }}">{{ entry.title ?: entry.speech.title }}</a></td>
                 <td>{{ entry.startDate|date ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
                 <td>

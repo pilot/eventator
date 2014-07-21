@@ -12,6 +12,12 @@ class ProgramType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('events', 'entity', [
+                'class' => 'EventEventBundle:Event',
+                'empty_value' => 'Choose Event',
+                'expanded' => true,
+                'multiple' => true,
+            ])
             ->add('isTopic', 'checkbox', [
                 'label' => 'Topic?',
                 'required' => false
