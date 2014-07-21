@@ -17,6 +17,13 @@ class SpeechType extends AbstractType
                 'property' => 'fullName',
                 'empty_value' => 'Choose Speaker'
             ])
+            // @todo: implement dynamic relation between speaker/event/speech
+            ->add('events', 'entity', [
+                'class' => 'EventEventBundle:Event',
+                'empty_value' => 'Choose Event',
+                'expanded' => true,
+                'multiple' => true,
+            ])
             ->add('title', 'text')
             ->add('language', 'language', [
                 'label' => 'Speech language',

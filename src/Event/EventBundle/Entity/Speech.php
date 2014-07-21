@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Event\EventBundle\Entity\Translation\Translation;
+use Event\EventBundle\Entity\EventTrait;
 
 /**
  * Speech
@@ -16,6 +17,7 @@ use Event\EventBundle\Entity\Translation\Translation;
 class Speech
 {
     use Translation;
+    use EventTrait;
 
     /**
      * @var integer

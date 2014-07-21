@@ -13,6 +13,7 @@
                 <th>id</th>
                 <th>Speaker Name</th>
                 <th>Title</th>
+                <th>Events</th>
                 <th width="10%">Actions</th>
             </tr>
         </thead>
@@ -24,6 +25,11 @@
                 <td>
                     {{ speech.language|default(app.request.locale) }}&nbsp;/&nbsp;
                     <a href="{{ url('backend_speech_edit', {'id': speech.id}) }}">{{ speech.title }}</a>
+                </td>
+                <td>
+                    {% for event in speech.events %}
+                        {{ event ~ (not loop.last ? ', ' : '') }}
+                    {% endfor %}
                 </td>
                 <td>
                     <div class="btn-group">
