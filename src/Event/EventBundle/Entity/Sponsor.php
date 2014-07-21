@@ -16,6 +16,7 @@ use Event\EventBundle\Entity\Translation\Translation;
 class Sponsor
 {
     use Translation;
+    use EventTrait;
 
     const
         TYPE_PLATINUM = 1,
