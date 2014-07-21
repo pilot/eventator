@@ -213,7 +213,7 @@ class Event
     /**
      * @var speakers
      *
-     * @ORM\ManyToMany(targetEntity="Speaker", inversedBy="events")
+     * @ORM\ManyToMany(targetEntity="Speaker", mappedBy="events")
      */
     private $speakers;
 

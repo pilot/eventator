@@ -25,7 +25,7 @@
                 <td><a href="{{ url('backend_speaker_edit', {'id': speaker.id}) }}">{{ speaker.fullName }}</a></td>
                 <td>
                     {% for event in speaker.events %}
-                        {{ event ~ not loop.last ? ', ' : '' }}
+                        {{ event ~ (not loop.last ? ', ' : '') }}
                     {% endfor %}
                 </td>
                 <td>{{ speaker.Company }}</td>

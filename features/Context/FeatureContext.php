@@ -161,6 +161,14 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Given /^following "([^"]*)" events:$/
+     */
+    public function areFollowingEvents($name, TableNode $table)
+    {
+        // @todo implement load objects / events relations
+    }
+
+    /**
      * @Given /^I delete "([^"]*)" record of "([^"]*)"$/
      */
     public function iDeleteRecordOf($index, $entity)
