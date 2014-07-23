@@ -1,0 +1,60 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>Event settings</h3>
+        </div>
+
+        {% render(controller('EventEventBundle:Backend/Dashboard:localeTabs')) %}
+
+        <form id="event" action="{{ url('backend_event') }}" method="post" {{ form_enctype(form) }}>
+            <div class="tab-content">
+                <div class="tab-pane active" id="{{ app.request.locale }}">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.logo) }}
+
+                    <div class="well">
+                        <strong>Carousel</strong>
+                        <small>note: images should be more or equal 1500 x 500 px</small>
+                        {{ form_row(form.slideOne) }}
+                        {{ form_row(form.slideTwo) }}
+                        {{ form_row(form.slideThree) }}
+                    </div>
+
+                    {{ form_row(form.briefDescription) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.sponsorDescription) }}
+                    {{ form_row(form.sponsorGuide) }}
+                    {{ form_row(form.country) }}
+                    {{ form_row(form.state) }}
+                    {{ form_row(form.city) }}
+                    {{ form_row(form.startDate) }}
+                    {{ form_row(form.endDate) }}
+                    {{ form_row(form.venue) }}
+                    {{ form_row(form.venueAddress) }}
+                    {{ form_row(form.longitude) }}
+                    {{ form_row(form.latitude) }}
+                    {{ form_row(form.twitter) }}
+                    {{ form_row(form.facebook) }}
+                    {{ form_row(form.google) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.contact) }}
+                    {{ form_row(form.embedTicket) }}
+                    {{ form_row(form.isActive) }}
+                </div>
+
+                {% for translation in form.translations %}
+                    <div class="tab-pane fade" id="{{ translation.vars.value.locale }}">
+                        {{ form_widget(translation) }}
+                    </div>
+                {% endfor %}
+
+                {{ form_rest(form) }}
+
+                <input class="btn btn-success" type="submit" value="Update" />
+            </div>
+        </form>
+
+    </section>
+{% endblock %}

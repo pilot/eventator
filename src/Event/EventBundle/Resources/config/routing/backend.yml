@@ -6,6 +6,25 @@ backend_setting:
     pattern:  /settings
     defaults: { _controller: EventEventBundle:Backend/Dashboard:setting }
 
+# Event
+backend_event:
+    pattern:  /events
+    defaults: { _controller: EventEventBundle:Backend/Event:index }
+
+backend_event_add:
+    pattern:  /event/add
+    defaults: { _controller: EventEventBundle:Backend/Event:manage }
+
+backend_event_edit:
+    pattern:  /event/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Event:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_event_delete:
+    pattern:  /event/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Event:delete }
+    requirements: { id: \d+ }
+
 # Speaker
 backend_speaker:
     pattern:  /speakers

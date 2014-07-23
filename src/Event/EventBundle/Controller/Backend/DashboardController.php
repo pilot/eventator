@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function indexAction()
     {
-        // @todo: handle init on kernel listener
+        // @todo: create installer for initial setup
         if ('test' != $this->container->getParameter('kernel.environment')) {
             $this->initEvent();
         }
@@ -24,30 +24,9 @@ class DashboardController extends Controller
 
     public function settingAction(Request $request)
     {
-        $event = $this->getRepository('EventEventBundle:Event')->getEvent();
+        // @todo: add settgins management
 
-        if (!$event) {
-            $event = new Event();
-        }
-
-        $form = $this->createForm(new EventType(), $event);
-        if ($request->isMethod('POST') && $form->handleRequest($request)) {
-
-            if ($form->isValid()) {
-
-                $em = $this->getManager();
-                $em->persist($event);
-                $em->flush();
-
-                $this->setSuccessFlash('Event settings updated.');
-
-                return $this->redirect($this->generateUrl('backend_setting'));
-            }
-        }
-
-        return $this->render('EventEventBundle:Backend/Dashboard:setting.html.twig', [
-            'form' => $form->createView()
-        ]);
+        return $this->render('EventEventBundle:Backend/Dashboard:setting.html.twig', []);
     }
 
     public function localeTabsAction()
