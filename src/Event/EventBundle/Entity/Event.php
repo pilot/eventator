@@ -28,6 +28,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="host", type="string", length=255)
+     */
+    private $host;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -232,6 +239,29 @@ class Event
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set host
+     *
+     * @param string $host
+     * @return Event
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * Get host
+     *
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->host;
     }
 
     /**

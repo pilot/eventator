@@ -29,13 +29,13 @@ class EventController extends Controller
         $form = $this->createForm(new EventType(), $entity);
 
         if ($request->getMethod() === 'POST') {
-            $form->submit($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash(sprintf('Event %s updated.', $entity->getFullName()));
+                $this->setSuccessFlash(sprintf('Event %s updated.', $entity->getTitle()));
 
                 return $this->redirectToRoute('backend_event');
             }

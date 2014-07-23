@@ -60,6 +60,6 @@ class EventTranslationType extends AbstractType
 
     public function getName()
     {
-        return 'settings_translation';
+        return 'event_translation';
     }
 }

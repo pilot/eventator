@@ -16,6 +16,7 @@
                 <th>City</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Active?</th>
                 <th width="10%">Actions</th>
             </tr>
         </thead>
@@ -23,11 +24,16 @@
         {% for event in events %}
             <tr>
                 <td>{{ event.id }}</td>
-                <td><a href="{{ url('backend_event_edit', {'id': event.id}) }}">{{ event.title }}</a></td>
+                <td>
+                    <a href="{{ url('backend_event_edit', {'id': event.id}) }}">{{ event.title }}</a>
+                    <br />
+                    <small><a href="{{ event.host }}">{{ event.host }}</a></small>
+                </td>
                 <td>{{ event.Country }}</td>
                 <td>{{ event.City }}</td>
                 <td>{{ event.startDate|date }}</td>
                 <td>{{ event.endDate|date }}</td>
+                <td>{{ event.isActive ? 'Yes' : 'No' }}</td>
                 <td>
                     <div class="btn-group">
                         <a class="btn btn-small" href="{{ url('backend_event_edit', {'id': event.id}) }}"><i class="icon-user"></i> Edit</a>
@@ -64,6 +70,7 @@
                         "sLengthMenu": "_MENU_ records per page"
                     },
                     "aoColumns": [
+                        null,
                         null,
                         null,
                         null,

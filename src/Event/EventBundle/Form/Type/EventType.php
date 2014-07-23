@@ -12,6 +12,7 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('host', 'url')
             ->add('title', 'text')
             ->add('logo', 'text', ['required' => false])
 
@@ -95,6 +96,6 @@ class EventType extends AbstractType
 
     public function getName()
     {
-        return 'settings';
+        return 'event';
     }
 }
