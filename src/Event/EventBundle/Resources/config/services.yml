@@ -10,10 +10,13 @@ services:
         arguments:
             - 'EventEventBundle:Event'
 
+    eventator.event_manager:
+        class: Event\EventBundle\Manager\EventManager
 
     kernel.listener.init_listener:
         class: Event\EventBundle\EventListener\InitListener
         arguments:
             - @eventator.event_repository
+            - @eventator.event_manager
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

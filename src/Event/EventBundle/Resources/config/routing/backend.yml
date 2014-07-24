@@ -100,3 +100,22 @@ backend_sponsor_delete:
     pattern:  /sponsor/delete/{id}
     defaults: { _controller: EventEventBundle:Backend/Sponsor:delete }
     requirements: { id: \d+ }
+
+# Organizer
+backend_organizer:
+    pattern:  /organizers
+    defaults: { _controller: EventEventBundle:Backend/Organizer:index }
+
+backend_organizer_add:
+    pattern:  /organizer/add
+    defaults: { _controller: EventEventBundle:Backend/Organizer:manage }
+
+backend_organizer_edit:
+    pattern:  /organizer/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Organizer:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_organizer_delete:
+    pattern:  /organizer/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Organizer:delete }
+    requirements: { id: \d+ }

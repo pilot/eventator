@@ -4,13 +4,6 @@ namespace Event\EventBundle\Entity;
 
 trait EventTrait
 {
-    /**
-     * @var events
-     *
-     * @ORM\ManyToMany(targetEntity="Event")
-     */
-    private $events;
-
     public function __construct()
     {
         parent::_construct();

@@ -17,7 +17,7 @@ class EventController extends Controller
     public function carouselAction()
     {
         return $this->render('EventEventBundle:Component:_carousel.html.twig', [
-            'event' => $this->getRepository('EventEventBundle:Event')->getEvent()
+            'event' => $this->getEvent()
         ]);
     }
 
@@ -26,7 +26,7 @@ class EventController extends Controller
         $form = $this->callForPaper();
 
         return $this->render('EventEventBundle:Component:_speakers.html.twig', [
-            'speakers' => $this->getRepository('EventEventBundle:Speaker')->findAll(),
+            'speakers' => $this->getEvent()->getSpeakers(),
             'form' => $form->createView(),
         ]);
     }
@@ -34,35 +34,34 @@ class EventController extends Controller
     public function venueAction()
     {
         return $this->render('EventEventBundle:Component:_venue.html.twig', [
-            'event' => $this->getRepository('EventEventBundle:Event')->getEvent()
+            'event' => $this->getEvent()
         ]);
     }
 
     public function scheduleAction()
     {
         return $this->render('EventEventBundle:Component:_schedule.html.twig', [
-            'schedule' => $this->getRepository('EventEventBundle:Program')->findBy([], ['startDate' => 'ASC'])
+            'schedule' => $this->getEvent()->getProgram()
         ]);
     }
 
     public function sponsorsAction()
     {
         return $this->render('EventEventBundle:Component:_sponsors.html.twig', [
-            'event' => $this->getRepository('EventEventBundle:Event')->getEvent(),
-            'sponsors' => $this->getRepository('EventEventBundle:Sponsor')->findAll()
+            'event' => $this->getEvent()
         ]);
     }
 
     public function contactAction(Request $request)
     {
-        $event = $this->getRepository('EventEventBundle:Event')->getEvent();
+        $event = $this->getEvent();
 
         $form = $this->createForm(new ContactType());
         if ($request->isMethod('POST') && $form->handleRequest($request)) {
             if ($form->isValid() && $this->getSession()->get('captchaResult') == $request->request->get('calc')) {
                 $this->get('eventator_mailer')->send(
                     $event->getEmail(),
-                    'Contact Request',
+                    'Contact Request - '.$event->getTitle(),
                     sprintf(
                         'Hello!<br /><br />Contact request: %s <br />',
                         nl2br($form->get('message')->getData())
@@ -85,7 +84,7 @@ class EventController extends Controller
 
     public function callForPaperAction(Request $request)
     {
-        $event = $this->getRepository('EventEventBundle:Event')->getEvent();
+        $event = $this->getEvent();
 
         $form = $this->callForPaper();
         $form->handleRequest($request);
@@ -94,7 +93,7 @@ class EventController extends Controller
 
             $this->get('eventator_mailer')->send(
                 $event->getEmail(),
-                'Call For Paper Request',
+                'Call For Paper Request - '.$event->getTitle(),
                 $this->renderView('EventEventBundle:Email:_callForPaper.html.twig', [
                     'data' => $form->getData(),
                     'from' => $form->get('email')->getData(),

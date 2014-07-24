@@ -224,11 +224,35 @@ class Event
      */
     private $speakers;
 
+    /**
+     * @var sponsors
+     *
+     * @ORM\ManyToMany(targetEntity="Sponsor", mappedBy="events")
+     */
+    private $sponsors;
+
+    /**
+     * @var program
+     *
+     * @ORM\ManyToMany(targetEntity="Program", mappedBy="events")
+     */
+    private $program;
+
+    /**
+     * @var ogranizers
+     *
+     * @ORM\ManyToMany(targetEntity="Organizer", mappedBy="events")
+     */
+    private $organizers;
+
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
         $this->speakers = new ArrayCollection();
+        $this->sponsors = new ArrayCollection();
+        $this->program = new ArrayCollection();
+        $this->organizers = new ArrayCollection();
     }
 
     /**
@@ -858,13 +882,33 @@ class Event
     }
 
     /**
-     * Add speaker
+     * Get sponsors
      *
-     * @param Speaker $speaker
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function addSpeaker(Speaker $speaker)
+    public function getSponsors()
     {
-        $this->speakers[] = $speaker;
+        return $this->sponsors;
+    }
+
+    /**
+     * Get program
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProgram()
+    {
+        return $this->program;
+    }
+
+    /**
+     * Get organizers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganizers()
+    {
+        return $this->organizers;
     }
 
     public function __toString()

@@ -2,9 +2,9 @@
 <h2 class="featurette-heading">Sponsors</h2>
 <p class="lead">{{ event.sponsorDescription|nl2br }}</p>
 
-{% if sponsors %}
+{% if event.sponsors %}
     <div class="row">
-        {% for sponsor in sponsors %}
+        {% for sponsor in event.sponsors %}
             <div class="col-lg-2">
                 <a href="{{ sponsor.homepage }}">
                     <span id="face-wrapper">

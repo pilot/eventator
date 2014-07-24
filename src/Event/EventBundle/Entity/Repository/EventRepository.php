@@ -7,11 +7,12 @@ use Doctrine\ORM\QueryBuilder;
 
 class EventRepository extends EntityRepository
 {
-    public function getEvent()
+    public function getEvent($host)
     {
         return $this
             ->createQueryBuilder('e')
-            ->where('e.id IS NOT NULL')
+            ->where('host = :host')
+            ->setParameter('host', 'http://'.$host)
             ->getQuery()
             ->setMaxResults(1)
             ->getOneOrNullResult()
