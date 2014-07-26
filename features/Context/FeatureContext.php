@@ -138,7 +138,11 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function areFollowingEntities($name, TableNode $table)
     {
-        $objectName = 'Event\\EventBundle\\Entity\\' . $name;
+        if (strpos($name, 'Translation')) {
+            $objectName = 'Event\\EventBundle\\Entity\\Translation\\' . $name;
+        } else {
+            $objectName = 'Event\\EventBundle\\Entity\\' . $name;
+        }
 
         $metadata = $this->getEntityManager()->getMetadataFactory()->getMetadataFor($objectName);
         $class = $metadata->getName();
