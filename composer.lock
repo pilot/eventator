@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "253ee849bde7fd1f1e499060f8a574dd",
     "packages": [
@@ -1409,16 +1410,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.5",
+            "version": "v2.3.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "aa5626cd2a359567c948ebdeeca68d948640302f"
+                "reference": "1fc05758044fa1cf54460d7d4aff5f55b0f1b0db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/aa5626cd2a359567c948ebdeeca68d948640302f",
-                "reference": "aa5626cd2a359567c948ebdeeca68d948640302f",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/1fc05758044fa1cf54460d7d4aff5f55b0f1b0db",
+                "reference": "1fc05758044fa1cf54460d7d4aff5f55b0f1b0db",
                 "shasum": ""
             },
             "require": {
@@ -1426,7 +1427,7 @@
                 "php": ">=5.3.3",
                 "psr/log": "~1.0",
                 "symfony/icu": "~1.0",
-                "twig/twig": "~1.11"
+                "twig/twig": "~1.12"
             },
             "replace": {
                 "symfony/browser-kit": "self.version",
@@ -1500,12 +1501,12 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "The Symfony PHP framework",
@@ -1513,7 +1514,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-09-27 07:31:40"
+            "time": "2014-09-03 09:45:27"
         },
         {
             "name": "twig/extensions",
@@ -2118,19 +2119,16 @@
             "time": "2013-05-19 10:12:33"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "phpspec/phpspec": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.4.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
