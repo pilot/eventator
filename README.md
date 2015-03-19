@@ -5,6 +5,8 @@ events managing with easiest ticketing systems
 
 [![Build Status](https://travis-ci.org/pilot/eventator.png?branch=master)](https://travis-ci.org/pilot/eventator)
 
+![](https://codeship.com/projects/5bf4ebe0-9c41-0132-d366-3a6c943f49f1/status?branch=master)
+
 **demo**
 
 [eventator.org](http://eventator.org)
