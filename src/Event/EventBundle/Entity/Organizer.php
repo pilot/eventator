@@ -8,31 +8,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Event\EventBundle\Entity\Translation\Translation;
 
 /**
- * Sponsor
+ * Organizer
  *
- * @ORM\Table(name="ev_sponsor")
+ * @ORM\Table(name="ev_organizer")
  * @ORM\Entity
  */
-class Sponsor
+class Organizer
 {
     use Translation;
     use EventTrait;
-
-    const
-        TYPE_PLATINUM = 1,
-        TYPE_GOLD = 2,
-        TYPE_SILVER = 3,
-        TYPE_GENERAL = 4,
-        TYPE_INFO = 5
-    ;
-
-    public static $types = [
-        self::TYPE_PLATINUM => 'Platinum',
-        self::TYPE_GOLD => 'Gold',
-        self::TYPE_SILVER => 'Silver',
-        self::TYPE_GENERAL => 'General',
-        self::TYPE_INFO => 'Info'
-    ];
 
     /**
      * @var integer
@@ -47,9 +31,9 @@ class Sponsor
      * @var string
      *
      * @Assert\NotNull()
-     * @ORM\Column(name="company", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $company;
+    private $title;
 
     /**
      * @var string
@@ -73,14 +57,6 @@ class Sponsor
     private $homepage;
 
     /**
-     * @var integer
-     *
-     * @Assert\NotNull()
-     * @ORM\Column(name="type", type="integer")
-     */
-    private $type;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="is_active", type="boolean")
@@ -90,14 +66,14 @@ class Sponsor
     /**
      * @var translations
      *
-     * @ORM\OneToMany(targetEntity="\Event\EventBundle\Entity\Translation\SponsorTranslation", mappedBy="sponsor", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="\Event\EventBundle\Entity\Translation\OrganizerTranslation", mappedBy="organizer", cascade={"all"})
      */
     private $translations;
 
     /**
      * @var events
      *
-     * @ORM\ManyToMany(targetEntity="Event", inversedBy="sponsors")
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="organizers")
      */
     private $events;
 
@@ -118,26 +94,26 @@ class Sponsor
     }
 
     /**
-     * Set company
+     * Set title
      *
-     * @param string $company
+     * @param string $title
      * @return Sponsor
      */
-    public function setCompany($company)
+    public function setTitle($title)
     {
-        $this->company = $company;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get company
+     * Get title
      *
      * @return string
      */
-    public function getCompany()
+    public function getTitle()
     {
-        return $this->company;
+        return $this->title;
     }
 
     /**
@@ -207,42 +183,6 @@ class Sponsor
     public function getHomepage()
     {
         return $this->homepage;
-    }
-
-    /**
-     * Set type
-     *
-     * @param integer $type
-     * @return Sponsor
-     */
-    public function setType($type)
-    {
-        if (!isset(self::$types[$type])) {
-            throw new \InvalidArgumentException(sprintf('Sponsor type "%d" is not valid', $type));
-        }
-
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function getTypeName()
-    {
-        if (isset(self::$types[$this->getType()])) {
-            return self::$types[$this->getType()];
-        }
-
-        return null;
     }
 
     /**

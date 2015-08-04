@@ -1,16 +1,17 @@
 <?php
 
-namespace Event\EventBundle\Entity;
+namespace Event\EventBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;
+use Event\EventBundle\Entity\Organizer;
 
 /**
- * SponsorTranslation
+ * OrganizerTranslation
  *
- * @ORM\Table(name="ev_sponsor_translation")
+ * @ORM\Table(name="ev_organizer_translation")
  * @ORM\Entity
  */
-class SponsorTranslation
+class OrganizerTranslation
 {
     use Locale;
 
@@ -24,18 +25,18 @@ class SponsorTranslation
     private $id;
 
     /**
-     * @var Sponsor
+     * @var Organizer
      *
-     * @ORM\ManyToOne(targetEntity="Sponsor", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="\Event\EventBundle\Entity\Organizer", inversedBy="translations")
      */
-    private $sponsor;
+    private $organizer;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="company", type="string", length=255, nullable=true)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
-    private $company;
+    private $title;
 
     /**
      * @var string
@@ -56,49 +57,49 @@ class SponsorTranslation
     }
 
     /**
-     * Set sponsor
+     * Set organizer
      *
-     * @param Sponsor $sponsor
-     * @return Sponsor
+     * @param Organizer $organizer
+     * @return Organizer
      */
-    public function setSponsor(Sponsor $sponsor)
+    public function setOrganizer(Organizer $organizer)
     {
-        $this->sponsor = $sponsor;
+        $this->organizer = $organizer;
 
         return $this;
     }
 
     /**
-     * Get sponsor
+     * Get organizer
      *
-     * @return Sponsor
+     * @return Organizer
      */
-    public function getSponsor()
+    public function getOrganizer()
     {
-        return $this->sponsor;
+        return $this->organizer;
     }
 
     /**
-     * Set company
+     * Set title
      *
-     * @param string $company
+     * @param string $title
      * @return Sponsor
      */
-    public function setCompany($company)
+    public function setTitle($title)
     {
-        $this->company = $company;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get company
+     * Get title
      *
      * @return string
      */
-    public function getCompany()
+    public function getTitle()
     {
-        return $this->company;
+        return $this->title;
     }
 
     /**

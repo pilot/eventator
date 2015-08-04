@@ -12,6 +12,9 @@
         <form action="{{ path('backend_speaker_edit', { 'id': speaker.id }) }}" method="post" {{ form_enctype(form) }}>
             <div class="tab-content">
                 <div class="tab-pane active" id="{{ app.request.locale }}">
+                    <div class="well">
+                        {{ form_row(form.events) }}
+                    </div>
                     {{ form_row(form.firstName) }}
                     {{ form_row(form.lastName) }}
                     {{ form_row(form.photo) }}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Event\EventBundle\Form\Type;
+namespace Event\EventBundle\Form\Type\Translation;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +18,7 @@ class ProgramTranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\ProgramTranslation'
+            'data_class' => 'Event\EventBundle\Entity\Translation\ProgramTranslation'
         ));
     }
 

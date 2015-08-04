@@ -1,0 +1,17 @@
+{% if event.organizers is not empty %}
+    <hr id="organizers" class="featurette-divider">
+    <h2 class="featurette-heading">Organizers</h2>
+
+    <div class="row">
+        {% for organizer in event.organizers %}
+            <div class="col-lg-2">
+                <a href="{{ organizer.homepage }}">
+                    <span id="face-wrapper">
+                        <img class="img-circle face" data-src="holder.js/140x140/text:{{ organizer.homepage }}" src="{{ organizer.logo ?: '' }}" width="140" />
+                    </span>
+                </a>
+                <h2><a href="{{ organizer.homepage }}">{{ organizer.title }}</a></h2>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

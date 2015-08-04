@@ -12,6 +12,7 @@
             <tr>
                 <th>id</th>
                 <th>Company</th>
+                <th>Events</th>
                 <th>Sponsor Type</th>
                 <th width="10%">Actions</th>
             </tr>
@@ -21,6 +22,11 @@
             <tr>
                 <td>{{ sponsor.id }}</td>
                 <td><a href="{{ url('backend_sponsor_edit', {'id': sponsor.id}) }}">{{ sponsor.company }}</a></td>
+                <td>
+                    {% for event in sponsor.events %}
+                        {{ event ~ (not loop.last ? ', ' : '') }}
+                    {% endfor %}
+                </td>
                 <td>{{ sponsor.typeName }}</td>
                 <td>
                     <div class="btn-group">
@@ -58,6 +64,7 @@
                         "sLengthMenu": "_MENU_ records per page"
                     },
                     "aoColumns": [
+                        null,
                         null,
                         null,
                         null,

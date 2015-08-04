@@ -1,8 +1,9 @@
 <?php
 
-namespace Event\EventBundle\Entity;
+namespace Event\EventBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;
+use Event\EventBundle\Entity\Speech;
 
 /**
  * SpeechTranslation
@@ -26,7 +27,7 @@ class SpeechTranslation
     /**
      * @var Speech
      *
-     * @ORM\ManyToOne(targetEntity="Speech", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="\Event\EventBundle\Entity\Speech", inversedBy="translations")
      */
     private $speech;
 

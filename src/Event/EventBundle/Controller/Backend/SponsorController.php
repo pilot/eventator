@@ -5,7 +5,7 @@ namespace Event\EventBundle\Controller\Backend;
 use Symfony\Component\HttpFoundation\Request;
 use Event\EventBundle\Controller\Controller;
 use Event\EventBundle\Entity\Sponsor;
-use Event\EventBundle\Entity\SponsorTranslation;
+use Event\EventBundle\Entity\Translation\SponsorTranslation;
 use Event\EventBundle\Form\Type\SponsorType;
 
 class SponsorController extends Controller

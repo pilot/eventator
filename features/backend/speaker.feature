@@ -5,8 +5,9 @@ Feature: Event speakers
 
 Background:
   Given following "Event":
-    | ref   | title    | description               | startDate  | endDate    | venue              | email               |
-    | event | My event | My another awesome event! | 2014-10-10 | 2014-10-12 | Burj Khalifa Tower | eventator@email.com |
+    | ref    | title     | description                | startDate  | endDate    | venue              | email               | host              |
+    | event  | My event  | My another awesome event!  | 2014-10-10 | 2014-10-12 | Burj Khalifa Tower | eventator@email.com | http://event.com  |
+    | event2 | His event | His another awesome event! | 2014-11-15 | 2014-11-16 | Kuala-lumpur Tower | eventator@gmail.com | http://event2.com |
   And following "EventTranslation":
     | locale |
     | ru_RU  |
@@ -17,6 +18,11 @@ Background:
   And following "SpeakerTranslation":
     | locale |
     | ru_RU  |
+  And following "Speaker" events:
+    | speaker | event  |
+    | phill   | event  |
+    | alex    | event  |
+    | alex    | event2 |
 
 Scenario: Admin should have access to the speakers management
   Given I am sign in as admin

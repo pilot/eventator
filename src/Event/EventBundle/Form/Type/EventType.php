@@ -5,12 +5,14 @@ namespace Event\EventBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Event\EventBundle\Form\Type\Translation\EventTranslationType;
 
 class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('host', 'url')
             ->add('title', 'text')
             ->add('logo', 'text', ['required' => false])
 
@@ -94,6 +96,6 @@ class EventType extends AbstractType
 
     public function getName()
     {
-        return 'settings';
+        return 'event';
     }
 }

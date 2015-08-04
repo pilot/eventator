@@ -5,12 +5,19 @@ namespace Event\EventBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Event\EventBundle\Form\Type\Translation\SpeakerTranslationType;
 
 class SpeakerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('events', 'entity', [
+                'class' => 'EventEventBundle:Event',
+                'empty_value' => 'Choose Event',
+                'expanded' => true,
+                'multiple' => true,
+            ])
             ->add('firstName', 'text', ['label' => 'First Name'])
             ->add('lastName', 'text', ['label' => 'Last Name'])
             ->add('photo', 'text', ['required' => false])

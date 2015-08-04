@@ -1,6 +1,6 @@
 <?php
 
-namespace Event\EventBundle\Form\Type;
+namespace Event\EventBundle\Form\Type\Translation;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -54,12 +54,12 @@ class EventTranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\EventTranslation',
+            'data_class' => 'Event\EventBundle\Entity\Translation\EventTranslation',
         ));
     }
 
     public function getName()
     {
-        return 'settings_translation';
+        return 'event_translation';
     }
 }

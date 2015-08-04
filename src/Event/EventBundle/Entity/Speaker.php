@@ -5,6 +5,7 @@ namespace Event\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Event\EventBundle\Entity\Translation\Translation;
 
 /**
  * Speaker
@@ -114,7 +115,7 @@ class Speaker
     /**
      * @var translations
      *
-     * @ORM\OneToMany(targetEntity="SpeakerTranslation", mappedBy="speaker", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="\Event\EventBundle\Entity\Translation\SpeakerTranslation", mappedBy="speaker", cascade={"all"})
      */
     private $translations;
 
@@ -125,11 +126,19 @@ class Speaker
      */
     private $speeches;
 
+    /**
+     * @var events
+     *
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="speakers")
+     */
+    private $events;
+
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
         $this->speeches = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     /**
@@ -460,5 +469,37 @@ class Speaker
     public function removeSpeech(Speech $speech)
     {
         $this->speeches->removeElement($speech);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * Add event
+     *
+     * @param Event $event
+     */
+    public function addEvent(Event $event)
+    {
+        $event->addSpeaker($this);
+
+        $this->events[] = $event;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param Event $event
+     */
+    public function removeEvent(Event $event)
+    {
+        $this->events->removeElement($event);
     }
 }

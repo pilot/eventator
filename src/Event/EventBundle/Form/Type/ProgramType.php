@@ -5,12 +5,19 @@ namespace Event\EventBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Event\EventBundle\Form\Type\Translation\ProgramTranslationType;
 
 class ProgramType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('events', 'entity', [
+                'class' => 'EventEventBundle:Event',
+                'empty_value' => 'Choose Event',
+                'expanded' => true,
+                'multiple' => true,
+            ])
             ->add('isTopic', 'checkbox', [
                 'label' => 'Topic?',
                 'required' => false

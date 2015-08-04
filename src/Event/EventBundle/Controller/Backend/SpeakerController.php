@@ -5,7 +5,7 @@ namespace Event\EventBundle\Controller\Backend;
 use Symfony\Component\HttpFoundation\Request;
 use Event\EventBundle\Controller\Controller;
 use Event\EventBundle\Entity\Speaker;
-use Event\EventBundle\Entity\SpeakerTranslation;
+use Event\EventBundle\Entity\Translation\SpeakerTranslation;
 use Event\EventBundle\Form\Type\SpeakerType;
 
 class SpeakerController extends Controller

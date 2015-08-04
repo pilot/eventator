@@ -4,9 +4,15 @@ namespace Event\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Event\EventBundle\Manager\EventManager;
 
 class Controller extends BaseController
 {
+    protected function getEvent()
+    {
+        return $this->get('eventator.event_manager')->getCurrentEvent();
+    }
+
     protected function getRepository($name)
     {
         return $this->getManager()->getRepository($name);

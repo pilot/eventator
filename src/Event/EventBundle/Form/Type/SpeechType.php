@@ -5,6 +5,7 @@ namespace Event\EventBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Event\EventBundle\Form\Type\Translation\SpeechTranslationType;
 
 class SpeechType extends AbstractType
 {
@@ -15,6 +16,13 @@ class SpeechType extends AbstractType
                 'class' => 'EventEventBundle:Speaker',
                 'property' => 'fullName',
                 'empty_value' => 'Choose Speaker'
+            ])
+            // @todo: implement dynamic relation between speaker/event/speech
+            ->add('events', 'entity', [
+                'class' => 'EventEventBundle:Event',
+                'empty_value' => 'Choose Event',
+                'expanded' => true,
+                'multiple' => true,
             ])
             ->add('title', 'text')
             ->add('language', 'language', [

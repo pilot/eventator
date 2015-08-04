@@ -12,6 +12,7 @@
             <tr>
                 <th>id</th>
                 <th>Full Name</th>
+                <th>Events</th>
                 <th>Company</th>
                 <th>E-mail</th>
                 <th width="10%">Actions</th>
@@ -22,6 +23,11 @@
             <tr>
                 <td>{{ speaker.id }}</td>
                 <td><a href="{{ url('backend_speaker_edit', {'id': speaker.id}) }}">{{ speaker.fullName }}</a></td>
+                <td>
+                    {% for event in speaker.events %}
+                        {{ event ~ (not loop.last ? ', ' : '') }}
+                    {% endfor %}
+                </td>
                 <td>{{ speaker.Company }}</td>
                 <td>{{ speaker.email }}</td>
                 <td>
@@ -60,6 +66,7 @@
                         "sLengthMenu": "_MENU_ records per page"
                     },
                     "aoColumns": [
+                        null,
                         null,
                         null,
                         null,

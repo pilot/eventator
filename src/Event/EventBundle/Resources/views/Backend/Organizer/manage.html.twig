@@ -3,20 +3,19 @@
 {% block content %}
     <section>
         <div class="page-header">
-            <h3>{{ sponsor.id ? 'Edit' : 'Add' }} sponsor</h3>
-            <a href="{{ path('backend_sponsor') }}" class="btn btn-small">&larr; Back to the list</a>
+            <h3>{{ organizer.id ? 'Edit' : 'Add' }} organizer</h3>
+            <a href="{{ path('backend_organizer') }}" class="btn btn-small">&larr; Back to the list</a>
         </div>
 
         {% render(controller('EventEventBundle:Backend/Dashboard:localeTabs')) %}
 
-        <form action="{{ path('backend_sponsor_edit', { 'id': sponsor.id }) }}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ path('backend_organizer_edit', { 'id': organizer.id }) }}" method="post" {{ form_enctype(form) }}>
             <div class="tab-content">
                 <div class="tab-pane active" id="{{ app.request.locale }}">
                     <div class="well">
                         {{ form_row(form.events) }}
                     </div>
-                    {{ form_row(form.type) }}
-                    {{ form_row(form.company) }}
+                    {{ form_row(form.title) }}
                     {{ form_row(form.description) }}
                     {{ form_row(form.logo) }}
                     {{ form_row(form.homepage) }}
@@ -31,7 +30,7 @@
 
                 {{ form_rest(form) }}
 
-                <input type="submit" value="{{ sponsor.id ? 'Update' : 'Add' }}" class="btn btn-success" />
+                <input type="submit" value="{{ organizer.id ? 'Update' : 'Add' }}" class="btn btn-success" />
             </div>
         </form>
 

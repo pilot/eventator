@@ -1,6 +1,6 @@
 <?php
 
-namespace Event\EventBundle\Entity;
+namespace Event\EventBundle\Entity\Translation;
 
 trait Locale
 {

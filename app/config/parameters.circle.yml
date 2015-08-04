@@ -13,7 +13,7 @@ parameters:
     mailer_port:       ~
 
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            o6l4q3mehlz4lcvax32z
 
     behat_print_err:   1
 

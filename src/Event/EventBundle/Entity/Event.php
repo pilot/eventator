@@ -3,7 +3,9 @@
 namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\ArrayCollection;
+use Event\EventBundle\Entity\Translation\Translation;
 
 /**
  * Event
@@ -23,6 +25,13 @@ class Event
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="host", type="string", length=255)
+     */
+    private $host;
 
     /**
      * @var string
@@ -205,14 +214,46 @@ class Event
     /**
      * @var translations
      *
-     * @ORM\OneToMany(targetEntity="EventTranslation", mappedBy="event", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="\Event\EventBundle\Entity\Translation\EventTranslation", mappedBy="event", cascade={"all"})
      */
     private $translations;
+
+    /**
+     * @var speakers
+     *
+     * @ORM\ManyToMany(targetEntity="Speaker", mappedBy="events")
+     */
+    private $speakers;
+
+    /**
+     * @var sponsors
+     *
+     * @ORM\ManyToMany(targetEntity="Sponsor", mappedBy="events")
+     */
+    private $sponsors;
+
+    /**
+     * @var program
+     *
+     * @ORM\ManyToMany(targetEntity="Program", mappedBy="events")
+     */
+    private $program;
+
+    /**
+     * @var ogranizers
+     *
+     * @ORM\ManyToMany(targetEntity="Organizer", mappedBy="events")
+     */
+    private $organizers;
 
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->speakers = new ArrayCollection();
+        $this->sponsors = new ArrayCollection();
+        $this->program = new ArrayCollection();
+        $this->organizers = new ArrayCollection();
     }
 
     /**
@@ -223,6 +264,29 @@ class Event
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set host
+     *
+     * @param string $host
+     * @return Event
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * Get host
+     *
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->host;
     }
 
     /**
@@ -806,5 +870,76 @@ class Event
     public function getSlideThree()
     {
         return $this->slideThree;
+    }
+
+    /**
+     * Get speakers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSpeakers()
+    {
+        return $this->speakers;
+    }
+
+    /**
+     * Get sponsors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSponsors()
+    {
+        return $this->sponsors;
+    }
+
+    /**
+     * Get program
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProgram()
+    {
+        return $this->program;
+    }
+
+    /**
+     * Get organizers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganizers()
+    {
+        return $this->organizers;
+    }
+
+    public function getSpecifiedSponsors($type = Sponsor::TYPE_INFO)
+    {
+        $criteria = Criteria::create();
+        $criteria->where(
+            Criteria::expr()->eq('type', $type)
+        );
+        $criteria->andWhere(
+            Criteria::expr()->eq('isActive', true)
+        );
+
+        return $this->getSponsors()->matching($criteria);
+    }
+
+    public function getSponsorsExclude($type = Sponsor::TYPE_INFO)
+    {
+        $criteria = Criteria::create();
+        $criteria->where(
+            Criteria::expr()->neq('type', $type)
+        );
+        $criteria->andWhere(
+            Criteria::expr()->eq('isActive', true)
+        );
+
+        return $this->getSponsors()->matching($criteria);
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

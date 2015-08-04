@@ -5,10 +5,10 @@ namespace Event\EventBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Event\EventBundle\Entity\Sponsor;
-use Event\EventBundle\Form\Type\Translation\SponsorTranslationType;
+use Event\EventBundle\Entity\Organizer;
+use Event\EventBundle\Form\Type\Translation\OrganizerTranslationType;
 
-class SponsorType extends AbstractType
+class OrganizerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,11 +19,7 @@ class SponsorType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ])
-            ->add('type', 'choice', [
-                'choices' => Sponsor::$types,
-                'empty_value' => 'Choose Type'
-            ])
-            ->add('company', 'text')
+            ->add('title', 'text')
             ->add('description', 'textarea', [
                 'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
                 'required' => false
@@ -34,7 +30,7 @@ class SponsorType extends AbstractType
 
             // Add translation
             ->add('translations', 'collection', array(
-                'type' => new SponsorTranslationType()
+                'type' => new OrganizerTranslationType()
             ))
         ;
     }
@@ -42,12 +38,12 @@ class SponsorType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Event\EventBundle\Entity\Sponsor'
+            'data_class' => 'Event\EventBundle\Entity\Organizer'
         ));
     }
 
     public function getName()
     {
-        return 'sponsor';
+        return 'organizer';
     }
 }

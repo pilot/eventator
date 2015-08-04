@@ -21,6 +21,10 @@ form input {
 }
 
 /* menu */
+.navbar-brand {
+    max-width: 250px;
+}
+
 .nav-list>.current_ancestor>.menu_level_1>.active>a, .nav-list>.current_ancestor>.menu_level_1>.active>a:hover, .nav-list>.current_ancestor>.menu_level_1>.active>a:focus {
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
