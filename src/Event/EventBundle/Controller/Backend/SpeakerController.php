@@ -26,7 +26,7 @@ class SpeakerController extends Controller
             $entity = $this->findOr404('EventEventBundle:Speaker', $id);
         }
 
-        $form = $this->createForm(new SpeakerType(), $entity);
+        $form = $this->createForm(SpeakerType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->submit($request);

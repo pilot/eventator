@@ -6,24 +6,24 @@
 <div class="row">
     <div class="col-lg-7">
         <fieldset>
-            <form id="contact" action="{{ url('event_component_contact') }}" method="post" {{ form_enctype(form) }}>
-                {{ form_widget(form) }}
+            {{ form_start(form, {'method': 'POST', 'attr': {'id': 'contact'}, 'action': url('event_component_contact')}) }}
+            {{ form_widget(form) }}
 
-                {{ form_rest(form) }}
+            {{ form_rest(form) }}
 
-                <div class="alert alert-error captcha-error" style="display:none;"></div>
-                <div class="raw">
-                    {# simple captcha #}
-                    <div class="col-lg-3">
-                        <img class="img-circle" data-src="holder.js/140x40/text:{{ captcha.first ~ ' + ' ~ captcha.last ~ ' =' }}" width="140" />
-                    </div>
-                    <div class="col-lg-2">
-                        <input type="text" name="calc" class="form-control captcha-calc" required="required" />
-                    </div>
+            <div class="alert alert-error captcha-error" style="display:none;"></div>
+            <div class="raw">
+                {# simple captcha #}
+                <div class="col-lg-3">
+                    <img class="img-circle" data-src="holder.js/140x40/text:{{ captcha.first ~ ' + ' ~ captcha.last ~ ' =' }}" width="140" />
                 </div>
+                <div class="col-lg-2">
+                    <input type="text" name="calc" class="form-control captcha-calc" required="required" />
+                </div>
+            </div>
 
-                <button class="btn btn-default btn-contact-send" type="submit">{{ 'Send'|trans }}</button>
-            </form>
+            <button class="btn btn-default btn-contact-send" type="submit">{{ 'Send'|trans }}</button>
+            {{ form_end(form) }}
         </fieldset>
     </div>
     <div class="col-lg-5">

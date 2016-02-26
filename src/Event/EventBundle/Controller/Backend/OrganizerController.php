@@ -26,7 +26,7 @@ class OrganizerController extends Controller
             $entity = $this->findOr404('EventEventBundle:Organizer', $id);
         }
 
-        $form = $this->createForm(new OrganizerType(), $entity);
+        $form = $this->createForm(OrganizerType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->submit($request);

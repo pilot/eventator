@@ -26,7 +26,7 @@ class ProgramController extends Controller
             $entity = $this->findOr404('EventEventBundle:Program', $id);
         }
 
-        $form = $this->createForm(new ProgramType(), $entity);
+        $form = $this->createForm(ProgramType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->submit($request);

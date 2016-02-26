@@ -26,7 +26,7 @@ class SpeechController extends Controller
             $entity = $this->findOr404('EventEventBundle:Speech', $id);
         }
 
-        $form = $this->createForm(new SpeechType(), $entity);
+        $form = $this->createForm(SpeechType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->submit($request);

@@ -26,7 +26,7 @@ class EventController extends Controller
             $entity = $this->findOr404('EventEventBundle:Event', $id);
         }
 
-        $form = $this->createForm(new EventType(), $entity);
+        $form = $this->createForm(EventType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->handleRequest($request);

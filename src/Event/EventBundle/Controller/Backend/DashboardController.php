@@ -4,7 +4,6 @@ namespace Event\EventBundle\Controller\Backend;
 
 use Symfony\Component\HttpFoundation\Request;
 use Event\EventBundle\Controller\Controller;
-use Event\EventBundle\Form\Type\EventType;
 use Event\EventBundle\Entity\Event;
 use Event\EventBundle\Entity\Translation\EventTranslation;
 use Event\EventBundle\Entity\Speaker;
@@ -45,7 +44,7 @@ class DashboardController extends Controller
     protected function initEvent()
     {
         $locales = $this->container->getParameter('event.locales');
-        $event = $this->getRepository('EventEventBundle:Event')->getEvent();
+        $event = $this->getEvent();
         $now = new \DateTime();
 
         if (!$event) {

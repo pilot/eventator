@@ -3,16 +3,15 @@
 namespace Event\EventBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContext;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class Builder extends ContainerAware
+class Builder implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     public function dashboardNavigation(FactoryInterface $factory, array $options)
     {
-        $request = $this->container->get('request');
-
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
 
@@ -23,8 +22,6 @@ class Builder extends ContainerAware
 
     public function sideBar(FactoryInterface $factory, array $options)
     {
-        $request = $this->container->get('request');
-
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav nav-list nav-stacked');
 
@@ -38,13 +35,5 @@ class Builder extends ContainerAware
         $event->addChild('Organizers', array('route' => 'backend_organizer'));
 
         return $menu;
-    }
-
-    /**
-     * @return \Symfony\Component\Security\Core\SecurityContextInterface
-     */
-    private function getSecurityContext()
-    {
-        return $this->container->get('security.context');
     }
 }

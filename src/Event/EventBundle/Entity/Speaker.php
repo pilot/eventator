@@ -16,6 +16,7 @@ use Event\EventBundle\Entity\Translation\Translation;
 class Speaker
 {
     use Translation;
+    use EventTrait;
 
     /**
      * @var integer
@@ -469,37 +470,5 @@ class Speaker
     public function removeSpeech(Speech $speech)
     {
         $this->speeches->removeElement($speech);
-    }
-
-    /**
-     * Get events
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getEvents()
-    {
-        return $this->events;
-    }
-
-    /**
-     * Add event
-     *
-     * @param Event $event
-     */
-    public function addEvent(Event $event)
-    {
-        $event->addSpeaker($this);
-
-        $this->events[] = $event;
-    }
-
-    /**
-     * Remove event
-     *
-     * @param Event $event
-     */
-    public function removeEvent(Event $event)
-    {
-        $this->events->removeElement($event);
     }
 }

@@ -4,40 +4,49 @@ namespace Event\EventBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CallForPaperType extends AbstractType
 {
-    protected $options;
+    protected $languages;
 
-    public function __construct(array $options)
+    protected $levels;
+
+    public function __construct(array $languages, array $levels)
     {
-        $this->options = $options;
+        $this->languages = $languages;
+        $this->levels = $levels;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', ['constraints' => [new NotBlank()]])
-            ->add('email', 'email', ['constraints' => [new NotBlank(), new Email()]])
-            ->add('twitter', 'text', ['required' => false])
-            ->add('github', 'text', ['required' => false])
-            ->add('title', 'text', ['constraints' => [new NotBlank()]])
-            ->add('language', 'choice', [
-                'choices' => $this->options['languages']
+            ->add('name', TextType::class, ['constraints' => [new NotBlank()]])
+            ->add('email', EmailType::class, ['constraints' => [new NotBlank(), new Email()]])
+            ->add('twitter', TextType::class, ['required' => false])
+            ->add('github', TextType::class, ['required' => false])
+            ->add('title', TextType::class, ['constraints' => [new NotBlank()]])
+            ->add('language', ChoiceType::class, [
+                'choices' => $options['languages'],
+                'choices_as_values' => true,
             ])
-            ->add('level', 'choice', [
+            ->add('level', ChoiceType::class, [
                 'label' => 'Talk level',
-                'choices' => $this->options['levels']
+                'choices' => $options['levels'],
+                'choices_as_values' => true,
             ])
-            ->add('abstract', 'textarea', [
+            ->add('abstract', TextareaType::class, [
                 'label' => 'Abstract of your talk',
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
                 'constraints' => [new NotBlank()]
             ])
-            ->add('note', 'textarea', [
+            ->add('note', TextareaType::class, [
                 'label' => 'Notes',
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
                 'required' => false
@@ -45,7 +54,16 @@ class CallForPaperType extends AbstractType
         ;
     }
 
-    public function getName()
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => null,
+            'languages' => array_flip($this->languages),
+            'levels' => array_flip($this->levels),
+        ]);
+    }
+
+    public function getBlockPrefix()
     {
         return 'call_for_paper';
     }

@@ -26,7 +26,7 @@ class SponsorController extends Controller
             $entity = $this->findOr404('EventEventBundle:Sponsor', $id);
         }
 
-        $form = $this->createForm(new SponsorType(), $entity);
+        $form = $this->createForm(SponsorType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->submit($request);

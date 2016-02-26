@@ -1,5 +1,5 @@
 event_homepage:
-    pattern:  /
+    path:  /
     defaults: { _controller: EventEventBundle:Event:index }
 
 _components:
@@ -11,13 +11,13 @@ _backend:
     prefix:   /event/admin
 
 admin_login:
-    pattern:  /event/admin/login
+    path:  /event/admin/login
     defaults: { _controller: EventEventBundle:Backend/Security:login }
 
 admin_check:
-    pattern:  /event/admin/login_check
+    path:  /event/admin/login_check
     defaults: { _controller: EventEventBundle:Backend/Security:check }
 
 admin_logout:
-    pattern:  /event/admin/logout
+    path:  /event/admin/logout
     defaults: { _controller: EventEventBundle:Backend/Security:logout }

@@ -1,10 +1,10 @@
 {% form_theme form 'EventEventBundle::form_theme.html.twig' %}
 
-<form action="{{ url('event_component_call_for_paper') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+{{ form_start(form, {'method': 'POST', 'action': url('event_component_call_for_paper')}) }}
+{{ form_widget(form) }}
 
     {{ form_rest(form) }}
 
-    <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close'|trans }}</button>
-    <button type="submit" class="btn btn-primary send-request">{{ 'Send'|trans }}</button>
-</form>
+<button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close'|trans }}</button>
+<button type="submit" class="btn btn-primary send-request">{{ 'Send'|trans }}</button>
+{{ form_end(form) }}

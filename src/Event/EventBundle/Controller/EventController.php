@@ -56,7 +56,7 @@ class EventController extends Controller
     {
         $event = $this->getEvent();
 
-        $form = $this->createForm(new ContactType());
+        $form = $this->createForm(ContactType::class);
         if ($request->isMethod('POST') && $form->handleRequest($request)) {
             if ($form->isValid() && $this->getSession()->get('captchaResult') == $request->request->get('calc')) {
                 $this->get('eventator_mailer')->send(
@@ -71,7 +71,7 @@ class EventController extends Controller
 
                 $this->setSuccessFlash('Thank you for request, we\'ll answer back asap.');
 
-                return $this->redirect($this->generateUrl('event_homepage'));
+                return $this->redirectToRoute('event_homepage');
             }
         }
 
@@ -113,9 +113,6 @@ class EventController extends Controller
 
     protected function callForPaper()
     {
-        return $this->createForm(new CallForPaperType([
-            'languages' => $this->container->getParameter('event.speech_languages'),
-            'levels' => $this->container->getParameter('event.speech_levels'),
-        ]));
+        return $this->createForm(CallForPaperType::class);
     }
 }

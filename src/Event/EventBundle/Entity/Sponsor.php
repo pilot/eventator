@@ -105,6 +105,7 @@ class Sponsor
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     /**

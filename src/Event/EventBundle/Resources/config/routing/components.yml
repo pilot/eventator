@@ -1,29 +1,29 @@
 event_component_carousel:
-    pattern:  /carousel
+    path:  /carousel
     defaults: { _controller: EventEventBundle:Event:carousel }
 
 event_component_speakers:
-    pattern:  /speakers
+    path:  /speakers
     defaults: { _controller: EventEventBundle:Event:speakers }
 
 event_component_venue:
-    pattern:  /venue
+    path:  /venue
     defaults: { _controller: EventEventBundle:Event:venue }
 
 event_component_schedule:
-    pattern:  /schedule
+    path:  /schedule
     defaults: { _controller: EventEventBundle:Event:schedule }
 
 event_component_sponsors:
-    pattern:  /sponsors
+    path:  /sponsors
     defaults: { _controller: EventEventBundle:Event:sponsors }
 
 event_component_contact:
-    pattern:  /contact
+    path:  /contact
     defaults: { _controller: EventEventBundle:Event:contact }
 
 event_component_call_for_paper:
-    pattern:  /call-for-paper
+    path:  /call-for-paper
     defaults: { _controller: EventEventBundle:Event:callForPaper }
     requirements:
-        _method: POST
+        methods: POST
