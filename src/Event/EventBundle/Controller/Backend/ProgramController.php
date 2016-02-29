@@ -35,7 +35,11 @@ class ProgramController extends Controller
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash('Program updated.');
+                $successFlashText = sprintf('Program updated.');
+                if (!$id) {
+                    $successFlashText = sprintf('Program added.');
+                }
+                $this->setSuccessFlash($successFlashText);
 
                 return $this->redirectToRoute('backend_program');
             }
@@ -43,7 +47,8 @@ class ProgramController extends Controller
 
         return $this->render('EventEventBundle:Backend/Program:manage.html.twig', [
             'program' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'configLocales' => $this->container->getParameter('event.locales')
         ]);
     }
 

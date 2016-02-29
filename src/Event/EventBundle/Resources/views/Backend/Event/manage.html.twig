@@ -6,7 +6,7 @@
             <h3>Event settings</h3>
         </div>
 
-        {{ render(controller('EventEventBundle:Backend/Dashboard:localeTabs')) }}
+        {{ render(controller('EventEventBundle:Backend/Dashboard:localeTabs', {'translations' : event.translations})) }}
 
         {{ form_start(form, {'method': 'POST', 'attr': {'id': 'event'}, 'action': path('backend_event_edit', {'id': event.id})}) }}
         <div class="tab-content">
@@ -46,14 +46,14 @@
             </div>
 
             {% for translation in form.translations %}
-                <div class="tab-pane fade" id="{{ translation.vars.value.locale }}">
+                <div class="tab-pane fade" id="{{ configLocales[translation.vars.value.locale] }}">
                     {{ form_widget(translation) }}
                 </div>
             {% endfor %}
 
             {{ form_rest(form) }}
 
-            <input class="btn btn-success" type="submit" value="Update" />
+            <input class="btn btn-success" type="submit" value="{{ event.id ? 'Update' : 'Add' }}" />
         </div>
         {{ form_end(form) }}
 

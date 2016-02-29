@@ -28,10 +28,17 @@ class DashboardController extends Controller
         return $this->render('EventEventBundle:Backend/Dashboard:setting.html.twig', []);
     }
 
-    public function localeTabsAction()
+    public function localeTabsAction($translations)
     {
+        $configLocales = $this->container->getParameter('event.locales');
+
+        $locales = [];
+        foreach ($translations as $translation) {
+            $locales[] = $configLocales[$translation->getLocale()];
+        }
+
         return $this->render('EventEventBundle:Backend:_tabs.html.twig', [
-            'locales' => $this->container->getParameter('event.locales')
+            'locales' => $locales
         ]);
     }
 

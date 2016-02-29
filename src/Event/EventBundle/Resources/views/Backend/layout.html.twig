@@ -64,7 +64,14 @@
     {{ parent() }}
     <script>
         $(function () {
-            $('.datepicker').datetimepicker({format: 'dd/mm/yyyy hh:ii'});
+            var datepicker = $('.datepicker');
+            datepicker.datetimepicker({
+                format: 'dd/mm/yyyy hh:ii'
+            });
+
+            datepicker.on('change', function() {
+                $('.datetimepicker').hide();
+            });
         })
     </script>
 {% endblock %}

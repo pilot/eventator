@@ -139,7 +139,6 @@ class Speaker
     {
         $this->translations = new ArrayCollection();
         $this->speeches = new ArrayCollection();
-        $this->events = new ArrayCollection();
     }
 
     /**

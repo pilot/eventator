@@ -35,7 +35,11 @@ class SpeechController extends Controller
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash(sprintf('Speech %s updated.', $entity->getTitle()));
+                $successFlashText = sprintf('Speech %s updated.', $entity->getTitle());
+                if (!$id) {
+                    $successFlashText = sprintf('Speech %s added.', $entity->getTitle());
+                }
+                $this->setSuccessFlash($successFlashText);
 
                 return $this->redirectToRoute('backend_speech');
             }
@@ -43,7 +47,8 @@ class SpeechController extends Controller
 
         return $this->render('EventEventBundle:Backend/Speech:manage.html.twig', [
             'speech' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'configLocales' => $this->container->getParameter('event.locales')
         ]);
     }
 

@@ -2,8 +2,8 @@
     <li class="active"><a data-toggle="tab" href="#{{ app.request.locale }}">{{ app.request.locale }}</a></li>
 
     {% if locales|length > 0 %}
-        {% for locale, title in locales %}
-            <li><a data-toggle="tab" href="#{{ locale }}">{{ title }}</a></li>
+        {% for title in locales %}
+            <li><a data-toggle="tab" href="#{{ title }}">{{ title }}</a></li>
         {% endfor %}
     {% endif %}
 </ul>

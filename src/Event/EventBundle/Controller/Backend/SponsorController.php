@@ -35,7 +35,11 @@ class SponsorController extends Controller
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash(sprintf('Sponsor %s updated.', $entity->getCompany()));
+                $successFlashText = sprintf('Sponsor %s updated.', $entity->getCompany());
+                if (!$id) {
+                    $successFlashText = sprintf('Sponsor %s added.', $entity->getCompany());
+                }
+                $this->setSuccessFlash($successFlashText);
 
                 return $this->redirectToRoute('backend_sponsor');
             }
@@ -43,7 +47,8 @@ class SponsorController extends Controller
 
         return $this->render('EventEventBundle:Backend/Sponsor:manage.html.twig', [
             'sponsor' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'configLocales' => $this->container->getParameter('event.locales')
         ]);
     }
 
