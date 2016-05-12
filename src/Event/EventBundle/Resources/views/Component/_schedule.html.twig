@@ -22,11 +22,11 @@
                         <i>{{ entry.title }}</i>
                     {% endif %}
                 {% else %}
-                    <small>{{ entry.speech.language|default('en'|trans) }}:&nbsp;</small>
-                    {{ entry.speech.title }}
+                    <small>{{ entry.speech_language|default('en'|trans) }}:&nbsp;</small>
+                    {{ entry.speech_title }}
                     <br />
                     <span class="speech-speaker">
-                        <a href="{{ entry.speech.speaker.homepage }}">{{ entry.speech.speaker.fullName }}</a></span>
+                        <a href="{{ entry.speaker_homepage }}">{{ entry.speaker_fullName }}</a></span>
                 {% endif %}
             </td>
         </tr>

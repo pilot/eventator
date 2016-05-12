@@ -38,10 +38,12 @@ class EventController extends Controller
         ]);
     }
 
-    public function scheduleAction()
+    public function scheduleAction(Request $request)
     {
+        $host = $request->getHttpHost();
+
         return $this->render('EventEventBundle:Component:_schedule.html.twig', [
-            'schedule' => $this->getEvent()->getProgram()
+            'schedule' => $this->getRepository('EventEventBundle:Event')->getProgram($host)
         ]);
     }
 
