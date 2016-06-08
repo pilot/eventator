@@ -26,7 +26,7 @@ class EventController extends Controller
             $entity = $this->findOr404('EventEventBundle:Event', $id);
         }
 
-        $form = $this->createForm(new EventType(), $entity);
+        $form = $this->createForm(EventType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->handleRequest($request);
@@ -35,7 +35,11 @@ class EventController extends Controller
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash(sprintf('Event %s updated.', $entity->getTitle()));
+                $successFlashText = sprintf('Event %s updated.', $entity->getTitle());
+                if (!$id) {
+                    $successFlashText = sprintf('Event %s added.', $entity->getTitle());
+                }
+                $this->setSuccessFlash($successFlashText);
 
                 return $this->redirectToRoute('backend_event');
             }
@@ -43,7 +47,8 @@ class EventController extends Controller
 
         return $this->render('EventEventBundle:Backend/Event:manage.html.twig', [
             'event' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'configLocales' => $this->container->getParameter('event.locales')
         ]);
     }
 
@@ -55,7 +60,7 @@ class EventController extends Controller
         $this->getManager()->remove($entity);
         $this->getManager()->flush();
 
-        $this->setSuccessFlash('Eevent deleted.');
+        $this->setSuccessFlash('Event deleted.');
 
         return $this->redirectToRoute('backend_event');
     }

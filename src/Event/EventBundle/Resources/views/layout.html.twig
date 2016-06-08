@@ -29,7 +29,7 @@
     </div>
     {% endblock %}
 
-    {% render controller('EventEventBundle:Event:carousel') %}
+    {{ render(controller('EventEventBundle:Event:carousel')) }}
 
     <div class="container marketing">
         {% for message in app.session.flashbag.get('success') %}
@@ -55,17 +55,17 @@
             {{ event.description|raw }}
         </div>
 
-        {% render controller('EventEventBundle:Event:speakers') %}
+        {{ render(controller('EventEventBundle:Event:speakers')) }}
 
-        {% render controller('EventEventBundle:Event:venue') %}
+        {{ render(controller('EventEventBundle:Event:venue')) }}
 
-        {% render controller('EventEventBundle:Event:schedule') %}
+        {{ render(controller('EventEventBundle:Event:schedule')) }}
 
-        {% render controller('EventEventBundle:Event:sponsors') %}
+        {{ render(controller('EventEventBundle:Event:sponsors')) }}
 
         {% include 'EventEventBundle:Component:_organizers.html.twig' %}
 
-        {% render controller('EventEventBundle:Event:contact') %}
+        {{ render(controller('EventEventBundle:Event:contact')) }}
 
         <script type="text/javascript">
             $(function() {

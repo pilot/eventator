@@ -1,12 +1,11 @@
 services:
     eventator_mailer:
         class: Event\EventBundle\Mailer\Mailer
-        arguments: [ @mailer, @twig, %from_email% ]
+        arguments: [ '@mailer', '@twig', '%from_email%' ]
 
     eventator.event_repository:
         class: Event\EventBundle\Entity\Repository\EventRepository
-        factory_service: doctrine.orm.default_entity_manager
-        factory_method:  getRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
             - 'EventEventBundle:Event'
 
@@ -16,7 +15,15 @@ services:
     kernel.listener.init_listener:
         class: Event\EventBundle\EventListener\InitListener
         arguments:
-            - @eventator.event_repository
-            - @eventator.event_manager
+            - '@eventator.event_repository'
+            - '@eventator.event_manager'
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    eventator.form.type.callforpaper:
+        class: Event\EventBundle\Form\Type\CallForPaperType
+        arguments:
+            - '%event.speech_languages%'
+            - '%event.speech_levels%'
+        tags:
+            - { name: form.type }

@@ -86,6 +86,13 @@ class Speech
      */
     private $program;
 
+    /**
+     * @var events
+     *
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="program")
+     */
+    private $events;
+
 
     public function __construct()
     {

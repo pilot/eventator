@@ -26,7 +26,7 @@ class OrganizerController extends Controller
             $entity = $this->findOr404('EventEventBundle:Organizer', $id);
         }
 
-        $form = $this->createForm(new OrganizerType(), $entity);
+        $form = $this->createForm(OrganizerType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->submit($request);
@@ -35,7 +35,11 @@ class OrganizerController extends Controller
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash(sprintf('Organizer %s updated.', $entity->getTitle()));
+                $successFlashText = sprintf('Organizer %s updated.', $entity->getTitle());
+                if (!$id) {
+                    $successFlashText = sprintf('Organizer %s added.', $entity->getTitle());
+                }
+                $this->setSuccessFlash($successFlashText);
 
                 return $this->redirectToRoute('backend_organizer');
             }
@@ -43,7 +47,8 @@ class OrganizerController extends Controller
 
         return $this->render('EventEventBundle:Backend/Organizer:manage.html.twig', [
             'organizer' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'configLocales' => $this->container->getParameter('event.locales')
         ]);
     }
 

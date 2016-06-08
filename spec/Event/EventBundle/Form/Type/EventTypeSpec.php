@@ -13,6 +13,6 @@ class EventTypeSpec extends ObjectBehavior
 
     function it_has_valid_name()
     {
-        $this->getName()->shouldReturn('event');
+        $this->getBlockPrefix()->shouldReturn('event');
     }
 }

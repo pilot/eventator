@@ -3,63 +3,28 @@
 namespace Context;
 
 use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\Mink\Exception\ElementNotFoundException;
-
-use Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException,
-    Behat\Behat\Context\Step,
-    Behat\Behat\Context\Step\Given,
-    Behat\Behat\Context\Step\Then;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
-use Doctrine\Common\Util\Inflector;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Behat\Gherkin\Node\TableNode;
+use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 
 /**
- * Feature context.
+ * Frontend context.
  */
-class FeatureContext extends MinkContext implements KernelAwareInterface
+class FrontendContext extends MinkContext implements KernelAwareInterface
 {
+    /**
+     * @var KernelInterface
+     */
     private $kernel;
-    private $parameters;
+
+    /**
+     * @var $references
+     */
     private $references = array();
-
-    /**
-     * Initializes context with parameters from behat.yml.
-     *
-     * @param array $parameters
-     */
-    public function __construct(array $parameters)
-    {
-        $this->parameters = $parameters;
-    }
-
-    /**
-     * @Given /^I am on the "([\w\s]+)"( page)?$/
-     * @When /^I go to the "([\w\s]+)"( page)?$/
-     */
-    public function iAmOnThePage($page)
-    {
-        $this->getSession()->visit($this->generatePageUrl($page, array()));
-    }
-
-    /**
-     * @Given /^I am sign in as admin$/
-     */
-    public function iAmSignInAsAdmin()
-    {
-        return array(
-            new Given('I am on "/event/admin/login"'),
-            new Given('I fill in "_username" with "admin"'),
-            new Given('I fill in "_password" with "admin"'),
-            new Given('I press "Login"'),
-            new Given('I should not see "Bad credentials"'),
-            new Given('I should see "Dashboard"')
-        );
-    }
 
     /**
      * Sets HttpKernel instance.
@@ -73,18 +38,13 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
-     * @Given /^pause "([^"]*)"$/
-     */
-    public function pause($pause)
-    {
-        $this->getMink()->getSession()->wait($pause);
-    }
-
-    /**
      * @BeforeScenario
      */
     public function restoreDatabase()
     {
+        $context = $this->kernel->getContainer()->get('router')->getContext();
+        $context->setBaseUrl($this->getMinkParameter('base_url'));
+
         $this->getEntityManager()->getConnection()->executeUpdate("SET foreign_key_checks = 0;");
 
         $application = new Application($this->kernel);
@@ -113,28 +73,10 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
-     * @AfterScenario
-     */
-    public function printLastResponseOnError($scenarioEvent)
-    {
-        if (!$this->getContainer()->getParameter('behat_print_err')) {
-            return;
-        }
-
-        if ($scenarioEvent->getResult() != 0) {
-            // try to prevent it from dying if we error out before we have a request
-            $driver = $this->getSession()->getDriver();
-            $hasLastResponse = (!$driver instanceof GoutteDriver || $driver->getClient()->getRequest());
-
-            if ($hasLastResponse) {
-                $this->printLastResponse();
-            }
-        }
-    }
-
-    /**
-     * @Given /^are following "([^"]*)":$/
      * @Given /^following "([^"]*)":$/
+     *
+     * @param           $name
+     * @param TableNode $table
      */
     public function areFollowingEntities($name, TableNode $table)
     {
@@ -165,69 +107,11 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
-     * @Given /^following "([^"]*)" events:$/
+     * @param ClassMetadata $metadata
+     * @param object $object
+     * @param array $row
      */
-    public function areFollowingEvents($name, TableNode $table)
-    {
-        // @todo implement load objects / events relations
-    }
-
-    /**
-     * @Given /^I delete "([^"]*)" record of "([^"]*)"$/
-     */
-    public function iDeleteRecordOf($index, $entity)
-    {
-        $elements = $this->getSession()->getPage()->findAll('css', 'table.table > tbody > tr');
-
-        if (!isset($elements[$index - 1])) {
-            throw new ElementNotFoundException($this->getSession(), sprintf('Record `%s` was ', $index));
-        }
-        $element = $elements[$index - 1];
-
-        $element->clickLink('Delete');
-    }
-
-    public function getRepository($name)
-    {
-        return $this->getEntityManager()->getRepository($name);
-    }
-
-    /**
-     * Generates url with Router.
-     *
-     * @param string  $route
-     * @param array   $parameters
-     * @param Boolean $absolute
-     *
-     * @return string
-     */
-    private function generateUrl($route, array $parameters = array(), $absolute = false)
-    {
-        return $this->getContainer()->get('router')->generate($route, $parameters, $absolute);
-    }
-
-    /**
-    * Generate page url from name and parameters.
-    *
-    * @param string $page
-    * @param array  $parameters
-    *
-    * @return string
-    */
-    protected function generatePageUrl($page, array $parameters = array())
-    {
-        $parts = explode(' ', trim($page), 2);
-        if (2 === count($parts)) {
-            $parts[1] = Inflector::camelize($parts[1]);
-        }
-
-        $route  = implode('_', $parts);
-        $routes = $this->getContainer()->get('router')->getRouteCollection();
-
-        return $this->getMinkParameter('base_url').$this->generateUrl($route, $parameters);
-    }
-
-    protected function addFieldsDataFromRow($metadata, $object, $row)
+    protected function addFieldsDataFromRow(ClassMetadata $metadata, $object, array $row)
     {
         $names = $metadata->getAssociationNames();
         foreach ($row as $field => $value) {
@@ -247,14 +131,19 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             }
             if (!in_array($field, $names) && method_exists($object, 'add'.$upperFieldName)) {
                 $values = explode(',', trim($row[$field]));
-                foreach ($values as $value) {
-                    $object->{'add'.$upperFieldName}($value);
+                foreach ($values as $val) {
+                    $object->{'add'.$upperFieldName}($val);
                 }
             }
         }
     }
 
-    protected function addAssociationsFromRow($metadata, $object, $row)
+    /**
+     * @param ClassMetadata $metadata
+     * @param object $object
+     * @param array $row
+     */
+    protected function addAssociationsFromRow(ClassMetadata $metadata, $object, array $row)
     {
         $metas = $metadata->getAssociationNames();
         foreach ($row as $field => $value) {
@@ -280,6 +169,10 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         }
     }
 
+    /**
+     * @param $name
+     * @param $value
+     */
     protected function findRelatedObject($name, $value)
     {
         if (!$value) {
@@ -293,21 +186,75 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         return $this->getRepository($name)->findOneByName($value);
     }
 
+    /**
+     * @param $modifier
+     *
+     * @return int
+     */
     protected function isDateModifier($modifier)
     {
         return preg_match('/^\+|-[0-9]+ (days?)|(months?)$/', $modifier);
     }
 
+    /**
+     * @When /^I click "([^"]+)"$/
+     */
+    public function iClick($link)
+    {
+        $this->clickLink($link);
+    }
+
+    /**
+     * @Then /^I wait for a form$/
+     */
+    public function iWaitForAForm()
+    {
+        $this->getSession()->wait(10000, '(typeof(jQuery)=="undefined" || (0 === jQuery.active && 0 === jQuery(\':animated\').length))');
+    }
+
+    /**
+     * @param $name
+     *
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getRepository($name)
+    {
+        return $this->getEntityManager()->getRepository($name);
+    }
+
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectManager|object
+     */
     protected function getEntityManager()
     {
         return $this->getDoctrine()->getManager();
     }
 
+    /**
+     * @return \Doctrine\Bundle\DoctrineBundle\Registry
+     */
     protected function getDoctrine()
     {
-        return $this->getContainer()->get('doctrine');
+        return $this->getService('doctrine');
     }
 
+    /**
+     * Get service by id.
+     *
+     * @param string $id
+     *
+     * @return object
+     */
+    protected function getService($id)
+    {
+        return $this->getContainer()->get($id);
+    }
+
+    /**
+     * Returns Container instance.
+     *
+     * @return ContainerInterface
+     */
     protected function getContainer()
     {
         return $this->kernel->getContainer();

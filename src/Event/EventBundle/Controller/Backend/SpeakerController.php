@@ -26,7 +26,7 @@ class SpeakerController extends Controller
             $entity = $this->findOr404('EventEventBundle:Speaker', $id);
         }
 
-        $form = $this->createForm(new SpeakerType(), $entity);
+        $form = $this->createForm(SpeakerType::class, $entity);
 
         if ($request->getMethod() === 'POST') {
             $form->submit($request);
@@ -35,7 +35,11 @@ class SpeakerController extends Controller
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
 
-                $this->setSuccessFlash(sprintf('Speaker %s updated.', $entity->getFullName()));
+                $successFlashText = sprintf('Speaker %s updated.', $entity->getFullName());
+                if (!$id) {
+                    $successFlashText = sprintf('Speaker %s added.', $entity->getFullName());
+                }
+                $this->setSuccessFlash($successFlashText);
 
                 return $this->redirectToRoute('backend_speaker');
             }
@@ -43,7 +47,8 @@ class SpeakerController extends Controller
 
         return $this->render('EventEventBundle:Backend/Speaker:manage.html.twig', [
             'speaker' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'configLocales' => $this->container->getParameter('event.locales')
         ]);
     }
 

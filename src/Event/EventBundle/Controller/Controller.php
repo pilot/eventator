@@ -4,7 +4,9 @@ namespace Event\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Event\EventBundle\Manager\EventManager;
+use Symfony\Component\Security\Core\Role\RoleHierarchy;
+use Symfony\Component\Security\Core\User\User;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 class Controller extends BaseController
 {
@@ -28,17 +30,17 @@ class Controller extends BaseController
         $this->get('event_dispatcher')->dispatch($name, $event);
     }
 
-    protected function redirectToRoute($route, $params = array())
+    protected function redirectToRoute($route, array $parameters = array(), $status = 302)
     {
-        return $this->redirect($this->generateUrl($route, $params));
+        return $this->redirect($this->generateUrl($route, $parameters), $status);
     }
 
     /**
-     * @return SecurityContextInterface
+     * @return AuthorizationChecker
      */
     protected function getSecurityContext()
     {
-        return $this->get('security.context');
+        return $this->get('security.authorization_checker');
     }
 
     protected function isGranted($role, $object = null)
@@ -90,11 +92,6 @@ class Controller extends BaseController
         return $entity;
     }
 
-    protected function getSession()
-    {
-        return $this->getRequest()->getSession();
-    }
-
     protected function initObjectLocales($entity, $translation)
     {
         $locales = $this->container->getParameter('event.locales');
@@ -123,7 +120,7 @@ class Controller extends BaseController
 
     protected function getFlashBag()
     {
-        return $this->getSession()->getFlashBag();
+        return $this->get('session')->getFlashBag();
     }
 
     protected function setSuccessFlash($message)
@@ -149,7 +146,7 @@ class Controller extends BaseController
     protected function getCaptcha()
     {
         $captcha = ['first' => mt_rand(1, 100), 'last' => mt_rand(1, 100)];
-        $this->getSession()->set('captchaResult', array_sum($captcha));
+        $this->get('session')->set('captchaResult', array_sum($captcha));
 
         return $captcha;
     }

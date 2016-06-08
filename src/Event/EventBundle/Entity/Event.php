@@ -226,6 +226,13 @@ class Event
     private $speakers;
 
     /**
+     * @var speeches
+     *
+     * @ORM\ManyToMany(targetEntity="Speech", mappedBy="events")
+     */
+    private $speeches;
+
+    /**
      * @var sponsors
      *
      * @ORM\ManyToMany(targetEntity="Sponsor", mappedBy="events")
@@ -251,6 +258,7 @@ class Event
     {
         $this->translations = new ArrayCollection();
         $this->speakers = new ArrayCollection();
+        $this->speeches = new ArrayCollection();
         $this->sponsors = new ArrayCollection();
         $this->program = new ArrayCollection();
         $this->organizers = new ArrayCollection();
@@ -880,6 +888,16 @@ class Event
     public function getSpeakers()
     {
         return $this->speakers;
+    }
+
+    /**
+     * Get speeches
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSpeeches()
+    {
+        return $this->speeches;
     }
 
     /**
