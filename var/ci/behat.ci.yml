@@ -1,0 +1,41 @@
+backend:
+    formatter:
+        name: progress
+    filters:
+        tags: "@backend"
+    paths:
+        features: features
+    context:
+        class:  Context\BackendContext
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: 'http://eventator.loc:8080/app_test.php'
+            browser_name: chrome
+            goutte: ~
+            selenium2: ~
+
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                env: test
+
+frontend:
+    formatter:
+        name: progress
+    filters:
+        tags: "@frontend"
+    paths:
+        features: features
+    context:
+        class: Context\FrontendContext
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: 'http://eventator.loc:8080/app_test.php'
+            browser_name: chrome
+            selenium2: ~
+            goutte: ~
+
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                env: test

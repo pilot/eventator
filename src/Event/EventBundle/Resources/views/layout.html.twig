@@ -63,7 +63,7 @@
 
         {{ render(controller('EventEventBundle:Event:sponsors')) }}
 
-        {% include 'EventEventBundle:Component:_organizers.html.twig' %}
+        {{ render(controller('EventEventBundle:Event:organizers')) }}
 
         {{ render(controller('EventEventBundle:Event:contact')) }}
 

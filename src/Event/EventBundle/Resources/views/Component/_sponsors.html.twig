@@ -1,10 +1,10 @@
 {% macro sponsors(sponsors) %}
     <div class="row">
         {% for sponsor in sponsors %}
-            <div class="col-lg-2">
+            <div class="col-lg-2 ta-center">
                 <a href="{{ sponsor.homepage }}">
                     <span id="face-wrapper">
-                        <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" width="140" />
+                        <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
                     </span>
                 </a>
                 <h2><a href="{{ sponsor.homepage }}">{{ sponsor.company }}</a></h2>

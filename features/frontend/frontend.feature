@@ -6,8 +6,9 @@ Feature: Call for papers
 
 Background:
     Given following "Event":
-        | ref    | title     | description                | startDate        | endDate          | venue              | email               | host                  |
-        | event  | My event  | My another awesome event!  | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@email.com | http://localhost:8000 |
+        | ref    | title     | description                | startDate        | endDate          | venue              | email               | host                      |
+        | event  | My event  | My another awesome event!  | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@email.com | http://localhost:8000     |
+        | event  | My event  | My another awesome event!  | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@email.com | http://eventator.loc:8080 |
     And following "EventTranslation":
         | ref    | locale |
         | event  | ru_RU  |

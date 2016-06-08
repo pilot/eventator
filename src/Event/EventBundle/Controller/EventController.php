@@ -54,6 +54,13 @@ class EventController extends Controller
         ]);
     }
 
+    public function organizersAction()
+    {
+        return $this->render('EventEventBundle:Component:_organizers.html.twig', [
+            'event' => $this->getEvent()
+        ]);
+    }
+
     public function contactAction(Request $request)
     {
         $event = $this->getEvent();

@@ -89,7 +89,7 @@ class Speech
     /**
      * @var events
      *
-     * @ORM\ManyToMany(targetEntity="Event", inversedBy="program")
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="speeches")
      */
     private $events;
 
