@@ -3,7 +3,7 @@ eventator
 
 events managing with easiest ticketing systems
 
-![Build Status](https://circleci.com/gh/pilot/eventator.svg?style=shield&circle-token=3141cdc2b11468e7dc37985702d7419a8a4930f9)
+[![CircleCI](https://circleci.com/gh/pilot/eventator.svg?style=shield&circle-token=3141cdc2b11468e7dc37985702d7419a8a4930f9)](https://circleci.com/gh/pilot/eventator)
 
 **demo**
 
