@@ -18,6 +18,10 @@ event_component_sponsors:
     path:  /sponsors
     defaults: { _controller: EventEventBundle:Event:sponsors }
 
+event_component_organizers:
+    path:  /sponsors
+    defaults: { _controller: EventEventBundle:Event:organizers }
+
 event_component_contact:
     path:  /contact
     defaults: { _controller: EventEventBundle:Event:contact }

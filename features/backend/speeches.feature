@@ -6,9 +6,9 @@ Feature: Speeches settings
 
 Background:
     Given following "Event":
-        | ref    | title     | description                | startDate        | endDate          | venue              | email               | host                  |
-        | event  | My event  | My another awesome event!  | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@email.com | http://localhost:8000 |
-        | event2 | His event | His another awesome event! | 2016-04-01 10:00 | 2016-04-01 18:00 | Kuala-lumpur Tower | eventator@gmail.com | http://event2.com     |
+        | ref    | title     | description                | startDate        | endDate          | venue              | email               | host                      |
+        | event  | My event  | My another awesome event!  | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@email.com | http://localhost:8000     |
+        | event2 | His event | His another awesome event! | 2016-04-01 10:00 | 2016-04-01 18:00 | Kuala-lumpur Tower | eventator@gmail.com | http://eventator.loc:8080 |
     And following "EventTranslation":
         | event  | locale |
         | event  | ru_RU  |
