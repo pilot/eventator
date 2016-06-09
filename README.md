@@ -7,7 +7,7 @@ events managing with easiest ticketing systems
 
 **demo**
 
-[eventator.org](http://eventator.org)
+[symfonycamp.org.ua](http://symfonycamp.org.ua)
 
 * feel free to play with demo
 * access to the admin panel by `/event/admin`
@@ -43,7 +43,7 @@ events managing with easiest ticketing systems
 
 **who use it**
 
-* http://2013.symfonycamp.org.ua
+* http://symfonycamp.org.ua
 
 **screenshot**
 
