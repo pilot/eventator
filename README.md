@@ -31,13 +31,9 @@ events managing with easiest ticketing systems
 * behat `./bin/beahat features`
 * phpspec `./bin/phpspec`
 
-**notes**
-
-* alpha version hold just one event per installation
-
 **todo**
 
-* hold multiply events under the same panel
+* ~~support multiply events under the same panel~~
 * support program with section
 * add internal tickets seller / manager
 
