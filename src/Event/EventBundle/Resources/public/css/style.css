@@ -91,3 +91,11 @@ form input {
 .speech-speaker {
     font-size: small;
 }
+
+.table tbody > tr > td.no-schedule {
+    padding-left: 0;
+    border-top: none;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 1.4;
+}
