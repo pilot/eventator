@@ -6,7 +6,7 @@
 <table class="table" id="program">
     <tbody>
     {% set date = null %}
-    {% for entry in schedule %}
+    {% for entry in schedule if (entry.title or entry.speech_title) %}
         {% if date != entry.startDate|date('d') %}
         <tr>
             <td colspan="2"><strong>{{ entry.startDate|date('l, F dS') }}</strong></td>
@@ -31,6 +31,10 @@
             </td>
         </tr>
         {% set date = entry.startDate|date('d') %}
+    {% else %}
+        <tr>
+            <td colspan="2" class="no-schedule">{{ 'index.schedule.no_shedules'|trans }}</td>
+        </tr>
     {% endfor %}
     </tbody>
 </table>
