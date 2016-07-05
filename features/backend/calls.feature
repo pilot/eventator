@@ -88,8 +88,8 @@ Background:
         | sponsor   | de_DE  |
         | sponsor2  | de_DE  |
     And following "CallForPaper":
-        | name       | email         | title      | language | level | abstract       | event |
-        | Test User  | test@mail.com | Test Title | 1        | 0     | Test test test | event |
+        | name       | email         | title      | language | level | abstract       | event  |
+        | Test User  | test@mail.com | Test Title | 1        | 0     | Test test test | event2 |
 
 @javascript
 Scenario: Admin should have access to the speeches manage
@@ -100,68 +100,25 @@ Scenario: Admin should have access to the speeches manage
     Then I wait for a form
     Then I should see "Actions"
 
-#@javascript
-#Scenario: Admin should have able to add speeches
-#    Given I am sign in as admin
-#    When I click "Speeches"
-#    Then I wait for a form
-#    Then I should see "Add speech"
-#    And I click "Add speech"
-#    Then I wait for a form
-#    Then I should see "Add speech"
-#    And I fill in "Title" with "Test speech"
-#    And I select "Russian" from "Speech language"
-#    And I fill in "Description" with "Test description"
-#    And I check "My event"
-#    And I select "Alex Demchenko" from "Speaker"
-#    And I press "Add"
-#    Then I wait for a form
-#    Then I should see "Speech Test speech added."
-#    Then I should see the row containing "7;Alex Demchenko;ru /  Test speech;My event"
-#
-#@javascript
-#Scenario: Admin should have able to update speeches settings
-#    Given I am sign in as admin
-#    When I click "Speeches"
-#    Then I wait for a form
-#    Then I should see "Add speech"
-#    And I should see the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
-#    When I click "Edit" on the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
-#    Then I wait for a form
-#    Then I should see "Edit speech"
-#    And I select "Russian" from "Speech language"
-#    And I press "Update"
-#    Then I wait for a form
-#    Then I should see "Speech doctrine must have2 updated."
-#    Then I should see the row containing "6;Phill Pilow;ru /  doctrine must have2;His event"
-#
-#@javascript
-#Scenario: Admin should have delete to the speeches
-#    Given I am sign in as admin
-#    When I click "Speeches"
-#    Then I wait for a form
-#    Then I should see "Add speech"
-#    And I should see the row containing "1;Alex Demchenko;ru /  symfony propagation;My event"
-#    And I should see the row containing "2;Phill Pilow;en /  php servers piece;My event"
-#    Then I delete the record with id "2"
-#    Then I wait for a form
-#    Then I should see "Speech deleted."
-#    Then I should not see the row containing "2;Phill Pilow;en /  php servers piece;My event"
-#
-#@javascript
-#Scenario: Admin should have able to update Deutsch speeches settings
-#    Given I am sign in as admin
-#    When I click "Speeches"
-#    Then I wait for a form
-#    Then I should see "Add speech"
-#    And I should see the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
-#    When I click "Edit" on the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
-#    Then I wait for a form
-#    Then I should see "Edit speech"
-#    And I click "de"
-#    Then I wait for a form
-#    And I fills in "Title" with "test" inside "de" tab
-#    And I press "Update"
-#    Then I wait for a form
-#    Then I should see "Speech doctrine must have2 updated."
-#    Then I should see the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
+@javascript
+Scenario: Admin should have able to update calls status
+    Given I am sign in as admin
+    When I click "Calls For Paper"
+    Then I wait for a form
+    And I should see the row containing "1;Test User;Russian;For all attendees;In Progress"
+    Then I approve the call with id "1"
+    Then I wait for a form
+    Then I should see the row containing "1;Test User;Russian;For all attendees;Approved"
+
+@javascript
+Scenario: Admin should have delete to the calls
+    Given I am sign in as admin
+    When I click "Calls For Paper"
+    Then I wait for a form
+    And I should see the row containing "1;Test User;Russian;For all attendees;In Progress"
+    Then I click on the element with css selector "a.actions-1"
+    Then I click on the element with css selector "a#modal-confirm-1"
+    Then I wait for a form
+    Then I click on the element with css selector "a#modal-confirm-action"
+    Then I wait for a form
+    Then I should see "Call deleted."

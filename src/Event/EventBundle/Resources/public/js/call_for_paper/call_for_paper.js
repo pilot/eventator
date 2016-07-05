@@ -44,17 +44,17 @@ $(function() {
                     var statusLi = '';
                     if (!row[4]['id']) {
                         statusLi = '\
-                            <li><a class="change-status" href="#" data-id="' + row[0] + '" data-status="1"><i class="icon-ok"></i> Approve</a></li>\
-                            <li><a class="change-status" href="#" data-id="' + row[0] + '" data-status="2"><i class="icon-remove"></i> Decline</a></li>\
+                            <li><a class="change-status approve" href="#" data-id="' + row[0] + '" data-status="1"><i class="icon-ok"></i> Approve</a></li>\
+                            <li><a class="change-status decline" href="#" data-id="' + row[0] + '" data-status="2"><i class="icon-remove"></i> Decline</a></li>\
                         ';
                     } else if (row[4]['id'] == 1) {
-                        statusLi = '<li><a class="change-status" href="#" data-id="' + row[0] + '" data-status="2"><i class="icon-remove"></i> Decline</a></li>';
+                        statusLi = '<li><a class="change-status decline" href="#" data-id="' + row[0] + '" data-status="2"><i class="icon-remove"></i> Decline</a></li>';
                     } else if (row[4]['id'] == 2) {
-                        statusLi = '<li><a class="change-status" href="#" data-id="' + row[0] + '" data-status="1"><i class="icon-ok"></i> Approve</a></li>';
+                        statusLi = '<li><a class="change-status approve" href="#" data-id="' + row[0] + '" data-status="1"><i class="icon-ok"></i> Approve</a></li>';
                     }
                     return '\
                         <div class="btn-group">\
-                            <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Actions <span class="caret"></span></a>\
+                            <a class="btn btn-small dropdown-toggle actions-' + row[0] + '" data-toggle="dropdown" href="#">Actions <span class="caret"></span></a>\
                             <ul class="dropdown-menu">\
                                 ' + statusLi + '\
                                 <li><a href="' + data['deleteUrl'] + '" class="delete-call" id="modal-confirm-' + row[0] + '"><i class="icon-trash"></i> Delete</a></li>\
