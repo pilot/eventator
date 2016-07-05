@@ -75,6 +75,14 @@ class BackendContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Then /^I wait "([^"]*)" seconds$/
+     */
+    public function iWaitSeconds($seconds)
+    {
+        $this->getSession()->wait(($seconds * 1000));
+    }
+
+    /**
      * @When /^I should see the row containing "([^"]*)"$/
      */
     public function iShouldSeeTheRowContaining($rowTexts)
@@ -235,6 +243,14 @@ class BackendContext extends MinkContext implements KernelAwareInterface
         }
 
         $element->click();
+    }
+
+    /**
+     * @When /^I click to confirm action$/
+     */
+    public function iClickToConfirmAction()
+    {
+        $this->getSession()->getDriver()->click("(//a[@id='modal-confirm-action'])");
     }
 
     /**

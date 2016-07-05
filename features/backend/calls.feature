@@ -118,7 +118,7 @@ Scenario: Admin should have delete to the calls
     And I should see the row containing "1;Test User;Russian;For all attendees;In Progress"
     Then I click on the element with css selector "a.actions-1"
     Then I click on the element with css selector "a#modal-confirm-1"
-    Then I wait for a form
-    Then I click on the element with css selector "a#modal-confirm-action"
-    Then I wait for a form
+    Then I wait "3" seconds
+    Then I click to confirm action
+    Then I wait "3" seconds
     Then I should see "Call deleted."
