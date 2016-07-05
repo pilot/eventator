@@ -1,0 +1,50 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block data_tables_css %}
+    <link href="{{ asset('bundles/eventevent/css/libs/DataTables/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/eventevent/css/call_for_paper/call_for_paper.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <div class="row">
+                <div class="span3"><h3>Calls For Paper</h3></div>
+                <div class="span6">
+                    <div class="events-list">
+                        <label>
+                            Event:
+                            <select id="select-event">
+                                {% for event in events %}
+                                    <option value="{{ event.id }}">{{ event.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped table-bordered" id="call-for-paper">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Title</th>
+                    <th>Language</th>
+                    <th>Level</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th width="10%">Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </section>
+    {% include 'EventEventBundle:Backend:_confirm_modal.html.twig'
+        with {'title': 'Confirm action', 'body': 'Do you really want to delete this call?'} %}
+{% endblock %}
+
+{% block data_tables_js %}
+    <script src="{{ asset('bundles/eventevent/js/libs/DataTables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/eventevent/js/confirm.js') }}"></script>
+    <script src="{{ asset('bundles/eventevent/js/call_for_paper/call_for_paper.js') }}"></script>
+{% endblock %}

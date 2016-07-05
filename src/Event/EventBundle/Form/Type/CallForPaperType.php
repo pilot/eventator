@@ -57,7 +57,7 @@ class CallForPaperType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null,
+            'data_class' => 'Event\EventBundle\Entity\CallForPaper',
             'languages' => array_flip($this->languages),
             'levels' => array_flip($this->levels),
         ]);

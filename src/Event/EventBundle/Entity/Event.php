@@ -253,6 +253,13 @@ class Event
      */
     private $organizers;
 
+    /**
+     * @var CallForPaper
+     *
+     * @ORM\OneToMany(targetEntity="CallForPaper", mappedBy="event", cascade={"all"})
+     */
+    private $papers;
+
 
     public function __construct()
     {
@@ -262,6 +269,7 @@ class Event
         $this->sponsors = new ArrayCollection();
         $this->program = new ArrayCollection();
         $this->organizers = new ArrayCollection();
+        $this->papers = new ArrayCollection();
     }
 
     /**
@@ -959,5 +967,15 @@ class Event
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * Get papers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPapers()
+    {
+        return $this->papers;
     }
 }

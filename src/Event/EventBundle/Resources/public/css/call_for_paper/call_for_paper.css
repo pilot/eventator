@@ -1,0 +1,20 @@
+.events-list {
+    margin-top: 20px;
+}
+
+.events-list {
+    text-align: right;
+}
+
+#call-for-paper_length select, #select-event {
+    width: auto;
+}
+
+#call-for-paper_wrapper table.dataTable thead th,
+#call-for-paper_wrapper table.dataTable thead td {
+    border-bottom: none;
+}
+
+#call-for-paper_wrapper table.dataTable.no-footer {
+    border-bottom: 1px solid #ddd;
+}

@@ -4,3 +4,6 @@ _event:
     # to the available site it's easy to point event to the specified url like
     # prefix: /event
     prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

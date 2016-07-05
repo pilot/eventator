@@ -99,3 +99,7 @@ form input {
     font-weight: 200;
     line-height: 1.4;
 }
+
+.bs-docs-sidebar .well {
+    padding: 19px 5px;
+}
