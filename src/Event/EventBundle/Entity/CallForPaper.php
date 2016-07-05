@@ -3,13 +3,13 @@
 namespace Event\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * CallForPaper
  *
  * @ORM\Table(name="ev_call_for_paper")
  * @ORM\Entity(repositoryClass="Event\EventBundle\Entity\Repository\CallForPaperRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class CallForPaper
 {
@@ -105,18 +105,9 @@ class CallForPaper
     /**
      * @var \DateTime $created
      *
-     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created;
-
-    /**
-     * @var \DateTime $updated
-     *
-     * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime")
-     */
-    private $updated;
 
     /**
      * @var Event
@@ -353,6 +344,14 @@ class CallForPaper
     }
 
     /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->created = new \DateTime();
+    }
+
+    /**
      * Get created
      *
      * @return \DateTime
@@ -360,16 +359,6 @@ class CallForPaper
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return \DateTime
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
     }
 
     /**
