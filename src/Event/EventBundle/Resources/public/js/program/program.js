@@ -6,7 +6,7 @@ $(function() {
         processing: false,
         serverSide: true,
         lengthMenu: [50, 100, 200, 300],
-        order: [[2, 'desc']],
+        order: [[2, 'asc']],
         pagingType: 'full_numbers',
         dom: "<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>",
         ajax: {
@@ -25,7 +25,7 @@ $(function() {
         columnDefs: [
             {searchable: false, orderable: true, targets: 0, width: '5%'},
             {searchable: true, orderable: true, targets: 1},
-            {searchable: false, orderable: true, targets: 2},
+            {searchable: false, orderable: true, targets: 2, width: '30%'},
             {searchable: false, orderable: false, targets: 3, width: '10%',
                 render: function(data, type, row) {
                     return '\
