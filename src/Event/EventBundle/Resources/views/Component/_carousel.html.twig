@@ -19,11 +19,6 @@
                         <p><img class="onslide" src="{{ event.logo }}" alt="{{ event.title }}" /></p>
                     {% endif %}
                     <p class="text-slider-title text-uppercase">{{ event.briefDescription }}</p>
-                    <p class="text-slider-title">
-                        {{ event.venue }} /
-                        <strong>{{ event.startDate|date }}</strong> /
-                        {{ event.country ~ ' ' ~ event.city }}
-                    </p>
                     <p>
                         {% if event.isActive and event.embedTicket %}
                             <a class="btn btn-large btn-primary registration" href="#">{{ 'Registration'|trans }}</a>
@@ -39,6 +34,12 @@
 
     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+<div class="event-place-wrap">
+    <p>
+        <i class="fa fa-map-marker" aria-hidden="true"></i> {{ event.venue }}, {{ event.country ~ ' ' ~ event.city }} /
+        <i class="fa fa-calendar" aria-hidden="true"></i> <strong>{{ event.startDate|date }}</strong>
+    </p>
 </div>
 
 <div class="modal fade" id="registration">

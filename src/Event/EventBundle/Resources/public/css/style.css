@@ -103,3 +103,19 @@ form input {
 .bs-docs-sidebar .well {
     padding: 19px 5px;
 }
+
+/* carousel */
+.carousel {
+    background-color: rgba(226, 196, 84, 0.78);
+    margin-bottom: 20px;
+}
+
+.navbar-wrapper .navbar {
+    border-radius: 0;
+    border-bottom: 1px solid #999999;
+}
+
+.event-place-wrap p {
+    text-align: center;
+    font-size: 28px;
+}
