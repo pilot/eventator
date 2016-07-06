@@ -53,9 +53,9 @@ class ProgramController extends Controller
 
         return new JsonResponse([
             'draw'            => $request->get('draw') ? intval($request->get('draw')) : 0,
-            "recordsTotal"    => $programCount,
-            "recordsFiltered" => $programCount,
-            "data"            => $data,
+            'recordsTotal'    => $programCount,
+            'recordsFiltered' => $programCount,
+            'data'            => $data,
         ]);
     }
 

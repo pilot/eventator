@@ -70,9 +70,9 @@ class CallForPaperController extends Controller
 
         return new JsonResponse([
             'draw'            => $request->get('draw') ? intval($request->get('draw')) : 0,
-            "recordsTotal"    => $callsCount,
-            "recordsFiltered" => $callsCount,
-            "data"            => $data,
+            'recordsTotal'    => $callsCount,
+            'recordsFiltered' => $callsCount,
+            'data'            => $data,
         ]);
     }
 
