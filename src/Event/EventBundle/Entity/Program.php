@@ -11,7 +11,7 @@ use Event\EventBundle\Entity\Translation\Translation;
  * Program
  *
  * @ORM\Table(name="ev_program")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Event\EventBundle\Entity\Repository\ProgramRepository")
  */
 class Program
 {

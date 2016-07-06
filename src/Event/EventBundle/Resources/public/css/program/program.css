@@ -1,0 +1,16 @@
+.events-list {
+    text-align: right;
+}
+
+#program_length select, #select-event {
+    width: auto;
+}
+
+#program_wrapper table.dataTable thead th,
+#program_wrapper table.dataTable thead td {
+    border-bottom: none;
+}
+
+#program_wrapper table.dataTable.no-footer {
+    border-bottom: 1px solid #ddd;
+}

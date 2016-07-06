@@ -68,6 +68,13 @@ backend_program:
     path:  /schedule
     defaults: { _controller: EventEventBundle:Backend/Program:index }
 
+backend_program_ajax_program_list:
+    path:     /schedule/ajax-schedule-list
+    defaults: { _controller: EventEventBundle:Backend/Program:ajaxProgramList }
+    methods: ['GET']
+    options:
+        expose: true
+
 backend_program_add:
     path:  /schedule/add
     defaults: { _controller: EventEventBundle:Backend/Program:manage }

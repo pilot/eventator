@@ -31,6 +31,11 @@
     {% endblock %}
 
     <div class="container space">
+        <div class="js-alert-success">
+            <div class="alert alert-success">
+                <span class="message"></span>
+            </div>
+        </div>
         {% for message in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 {{ message|trans }}
