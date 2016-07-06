@@ -75,6 +75,14 @@
                     $('#callForPaper').modal('show');
                 });
 
+                $('.speaker-modal').on('click', function(e) {
+                    e.preventDefault();
+                    var $that = $(this),
+                        speakerId = $that.attr('data-id');
+
+                    $('#speaker-modal-' + speakerId).modal('show');
+                });
+
                 $('.send-request').on('click', function(e) {
                     $(this).html("{{ 'Sending'|trans }}" + "...").prop('disabled', 'disabled');
 

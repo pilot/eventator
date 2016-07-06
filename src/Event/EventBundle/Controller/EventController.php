@@ -27,6 +27,7 @@ class EventController extends Controller
         $form = $this->callForPaper();
 
         return $this->render('EventEventBundle:Component:_speakers.html.twig', [
+            'currentEvent' => $this->getEvent(),
             'speakers' => $this->getEvent()->getSpeakers(),
             'form' => $form->createView(),
         ]);
