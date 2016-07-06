@@ -4,6 +4,7 @@ namespace Event\EventBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Event\EventBundle\Entity\CallForPaper;
 use Event\EventBundle\Form\Type\ContactType;
 use Event\EventBundle\Form\Type\CallForPaperType;
 
@@ -93,12 +94,16 @@ class EventController extends Controller
 
     public function callForPaperAction(Request $request)
     {
+        $entity = new CallForPaper();
         $event = $this->getEvent();
+        $entity->setEvent($event);
 
-        $form = $this->callForPaper();
+        $form = $this->callForPaper($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->getManager()->persist($entity);
+            $this->getManager()->flush();
 
             $this->get('eventator_mailer')->send(
                 $event->getEmail(),
@@ -120,8 +125,8 @@ class EventController extends Controller
         ]));
     }
 
-    protected function callForPaper()
+    protected function callForPaper(CallForPaper $entity = null)
     {
-        return $this->createForm(CallForPaperType::class);
+        return $this->createForm(CallForPaperType::class, $entity);
     }
 }

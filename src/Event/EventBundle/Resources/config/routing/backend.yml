@@ -119,3 +119,32 @@ backend_organizer_delete:
     path:  /organizer/delete/{id}
     defaults: { _controller: EventEventBundle:Backend/Organizer:delete }
     requirements: { id: \d+ }
+
+# Call for paper
+backend_call_for_paper:
+    path:     /call-for-paper
+    defaults: { _controller: EventEventBundle:Backend/CallForPaper:index }
+
+backend_call_for_paper_ajax_calls_list:
+    path:     /call-for-paper/ajax-calls-list
+    defaults: { _controller: EventEventBundle:Backend/CallForPaper:ajaxCallsList }
+    methods: ['GET']
+    options:
+        expose: true
+
+backend_call_for_paper_change_status:
+    path:     /call-for-paper/change-status/{id}/{status}
+    defaults: { _controller: EventEventBundle:Backend/CallForPaper:changeStatus }
+    requirements:
+        id: \d+
+        status: \d+
+    options:
+        expose: true
+
+backend_call_for_paper_delete:
+    path:     /call-for-paper/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/CallForPaper:delete }
+    requirements:
+        id: \d+
+    options:
+        expose: true

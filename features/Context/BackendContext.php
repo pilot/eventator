@@ -75,6 +75,14 @@ class BackendContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Then /^I wait "([^"]*)" seconds$/
+     */
+    public function iWaitSeconds($seconds)
+    {
+        $this->getSession()->wait(($seconds * 1000));
+    }
+
+    /**
      * @When /^I should see the row containing "([^"]*)"$/
      */
     public function iShouldSeeTheRowContaining($rowTexts)
@@ -178,6 +186,71 @@ class BackendContext extends MinkContext implements KernelAwareInterface
                 $this->getSession()->visit($link->getAttribute('href'));
             }
         }
+    }
+
+    /**
+     * @Given /^I approve the call with id "([^"]*)"$/
+     */
+    public function iApproveCallOf($index)
+    {
+        /**
+         * @var $nodes \Behat\Mink\Element\NodeElement
+         * @var $node \Behat\Mink\Element\NodeElement
+         */
+        $nodes = $this->getSession()->getPage()->findAll('css', sprintf('table tr > td:first-child:contains("%s")', $index));
+        if (!$nodes) {
+            throw new \Exception(sprintf('Cannot find any row with id "%s"', $index));
+        }
+
+        $findedNode = false;
+        foreach ($nodes as $node) {
+            $parent = $node->getParent();
+            $rowId = explode(' ', $parent->getText())[0];
+
+            if ($rowId == $index) {
+                $findedNode = $parent;
+
+                break;
+            }
+        }
+
+        if (!$findedNode) {
+            throw new \Exception(sprintf('Cannot find any row with id "%s"', $index));
+        }
+
+        $linksSelectors = $findedNode->findAll('css', 'ul.dropdown-menu li a');
+        foreach ($linksSelectors as $link) {
+            if (strpos($link->getHtml(), 'Approve')) {
+                $this->getSession()->visit($link->getAttribute('href'));
+            }
+        }
+    }
+
+    /**
+     * Click on the element with the provided CSS Selector
+     *
+     * @When /^I click on the element with css selector "([^"]*)"$/
+     */
+    public function iClickOnTheElementWithCSSSelector($cssSelector)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('css', $cssSelector) // just changed xpath to css
+        );
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate CSS Selector: "%s"', $cssSelector));
+        }
+
+        $element->click();
+    }
+
+    /**
+     * @When /^I click to confirm action$/
+     */
+    public function iClickToConfirmAction()
+    {
+        $this->getSession()->getDriver()->click("(//a[@id='modal-confirm-action'])");
     }
 
     /**
