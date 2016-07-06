@@ -23,7 +23,7 @@ $(function() {
             $(row).attr('id', 'item-' + data[0]);
         },
         columnDefs: [
-            {searchable: false, orderable: true, targets: 0},
+            {searchable: false, orderable: true, targets: 0, width: '5%'},
             {searchable: true, orderable: true, targets: 1},
             {searchable: false, orderable: true, targets: 2},
             {searchable: false, orderable: false, targets: 3, width: '10%',
