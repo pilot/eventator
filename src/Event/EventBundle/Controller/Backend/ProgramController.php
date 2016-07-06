@@ -3,6 +3,7 @@
 namespace Event\EventBundle\Controller\Backend;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Event\EventBundle\Controller\Controller;
 use Event\EventBundle\Entity\Program;
 use Event\EventBundle\Entity\Translation\ProgramTranslation;
@@ -13,8 +14,49 @@ class ProgramController extends Controller
     public function indexAction()
     {
         return $this->render('EventEventBundle:Backend/Program:index.html.twig', array(
-            'program' => $this->getRepository('EventEventBundle:Program')->findBy([], ['startDate' => 'ASC'])
+            'events' => $this->getRepository('EventEventBundle:Event')->findBy([], ['id' => 'DESC']),
         ));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function ajaxProgramListAction(Request $request)
+    {
+        $start = $request->get('start');
+        $length = $request->get('length');
+        $searchQuery = $request->get('search')['value'];
+        $order = $request->get('order');
+        $eventId = $request->get('event', $this->getEvent()->getId());
+
+        $program = $this->getRepository('EventEventBundle:Program')->getProgramByParameters($eventId, $searchQuery, $order, $start, $length);
+        $programCount = $this->getRepository('EventEventBundle:Program')->getProgramCountByParameters($eventId, $searchQuery);
+
+        $data = array_map(function (Program $entity) {
+            $actions = [
+                'editUrl' => $this->generateUrl('backend_program_edit', ['id' => $entity->getId()]),
+                'deleteUrl' => $this->generateUrl('backend_program_delete', ['id' => $entity->getId()]),
+            ];
+
+            return [
+                $entity->getId(),
+                '<a href="'.$this->generateUrl('backend_program_edit', ['id' => $entity->getId()]).'">'.
+                    ($entity->getTitle() ? $entity->getTitle() : $entity->getSpeech()->getTitle()).
+                '</a>',
+                $entity->getStartDate()->format('F d, Y H:i').' - '.$entity->getEndDate()->format('H:i'),
+                $actions,
+
+            ];
+        }, $program);
+
+        return new JsonResponse([
+            'draw'            => $request->get('draw') ? intval($request->get('draw')) : 0,
+            'recordsTotal'    => $programCount,
+            'recordsFiltered' => $programCount,
+            'data'            => $data,
+        ]);
     }
 
     public function manageAction(Request $request, $id = null)

@@ -19,6 +19,11 @@
     text-align: center;
 }
 
+/* js alerts */
+.js-alert-success {
+    display: none;
+}
+
 /* form */
 form input {
     width: 300px;

@@ -64,7 +64,7 @@ Background:
         | program5  | de_DE  |
         | program6  | de_DE  |
         | program7  | de_DE  |
-        | program8  | de_DE  |
+        | program8  | ru_RU  |
         | program9  | de_DE  |
         | program10 | de_DE  |
         | program11 | de_DE  |
@@ -94,21 +94,15 @@ Scenario: Admin should have access to the schedule manage
     When I click "Schedule"
     Then I wait for a form
     Then I should see "Add an entry"
-    And I should see the row containing "1;My event;keynote;March 1, 2016 10:00 - 10:30"
-    And I should see the row containing "2;My event;alex_symfony;March 1, 2016 10:30 - 11:30"
-    And I should see the row containing "3;My event;phil_php;March 1, 2016 11:30 - 12:30"
-    And I should see the row containing "4;My event;coffee1;March 1, 2016 12:30 - 13:00"
-    And I should see the row containing "5;My event;phil_doctrine;March 1, 2016 13:00 - 14:30"
-    And I should see the row containing "6;My event;end_keynote;March 1, 2016 14:30 - 15:00"
-    And I should see the row containing "7;My event;after_party;March 1, 2016 15:00 - 18:00"
-    And I should see the row containing "8;His event;keynote;April 1, 2016 10:00 - 10:30"
-    And I should see the row containing "9;His event;alex_symfony;April 1, 2016 10:30 - 11:30"
-    And I should see the row containing "10;His event;phil_php;April 1, 2016 11:30 - 12:30"
-    And I should see the row containing "11;His event;coffee1;April 1, 2016 12:30 - 13:00"
-    And I should see the row containing "12;His event;phil_doctrine;April 1, 2016 13:00 - 14:30"
-    And I should see the row containing "13;His event;end_keynote;April 1, 2016 14:30 - 15:00"
-    And I should see the row containing "14;His event;after_party;April 1, 2016 15:00 - 18:00"
-    When I click "Edit" on the row containing "14;His event;after_party;April 1, 2016 15:00 - 18:00"
+    Then I wait "1" seconds
+    And I should see the row containing "8;keynote;April 1, 2016 10:00 - 10:30"
+    And I should see the row containing "9;alex_symfony;April 1, 2016 10:30 - 11:30"
+    And I should see the row containing "10;phil_php;April 1, 2016 11:30 - 12:30"
+    And I should see the row containing "11;coffee1;April 1, 2016 12:30 - 13:00"
+    And I should see the row containing "12;phil_doctrine;April 1, 2016 13:00 - 14:30"
+    And I should see the row containing "13;end_keynote;April 1, 2016 14:30 - 15:00"
+    And I should see the row containing "14;after_party;April 1, 2016 15:00 - 18:00"
+    When I click "Edit" on the row containing "14;after_party;April 01, 2016 15:00 - 18:00"
     Then I wait for a form
     Then I should see "Edit program entry"
 
@@ -121,15 +115,15 @@ Scenario: Admin should have able to add schedule
     And I click "Add an entry"
     Then I wait for a form
     Then I should see "Add program entry"
-    And I fill in "Start Time" with "2016-03-01 09:30"
-    And I fill in "End Time" with "2016-03-01 10:00"
+    And I fill in "Start Time" with "2016-04-01 09:30"
+    And I fill in "End Time" with "2016-04-01 10:00"
     And I check "Topic?"
     And I fill in "Title" with "Registration"
-    And I check "My event"
+    And I check "His event"
     And I press "Add"
     Then I wait for a form
     Then I should see "Program added."
-    Then I should see the row containing "15;My event;Registration;March 1, 2016 09:30 - 10:00"
+    Then I should see the row containing "15;Registration;April 01, 2016 09:30 - 10:00"
 
 @javascript
 Scenario: Admin should have able to update schedule settings
@@ -137,15 +131,15 @@ Scenario: Admin should have able to update schedule settings
     When I click "Schedule"
     Then I wait for a form
     Then I should see "Add an entry"
-    And I should see the row containing "1;My event;keynote;March 1, 2016 10:00 - 10:30"
-    When I click "Edit" on the row containing "1;My event;keynote;March 1, 2016 10:00 - 10:30"
+    And I should see the row containing "8;keynote;April 01, 2016 10:00 - 10:30"
+    When I click "Edit" on the row containing "8;keynote;April 01, 2016 10:00 - 10:30"
     Then I wait for a form
     Then I should see "Edit program entry"
     And I fill in "Start Time" with "2016-03-01 09:30"
     And I press "Update"
     Then I wait for a form
     Then I should see "Program updated."
-    Then I should see the row containing "1;My event;keynote;March 1, 2016 09:30 - 10:30"
+    Then I should see the row containing "8;keynote;keynote;April 01, 2016 09:30 - 10:30"
 
 @javascript
 Scenario: Admin should have delete to the schedule
@@ -153,12 +147,15 @@ Scenario: Admin should have delete to the schedule
     When I click "Schedule"
     Then I wait for a form
     Then I should see "Add an entry"
-    And I should see the row containing "1;My event;keynote;March 1, 2016 10:00 - 10:30"
-    And I should see the row containing "2;My event;alex_symfony;March 1, 2016 10:30 - 11:30"
-    Then I delete the record with id "2"
-    Then I wait for a form
+    And I should see the row containing "8;keynote;April 01, 2016 10:00 - 10:30"
+    And I should see the row containing "9;alex_symfony;April 01, 2016 10:30 - 11:30"
+    Then I click on the element with css selector "a.actions-9"
+    Then I click on the element with css selector "a#modal-confirm-9"
+    Then I wait "3" seconds
+    Then I click to confirm action
+    Then I wait "3" seconds
     Then I should see "Program deleted."
-    Then I should not see the row containing "2;My event;alex_symfony;March 1, 2016 10:30 - 11:30"
+    Then I should not see the row containing "9;alex_symfony;March 1, 2016 10:30 - 11:30"
 
 @javascript
 Scenario: Admin should have able to update Russian schedule settings
@@ -166,9 +163,9 @@ Scenario: Admin should have able to update Russian schedule settings
     When I click "Schedule"
     Then I wait for a form
     Then I should see "Add an entry"
-    And I should see the row containing "1;My event;keynote;March 1, 2016 10:00 - 10:30"
-    When I click "Edit" on the row containing "1;My event;keynote;March 1, 2016 10:00 - 10:30"
-    Then I wait for a form
+    And I should see the row containing "8;keynote;April 01, 2016 10:00 - 10:30"
+    When I click "Edit" on the row containing "8;keynote;April 01, 2016 10:00 - 10:30"
+    Then I wait "2" seconds
     Then I should see "Edit program entry"
     And I click "ru"
     Then I wait for a form
@@ -176,4 +173,4 @@ Scenario: Admin should have able to update Russian schedule settings
     And I press "Update"
     Then I wait for a form
     Then I should see "Program updated."
-    Then I should see the row containing "1;My event;keynote;March 1, 2016 10:00 - 10:30"
+    Then I should see the row containing "8;keynote;April 01, 2016 10:00 - 10:30"
