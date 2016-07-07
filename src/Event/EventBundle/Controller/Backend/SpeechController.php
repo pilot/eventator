@@ -56,7 +56,7 @@ class SpeechController extends Controller
             return [
                 $speech->getId(),
                 $speech->getSpeaker()->getFullName(),
-                $speech->getTitle(),
+                $speech->getLanguage()."&nbsp;/&nbsp;".$speech->getTitle(),
                 $actions,
 
             ];
