@@ -107,7 +107,7 @@ class CallForPaperController extends Controller
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse(true);
         } else {
-            $this->setSuccessFlash('Status chenged.');
+            $this->setSuccessFlash('Status changed.');
 
             return $this->redirectToRoute('backend_call_for_paper_show', ['id' => $callForPaper->getId()]);
         }
