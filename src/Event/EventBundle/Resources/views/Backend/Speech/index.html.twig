@@ -1,10 +1,20 @@
 {% extends 'EventEventBundle:Backend:layout.html.twig' %}
 
+{% block data_tables_css %}
+    <link href="{{ asset('bundles/eventevent/css/libs/DataTables/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/eventevent/css/speech/speech.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block content %}
 <section>
     <div class="page-header">
         <h3>Event speeches</h3>
-        <a href="{{ path('backend_speech_add') }}" class="btn btn-small btn-success">Add speech</a>
+        <div class="row">
+            <div class="span3">
+                <a href="{{ path('backend_speech_add') }}" class="btn btn-small btn-success">Add speech</a>
+            </div>
+            {% include 'EventEventBundle:Backend:_events_select.html.twig' %}
+        </div>
     </div>
 
     <table class="table table-striped table-bordered" id="speeches">
@@ -13,69 +23,15 @@
                 <th>id</th>
                 <th>Speaker Name</th>
                 <th>Title</th>
-                <th>Events</th>
                 <th width="10%">Actions</th>
             </tr>
         </thead>
-        <tbody>
-        {% for speech in speeches %}
-            <tr>
-                <td>{{ speech.id }}</td>
-                <td><a href="{{ url('backend_speaker_edit', {'id': speech.speaker.id}) }}">{{ speech.speaker.fullName }}</a></td>
-                <td>
-                    {{ speech.language|default(app.request.locale) }}&nbsp;/&nbsp;
-                    <a href="{{ url('backend_speech_edit', {'id': speech.id}) }}">{{ speech.title }}</a>
-                </td>
-                <td>
-                    {% for event in speech.events %}
-                        {{ event ~ (not loop.last ? ', ' : '') }}
-                    {% endfor %}
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <a class="btn btn-small" href="{{ url('backend_speech_edit', {'id': speech.id}) }}"><i class="icon-user"></i> Edit</a>
-                        <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url('backend_speech_delete', {'id': speech.id}) }}"><i class="icon-trash"></i> Delete</a></li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">No speeches found.</td>
-            </tr>
-        {% endfor %}
-        </tbody>
     </table>
 </section>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var elementsCount = '{{ speeches|length }}';
-
-            if ( 0 < elementsCount) {
-                $('#speeches').dataTable({
-                    "iDisplayLength": 50,
-                    "sDom": "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
-                    "sPaginationType": "bootstrap",
-                    "oLanguage": {
-                        "sLengthMenu": "_MENU_ records per page"
-                    },
-                    "aoColumns": [
-                        null,
-                        null,
-                        null,
-                        null,
-                        { "bSearchable": false, "bSortable": false }
-                    ],
-                    "aaSorting": [[0, 'desc']]
-                });
-            }
-        });
-    </script>
+{% block data_tables_js %}
+    <script src="{{ asset('bundles/eventevent/js/libs/DataTables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/eventevent/js/confirm.js') }}"></script>
+    <script src="{{ asset('bundles/eventevent/js/speech/speech.js') }}"></script>
 {% endblock %}

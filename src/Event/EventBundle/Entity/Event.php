@@ -226,9 +226,9 @@ class Event
     private $speakers;
 
     /**
-     * @var speeches
+     * @var Speech
      *
-     * @ORM\ManyToMany(targetEntity="Speech", mappedBy="events")
+     * @ORM\OneToMany(targetEntity="Speech", mappedBy="event", cascade={"all"})
      */
     private $speeches;
 

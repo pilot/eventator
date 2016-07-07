@@ -49,6 +49,13 @@ backend_speech:
     path:  /speeches
     defaults: { _controller: EventEventBundle:Backend/Speech:index }
 
+backend_speech_ajax_speeches_list:
+    path:     /speech/ajax-speeches-list
+    defaults: { _controller: EventEventBundle:Backend/Speech:ajaxSpeechesList }
+    methods: ['GET']
+    options:
+        expose: true
+
 backend_speech_add:
     path:  /speech/add
     defaults: { _controller: EventEventBundle:Backend/Speech:manage }

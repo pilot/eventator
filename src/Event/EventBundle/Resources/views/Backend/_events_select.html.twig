@@ -1,0 +1,12 @@
+<div class="span6">
+    <div class="events-list">
+        <label>
+            Event:
+            <select id="select-event">
+                {% for event in events %}
+                    <option value="{{ event.id }}">{{ event.title }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+</div>

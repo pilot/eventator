@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         {% for speech in speaker.speeches %}
-                            {% if currentEvent in speech.events %}
+                            {% if currentEvent == speech.event %}
                                 <p><strong>{{ speech.title }}</strong> <small>({{ speech.language }})</small></p>
                                 <p>{{ speech.description }}</p>
                             {% endif %}

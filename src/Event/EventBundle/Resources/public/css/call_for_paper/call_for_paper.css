@@ -2,10 +2,6 @@
     margin-top: 20px;
 }
 
-.events-list {
-    text-align: right;
-}
-
 #call-for-paper_length select, #select-event {
     width: auto;
 }

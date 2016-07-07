@@ -1,0 +1,12 @@
+#speeches_length select, #select-event {
+    width: auto;
+}
+
+#speeches_wrapper table.dataTable thead th,
+#speeches_wrapper table.dataTable thead td {
+    border-bottom: none;
+}
+
+#speeches_wrapper table.dataTable.no-footer {
+    border-bottom: 1px solid #ddd;
+}

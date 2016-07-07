@@ -23,11 +23,11 @@ class SpeechType extends AbstractType
                 'placeholder' => 'Choose Speaker'
             ])
             // @todo: implement dynamic relation between speaker/event/speech
-            ->add('events', EntityType::class, [
+            ->add('event', EntityType::class, [
                 'class' => 'EventEventBundle:Event',
                 'placeholder' => 'Choose Event',
                 'expanded' => true,
-                'multiple' => true,
+                'multiple' => false,
             ])
             ->add('title', TextType::class)
             ->add('language', LanguageType::class, [

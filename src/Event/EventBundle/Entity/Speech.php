@@ -11,7 +11,7 @@ use Event\EventBundle\Entity\Translation\Translation;
  * Speech
  *
  * @ORM\Table(name="ev_speech")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Event\EventBundle\Entity\Repository\SpeechRepository")
  */
 class Speech
 {
@@ -87,11 +87,12 @@ class Speech
     private $program;
 
     /**
-     * @var events
+     * @var Event
      *
-     * @ORM\ManyToMany(targetEntity="Event", inversedBy="speeches")
+     * @Assert\NotNull()
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="speeches")
      */
-    private $events;
+    private $event;
 
 
     public function __construct()
@@ -245,5 +246,29 @@ class Speech
     public function getVideo()
     {
         return $this->video;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \Event\EventBundle\Entity\Event $event
+     *
+     * @return Speech
+     */
+    public function setEvent(Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Event\EventBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }

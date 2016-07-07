@@ -13,18 +13,7 @@
             <div class="span3">
                 <a href="{{ path('backend_program_add') }}" class="btn btn-small btn-success">Add an entry</a>
             </div>
-            <div class="span6">
-                <div class="events-list">
-                    <label>
-                        Event:
-                        <select id="select-event">
-                            {% for event in events %}
-                                <option value="{{ event.id }}">{{ event.title }}</option>
-                            {% endfor %}
-                        </select>
-                    </label>
-                </div>
-            </div>
+            {% include 'EventEventBundle:Backend:_events_select.html.twig' %}
         </div>
     </div>
 
@@ -45,7 +34,6 @@
 
 {% block data_tables_js %}
     <script src="{{ asset('bundles/eventevent/js/libs/DataTables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('bundles/eventevent/js/functions.js') }}"></script>
     <script src="{{ asset('bundles/eventevent/js/confirm.js') }}"></script>
     <script src="{{ asset('bundles/eventevent/js/program/program.js') }}"></script>
 {% endblock %}
