@@ -26,7 +26,7 @@
                     {{ entry.speech_title }}
                     <br />
                     <span class="speech-speaker">
-                        <a href="{{ entry.speaker_homepage }}">{{ entry.speaker_fullName }}</a></span>
+                        <a href="#{{ entry.speaker_firsName }}-{{ entry.speaker_lastName }}-{{ entry.speaker_id }}" role="button" data-toggle="modal">{{ entry.speaker_fullName }}</a></span>
                 {% endif %}
             </td>
         </tr>
