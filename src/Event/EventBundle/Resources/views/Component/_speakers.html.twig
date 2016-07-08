@@ -6,10 +6,10 @@
     <div class="row">
         {% for speaker in speakers %}
             <div class="col-lg-2">
-                <a href="#speaker-modal-{{ speaker.id }}" role="button" data-toggle="modal">
+                <a href="#{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}" role="button" data-toggle="modal">
                     <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="140" />
                 </a>
-                <h3><a href="#speaker-modal-{{ speaker.id }}" role="button" data-toggle="modal">{{ speaker.fullName }}</a></h3>
+                <h3><a href="#{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}" role="button" data-toggle="modal">{{ speaker.fullName }}</a></h3>
             </div>
             {% include 'EventEventBundle:Event:_speaker-modal.html.twig' %}
         {% endfor %}
