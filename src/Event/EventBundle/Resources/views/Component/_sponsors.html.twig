@@ -7,7 +7,7 @@
                         <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
                     </span>
                 </a>
-                <h2><a href="##company-{{ sponsor.id }}" role="button" data-toggle="modal">{{ sponsor.company }}</a></h2>
+                <h2><a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">{{ sponsor.company }}</a></h2>
             </div>
             {% include 'EventEventBundle:Event:_sponsor-modal.html.twig' %}
         {% endfor %}
