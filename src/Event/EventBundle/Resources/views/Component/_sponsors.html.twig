@@ -2,13 +2,14 @@
     <div class="row">
         {% for sponsor in sponsors %}
             <div class="col-lg-2 ta-center">
-                <a href="{{ sponsor.homepage }}">
+                <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
                     <span id="face-wrapper">
                         <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
                     </span>
                 </a>
-                <h2><a href="{{ sponsor.homepage }}">{{ sponsor.company }}</a></h2>
+                <h2><a href="##company-{{ sponsor.id }}" role="button" data-toggle="modal">{{ sponsor.company }}</a></h2>
             </div>
+            {% include 'EventEventBundle:Event:_sponsor-modal.html.twig' %}
         {% endfor %}
     </div>
 {% endmacro %}
