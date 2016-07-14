@@ -139,6 +139,13 @@ backend_call_for_paper_ajax_calls_list:
     options:
         expose: true
 
+backend_call_for_paper_show:
+    path:     /call-for-paper/show/{id}
+    defaults: { _controller: EventEventBundle:Backend/CallForPaper:show }
+    methods: ['GET']
+    requirements:
+        id: \d+
+
 backend_call_for_paper_change_status:
     path:     /call-for-paper/change-status/{id}/{status}
     defaults: { _controller: EventEventBundle:Backend/CallForPaper:changeStatus }

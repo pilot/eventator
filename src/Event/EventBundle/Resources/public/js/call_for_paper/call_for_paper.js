@@ -54,7 +54,8 @@ $(function() {
                     }
                     return '\
                         <div class="btn-group">\
-                            <a class="btn btn-small dropdown-toggle actions-' + row[0] + '" data-toggle="dropdown" href="#">Actions <span class="caret"></span></a>\
+                            <a class="btn btn-small" href="' + data['showUrl'] + '"><i class="icon-file"></i> Show</a>\
+                            <a class="btn btn-small dropdown-toggle actions-' + row[0] + '" data-toggle="dropdown" href="#"> <span class="caret"></span></a>\
                             <ul class="dropdown-menu">\
                                 ' + statusLi + '\
                                 <li><a href="' + data['deleteUrl'] + '" class="delete-call" id="modal-confirm-' + row[0] + '"><i class="icon-trash"></i> Delete</a></li>\

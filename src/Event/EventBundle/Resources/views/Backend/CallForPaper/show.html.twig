@@ -1,0 +1,74 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>Show "{{ call.title }}"</h3>
+            <a href="{{ path('backend_call_for_paper') }}" class="btn btn-small">&larr; Back to the list</a>
+        </div>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>Event</th>
+                    <td>{{ call.event.title }}</td>
+                </tr>
+                <tr>
+                    <th>Speaker Name</th>
+                    <td>{{ call.name }}</td>
+                </tr>
+                <tr>
+                    <th>Speaker Email</th>
+                    <td>{{ call.email }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ call.title }}</td>
+                </tr>
+                <tr>
+                    <th>Language</th>
+                    <td>{{ languages[call.language] }}</td>
+                </tr>
+                <tr>
+                    <th>Level</th>
+                    <td>{{ levels[call.level] }}</td>
+                </tr>
+                <tr>
+                    <th>Created</th>
+                    <td>{{ call.created|date }}</td>
+                </tr>
+                <tr>
+                    <th>Abstract</th>
+                    <td>{{ call.abstract }}</td>
+                </tr>
+                {% if call.note %}
+                    <tr>
+                        <th>Notes</th>
+                        <td>{{ call.note }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        {% if call.status == 1 %}
+                            <span class="label label-success">Approved</span>
+                        {% elseif call.status == 2 %}
+                            <span class="label">Declined</span>
+                        {% else %}
+                            <span class="label label-info">In progress</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            {% if call.status == 1 %}
+                <a class="btn" href="{{ path('backend_call_for_paper_change_status', {'id': call.id, 'status': 2}) }}">Decline</a>
+            {% elseif call.status == 2 %}
+                <a class="btn btn-success" href="{{ path('backend_call_for_paper_change_status', {'id': call.id, 'status': 1}) }}">Approve</a>
+            {% else %}
+                <a class="btn btn-success" href="{{ path('backend_call_for_paper_change_status', {'id': call.id, 'status': 1}) }}">Approve</a>
+                <a class="btn" href="{{ path('backend_call_for_paper_change_status', {'id': call.id, 'status': 2}) }}">Decline</a>
+            {% endif %}
+        </p>
+    </section>
+{% endblock %}

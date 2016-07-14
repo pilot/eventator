@@ -50,6 +50,7 @@ class CallForPaperController extends Controller
 
         $data = array_map(function (CallForPaper $call) use ($languages, $levels) {
             $actions = [
+                'showUrl' => $this->generateUrl('backend_call_for_paper_show', ['id' => $call->getId()]),
                 'deleteUrl' => $this->generateUrl('backend_call_for_paper_delete', ['id' => $call->getId()]),
             ];
 
@@ -78,17 +79,38 @@ class CallForPaperController extends Controller
 
     /**
      * @param CallForPaper $callForPaper
+     *
+     * @return Response
+     */
+    public function showAction(CallForPaper $callForPaper)
+    {
+        return $this->render('EventEventBundle:Backend/CallForPaper:show.html.twig', [
+            'call' => $callForPaper,
+            'languages' => $this->container->getParameter('event.speech_languages'),
+            'levels' => $this->container->getParameter('event.speech_levels'),
+        ]);
+    }
+
+    /**
+     * @param CallForPaper $callForPaper
+     * @param Request      $request
      * @param integer      $status
      *
-     * @return JsonResponse
+     * @return JsonResponse|RedirectResponse
      */
-    public function changeStatusAction(CallForPaper $callForPaper, $status)
+    public function changeStatusAction(CallForPaper $callForPaper, Request $request, $status)
     {
         $callForPaper->setStatus($status);
         $this->getManager()->persist($callForPaper);
         $this->getManager()->flush();
 
-        return new JsonResponse(true);
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse(true);
+        } else {
+            $this->setSuccessFlash('Status changed.');
+
+            return $this->redirectToRoute('backend_call_for_paper_show', ['id' => $callForPaper->getId()]);
+        }
     }
 
     /**

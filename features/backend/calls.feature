@@ -92,30 +92,44 @@ Background:
         | Test User  | test@mail.com | Test Title | 1        | 0     | Test test test | event2 |
 
 @javascript
-Scenario: Admin should have access to the speeches manage
+Scenario: Admin should have access to the show call details page
     Given I am sign in as admin
     When I click "Calls For Paper"
-    Then I wait for a form
-    And I should see the row containing "1;Test User;Russian;For all attendees;In Progress"
-    Then I wait for a form
-    Then I should see "Actions"
+    Then I wait "2" seconds
+    And I should see the row containing "1;Test Title;Russian;For all attendees;In Progress"
+    When I click "Show" on the row containing "1;Test Title;Russian;For all attendees;In Progress"
+    Then I wait "2" seconds
+    Then I should see "Show \"Test Title\""
 
 @javascript
-Scenario: Admin should have able to update calls status
+Scenario: Admin should have able to update calls status in the details page
+    Given I am sign in as admin
+    When I click "Calls For Paper"
+    Then I wait "2" seconds
+    And I should see the row containing "1;Test Title;Russian;For all attendees;In Progress"
+    When I click "Show" on the row containing "1;Test Title;Russian;For all attendees;In Progress"
+    Then I wait "2" seconds
+    Then I should see "Show \"Test Title\""
+    Then I click "Approve"
+    Then I wait "2" seconds
+    Then I should see "Status changed."
+
+@javascript
+Scenario: Admin should have able to update calls status in the table
     Given I am sign in as admin
     When I click "Calls For Paper"
     Then I wait for a form
-    And I should see the row containing "1;Test User;Russian;For all attendees;In Progress"
+    And I should see the row containing "1;Test Title;Russian;For all attendees;In Progress"
     Then I approve the call with id "1"
     Then I wait for a form
-    Then I should see the row containing "1;Test User;Russian;For all attendees;Approved"
+    Then I should see the row containing "1;Test Title;Russian;For all attendees;Approved"
 
 @javascript
 Scenario: Admin should have delete to the calls
     Given I am sign in as admin
     When I click "Calls For Paper"
     Then I wait for a form
-    And I should see the row containing "1;Test User;Russian;For all attendees;In Progress"
+    And I should see the row containing "1;Test Title;Russian;For all attendees;In Progress"
     Then I click on the element with css selector "a.actions-1"
     Then I click on the element with css selector "a#modal-confirm-1"
     Then I wait "3" seconds

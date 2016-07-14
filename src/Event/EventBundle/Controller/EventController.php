@@ -110,7 +110,7 @@ class EventController extends Controller
                 $event->getEmail(),
                 'Call For Paper Request - '.$event->getTitle(),
                 $this->renderView('EventEventBundle:Email:_callForPaper.html.twig', [
-                    'data' => $form->getData(),
+                    'data' => $request->request->get($form->getName()),
                     'from' => $form->get('email')->getData(),
                     'languages' => $this->container->getParameter('event.speech_languages'),
                     'levels' => $this->container->getParameter('event.speech_levels'),
