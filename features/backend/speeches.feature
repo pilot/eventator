@@ -23,7 +23,7 @@ Background:
         | organizer   | ru_RU  |
         | organizer2  | de_DE  |
     And following "Speech":
-        | ref     | title                | description                            | language | events       |
+        | ref     | title                | description                            | language | event        |
         | speech  | symfony propagation  | world symfony expansion                | ru       | event        |
         | speech2 | php servers piece    | php most popular language              | en       | event        |
         | speech3 | doctrine must have   | what you docrtine project should have  | en       | event        |
@@ -94,13 +94,10 @@ Scenario: Admin should have access to the speeches manage
     When I click "Speeches"
     Then I wait for a form
     Then I should see "Add speech"
-    And I should see the row containing "1;Alex Demchenko;ru /  symfony propagation;My event"
-    And I should see the row containing "2;Phill Pilow;en /  php servers piece;My event"
-    And I should see the row containing "3;Phill Pilow;en /  doctrine must have;My event"
-    And I should see the row containing "4;Alex Demchenko;en /  symfony propagation2;His event"
-    And I should see the row containing "5;Phill Pilow;en /  php servers piece2;His event"
-    And I should see the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
-    When I click "Edit" on the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
+    And I should see the row containing "4;Alex Demchenko;en / symfony propagation2"
+    And I should see the row containing "5;Phill Pilow;en / php servers piece2"
+    And I should see the row containing "6;Phill Pilow;en / doctrine must have2"
+    When I click "Edit" on the row containing "6;Phill Pilow;en / doctrine must have2"
     Then I wait for a form
     Then I should see "Edit speech"
 
@@ -116,12 +113,12 @@ Scenario: Admin should have able to add speeches
     And I fill in "Title" with "Test speech"
     And I select "Russian" from "Speech language"
     And I fill in "Description" with "Test description"
-    And I check "My event"
+    And I check "His event"
     And I select "Alex Demchenko" from "Speaker"
     And I press "Add"
     Then I wait for a form
     Then I should see "Speech Test speech added."
-    Then I should see the row containing "7;Alex Demchenko;ru /  Test speech;My event"
+    Then I should see the row containing "7;Alex Demchenko;ru / Test speech"
 
 @javascript
 Scenario: Admin should have able to update speeches settings
@@ -129,15 +126,15 @@ Scenario: Admin should have able to update speeches settings
     When I click "Speeches"
     Then I wait for a form
     Then I should see "Add speech"
-    And I should see the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
-    When I click "Edit" on the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
+    And I should see the row containing "6;Phill Pilow;en / doctrine must have2"
+    When I click "Edit" on the row containing "6;Phill Pilow;en / doctrine must have2"
     Then I wait for a form
     Then I should see "Edit speech"
     And I select "Russian" from "Speech language"
     And I press "Update"
     Then I wait for a form
     Then I should see "Speech doctrine must have2 updated."
-    Then I should see the row containing "6;Phill Pilow;ru /  doctrine must have2;His event"
+    Then I should see the row containing "6;Phill Pilow;ru / doctrine must have2"
 
 @javascript
 Scenario: Admin should have delete to the speeches
@@ -145,12 +142,12 @@ Scenario: Admin should have delete to the speeches
     When I click "Speeches"
     Then I wait for a form
     Then I should see "Add speech"
-    And I should see the row containing "1;Alex Demchenko;ru /  symfony propagation;My event"
-    And I should see the row containing "2;Phill Pilow;en /  php servers piece;My event"
-    Then I delete the record with id "2"
+    And I should see the row containing "4;Alex Demchenko;en / symfony propagation2"
+    And I should see the row containing "6;Phill Pilow;en / doctrine must have2;"
+    Then I delete the record with id "6"
     Then I wait for a form
     Then I should see "Speech deleted."
-    Then I should not see the row containing "2;Phill Pilow;en /  php servers piece;My event"
+    Then I should not see the row containing "6;Phill Pilow;en / doctrine must have2;"
 
 @javascript
 Scenario: Admin should have able to update Deutsch speeches settings
@@ -158,8 +155,8 @@ Scenario: Admin should have able to update Deutsch speeches settings
     When I click "Speeches"
     Then I wait for a form
     Then I should see "Add speech"
-    And I should see the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
-    When I click "Edit" on the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
+    And I should see the row containing "6;Phill Pilow;en / doctrine must have2"
+    When I click "Edit" on the row containing "6;Phill Pilow;en / doctrine must have2"
     Then I wait for a form
     Then I should see "Edit speech"
     And I click "de"
@@ -168,4 +165,4 @@ Scenario: Admin should have able to update Deutsch speeches settings
     And I press "Update"
     Then I wait for a form
     Then I should see "Speech doctrine must have2 updated."
-    Then I should see the row containing "6;Phill Pilow;en /  doctrine must have2;His event"
+    Then I should see the row containing "6;Phill Pilow;en / doctrine must have2"

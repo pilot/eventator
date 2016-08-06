@@ -36,4 +36,19 @@ class EventRepository extends EntityRepository
             ->getResult()
             ;
     }
+
+    /**
+     * @param integer $speechId
+     * @return array
+     */
+    public function getEventBySpeechId($speechId)
+    {
+        return $this->createQueryBuilder('e')
+            ->leftJoin('e.program', 'p')
+            ->leftJoin('p.speech', 's')
+            ->where('s.id = :speechId')
+            ->setParameter('speechId', $speechId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

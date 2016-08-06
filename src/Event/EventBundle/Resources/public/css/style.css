@@ -124,3 +124,7 @@ form input {
     text-align: center;
     font-size: 28px;
 }
+
+.events-list {
+    text-align: right;
+}

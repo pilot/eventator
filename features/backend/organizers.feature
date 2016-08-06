@@ -23,7 +23,7 @@ Background:
         | organizer   | ru_RU  |
         | organizer2  | de_DE  |
     And following "Speech":
-        | ref     | title                | description                            | language | events       |
+        | ref     | title                | description                            | language | event        |
         | speech  | symfony propagation  | world symfony expansion                | ru       | event        |
         | speech2 | php servers piece    | php most popular language              | en       | event        |
         | speech3 | doctrine must have   | what you docrtine project should have  | en       | event        |
