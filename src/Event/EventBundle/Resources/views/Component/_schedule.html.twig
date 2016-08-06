@@ -23,11 +23,14 @@
                     {% endif %}
                 {% else %}
                     <small>{{ entry.speech_language|default('en'|trans) }}:&nbsp;</small>
-                    {{ entry.speech_title }}
+                    <a href="#speech-{{ entry.speech_id }}" role="button" data-toggle="modal">
+                        {{ entry.speech_title }}
+                    </a>
                     <br />
                     <span class="speech-speaker">
                         <a href="#{{ entry.speaker_firsName }}-{{ entry.speaker_lastName }}-{{ entry.speaker_id }}" role="button" data-toggle="modal">{{ entry.speaker_fullName }}</a></span>
                 {% endif %}
+                {% include 'EventEventBundle:Event:_speech-modal.html.twig' %}
             </td>
         </tr>
         {% set date = entry.startDate|date('d') %}

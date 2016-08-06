@@ -24,7 +24,13 @@ class EventRepository extends EntityRepository
         $qb = $this->createQueryBuilder('e');
 
         return $qb
-            ->select('p.startDate, p.link, p.endDate, p.title, s.language as speech_language, s.title as speech_title, sp.homepage as speaker_homepage, sp.firstName as speaker_firsName, sp.lastName as speaker_lastName, sp.id as speaker_id, ' . $qb->expr()->concat($qb->expr()->concat('sp.firstName', $qb->expr()->literal(' ')), 'sp.lastName') . ' as speaker_fullName')
+            ->select(
+                'p.startDate, p.link, p.endDate, p.title,
+                s.id as speech_id, s.language as speech_language, s.title as speech_title, s.description as speech_description,
+                sp.firstName as speaker_firsName, sp.lastName as speaker_lastName, sp.id as speaker_id, sp.photo as speaker_photo,
+                sp.company as speaker_company, sp.position as speaker_position, sp.homepage as speaker_homepage,
+                '.$qb->expr()->concat($qb->expr()->concat('sp.firstName', $qb->expr()->literal(' ')), 'sp.lastName').' as speaker_fullName'
+            )
             ->leftJoin('e.program', 'p')
             ->leftJoin('p.speech', 's')
             ->leftJoin('s.speaker', 'sp')

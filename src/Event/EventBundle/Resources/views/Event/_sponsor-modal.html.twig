@@ -1,0 +1,39 @@
+<div class="modal fade" id="company-{{ sponsor.id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    {{ sponsor.company }}
+                </h4>
+                {% if sponsor.homepage %}
+                    <small><a href="{{ sponsor.homepage }}">{{ sponsor.homepage }}</a></small>
+                {% endif %}
+            </div>
+            <div class="modal-body" id="speaker-info">
+                <div class="row">
+                    <div class="col-sm-12 ta-center">
+                        <a href="{{ sponsor.homepage }}">
+                            <span id="face-wrapper">
+                                <img class="img-circle face" data-src="holder.js/160x160/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="160" width="160" />
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                {% if sponsor.description %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>Description</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>{{ sponsor.description|nl2br|raw }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
