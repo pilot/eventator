@@ -69,7 +69,7 @@ class EventController extends Controller
 
         $form = $this->createForm(ContactType::class);
         if ($request->isMethod('POST') && $form->handleRequest($request)) {
-            if ($form->isValid() && $this->getSession()->get('captchaResult') == $request->request->get('calc')) {
+            if ($form->isValid() && $request->getSession()->get('captchaResult') == $request->request->get('calc')) {
                 $this->get('eventator_mailer')->send(
                     $event->getEmail(),
                     'Contact Request - '.$event->getTitle(),
