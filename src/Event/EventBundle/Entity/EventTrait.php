@@ -2,6 +2,8 @@
 
 namespace Event\EventBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 trait EventTrait
 {
     public function __construct()
