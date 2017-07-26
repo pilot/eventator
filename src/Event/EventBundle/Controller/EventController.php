@@ -30,6 +30,7 @@ class EventController extends Controller
             'currentEvent' => $this->getEvent(),
             'speakers' => $this->getEvent()->getSpeakers(),
             'form' => $form->createView(),
+            'captcha' => $this->getCaptcha()
         ]);
     }
 
@@ -102,7 +103,7 @@ class EventController extends Controller
         $form = $this->callForPaper($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid() && $request->getSession()->get('captchaResult') == $request->request->get('calc')) {
             $this->getManager()->persist($entity);
             $this->getManager()->flush();
 
@@ -122,7 +123,9 @@ class EventController extends Controller
         }
 
         return new Response($this->renderView('EventEventBundle:Event:_form.html.twig', [
-            'form' => $form->createView()
+            'event' => $event,
+            'form' => $form->createView(),
+            'captcha' => $this->getCaptcha()
         ]));
     }
 

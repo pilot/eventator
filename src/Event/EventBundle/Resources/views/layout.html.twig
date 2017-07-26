@@ -74,25 +74,6 @@
 
                     $('#callForPaper').modal('show');
                 });
-
-                $('.send-request').on('click', function(e) {
-                    $(this).html("{{ 'Sending'|trans }}" + "...").prop('disabled', 'disabled');
-
-                    e.preventDefault();
-                    $.post(
-                        $(this.form).attr('action'),
-                        $(this.form).serializeArray(),
-                        function(data){
-                            if (data == 'Success') {
-                                $('#callForPaperForm').html("{{ 'Thank you for request, we\'ll answer back asap.'|trans }}");
-                            } else {
-                                $('#callForPaperForm').html(data);
-                            }
-
-                            $(this).html("{{ 'Send'|trans }}").removeProp('disabled');
-                        }
-                    );
-                });
             })
         </script>
 
