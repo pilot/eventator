@@ -47,18 +47,11 @@
 <script type="text/javascript">
     $(function(){
         $('button.btn-contact-send').on('click', function(e) {
-            // hide error if shown before
-            $('.captcha-error-contacts').hide();
-
             var first = '{{ captcha.first }}',
                 last = '{{ captcha.last }}',
-                sum = first * 1 + last * 1,
-                result = $('.captcha-calc-contacts').val(),
-                error = '{{ "Please fill correct calculation result"|trans }}';
+                result = $('.captcha-calc-contacts').val();
 
-            if (sum != result) {
-                $('.captcha-error-contacts').html(error).show();
-
+            if (!checkCaptcha(first, last, result, 'captcha-error-contacts')) {
                 return false;
             }
         });

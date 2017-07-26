@@ -68,6 +68,21 @@
         {{ render(controller('EventEventBundle:Event:contact')) }}
 
         <script type="text/javascript">
+            function checkCaptcha(first, last, result, errorClass) {
+                $('.' + errorClass).hide();
+
+                var sum = first * 1 + last * 1,
+                    error = '{{ "Please fill correct calculation result"|trans }}';
+
+                if (sum != result) {
+                    $('.' + errorClass).html(error).show();
+
+                    return false;
+                }
+
+                return true;
+            }
+
             $(function() {
                 $('.call-for-paper').on('click', function(e) {
                     e.preventDefault();

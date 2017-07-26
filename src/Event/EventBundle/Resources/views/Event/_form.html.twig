@@ -24,19 +24,14 @@
     $(function(){
         $('.send-request').on('click', function(e) {
             e.preventDefault();
-            $('.captcha-error-form').hide();
-
             var first = '{{ captcha.first }}',
                 last = '{{ captcha.last }}',
-                sum = first * 1 + last * 1,
-                result = $('.captcha-calc-form').val(),
-                error = '{{ "Please fill correct calculation result"|trans }}';
+                result = $('.captcha-calc-form').val();
 
-            if (sum != result) {
-                $('.captcha-error-form').html(error).show();
-
+            if (!checkCaptcha(first, last, result, 'captcha-error-form')) {
                 return false;
             }
+
             $(this).html("{{ 'Sending'|trans }}" + "...").prop('disabled', 'disabled');
 
             $.post(
