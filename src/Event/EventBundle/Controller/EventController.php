@@ -132,8 +132,7 @@ class EventController extends Controller
     public function callForPaperViewAction()
     {
         $entity = new CallForPaper();
-        $event = $this->getEvent();
-        $entity->setEvent($event);
+        $entity->setEvent($this->getEvent());
         $form = $this->callForPaper($entity);
 
         return new Response($this->renderView('EventEventBundle:Event:callForPaperView.html.twig', [
