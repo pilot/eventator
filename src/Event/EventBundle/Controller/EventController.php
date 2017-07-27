@@ -119,11 +119,24 @@ class EventController extends Controller
                 $form->get('email')->getData()
             );
 
-            return new Response('Success');
+                return new Response('Success');
+
         }
 
         return new Response($this->renderView('EventEventBundle:Event:_form.html.twig', [
-            'event' => $event,
+            'form' => $form->createView(),
+            'captcha' => $this->getCaptcha()
+        ]));
+    }
+
+    public function callForPaperViewAction()
+    {
+        $entity = new CallForPaper();
+        $event = $this->getEvent();
+        $entity->setEvent($event);
+        $form = $this->callForPaper($entity);
+
+        return new Response($this->renderView('EventEventBundle:Event:callForPaperView.html.twig', [
             'form' => $form->createView(),
             'captcha' => $this->getCaptcha()
         ]));
