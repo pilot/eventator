@@ -133,6 +133,7 @@ class EventController extends Controller
     {
         $entity = new CallForPaper();
         $entity->setEvent($this->getEvent());
+
         $form = $this->callForPaper($entity);
 
         return new Response($this->renderView('EventEventBundle:Event:callForPaperView.html.twig', [

@@ -1,0 +1,22 @@
+{% extends 'EventEventBundle::layout.html.twig' %}
+
+{% block links %}
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="{{ path('event_homepage') }}#home">Home</a></li>
+        <li><a href="{{ path('event_homepage') }}#speakers">Speakers</a></li>
+        <li><a href="{{ path('event_homepage') }}#venue">Venue</a></li>
+        <li><a href="{{ path('event_homepage') }}#schedule">Schedule</a></li>
+        <li><a href="{{ path('event_homepage') }}#sponsors">Sponsors</a></li>
+        <li><a href="{{ path('event_homepage') }}#organizers">Organizers</a></li>
+        <li><a href="{{ path('event_homepage') }}#contact">Contact</a></li>
+        <li><a href="{{ path('event_component_call_for_paper_view') }}">Call for Paper</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="container marketing">
+        <div id="callForPaperForm">
+            {% include 'EventEventBundle:Event:_form.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
