@@ -119,7 +119,7 @@ class EventController extends Controller
                 $form->get('email')->getData()
             );
 
-                return new Response('Success');
+            return new Response('Success');
 
         }
 
