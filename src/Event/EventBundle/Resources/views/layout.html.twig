@@ -68,30 +68,26 @@
         {{ render(controller('EventEventBundle:Event:contact')) }}
 
         <script type="text/javascript">
+            function checkCaptcha(first, last, result, errorClass) {
+                $('.' + errorClass).hide();
+
+                var sum = first * 1 + last * 1,
+                    error = '{{ "Please fill correct calculation result"|trans }}';
+
+                if (sum != result) {
+                    $('.' + errorClass).html(error).show();
+
+                    return false;
+                }
+
+                return true;
+            }
+
             $(function() {
                 $('.call-for-paper').on('click', function(e) {
                     e.preventDefault();
 
                     $('#callForPaper').modal('show');
-                });
-
-                $('.send-request').on('click', function(e) {
-                    $(this).html("{{ 'Sending'|trans }}" + "...").prop('disabled', 'disabled');
-
-                    e.preventDefault();
-                    $.post(
-                        $(this.form).attr('action'),
-                        $(this.form).serializeArray(),
-                        function(data){
-                            if (data == 'Success') {
-                                $('#callForPaperForm').html("{{ 'Thank you for request, we\'ll answer back asap.'|trans }}");
-                            } else {
-                                $('#callForPaperForm').html(data);
-                            }
-
-                            $(this).html("{{ 'Send'|trans }}").removeProp('disabled');
-                        }
-                    );
                 });
             })
         </script>
