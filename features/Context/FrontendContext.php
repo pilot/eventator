@@ -2,6 +2,8 @@
 
 namespace Context;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
@@ -202,6 +204,14 @@ class FrontendContext extends MinkContext implements KernelAwareInterface
     public function iClick($link)
     {
         $this->clickLink($link);
+    }
+
+    /**
+     * @Then /^I wait "([^"]*)" seconds$/
+     */
+    public function iWaitSeconds($seconds)
+    {
+        $this->getSession()->wait(($seconds * 1000));
     }
 
     /**

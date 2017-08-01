@@ -27,7 +27,14 @@
             e.preventDefault();
             var first = '{{ captcha.first }}',
                 last = '{{ captcha.last }}',
+                env = '{{ app.environment }}',
+                sum = first * 1 + last * 1,
                 result = $('.captcha-calc-form').val();
+
+            if (env === 'test') {
+                result = sum;
+                $('.captcha-calc-form').val(sum);
+            }
 
             if (!checkCaptcha(first, last, result, 'captcha-error-form')) {
                 return false;

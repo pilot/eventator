@@ -14,21 +14,18 @@ Background:
         | event  | ru_RU  |
 
 Scenario: Viewing the homepage at website root
-    Given I am on "/"
-    And I should see "My event"
+    Given I am on "/call-for-paper"
 
 @javascript
 Scenario: User should able call for papers
-    Given I am on "/"
-    When I click "Call for Paper"
-    Then I wait for a form
-    And I fill in "Name" with "Alex Demchenko"
-    And I fill in "Email" with "email@example.com"
+    Given I am on "/call-for-paper"
+    And I fill in "Name" with "Andrey Biletskiy"
+    And I fill in "Email" with "nkahemp1990@gmail.com"
     And I fill in "Title" with "Another awesome speech"
     And I select "Russian" from "Language"
     And I select "Experts" from "Talk level"
     And I fill in "Abstract of your talk" with "symfony propagation"
     And I fill in "Notes" with "symfony propagation"
     When I press "Send"
-    Then I wait for a form
+    And I wait "2" seconds
     Then I should see "Thank you for request, we'll answer back asap."
