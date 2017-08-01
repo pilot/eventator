@@ -1,0 +1,14 @@
+{% extends 'EventEventBundle::base.html.twig' %}
+{% set event = app.request.attributes.get('event') %}
+
+{% block title %}Call for paper{% endblock %}
+
+{% block body %}
+    {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}
+    <div class="container marketing">
+        <div class="row" style="margin-top: 3%">
+            {% include 'EventEventBundle:Event:_form.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+

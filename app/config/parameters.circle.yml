@@ -13,7 +13,7 @@ parameters:
     mailer_port:       ~
 
     locale:            en
-    secret:            ~
+    secret:            4yceqicrp8stv6qmwxnv
 
     behat_print_err:   1
 

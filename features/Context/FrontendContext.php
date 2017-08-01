@@ -205,6 +205,14 @@ class FrontendContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Then /^I wait "([^"]*)" seconds$/
+     */
+    public function iWaitSeconds($seconds)
+    {
+        $this->getSession()->wait(($seconds * 1000));
+    }
+
+    /**
      * @Then /^I wait for a form$/
      */
     public function iWaitForAForm()

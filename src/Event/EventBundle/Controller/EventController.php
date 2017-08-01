@@ -30,7 +30,7 @@ class EventController extends Controller
             'currentEvent' => $this->getEvent(),
             'speakers' => $this->getEvent()->getSpeakers(),
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha()
+            'captcha' => $this->getCaptcha('captchaResultCall')
         ]);
     }
 
@@ -103,7 +103,7 @@ class EventController extends Controller
         $form = $this->callForPaper($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid() && $request->getSession()->get('captchaResult') == $request->request->get('calc')) {
+        if ($form->isValid() && $request->getSession()->get('captchaResultCall') == $request->request->get('calc')) {
             $this->getManager()->persist($entity);
             $this->getManager()->flush();
 
@@ -125,7 +125,7 @@ class EventController extends Controller
 
         return new Response($this->renderView('EventEventBundle:Event:_form.html.twig', [
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha()
+            'captcha' => $this->getCaptcha('captchaResultCall')
         ]));
     }
 
@@ -136,8 +136,9 @@ class EventController extends Controller
         $form = $this->callForPaper($entity);
 
         return new Response($this->renderView('EventEventBundle:Event:callForPaperView.html.twig', [
+            'event' => $this->getEvent(),
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha()
+            'captcha' => $this->getCaptcha('captchaResultCall')
         ]));
     }
 

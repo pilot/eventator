@@ -5,98 +5,62 @@
 
 {% block body %}
     {% block menu %}
-    <div class="navbar-wrapper" style="z-index:1030">
-        <div class="container">
-
-            <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ path('event_homepage') }}">{{ event.title }}</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#home">Home</a></li>
-                            <li><a href="#speakers">Speakers</a></li>
-                            <li><a href="#venue">Venue</a></li>
-                            <li><a href="#schedule">Schedule</a></li>
-                            <li><a href="#sponsors">Sponsors</a></li>
-                            <li><a href="#organizers">Organizers</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+        {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': true} %}
     {% endblock %}
 
-    {{ render(controller('EventEventBundle:Event:carousel')) }}
+        {{ render(controller('EventEventBundle:Event:carousel')) }}
 
-    <div class="container marketing">
-        {% for message in app.session.flashbag.get('success') %}
-            <div class="alert alert-success">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashbag.get('error') %}
-            <div class="alert alert-error">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashbag.get('notice') %}
-            <div class="alert alert-info">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
+        <div class="container marketing">
+            {% for message in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+            {% for message in app.session.flashbag.get('error') %}
+                <div class="alert alert-error">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+            {% for message in app.session.flashbag.get('notice') %}
+                <div class="alert alert-info">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
 
-        {# one page event do not required content #}
-        {# {% block content %}{% endblock %} #}
+            {# one page event do not required content #}
+            {# {% block content %}{% endblock %} #}
 
-        <div>
-            {{ event.description|raw }}
+            <div>
+                {{ event.description|raw }}
+            </div>
+
+            {{ render(controller('EventEventBundle:Event:speakers')) }}
+
+            {{ render(controller('EventEventBundle:Event:venue')) }}
+
+            {{ render(controller('EventEventBundle:Event:schedule')) }}
+
+            {{ render(controller('EventEventBundle:Event:sponsors')) }}
+
+            {{ render(controller('EventEventBundle:Event:organizers')) }}
+
+            {{ render(controller('EventEventBundle:Event:contact')) }}
+
+            <script type="text/javascript">
+                $(function() {
+                    $('.call-for-paper').on('click', function(e) {
+                        e.preventDefault();
+
+                        $('#callForPaper').modal('show');
+                    });
+                })
+            </script>
+
+            <hr class="featurette-divider">
+            <footer>
+                <p class="pull-right"><a href="#">to the top</a></p>
+                <p>&copy; 2013 {{ event.title }}</p>
+                <p><small class="text-muted">Under the hood: <a href="https://github.com/pilot/eventator">Eventator &mdash; Events Manager</a></small></p>
+            </footer>
         </div>
-
-        {{ render(controller('EventEventBundle:Event:speakers')) }}
-
-        {{ render(controller('EventEventBundle:Event:venue')) }}
-
-        {{ render(controller('EventEventBundle:Event:schedule')) }}
-
-        {{ render(controller('EventEventBundle:Event:sponsors')) }}
-
-        {{ render(controller('EventEventBundle:Event:organizers')) }}
-
-        {{ render(controller('EventEventBundle:Event:contact')) }}
-
-        <script type="text/javascript">
-            function checkCaptcha(first, last, result, errorClass) {
-                $('.' + errorClass).hide();
-
-                var sum = first * 1 + last * 1,
-                    error = '{{ "Please fill correct calculation result"|trans }}';
-
-                if (sum != result) {
-                    $('.' + errorClass).html(error).show();
-
-                    return false;
-                }
-
-                return true;
-            }
-
-            $(function() {
-                $('.call-for-paper').on('click', function(e) {
-                    e.preventDefault();
-
-                    $('#callForPaper').modal('show');
-                });
-            })
-        </script>
-
-        <hr class="featurette-divider">
-        <footer>
-            <p class="pull-right"><a href="#">to the top</a></p>
-            <p>&copy; 2013 {{ event.title }}</p>
-            <p><small class="text-muted">Under the hood: <a href="https://github.com/pilot/eventator">Eventator &mdash; Events Manager</a></small></p>
-        </footer>
-    </div>
 {% endblock %}

@@ -21,6 +21,23 @@
         {% block body %}
         {% endblock %}
 
+        <script type="text/javascript">
+            function checkCaptcha(first, last, result, errorClass) {
+                $('.' + errorClass).hide();
+
+                var sum = first * 1 + last * 1,
+                    error = '{{ "Please fill correct calculation result"|trans }}';
+
+                if (sum != result) {
+                    $('.' + errorClass).html(error).show();
+
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+
         {% block javascripts %}
             <script src="{{ asset('bundles/eventevent/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('bundles/eventevent/js/holder.js') }}"></script>

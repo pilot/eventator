@@ -27,7 +27,13 @@ event_component_contact:
     defaults: { _controller: EventEventBundle:Event:contact }
 
 event_component_call_for_paper:
-    path:  /call-for-paper
+    path:  /call-for-paper-mod
     defaults: { _controller: EventEventBundle:Event:callForPaper }
+    requirements:
+        methods: POST
+
+event_component_call_for_paper_view:
+    path:  /call-for-paper
+    defaults: { _controller: EventEventBundle:Event:callForPaperView }
     requirements:
         methods: POST

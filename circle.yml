@@ -11,9 +11,6 @@ checkout:
     - cp var/ci/behat.ci.yml ./behat.yml
 
 dependencies:
-  pre:
-    - printf "\n" | pecl install intl
-
   cache_directories:
     - vendor   # relative to the build directory
     - bin      # relative to the build directory

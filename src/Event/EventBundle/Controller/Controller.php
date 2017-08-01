@@ -144,10 +144,10 @@ class Controller extends BaseController
         $this->getFlashBag()->add($type, $message);
     }
 
-    protected function getCaptcha()
+    protected function getCaptcha($key = null)
     {
         $captcha = ['first' => mt_rand(1, 100), 'last' => mt_rand(1, 100)];
-        $this->get('session')->set('captchaResult', array_sum($captcha));
+        $this->get('session')->set($key ? $key : 'captchaResult', array_sum($captcha));
 
         return $captcha;
     }
