@@ -1,20 +1,25 @@
-<div id="speakers" class="clearfix">&nbsp;</div>
-<h2 class="featurette-heading">Speakers</h2>
-<p class="lead">{{ 'Apply to speak through our'|trans }} <a href="javascript:void(0)" class="call-for-paper">{{ 'Call for Paper'|trans }}</a></p>
+<section class="speakers">
+    <div class="container">
+        <div class="speakers" id="speakers">
+            <h2><i class="ico_speakers"></i>Speakers</h2>
+            <h3 class="lead">{{ 'Apply to speak through our'|trans }} <a href="javascript:void(0)" class="call-for-paper">{{ 'Call for Paper'|trans }}</a></h3>
 
-{% if speakers %}
-    <div class="row">
-        {% for speaker in speakers %}
-            <div class="col-lg-2">
-                <a href="#{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}" role="button" data-toggle="modal">
-                    <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="140" />
-                </a>
-                <h3><a href="#{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}" role="button" data-toggle="modal">{{ speaker.fullName }}</a></h3>
-            </div>
-            {% include 'EventEventBundle:Event:_speaker-modal.html.twig' %}
-        {% endfor %}
+            {% if speakers %}
+                <ul class="list_speakers">
+                    {% for speaker in speakers %}
+                        <li>
+                            <a href="#{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}" role="button" data-toggle="modal">
+                                <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="140" />
+                                <span>{{ speaker.fullName }}</span>
+                            </a>
+                        </li>
+                        {% include 'EventEventBundle:Event:_speaker-modal.html.twig' %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {# call for paper modal #}
+            {% include 'EventEventBundle:Event:_callForPaper.html.twig' with { 'form': form } %}
+        </div>
     </div>
-{% endif %}
-
-{# call for paper modal #}
-{% include 'EventEventBundle:Event:_callForPaper.html.twig' with { 'form': form } %}
+</section>

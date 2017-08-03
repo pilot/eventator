@@ -1,29 +1,67 @@
 {% macro sponsors(sponsors) %}
-    <div class="row">
-        {% for sponsor in sponsors %}
-            <div class="col-lg-2 ta-center">
-                <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
-                    <span id="face-wrapper">
-                        <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
-                    </span>
-                </a>
-                <h2><a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">{{ sponsor.company }}</a></h2>
-            </div>
-            {% include 'EventEventBundle:Event:_sponsor-modal.html.twig' %}
-        {% endfor %}
+    <h2 class="text">Gold sponsors</h2>
+    <div class="center">
+        <ul class="list_sponsors">
+            {% for sponsor in sponsors %}
+                {% if sponsor.type == 2 %}
+                    <li>
+                        <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
+                            <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
+                            <span>{{ sponsor.company }}</span>
+                        </a>
+                        {% include 'EventEventBundle:Event:_sponsor-modal.html.twig' %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <h3 class="text">Silver sponsors</h3>
+    <div class="center">
+        <ul class="list_sponsors middle">
+            {% for sponsor in sponsors %}
+                {% if sponsor.type == 3 %}
+                    <li>
+                        <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
+                            <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
+                            <span>{{ sponsor.company }}</span>
+                        </a>
+                        {% include 'EventEventBundle:Event:_sponsor-modal.html.twig' %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <h4 class="text">Bronze sponsors</h4>
+    <div class="center">
+        <ul class="list_sponsors small">
+            {% for sponsor in sponsors %}
+                {% if sponsor.type == 4 %}
+                    <li>
+                        <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
+                            <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
+                            <span>{{ sponsor.company }}</span>
+                        </a>
+                        {% include 'EventEventBundle:Event:_sponsor-modal.html.twig' %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
 {% endmacro %}
 
-<hr id="sponsors" class="featurette-divider">
-<h2 class="featurette-heading">Sponsors</h2>
-<p class="lead">{{ event.sponsorDescription|nl2br }}</p>
+<section class="sponsors">
+    <div class="container" id="sponsors">
+        <h2><i class="ico_sponsors"></i>Sponsors</h2>
+        <p class="lead">{{ event.sponsorDescription|nl2br }}</p>
 
-{% if event.sponsors|length > 0 and event.getSponsorsExclude|length > 0 %}
-    {{ _self.sponsors(event.getSponsorsExclude) }}
-{% endif %}
+        {% if event.sponsors|length > 0 and event.getSponsorsExclude|length > 0 %}
+            {{ _self.sponsors(event.getSponsorsExclude) }}
+        {% endif %}
 
-{% if event.specifiedSponsors()|length > 0 %}
-    <h2 class="featurette-heading">Info Partners</h2>
-    {{ _self.sponsors(event.specifiedSponsors) }}
-{% endif %}
+        {% if event.specifiedSponsors()|length > 0 %}
+            <h2 class="featurette-heading">Info Partners</h2>
+            {{ _self.sponsors(event.specifiedSponsors) }}
+        {% endif %}
+    </div>
+</section>
 

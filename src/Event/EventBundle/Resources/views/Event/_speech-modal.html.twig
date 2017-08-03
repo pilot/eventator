@@ -1,37 +1,37 @@
-<div class="modal fade" id="speech-{{ entry.speech_id }}">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">{{ entry.speech_title }}&nbsp;<small>({{ entry.speech_language|default('en'|trans) }})</small></h4>
+<div class="modal" id="speech-{{ entry.speech_id }}">
+    <div class="wrap_modal">
+        <div class="modal_header">
+            <i></i>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{{ entry.speech_title }}&nbsp;<small>({{ entry.speech_language|default('en'|trans) }})</small></h4>
+        </div>
+        <div class="modal-body" id="speaker-info">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Description</h4>
+                </div>
             </div>
-            <div class="modal-body" id="speaker-info">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4>Description</h4>
-                    </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>{{ entry.speech_description ? entry.speech_description : entry.speech_title }}</p>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p>{{ entry.speech_description ? entry.speech_description : entry.speech_title }}</p>
-                    </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Speaker</h4>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4>Speaker</h4>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 text-left">
+                    <img class="img-circle" data-src="holder.js/160x160/text:{{ entry.speaker_fullName }}" src="{{ entry.speaker_photo ?: '' }}" width="100" />
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 text-left">
-                        <img class="img-circle" data-src="holder.js/160x160/text:{{ entry.speaker_fullName }}" src="{{ entry.speaker_photo ?: '' }}" width="100" />
-                    </div>
-                    <div class="col-sm-9 text-left">
-                        <a href="{{ entry.speaker_homepage }}">{{ entry.speaker_fullName }}</a>
-                        <p><small>{{ entry.speaker_company }}&nbsp;({{ entry.speaker_position }})</small></p>
-                    </div>
+                <div class="col-sm-9 text-left">
+                    <a href="{{ entry.speaker_homepage }}">{{ entry.speaker_fullName }}</a>
+                    <p><small>{{ entry.speaker_company }}&nbsp;({{ entry.speaker_position }})</small></p>
                 </div>
             </div>
         </div>
     </div>
+    <div class="overlay"></div>
 </div>

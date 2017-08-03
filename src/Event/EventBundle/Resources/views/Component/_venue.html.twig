@@ -1,12 +1,18 @@
-<hr id="venue" class="featurette-divider">
-<h2 class="featurette-heading">Venue</h2>
-<p class="lead">
-    {{ event.venue }} /
-    <strong>{{ event.startDate|date }}</strong> /
-    {{ event.venueAddress ? event.venueAddress ~ ' / ' : '' }}{{ event.country ~ ' ' ~ event.city }}
-</p>
-<div id="map-canvas" style="height: 300px;"></div>
-
+<section class="venue">
+    <div class="container" id="venue">
+        <div class="wrapper">
+            <h2><i class="ico_venue"></i>Venue</h2>
+            <h3 class="subtitle">
+                {{ event.venue }} /
+                {{ event.startDate|date }} /
+                {{ event.venueAddress ? event.venueAddress ~ ' / ' : '' }}{{ event.country ~ ' ' ~ event.city }}
+            </h3>
+        </div>
+    </div>
+</section>
+<section class="map">
+    <div id="map-canvas" style="height: 500px;"></div>
+</section>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
     function initialize() {
