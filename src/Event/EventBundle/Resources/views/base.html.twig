@@ -38,17 +38,10 @@
             }
         </script>
 
-        <script type="text/javascript">
-            $(".menu").find("a").click(function(){
-                $(".menu .active").removeClass("active");
-//                $(this).toggleClass('active');
-            });
-        </script>
-
         {% block javascripts %}
+            <script src="{{ asset('bundles/eventevent/js/libs/slick.min.js') }}"></script>
             <script src="{{ asset('bundles/eventevent/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('bundles/eventevent/js/holder.js') }}"></script>
-            <script src="{{ asset('bundles/eventevent/js/libs/slick.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

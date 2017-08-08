@@ -1,25 +1,47 @@
 <section class="carousel">
-        <ul id="slides">
-            {% set slides = ['slideOne', 'slideTwo', 'slideThree'] %}
-            {% for index in 0..2 %}
-                <li><img src="{{ attribute(event, slides[index]) ?: 'http://lorempixel.com/g/1500/800/business/' ~ (index + 1) }}" alt="image">
-                    <div class="content_slide">
-                        <div class="container">
-                            <div class="wrapper_text">
-                                <p class="title_slide">{{ event.title }}</p>
-                                <p class="text_slide">{{ event.briefDescription }}</p>
-                            </div>
-                            <a href="#" class="btn_blue">{{ 'Registration'|trans }}</a>
+    <div id="home" class="indent"></div>
+    <ul id="slides">
+        {% set slides = ['slideOne', 'slideTwo', 'slideThree'] %}
+        {% for index in 0..2 %}
+            <li>
+                <img src="{{ attribute(event, slides[index]) ?: 'http://lorempixel.com/g/1500/800/business/' ~ (index + 1) }}"
+                     alt="image">
+                <div class="content_slide">
+                    <div class="container">
+                        <div class="wrapper_text">
+                            <p class="title_slide">{{ event.title }}</p>
+                            <p class="text_slide">{{ event.briefDescription }}</p>
                         </div>
+                        {% if event.isActive and event.embedTicket %}
+                            <a class="btn_blue modal-active" href="#">{{ 'Registration'|trans }}</a>
+                        {% else %}
+                            <button class="btn btn-large btn-primary"
+                                    disabled="disabled">{{ 'Registration closed'|trans }}</button>
+                        {% endif %}
                     </div>
-                </li>
-            {% endfor %}
-        </ul>
+                </div>
+                <div class="overlay_slider"></div>
+            </li>
+        {% endfor %}
+    </ul>
 </section>
 
-<script type="text/javascript">
+<div class="modal fade" id="registration">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ 'Registration'|trans }}</h4>
+            </div>
+            <div class="modal-body">
+                {{ event.embedTicket|raw }}
+            </div>
+        </div>
+    </div>
+</div>
 
-    $(document).ready(function(){
+<script type="text/javascript">
+    $(document).ready(function () {
         $('#slides').slick({
             dots: true,
             infinite: true,
@@ -31,4 +53,10 @@
         });
     });
 
+    $(function () {
+        $('.modal-active').on('click', function (e) {
+            e.preventDefault();
+            $('#registration').modal('show');
+        });
+    })
 </script>
