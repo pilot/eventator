@@ -1,44 +1,48 @@
-<hr id="schedule" class="featurette-divider">
-<h2 class="featurette-heading">Schedule</h2>
-<p class="lead">{{ 'Apply to speak through our'|trans }} <a href="javascript:void(0)" class="call-for-paper">{{ 'Call for Paper'|trans }}</a></p>
+<section class="schedule bg">
+    <div id="schedule" class="indent"></div>
+    <div class="container">
+        <h2><i class="ico_schedule"></i>Schedule</h2>
+        <h3 class="subtitle">Apply to speak through our <a href="javascript:void(0)" class="call-for-paper">Call for Paper</a></h3>
 
-{% if schedule %}
-<table class="table" id="program">
-    <tbody>
-    {% set date = null %}
-    {% for entry in schedule if (entry.title or entry.speech_title) %}
-        {% if date != entry.startDate|date('d') %}
-        <tr>
-            <td colspan="2"><strong>{{ entry.startDate|date('l, F dS') }}</strong></td>
-        </tr>
-        {% endif %}
-        <tr class="{{ entry.link ? 'success' : entry.title ? 'warning' : '' }}">
-            <td width="110">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
-            <td class="{{ entry.title and not entry.link ? '' : 'speech-title' }}">
-                {% if entry.title %}
-                    {% if entry.link %}
-                        <a href="{{ entry.link }}">{{ entry.title }}</a>
-                    {% else %}
-                        <i>{{ entry.title }}</i>
-                    {% endif %}
-                {% else %}
-                    <small>{{ entry.speech_language|default('en'|trans) }}:&nbsp;</small>
-                    <a href="#speech-{{ entry.speech_id }}" role="button" data-toggle="modal">
-                        {{ entry.speech_title }}
-                    </a>
-                    <br />
-                    <span class="speech-speaker">
+        {% if schedule %}
+            <table class="table" id="program">
+                <tbody>
+                    {% set date = null %}
+                    {% for entry in schedule if (entry.title or entry.speech_title) %}
+                        {% if date != entry.startDate|date('d') %}
+                            <tr>
+                                <td colspan="2"><strong>{{ entry.startDate|date('l, F dS') }}</strong></td>
+                            </tr>
+                        {% endif %}
+                        <tr class="{{ entry.link ? 'success' : entry.title ? 'warning' : '' }}">
+                            <td width="110">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
+                            <td class="{{ entry.title and not entry.link ? '' : 'speech-title' }}">
+                                {% if entry.title %}
+                                    {% if entry.link %}
+                                        <a href="{{ entry.link }}">{{ entry.title }}</a>
+                                    {% else %}
+                                        <i>{{ entry.title }}</i>
+                                    {% endif %}
+                                {% else %}
+                                    <small>{{ entry.speech_language|default('en'|trans) }}:&nbsp;</small>
+                                    <a href="#speech-{{ entry.speech_id }}" role="button" data-toggle="modal">
+                                        {{ entry.speech_title }}
+                                    </a>
+                                    <br />
+                                    <span class="speech-speaker">
                         <a href="#{{ entry.speaker_firsName }}-{{ entry.speaker_lastName }}-{{ entry.speaker_id }}" role="button" data-toggle="modal">{{ entry.speaker_fullName }}</a></span>
-                {% endif %}
-                {% include 'EventEventBundle:Event:_speech-modal.html.twig' %}
-            </td>
-        </tr>
-        {% set date = entry.startDate|date('d') %}
-    {% else %}
-        <tr>
-            <td colspan="2" class="no-schedule">{{ 'index.schedule.no_shedules'|trans }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-{% endif %}
+                                {% endif %}
+                                {% include 'EventEventBundle:Event:_speech-modal.html.twig' %}
+                            </td>
+                        </tr>
+                        {% set date = entry.startDate|date('d') %}
+                    {% else %}
+                        <tr>
+                            <td colspan="2" class="no-schedule">{{ 'index.schedule.no_shedules'|trans }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</section>

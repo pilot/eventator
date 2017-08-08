@@ -34,21 +34,21 @@ class CallForPaperType extends AbstractType
             ->add('title', TextType::class, ['constraints' => [new NotBlank()]])
             ->add('language', ChoiceType::class, [
                 'choices' => $options['languages'],
+                'attr' => ['class' => 'active'],
                 'choices_as_values' => true,
             ])
             ->add('level', ChoiceType::class, [
                 'label' => 'Talk level',
+                'attr' => ['class' => 'active'],
                 'choices' => $options['levels'],
                 'choices_as_values' => true,
             ])
             ->add('abstract', TextareaType::class, [
                 'label' => 'Abstract of your talk',
-                'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
                 'constraints' => [new NotBlank()]
             ])
             ->add('note', TextareaType::class, [
                 'label' => 'Notes',
-                'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
                 'required' => false
             ])
         ;

@@ -1,0 +1,25 @@
+<svg width="38" height="42" viewBox="0 0 38 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>calendar (1)</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(580 -1171)">
+<g id="calendar (1)">
+<g id="Vector">
+<use xlink:href="#path0_stroke" transform="translate(-578 1176.8)" fill="#2D9CDB"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path1_stroke" transform="translate(-553.444 1173)" fill="#2D9CDB"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path1_stroke" transform="translate(-568.556 1173)" fill="#2D9CDB"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path2_stroke" transform="translate(-578 1188.2)" fill="#2D9CDB"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_stroke" d="M 3.77778 1.5L 30.2222 1.5L 30.2222 -1.5L 3.77778 -1.5L 3.77778 1.5ZM 30.2222 1.5C 31.4719 1.5 32.5 2.52144 32.5 3.8L 35.5 3.8C 35.5 0.881197 33.1453 -1.5 30.2222 -1.5L 30.2222 1.5ZM 32.5 3.8L 32.5 30.4L 35.5 30.4L 35.5 3.8L 32.5 3.8ZM 32.5 30.4C 32.5 31.6786 31.4719 32.7 30.2222 32.7L 30.2222 35.7C 33.1453 35.7 35.5 33.3188 35.5 30.4L 32.5 30.4ZM 30.2222 32.7L 3.77778 32.7L 3.77778 35.7L 30.2222 35.7L 30.2222 32.7ZM 3.77778 32.7C 2.52808 32.7 1.5 31.6786 1.5 30.4L -1.5 30.4C -1.5 33.3188 0.854659 35.7 3.77778 35.7L 3.77778 32.7ZM 1.5 30.4L 1.5 3.8L -1.5 3.8L -1.5 30.4L 1.5 30.4ZM 1.5 3.8C 1.5 2.52144 2.52808 1.5 3.77778 1.5L 3.77778 -1.5C 0.854659 -1.5 -1.5 0.881197 -1.5 3.8L 1.5 3.8Z"/>
+<path id="path1_stroke" d="M 1.5 0C 1.5 -0.828427 0.828427 -1.5 0 -1.5C -0.828427 -1.5 -1.5 -0.828427 -1.5 0L 1.5 0ZM -1.5 7.6C -1.5 8.42843 -0.828427 9.1 0 9.1C 0.828427 9.1 1.5 8.42843 1.5 7.6L -1.5 7.6ZM -1.5 0L -1.5 7.6L 1.5 7.6L 1.5 0L -1.5 0Z"/>
+<path id="path2_stroke" d="M 0 -1.5C -0.828427 -1.5 -1.5 -0.828427 -1.5 0C -1.5 0.828427 -0.828427 1.5 0 1.5L 0 -1.5ZM 34 1.5C 34.8284 1.5 35.5 0.828427 35.5 0C 35.5 -0.828427 34.8284 -1.5 34 -1.5L 34 1.5ZM 0 1.5L 34 1.5L 34 -1.5L 0 -1.5L 0 1.5Z"/>
+</defs>
+</svg>
