@@ -36,6 +36,10 @@
 
                 return true;
             }
+
+            $(".form_call_of_paper input[type='text'], .form_call_of_paper textarea, .form input[type='text'], .form textarea, input[type='email']").blur(function(e){
+                    $(this).val() ? $(this).parents('.field_text').find('span').addClass('field_text_active') : $(this).parents('.field_text').find('span').removeClass('field_text_active');
+                });
         </script>
 
         {% block javascripts %}

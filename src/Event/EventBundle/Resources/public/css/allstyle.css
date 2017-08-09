@@ -39,6 +39,24 @@ a {
 
 }
 
+.form-control {
+    display: block;
+    width: 75%;
+    height: 23px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+* {
+    box-sizing: content-box;
+}
+
 .slick-dots {
     bottom: 0px;
 }
@@ -70,6 +88,10 @@ input:focus {
 }
 
 .field_text.error input {
+    border: 1px solid #EB5757;
+}
+
+.field_text.error textarea {
     border: 1px solid #EB5757;
 }
 
@@ -128,14 +150,16 @@ body {
 .btn-default:focus,
 .btn-default:active,
 .btn-default.active {
-    background-color: #2D9CDB;
-    border-color: #2D9CDB;
+    background-color: white;
+    color: #828282;
 }
+
 .btn_blue:active {
     background: #2D9CDB;
 }
 
 .btn_cancel {
+    border: 0;
     display: inline-block;
     background: none;
     height: 40px;
@@ -271,11 +295,17 @@ header {
 
 .gradient {
     background: linear-gradient(45deg, #567aeb, #24c9de);
+    padding-top: 83px;
+}
+
+.field_text {
+    position: relative;
+    margin: 20px 0 35px;
 }
 
 .gradient h3 {
     color: #fff;
-    font-size: 31px;
+    font-size: 29px;
     font-weight: normal;
     max-width: 770px;
     line-height: 38px;
@@ -292,9 +322,22 @@ header {
 
 }
 
+.modal-body .form_call_of_paper .three {
+    width: calc(100% + 9px);
+}
+
+.modal-body .form_call_of_paper .field_text.select {
+    margin-right: 38px
+}
+
 .form_call_of_paper .three {
     width: calc(100% + 22px);
     max-width: 1047px;
+}
+
+.modal-dialog {
+    width: 684px;
+    margin-left: -23%;
 }
 
 .form_call_of_paper .field_text {
@@ -990,7 +1033,7 @@ h4.text {
 }
 
 .field_text select {
-    width: 100%;
+    width: 95%;
     height: 40px;
     background: #fff;
     padding: 0 8px;
@@ -1734,5 +1777,3 @@ footer .footer_text {
     }
 
 }
-
-

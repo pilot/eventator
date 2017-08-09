@@ -45,10 +45,12 @@ class CallForPaperType extends AbstractType
             ])
             ->add('abstract', TextareaType::class, [
                 'label' => 'Abstract of your talk',
+                'attr' => array('cols' => '30', 'rows' => '10'),
                 'constraints' => [new NotBlank()]
             ])
             ->add('note', TextareaType::class, [
                 'label' => 'Notes',
+                'attr' => array('cols' => '30', 'rows' => '10'),
                 'required' => false
             ])
         ;

@@ -1,67 +1,66 @@
 {% form_theme form 'EventEventBundle::form_theme.html.twig' %}
 <section>
-    <div class="container">
-        <h2>Call for Paper</h2>
-        <div class="form_call_of_paper">
-            {{ form_start(form, {'method': 'POST', 'action': url('event_component_call_for_paper')}) }}
-            <div class="flex">
-                <div class="field_text">
-                    {{ form_errors(form.name) }}
-                    {{ form_widget(form.name) }}
-                    <span>Name:</span>
-                </div>
-                <div class="field_text error">
-                    {{ form_errors(form.email) }}
-                    {{ form_widget(form.email) }}
-                    <span>Email:</span>
-                </div>
+    <div class="form_call_of_paper" id="callForPaperForm">
+        {{ form_start(form, {'method': 'POST', 'action': url('event_component_call_for_paper')}) }}
+        <div class="flex">
+            <div class="field_text">
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name) }}
+                <span>Name:</span>
             </div>
-            <div class="flex">
-                <div class="field_text">
-                    {{ form_errors(form.twitter) }}
-                    {{ form_widget(form.twitter) }}
-                    <span>Twitter:</span>
-                </div>
-                <div class="field_text">
-                    {{ form_errors(form.github) }}
-                    {{ form_widget(form.github) }}
-                    <span>Github:</span>
-                </div>
+            <div class="field_text">
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email) }}
+                <span>Email:</span>
             </div>
-            <div class="flex three">
-                <div class="field_text">
-                    {{ form_errors(form.title) }}
-                    {{ form_widget(form.title) }}
-                    <span>Title:</span>
-                </div>
-                <div class="field_text select">
-                    {{ form_errors(form.language) }}
-                    {{ form_widget(form.language) }}
-                    <span>Talk level:</span>
-                </div>
-                <div class="field_text">
-                    {{ form_errors(form.level) }}
-                    {{ form_widget(form.level) }}
-                    <span>Language:</span>
-                </div>
+        </div>
+        <div class="flex">
+            <div class="field_text">
+                {{ form_errors(form.twitter) }}
+                {{ form_widget(form.twitter) }}
+                <span>Twitter:</span>
             </div>
+            <div class="field_text">
+                {{ form_errors(form.github) }}
+                {{ form_widget(form.github) }}
+                <span>Github:</span>
+            </div>
+        </div>
+        <div class="flex three">
+            <div class="field_text">
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }}
+                <span>Title:</span>
+            </div>
+            <div class="field_text select">
+                {{ form_errors(form.language) }}
+                {{ form_widget(form.language) }}
+                <span>Talk level:</span>
+            </div>
+            <div class="field_text">
+                {{ form_errors(form.level) }}
+                {{ form_widget(form.level) }}
+                <span>Language:</span>
+            </div>
+        </div>
 
-            <div class="flex">
-                <div class="field_text">
-                    {{ form_errors(form.abstract) }}
-                    {{ form_widget(form.abstract) }}
-                    <span>Abstract of your talk:</span>
-                </div>
-                <div class="field_text">
-                    {{ form_errors(form.note) }}
-                    {{ form_widget(form.note) }}
-                    <span>Abstract of your talk:</span>
-                </div>
+        <div class="flex">
+            <div class="field_text">
+                {{ form_errors(form.abstract) }}
+                {{ form_widget(form.abstract) }}
+                <span>Abstract of your talk:</span>
             </div>
+            <div class="field_text">
+                {{ form_errors(form.note) }}
+                {{ form_widget(form.note) }}
+                <span>Notes:</span>
+            </div>
+        </div>
 
-            {{ form_rest(form) }}
+        {{ form_rest(form) }}
 
-            <div class="alert alert-error captcha-error-form" style="display:none;"></div>
+        <div class="alert alert-error captcha-error-form" style="display:none;"></div>
+        <div class="wrapper_btn">
             <div class="raw">
                  {#simple captcha#}
                 <div class="col-lg-3">
@@ -72,8 +71,8 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close'|trans }}</button>
-            <button type="submit" class="btn btn-primary send-request">{{ 'Send'|trans }}</button>
+            <button type="button" class="btn btn-default btn_cancel" data-dismiss="modal">{{ 'Close'|trans }}</button>
+            <button type="submit" class="btn btn-primary send-request btn_blue">{{ 'Send'|trans }}</button>
             {{ form_end(form) }}
         </div>
     </div>
@@ -108,11 +107,19 @@
                         $('#callForPaperForm').html("{{ 'Thank you for request, we\'ll answer back asap.'|trans }}");
                     } else {
                         $('#callForPaperForm').html(data);
+                        console.log(data);
                         var myImage = document.getElementById('call-cap');
 
                         Holder.run({
                             images: myImage
                         });
+                        $("input[type='text'], input[type='email'], textarea").each(function () {
+                            if ( this.value ) {
+                                $(this).parents('.field_text').find('span').addClass('field_text_active');
+                            }
+                        });
+                        $('.text-danger').parents('.field_text').toggleClass('error');
+                        $("div.text-danger").remove();
                     }
 
                     $(this).html("{{ 'Send'|trans }}").removeProp('disabled');
