@@ -118,6 +118,9 @@
                                 $(this).parents('.field_text').find('span').addClass('field_text_active');
                             }
                         });
+
+                        checkForm();
+
                         $('.text-danger').parents('.field_text').toggleClass('error');
                         $("div.text-danger").remove();
                     }
