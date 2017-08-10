@@ -1,18 +1,23 @@
-# This file is auto-generated during the composer install
 parameters:
-    database_driver: pdo_mysql
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: event
-    database_user: root
-    database_password: 123
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    mailer_port: null
-    locale: en
-    secret: 4yceqicrp8stv6qmwxnv
-    behat_print_err: 1
-    from_email: bot@email.com
-    admin_password: admin
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     null
+    database_name:     circle_test
+    database_user:     ubuntu
+    database_password: null
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+    mailer_port:       ~
+
+    locale:            en
+    secret:            4yceqicrp8stv6qmwxnv
+
+    behat_print_err:   1
+
+    # default email for bot from which email is sent
+    from_email:        bot@email.com
+
+    admin_password:    admin

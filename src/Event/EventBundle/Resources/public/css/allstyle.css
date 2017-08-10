@@ -150,6 +150,17 @@ body {
 .btn-default:focus,
 .btn-default:active,
 .btn-default.active {
+    background-color: #2D9CDB;
+    color: white;
+}
+
+.wrapper_btn .btn-default:hover {
+    background-color: white;
+    color: #828282;
+}
+
+.wrapper_btn .btn-default:focus,
+.wrapper_btn .btn-default:active {
     background-color: white;
     color: #828282;
 }
@@ -235,11 +246,23 @@ header {
     color: #000;
 }
 
-.menu ul li a.btn_blue {
-    color: #fff;
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+.menu ul li a.btn_blue{
+    color: white;
 }
 
 .menu ul li a.active {
+    color: #2D9CDB;
+    border-bottom: 0;
+    text-decoration: none;
+}
+
+.menu ul .btn a.active {
+    color: white;
+    border-bottom: 0;
     text-decoration: none;
 }
 
@@ -338,7 +361,7 @@ header {
 
 .modal-dialog {
     width: 684px;
-    margin-left: -23%;
+    margin-left: -350px;
 }
 
 .form_call_of_paper .field_text {
@@ -1779,4 +1802,11 @@ footer .footer_text {
         height: 300px !important;
     }
 
+    .modal-dialog {
+        width: 350px;
+        margin-left: 2px;
+    }
+
 }
+
+
