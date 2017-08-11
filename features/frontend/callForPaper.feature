@@ -19,13 +19,13 @@ Scenario: Viewing the homepage at website root
 @javascript
 Scenario: User should able call for papers
     Given I am on "/call-for-paper"
-    And I fill in "Name" with "Andrey Biletskiy"
-    And I fill in "Email" with "nkahemp1990@gmail.com"
-    And I fill in "Title" with "Another awesome speech"
-    And I select "Russian" from "Language"
-    And I select "Experts" from "Talk level"
-    And I fill in "Abstract of your talk" with "symfony propagation"
-    And I fill in "Notes" with "symfony propagation"
+    And I fill in "call_for_paper_name" with "Andrey Biletskiy"
+    And I fill in "call_for_paper_email" with "nkahemp1990@gmail.com"
+    And I fill in "call_for_paper_title" with "Another awesome speech"
+    And I select "Russian" from "call_for_paper_language"
+    And I select "Intermediate" from "call_for_paper_level"
+    And I fill in "call_for_paper_abstract" with "symfony propagation"
+    And I fill in "call_for_paper_note" with "symfony propagation"
     When I press "Send"
     And I wait "2" seconds
     Then I should see "Thank you for request, we'll answer back asap."
