@@ -36,12 +36,26 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="btn"><a href="#" class="btn_blue">buy tickets</a></li>
+                    <li class="btn"><a href="#" class="btn_blue modal-active">buy tickets</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </header>
+
+<div class="modal fade" id="registration">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ 'Registration'|trans }}</h4>
+            </div>
+            <div class="modal-body">
+                {{ event.embedTicket|raw }}
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     $(function(){
@@ -68,4 +82,11 @@
             $('.menu').hide();
         }
     });
+
+    $(function () {
+        $('.modal-active').on('click', function (e) {
+            e.preventDefault();
+            $('#registration').modal('show');
+        });
+    })
 </script>

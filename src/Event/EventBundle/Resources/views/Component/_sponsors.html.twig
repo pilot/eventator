@@ -1,9 +1,9 @@
 {% macro sponsors(sponsors) %}
-    <h2 class="text">Gold sponsors</h2>
     <div class="center">
         <ul class="list_sponsors">
             {% for sponsor in sponsors %}
                 {% if sponsor.type == 2 %}
+                    <h2 class="text">Gold sponsors</h2>
                     <li>
                         <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
                             <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
@@ -15,11 +15,11 @@
             {% endfor %}
         </ul>
     </div>
-    <h3 class="text">Silver sponsors</h3>
     <div class="center">
         <ul class="list_sponsors middle">
             {% for sponsor in sponsors %}
                 {% if sponsor.type == 3 %}
+                    <h3 class="text">Silver sponsors</h3>
                     <li>
                         <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
                             <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
@@ -31,11 +31,10 @@
             {% endfor %}
         </ul>
     </div>
-    <h4 class="text">Bronze sponsors</h4>
-    <div class="center">
-        <ul class="list_sponsors small">
+    <div >
+        <ul class="list_sponsors middle">
             {% for sponsor in sponsors %}
-                {% if sponsor.type == 4 %}
+                {% if sponsor.type == 5 %}
                     <li>
                         <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
                             <img class="img-circle face" data-src="holder.js/140x140/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="140" width="140" />
@@ -60,9 +59,8 @@
         {% endif %}
 
         {% if event.specifiedSponsors()|length > 0 %}
-            <h2 class="featurette-heading">Info Partners</h2>
+            <h3 class="featurette-heading">Info Partners</h3>
             {{ _self.sponsors(event.specifiedSponsors) }}
         {% endif %}
     </div>
 </section>
-

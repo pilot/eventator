@@ -14,7 +14,7 @@
                                 <td colspan="2"><strong>{{ entry.startDate|date('l, F dS') }}</strong></td>
                             </tr>
                         {% endif %}
-                        <tr class="{{ entry.link ? 'success' : entry.title ? 'warning' : '' }}">
+                        <tr class="{{ entry.link ? 'success' : entry.title ? 'orange' : '' }}">
                             <td width="110">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
                             <td class="{{ entry.title and not entry.link ? '' : 'speech-title' }}">
                                 {% if entry.title %}
