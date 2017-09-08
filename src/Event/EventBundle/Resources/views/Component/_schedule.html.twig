@@ -14,8 +14,8 @@
                                 <td colspan="2"><strong>{{ entry.startDate|date('l, F dS') }}</strong></td>
                             </tr>
                         {% endif %}
-                        <tr class="{{ entry.link ? 'success' : entry.title ? 'warning' : '' }}">
-                            <td width="110">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
+                        <tr class="{{ entry.link ? 'success' : entry.title ? 'orange' : '' }}">
+                            <td class="width">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
                             <td class="{{ entry.title and not entry.link ? '' : 'speech-title' }}">
                                 {% if entry.title %}
                                     {% if entry.link %}
@@ -28,8 +28,8 @@
                                     <a href="#speech-{{ entry.speech_id }}" role="button" data-toggle="modal">
                                         {{ entry.speech_title }}
                                     </a>
-                                    <br />
                                     <span class="speech-speaker">
+                                        <img src="{{ asset('bundles/eventevent/img/user.svg') }}" alt="">
                         <a href="#{{ entry.speaker_firsName }}-{{ entry.speaker_lastName }}-{{ entry.speaker_id }}" role="button" data-toggle="modal">{{ entry.speaker_fullName }}</a></span>
                                 {% endif %}
                                 {% include 'EventEventBundle:Event:_speech-modal.html.twig' %}

@@ -1,60 +1,41 @@
 <div class="modal fade" id="{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="wrap_modal">
+            <div class="modal_header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">{{ speaker.fullName }}</h4>
-                <small>{{ speaker.company ? speaker.company : '' }} {{ speaker.position ? '(' ~ speaker.position ~ ')' }}</small>
+                <h3 class="name">{{ speaker.fullName }}</h3>
+                <h4 class="company">{{ speaker.company ? speaker.company : '' }} {{ speaker.position ? '(' ~ speaker.position ~ ')' }}</h4>
             </div>
-            <div class="modal-body" id="speaker-info">
-                <div class="row">
-                    <div class="col-sm-12 ta-center">
-                        <img class="img-circle" data-src="holder.js/160x160/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="160" />
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4>Info</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        {% if speaker.bio %}
-                            <p>{{ speaker.bio }}</p>
-                        {% endif %}
-                        {% set social = [] %}
-
-                        {% if speaker.github %}
+            <div class="modal_img">
+                <img src="{{ speaker.photo ?: '' }}" alt="">
+            </div>
+            <div class="modal_content" id="speaker-info">
+                <h3>Info</h3>
+                {% if speaker.bio %}
+                    <p>{{ speaker.bio }}</p>
+                {% endif %}
+                {% set social = [] %}
+                <ul>
+                    <li>{% if speaker.github %}
                             {% set social = social|merge(['<a href="https://github.com/' ~ (speaker.github) ~ '">GitHub</a>']) %}
-                        {% endif %}
-                        {% if speaker.twitter %}
+                        {% endif %}</li>
+                    <li>{% if speaker.twitter %}
                             {% set social = social|merge(['<a href="https://twitter.com/' ~ (speaker.twitter) ~ '">Twitter</a>']) %}
-                        {% endif %}
-                        {% if speaker.homepage %}
+                        {% endif %}</li>
+                    <li>{% if speaker.homepage %}
                             {% set social = social|merge(['<a href="' ~ (speaker.homepage) ~ '">Homepage</a>']) %}
-                        {% endif %}
-                        <p>
-                            {{ social|join(', ')|raw }}
-                        </p>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4>Speech</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        {% for speech in speaker.speeches %}
-                            {% if currentEvent == speech.event %}
-                                <p><strong>{{ speech.title }}</strong> <small>({{ speech.language }})</small></p>
-                                <p>{{ speech.description }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
+                        {% endif %}</li>
+                </ul>
+                <p>
+                    {{ social|join(', ')|raw }}
+                </p>
+                <h3>Speech</h3>
+                {% for speech in speaker.speeches %}
+                    {% if currentEvent == speech.event %}
+                        <p><strong>{{ speech.title }}</strong> <small>({{ speech.language }})</small></p>
+                        <p>{{ speech.description }}</p>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

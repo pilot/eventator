@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-default btn_cancel" data-dismiss="modal">{{ 'Close'|trans }}</button>
+            <button type="button" class="{{ home_page ? 'btn btn-default btn_cancel' : 'hidden' }}" data-dismiss="modal">{{ 'Close'|trans }}</button>
             <button type="submit" class="btn btn-primary send-request btn_blue">{{ 'Send'|trans }}</button>
             {{ form_end(form) }}
         </div>
