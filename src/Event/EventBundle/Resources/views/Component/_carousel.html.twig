@@ -1,46 +1,30 @@
-<div id="myCarousel" class="carousel slide">
-    {# Indicators #}
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <div id="home" class="carousel-inner">
+<section class="carousel">
+    <div id="home" class="indent"></div>
+    <ul id="slides">
         {% set slides = ['slideOne', 'slideTwo', 'slideThree'] %}
         {% for index in 0..2 %}
-        <div class="item {{ index == 0 ? 'active' : '' }}">
-            <img class="slide" src="{{ attribute(event, slides[index]) ?: 'http://lorempixel.com/g/1500/800/business/' ~ (index + 1) }}">
-            <div class="container">
-                <div class="carousel-caption">
-                    {% if not event.logo %}
-                        <h1>{{ event.title }}</h1>
-                    {% else %}
-                        <p><img class="onslide" src="{{ event.logo }}" alt="{{ event.title }}" /></p>
-                    {% endif %}
-                    <p class="text-slider-title text-uppercase">{{ event.briefDescription }}</p>
-                    <p>
+            <li>
+                <img src="{{ attribute(event, slides[index]) ?: 'http://lorempixel.com/g/1500/800/business/' ~ (index + 1) }}"
+                     alt="image">
+                <div class="content_slide">
+                    <div class="container">
+                        <div class="wrapper_text">
+                            <p class="title_slide">{{ event.title }}</p>
+                            <p class="text_slide">{{ event.briefDescription }}</p>
+                        </div>
                         {% if event.isActive and event.embedTicket %}
-                            <a class="btn btn-large btn-primary registration" href="#">{{ 'Registration'|trans }}</a>
+                            <a class="btn_blue modal-active" href="#">{{ 'Registration'|trans }}</a>
                         {% else %}
-                            <button class="btn btn-large btn-primary" disabled="disabled">{{ 'Registration closed'|trans }}</button>
+                            <button class="btn btn_blue"
+                                    disabled="disabled">{{ 'Registration closed'|trans }}</button>
                         {% endif %}
-                    </p>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="overlay_slider"></div>
+            </li>
         {% endfor %}
-    </div>
-
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-</div>
-<div class="event-place-wrap">
-    <p>
-        <i class="fa fa-map-marker" aria-hidden="true"></i> {{ event.venue }}, {{ event.country ~ ' ' ~ event.city }} /
-        <i class="fa fa-calendar" aria-hidden="true"></i> <strong>{{ event.startDate|date }}</strong>
-    </p>
-</div>
+    </ul>
+</section>
 
 <div class="modal fade" id="registration">
     <div class="modal-dialog">
@@ -57,10 +41,22 @@
 </div>
 
 <script type="text/javascript">
-    $(function() {
-        $('.registration').on('click', function(e) {
-            e.preventDefault();
+    $(document).ready(function () {
+        $('#slides').slick({
+            dots: true,
+            infinite: true,
+            speed: 600,
+            slidesToShow: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            adaptiveHeight: true
+        });
+        $("#slides").css({"opacity" : 1});
+    });
 
+    $(function () {
+        $('.modal-active').on('click', function (e) {
+            e.preventDefault();
             $('#registration').modal('show');
         });
     })

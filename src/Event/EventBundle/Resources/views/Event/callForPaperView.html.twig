@@ -5,10 +5,19 @@
 
 {% block body %}
     {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}
-    <div class="container marketing">
-        <div class="row" style="margin-top: 3%">
-            {% include 'EventEventBundle:Event:_form.html.twig' %}
-        </div>
+        <section>
+            <div class="gradient">
+                <div class="container">
+                    <h3><span> Symfony camp ua conference</span> is dedicated web applications development using <span>php framework symfony.</span></h3>
+                </div>
+            </div>
+        </section>
+    <div class="container">
+    <h2>Call for Paper</h2>
+        {% include 'EventEventBundle:Event:_form.html.twig' with {'home_page': false} %}
     </div>
+
+    {% include 'EventEventBundle:Event:_footer.html.twig' %}
+
 {% endblock %}
 

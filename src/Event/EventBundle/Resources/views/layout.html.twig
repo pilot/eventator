@@ -1,7 +1,7 @@
 {% extends 'EventEventBundle::base.html.twig' %}
 {% set event = app.request.attributes.get('event') %}
 
-{% block title %}Welcome to the {{ event.title }}!{% endblock %}
+{% block title %}{{ event.title }}!{% endblock %}
 
 {% block body %}
     {% block menu %}
@@ -10,35 +10,30 @@
 
         {{ render(controller('EventEventBundle:Event:carousel')) }}
 
-        <div class="container marketing">
-            {% for message in app.session.flashbag.get('success') %}
-                <div class="alert alert-success">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
-            {% for message in app.session.flashbag.get('error') %}
-                <div class="alert alert-error">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
-            {% for message in app.session.flashbag.get('notice') %}
-                <div class="alert alert-info">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
-
-            {# one page event do not required content #}
-            {# {% block content %}{% endblock %} #}
-
-            <div>
-                {{ event.description|raw }}
+    <article class="info bg">
+        <div class="event-place-wrap">
+            <h2>Where will it be?</h2>
+            <p>
+                <i class="ico_map_pin_min"></i> <strong>{{ event.venue }}, {{ event.country ~ ' ' ~ event.city }}</strong>
+                <i class="ico_group"></i> <strong>{{ event.startDate|date }}</strong>
+            </p>
+        </div>
+        <div class="container">
+            <div class="wrapper">
+                <h2>{{ event.description|raw }}</h2>
             </div>
+        </div>
+    </article>
 
             {{ render(controller('EventEventBundle:Event:speakers')) }}
 
+            {{ render(controller('EventEventBundle:Event:schedule')) }}
+
+            {{ render(controller('EventEventBundle:Event:aboutSymfony')) }}
+
             {{ render(controller('EventEventBundle:Event:venue')) }}
 
-            {{ render(controller('EventEventBundle:Event:schedule')) }}
+            {{ render(controller('EventEventBundle:Event:conferences')) }}
 
             {{ render(controller('EventEventBundle:Event:sponsors')) }}
 
@@ -56,11 +51,6 @@
                 })
             </script>
 
-            <hr class="featurette-divider">
-            <footer>
-                <p class="pull-right"><a href="#">to the top</a></p>
-                <p>&copy; 2013 {{ event.title }}</p>
-                <p><small class="text-muted">Under the hood: <a href="https://github.com/pilot/eventator">Eventator &mdash; Events Manager</a></small></p>
-            </footer>
-        </div>
+    {% include 'EventEventBundle:Event:_footer.html.twig' %}
+
 {% endblock %}

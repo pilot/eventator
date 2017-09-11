@@ -2,13 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome to the Eventator!{% endblock %}</title>
-
-        <link href="{{ asset('bundles/eventevent/css/libs/FontAwesome/css/font-awesome.min.css') }}" media="screen" rel="stylesheet" type="text/css">
+        <title>{% block title %}Symfony-camp!{% endblock %}</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
         <link href="{{ asset('bundles/eventevent/css/bootstrap.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/bootstrap-glyphicons.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/carousel.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/style.css') }}" media="screen" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/eventevent/css/slick-theme.css') }}" media="screen" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/eventevent/css/slick.css') }}" media="screen" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/eventevent/css/allstyle.css') }}" media="screen" rel="stylesheet" type="text/css">
 
         {% block stylesheets %}{% endblock %}
 
@@ -17,7 +18,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write("<script src=\"{{ asset('bundles/eventevent/js/jquery-1.10.1.min.js') }}\"><\/script>")</script>
     </head>
-    <body data-spy="scroll" data-target="#navbar">
+    <body>
         {% block body %}
         {% endblock %}
 
@@ -36,9 +37,18 @@
 
                 return true;
             }
+
+            function checkForm() {
+                $(".form_call_of_paper input[type='text'], .form_call_of_paper textarea, .form input[type='text'], .form textarea, input[type='email']").blur(function (e) {
+                    $(this).val() ? $(this).parents('.field_text').find('span').addClass('field_text_active') : $(this).parents('.field_text').find('span').removeClass('field_text_active');
+                });
+            }
+
+            checkForm();
         </script>
 
         {% block javascripts %}
+            <script src="{{ asset('bundles/eventevent/js/libs/slick.min.js') }}"></script>
             <script src="{{ asset('bundles/eventevent/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('bundles/eventevent/js/holder.js') }}"></script>
         {% endblock %}

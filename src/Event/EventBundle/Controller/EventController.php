@@ -34,11 +34,21 @@ class EventController extends Controller
         ]);
     }
 
+    public function aboutSymfonyAction()
+    {
+        return $this->render('EventEventBundle:Component:_about.html.twig', []);
+    }
+
     public function venueAction()
     {
         return $this->render('EventEventBundle:Component:_venue.html.twig', [
             'event' => $this->getEvent()
         ]);
+    }
+
+    public function conferencesAction()
+    {
+        return $this->render('EventEventBundle:Component:conferences.html.twig', []);
     }
 
     public function scheduleAction(Request $request)

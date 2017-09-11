@@ -10,21 +10,16 @@
                     <small><a href="{{ sponsor.homepage }}">{{ sponsor.homepage }}</a></small>
                 {% endif %}
             </div>
-            <div class="modal-body" id="speaker-info">
-                <div class="row">
-                    <div class="col-sm-12 ta-center">
-                        <a href="{{ sponsor.homepage }}">
-                            <span id="face-wrapper">
-                                <img class="img-circle face" data-src="holder.js/160x160/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="160" width="160" />
-                            </span>
-                        </a>
-                    </div>
-                </div>
+            <div class="modal_img">
+                <a href="{{ sponsor.homepage }}">
+                        <img class="img-circle face" data-src="holder.js/160x160/text:{{ sponsor.company }}" src="{{ sponsor.logo ?: '' }}" height="160" width="160" />
+                </a>
+            </div>
+            <div class="modal_content" id="speaker-info">
                 {% if sponsor.description %}
-                    <hr>
                     <div class="row">
                         <div class="col-sm-12">
-                            <h4>Description</h4>
+                            <h3>Description</h3>
                         </div>
                     </div>
                     <div class="row">

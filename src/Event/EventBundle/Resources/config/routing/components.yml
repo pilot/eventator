@@ -6,9 +6,17 @@ event_component_speakers:
     path:  /speakers
     defaults: { _controller: EventEventBundle:Event:speakers }
 
+event_component_about:
+    path:  /about
+    defaults: { _controller: EventEventBundle:Event:aboutSymfony }
+
 event_component_venue:
     path:  /venue
     defaults: { _controller: EventEventBundle:Event:venue }
+
+event_component_conferences:
+    path:  /conferences
+    defaults: { _controller: EventEventBundle:Event:conferences }
 
 event_component_schedule:
     path:  /schedule
