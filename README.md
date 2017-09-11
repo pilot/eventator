@@ -8,7 +8,7 @@ events managing with easiest ticketing systems
 
 ## demo
 
-[symfonycamp.org.ua](http://symfonycamp.org.ua)
+[demo.eventator.org](http://demo.eventator.org)
 
 * feel free to play with demo
 * access to the admin panel by `/event/admin`
@@ -35,6 +35,9 @@ events managing with easiest ticketing systems
 ## who use it
 
 * http://symfonycamp.org.ua
+* http://botcamp.org.ua
+
+*If you use Eventator platform please send email to `alex[at]lazy-ants.com`, I'll add you to the list*
 
 ## screenshot
 
