@@ -39,9 +39,19 @@ events managing with easiest ticketing systems
 
 *If you use Eventator platform please send email to `alex[at]lazy-ants.com`, I'll add you to the list*
 
-## screenshot
+## screenshots
+
+![eventator_carousel speakers_list](https://user-images.githubusercontent.com/28564/30279791-d165b93c-9716-11e7-83f0-9337fde9e2b3.png)
+![eventator_schedule_list about](https://user-images.githubusercontent.com/28564/30279792-d16d552a-9716-11e7-8760-95167aea669b.png)
+![eventator_venue how_it_was](https://user-images.githubusercontent.com/28564/30279793-d1723d88-9716-11e7-9331-8288b4ec0125.png)
+![eventator_sponsors organizers](https://user-images.githubusercontent.com/28564/30279796-d174b626-9716-11e7-96e0-ebe9d626acda.png)
+![eventator_contact_us](https://user-images.githubusercontent.com/28564/30279794-d172fe4e-9716-11e7-8af4-fd3054899d72.png)
+
+old view before 1.5 release
 
 ![Eventator](https://dl.dropboxusercontent.com/s/4c7m4bdf01467en/Eventator.png)
+
+
 
 ## License
 
