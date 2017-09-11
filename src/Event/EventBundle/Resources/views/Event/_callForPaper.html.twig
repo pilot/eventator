@@ -6,7 +6,7 @@
                 <h4 class="modal-title">{{ 'Call for Paper'|trans }}</h4>
             </div>
             <div class="modal-body">
-                {% include 'EventEventBundle:Event:_form.html.twig' %}
+                {% include 'EventEventBundle:Event:_form.html.twig' with {'home_page': true} %}
             </div>
         </div>
     </div>
