@@ -28,6 +28,8 @@
         </thead>
     </table>
 </section>
+    {% include 'EventEventBundle:Backend:_confirm_modal.html.twig'
+        with {'title': 'Confirm action', 'body': 'Do you really want to delete this speech?'} %}
 {% endblock %}
 
 {% block data_tables_js %}

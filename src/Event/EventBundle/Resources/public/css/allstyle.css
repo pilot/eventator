@@ -1289,12 +1289,13 @@ footer .footer_text {
 
 .wrap_modal {
     position: fixed;
-    top: 0;
+    top: 5%;
     left: 50%;
     right: 0;
     bottom: 0;
     margin-left: -330px;
     width: 100%;
+    height: 80%;
     max-width: 660px;
     z-index: 20;
     background: #fff;
