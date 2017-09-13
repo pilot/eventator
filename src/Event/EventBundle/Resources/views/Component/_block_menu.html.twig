@@ -9,7 +9,12 @@
                 </div>
             </div>
             <div class="logo">
-                <a href="http://symfonycamp.org.ua"><img src="{{ asset('bundles/eventevent/img/logo.png') }}" alt=""></a>
+                {% for host in hosts %}
+                    {% if loop.last %}
+                        <a href="{{host.host}}"><img src="{{ asset('bundles/eventevent/img/logo.png') }}" alt=""></a>
+                    {% endif %}
+                {% endfor %}
+
             </div>
 
             <div class="menu">
@@ -28,11 +33,9 @@
                         <i></i>
                         <div class="list_item">
                             <ul>
-                                <li><a href="http://2013.symfonycamp.org.ua">2013</a></li>
-                                <li><a href="http://2014.symfonycamp.org.ua">2014</a></li>
-                                <li><a href="http://2015.symfonycamp.org.ua">2015</a></li>
-                                <li><a href="http://2016.symfonycamp.org.ua">2016</a></li>
-                                <li><a href="http://symfonycamp.org.ua">2017</a></li>
+                                {% for host in hosts %}
+                                <li><a href="{{ host.host }}">{{ host.year }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </li>

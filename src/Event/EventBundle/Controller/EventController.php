@@ -147,9 +147,34 @@ class EventController extends Controller
 
         return new Response($this->renderView('EventEventBundle:Event:callForPaperView.html.twig', [
             'event' => $this->getEvent(),
+            'hosts' => $this->getHostYear(),
             'form' => $form->createView(),
             'captcha' => $this->getCaptcha('captchaResultCall')
         ]));
+    }
+
+    public function blockMenuAction()
+    {
+        return new Response($this->renderView('@EventEvent/Component/_block_menu.html.twig', [
+            'hosts' => $this->getHostYear(),
+            'event' => $this->getEvent(),
+            'home_page' => true
+        ]));
+    }
+
+    public function getHostYear()
+    {
+        $hosts = $this->getRepository('EventEventBundle:Event')->getAllHosts();
+        $year = [];
+
+        foreach ($hosts as $host) {
+            $year[] = array(
+                'year' => preg_replace("/[^0-9]/", '', $host['host']),
+                'host' => $host['host']
+            );
+        }
+
+        return $year;
     }
 
     protected function callForPaper(CallForPaper $entity = null)
