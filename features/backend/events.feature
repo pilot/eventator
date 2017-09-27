@@ -158,6 +158,7 @@ Scenario: Admin should have able to update event settings
     Then I wait for a form
     Then I should see "Event settings"
     And I fill in "Brief Description" with "Awesome event"
+    And I fill in "About Description" with "Awesome event"
     And I select "Ukraine" from "Country"
     And I fill in "State" with "Dubai"
     And I fill in "City" with "Dubai"

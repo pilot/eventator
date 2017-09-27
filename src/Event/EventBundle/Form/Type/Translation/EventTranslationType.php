@@ -19,6 +19,11 @@ class EventTranslationType extends AbstractType
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 5],
                 'required' => false
             ])
+            ->add('aboutDescription', TextareaType::class, [
+                'label' => 'About Description',
+                'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
+                'required' => false
+            ])
             ->add('description', TextareaType::class, [
                 'label' => 'Event Description',
                 'attr' => ['class' => 'input-xxlarge', 'rows' => 10],
