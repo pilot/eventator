@@ -35,7 +35,8 @@ class EventType extends AbstractType
             ])
             ->add('aboutDescription', TextareaType::class, [
                 'label' => 'About Description',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 10)
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'required' => false
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Event Description',
