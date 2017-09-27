@@ -135,6 +135,7 @@ Scenario: Admin should have able to add event
     Then I should see "Event settings"
     And I fill in "Host" with "http://testevent.com"
     And I fill in "Title" with "Test event"
+    And I fill in "About Description" with "Test about event description"
     And I fill in "Event Description" with "Test event description"
     And I fill in "Start Date" with "2016-05-01 10:00"
     And I fill in "End Date" with "2016-05-01 18:00"
