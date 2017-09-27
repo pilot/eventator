@@ -195,7 +195,9 @@ Scenario: Admin should have able to update Russian event settings
     And I click "ru"
     Then I wait for a form
     And I fills in "Title" with "Мое событие" inside "ru" tab
+    And I fill in "About Description" with "Описание"
     And I press "Update"
+    Then I wait "1" seconds
     Then I wait for a form
     Then I should see "Event My event updated."
     Then I should see the row containing "1;My event;March 1, 2016 10:00;March 1, 2016 18:00"
