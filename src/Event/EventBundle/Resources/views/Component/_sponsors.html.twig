@@ -1,5 +1,5 @@
 {% macro sponsors(sponsors, type) %}
-    {% if type == 4 %}
+    {% if type == 4 and sponsors|length > 0 %}
     <div class="center">
         <ul class="list_sponsors">
             <h2 class="text">General sponsors</h2>
@@ -14,7 +14,7 @@
             {% endfor %}
         </ul>
     </div>
-    {% elseif type == 2 %}
+    {% elseif type == 2 and sponsors|length > 0 %}
         <div class="center">
             <ul class="list_sponsors gold">
                 <h3 class="text">Gold sponsors</h3>
@@ -29,7 +29,7 @@
                 {% endfor %}
             </ul>
         </div>
-    {% elseif type == 3 %}
+    {% elseif type == 3 and sponsors|length > 0 %}
         <div class="center">
             <ul class="list_sponsors middle">
                 <h4 class="text">Silver sponsors</h4>
@@ -44,7 +44,7 @@
                 {% endfor %}
             </ul>
         </div>
-    {% else %}
+    {% elseif type == 5 and sponsors|length > 0 %}
         <div class="center">
             <ul class="list_sponsors middle">
                 <h4 class="text">Info Partners</h4>
@@ -70,11 +70,13 @@
         {% set generalType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_GENERAL') %}
         {% set goldType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_GOLD') %}
         {% set silverType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_SILVER') %}
+        {% set infoType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_INFO') %}
 
         {% if event.sponsors|length > 0 and event.getSponsorsExclude|length > 0 %}
             {{ _self.sponsors(event.getSpecifiedSponsors(generalType), generalType) }}
             {{ _self.sponsors(event.getSpecifiedSponsors(goldType), goldType) }}
             {{ _self.sponsors(event.getSpecifiedSponsors(silverType), silverType) }}
+            {{ _self.sponsors(event.getSpecifiedSponsors(infoType), infoType) }}
         {% endif %}
 
         {% if event.specifiedSponsors()|length > 0 %}
