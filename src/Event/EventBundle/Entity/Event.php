@@ -50,6 +50,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="about_description", type="text", nullable=true)
+     */
+    private $aboutDescription;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -349,6 +356,29 @@ class Event
     public function getBriefDescription()
     {
         return $this->briefDescription;
+    }
+
+    /**
+     * Set aboutDescription
+     *
+     * @param string $aboutDescription
+     * @return Event
+     */
+    public function setAboutDescription($aboutDescription)
+    {
+        $this->aboutDescription = $aboutDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get aboutDescription
+     *
+     * @return string
+     */
+    public function getAboutDescription()
+    {
+        return $this->aboutDescription;
     }
 
     /**
