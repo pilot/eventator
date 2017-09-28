@@ -57,4 +57,14 @@ class EventRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function getAllHosts()
+    {
+        return $this
+            ->createQueryBuilder('host')
+            ->select('host.host')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
 }

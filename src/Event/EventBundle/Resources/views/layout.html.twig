@@ -5,7 +5,7 @@
 
 {% block body %}
     {% block menu %}
-        {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': true} %}
+        {{ render(controller('EventEventBundle:Event:blockMenu')) }}
     {% endblock %}
 
         {{ render(controller('EventEventBundle:Event:carousel')) }}
