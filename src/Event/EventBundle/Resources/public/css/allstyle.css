@@ -1377,6 +1377,10 @@ footer .footer_text {
     padding: 0 5px 30px 0;
 }
 
+.conferens-button {
+    margin: 20px 0 0 40%;
+}
+
 @media screen and (max-width: 1090px) {
     .hamburger_icon {
         min-width: 20px;
@@ -1720,6 +1724,10 @@ footer .footer_text {
     .slick-dots {
         bottom: -70px;
     }
+
+    .conferens-button {
+        margin: 20px 0 0 40%;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1992,7 +2000,11 @@ footer .footer_text {
     }
 
     .btn_blue {
-        margin: 20px -5px 0 0;
+        margin: 20px 0 0 90px;
+    }
+
+    .conferens-button {
+        margin: 20px 0 0 18%;
     }
 
 }
