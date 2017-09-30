@@ -1984,8 +1984,12 @@ footer .footer_text {
     }
 
     .modal-dialog {
-        width: 350px;
-        margin-left: 2px;
+        width: 336px;
+        margin-left: -178px;
+    }
+
+    .wrap_modal {
+        margin-left: -50%;
     }
 
     .raw .col-lg-3 {
@@ -1996,7 +2000,7 @@ footer .footer_text {
     .form-control {
         width: 50%;
         float: right;
-        margin-right: -20px;
+        margin-right: 0px;
     }
 
     .btn_blue {
