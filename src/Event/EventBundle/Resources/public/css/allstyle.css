@@ -1765,6 +1765,7 @@ footer .footer_text {
         line-height: 1.428571429;
         vertical-align: top;
         border-top: 0;
+        width: 42px;
     }
 
     .table .speech-speaker {
@@ -2009,6 +2010,10 @@ footer .footer_text {
 
     .conferens-button {
         margin: 20px 0 0 18%;
+    }
+
+    .speech-title small {
+        font-size: 17px;
     }
 
 }
