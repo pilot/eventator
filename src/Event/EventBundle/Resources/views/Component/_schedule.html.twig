@@ -15,7 +15,7 @@
                             </tr>
                         {% endif %}
                         <tr class="{{ entry.link ? 'success' : entry.title ? 'orange' : '' }}">
-                            <td class="width">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
+                            <td class="width_110">{{ entry.startDate|date('H:i') ~ ' - ' ~ (entry.endDate|date('H:i') ?: '') }}</td>
                             <td class="{{ entry.title and not entry.link ? '' : 'speech-title' }}">
                                 {% if entry.title %}
                                     {% if entry.link %}

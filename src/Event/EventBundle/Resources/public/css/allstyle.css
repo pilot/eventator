@@ -1753,6 +1753,7 @@ footer .footer_text {
     .list_speakers li a span {
         width: 180px;
         left: 0;
+        top: 152px;
     }
 
     .table {
@@ -1765,7 +1766,6 @@ footer .footer_text {
         line-height: 1.428571429;
         vertical-align: top;
         border-top: 0;
-        width: 42px;
     }
 
     .table .speech-speaker {
@@ -1826,15 +1826,18 @@ footer .footer_text {
         left: 0;
         margin: 5px 0 0;
         font-size: 18px;
+        top: 141px;
     }
 
     .list_sponsors.middle li img {
         max-width: 100px;
+        max-height: 100px;
     }
 
     .list_sponsors.middle li a span {
         width: 130px;
         font-size: 16px;
+        top: 141px;
     }
 
     .list_sponsors.small li {
@@ -1856,6 +1859,7 @@ footer .footer_text {
         width: 70px;
         font-size: 13px;
         font-weight: 500;
+
     }
 
     .form form {
@@ -2005,17 +2009,25 @@ footer .footer_text {
     }
 
     .btn_blue {
-        margin: 20px 0 0 90px;
+        margin: 20px 0 0 27%;
     }
 
-    .conferens-button {
-        margin: 20px 0 0 18%;
+    .conferens {
+        margin: 20px 0 0 0 !important;
     }
 
     .speech-title small {
         font-size: 17px;
     }
 
+    .slick-prev,
+    .slick-next{
+        top:70%;
+    }
+
+    .arrow_left {
+        display: none;
+    }
 }
 
 
