@@ -4,6 +4,7 @@
     <section>
         <div class="page-header">
             <h3>Media settings</h3>
+            <a href="{{ url('backend_media') }}" >&larr;&nbsp;back</a>
         </div>
 
         {{ form_start(form, {'method': 'POST', 'attr': {'id': 'media'}, 'action': path('backend_media_edit', {'id': media.id})}) }}
@@ -11,8 +12,8 @@
             <div class="tab-pane active" id="{{ app.request.locale }}">
                 {{ form_row(form.title) }}
                 {{ form_row(form.filename) }}
-                <div>
-                    <input class="btn btn-primary" type="button" value="Upload" onclick="showPicker()" />
+                <div class="uploader-container">
+                    <input class="btn btn-primary" type="button" value="{{ 'Upload file'|trans }}" onclick="showPicker()" />
                     <input type="hidden" name="file_url" id="file_url"/>
                 </div>
                 {{ form_row(form.description) }}

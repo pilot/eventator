@@ -18,17 +18,17 @@ class MediaType extends AbstractType
             ->add('filename', HiddenType::class, ['required' => false])
             ->add('description', TextareaType::class, [
                 'label' => 'Media Description',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 3),
                 'required' => false
             ])
             ->add('copyrightInfo', TextareaType::class, [
                 'label' => 'Copyright Info',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 3),
                 'required' => false
             ])
             ->add('mediaCredits', TextareaType::class, [
                 'label' => 'Media Credits',
-                'attr' => array('class' => 'input-xxlarge', 'rows' => 10),
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 3),
                 'required' => false
             ])
         ;

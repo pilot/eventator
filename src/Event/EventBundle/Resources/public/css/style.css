@@ -128,3 +128,13 @@ form input {
 .events-list {
     text-align: right;
 }
+
+/*  backend media uploader */
+.uploader-container {
+    margin: 10px 0;
+}
+
+#media_title {
+    width: 530px;
+}
+/*  backend media uploader */
