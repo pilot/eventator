@@ -169,3 +169,22 @@ backend_call_for_paper_delete:
         id: \d+
     options:
         expose: true
+
+# Media
+backend_media:
+    path:  /media
+    defaults: { _controller: EventEventBundle:Backend/Media:index }
+
+backend_media_add:
+    path:  /media/add
+    defaults: { _controller: EventEventBundle:Backend/Media:manage }
+
+backend_media_edit:
+    path:  /media/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Media:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_media_delete:
+    path:  /media/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Media:delete }
+    requirements: { id: \d+ }

@@ -1,0 +1,94 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+<section>
+    <div class="page-header">
+        <h3>{{ 'Media'|trans }}</h3>
+        <a href="{{ path('backend_media_add') }}" class="btn btn-small btn-success">{{ 'Add Media'|trans }}</a>
+    </div>
+
+    <table class="table table-striped table-bordered" id="media-table">
+        <thead>
+            <tr>
+                <th>{{ 'ID'|trans }}</th>
+                <th>{{ 'Thumbnail'|trans }}</th>
+                <th>{{ 'Title'|trans }}</th>
+                <th>{{ 'Description'|trans }}</th>
+                <th>{{ 'Created'|trans }}</th>
+                <th>{{ 'Updated'|trans }}</th>
+                <th width="10%">{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for file in media %}
+            <tr>
+                <td>{{ file.id }}</td>
+                <td>
+                    <img width="70" height="70" src="{{ file.uploadImg }}" alt="no-img" />
+                </td>
+                <td>
+                    <a href="{{ url('backend_media_edit', {'id': file.id}) }}">
+                        {{ file.title }}
+                    </a>
+                </td>
+                <td>{{ file.description }}</td>
+                <td>{{ file.createdDate|date }}</td>
+                <td>{{ file.updatedDate|date }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-small" href="{{ url('backend_media_edit', {'id': file.id}) }}">
+                            <i class="icon-user"></i> {{ 'Edit'|trans }}
+                        </a>
+                        <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a onclick="return confirm('Are You sure?')" href="{{ url('backend_media_delete', {'id': file.id}) }}">
+                                    <i class="icon-trash"></i> {{ 'Delete'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No media found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var elementsCount = '{{ media|length }}';
+
+            if ( 0 < elementsCount) {
+                $('#media-table').dataTable({
+                    "iDisplayLength": 50,
+                    "sDom": "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
+                    "sPaginationType": "bootstrap",
+                    "oLanguage": {
+                        "sLengthMenu": "_MENU_ records per page"
+                    },
+                    "aoColumns": [
+                        null,
+                        { "bSearchable": false, "bSortable": false },
+                        null,
+                        null,
+                        null,
+                        null,
+                        { "bSearchable": false, "bSortable": false }
+                    ],
+                    "aaSorting": [[0, 'desc']]
+                });
+            }
+        });
+    </script>
+{% endblock %}

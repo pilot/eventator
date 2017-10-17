@@ -1,0 +1,56 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>Media settings</h3>
+        </div>
+
+        {{ form_start(form, {'method': 'POST', 'attr': {'id': 'media'}, 'action': path('backend_media_edit', {'id': media.id})}) }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="{{ app.request.locale }}">
+                {{ form_row(form.title) }}
+                {{ form_row(form.filename) }}
+                <div>
+                    <input class="btn btn-primary" type="button" value="Upload" onclick="showPicker()" />
+                    <input type="hidden" name="file_url" id="file_url"/>
+                </div>
+                {{ form_row(form.description) }}
+                {{ form_row(form.copyrightInfo) }}
+                {{ form_row(form.mediaCredits) }}
+
+            </div>
+
+            {{ form_rest(form) }}
+
+            <input class="btn btn-success" type="submit" value="{{ media.id ? 'Update' : 'Add' }}" />
+        </div>
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+    <script>
+        var client = filestack.init('A3w1aZwZmQBibC09rAcZnz');
+        function showPicker() {
+            client.pick({
+                accept: 'image/*',
+            }).then(function(result) {
+                var file = result.filesUploaded[0];
+//                var file = JSON.stringify(result.filesUploaded);
+                console.log(file);
+                $('#media_filename').val(file.filename);
+                $('#file_url').val(file.url);
+
+                console.log(file.filename);
+                if($('#media_title').val() === ''){
+                    $('#media_title').val(file.filename);
+                }
+            });
+        }
+    </script>
+{% endblock %}

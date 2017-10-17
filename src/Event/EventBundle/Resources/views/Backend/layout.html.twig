@@ -39,6 +39,7 @@
         {% for message in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 {{ message|trans }}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
             </div>
         {% endfor %}
         {% for message in app.session.flashbag.get('error') %}
