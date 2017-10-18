@@ -39,15 +39,12 @@
         var client = filestack.init('A3w1aZwZmQBibC09rAcZnz');
         function showPicker() {
             client.pick({
-                accept: 'image/*',
+                accept: 'image/*'
             }).then(function(result) {
                 var file = result.filesUploaded[0];
-//                var file = JSON.stringify(result.filesUploaded);
-                console.log(file);
                 $('#media_filename').val(file.filename);
                 $('#file_url').val(file.url);
 
-                console.log(file.filename);
                 if($('#media_title').val() === ''){
                     $('#media_title').val(file.filename);
                 }

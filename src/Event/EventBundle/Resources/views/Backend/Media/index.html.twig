@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ file.id }}</td>
                 <td>
-                    <img width="70" height="70" src="{{ file.uploadImg }}" alt="no-img" />
+                    <img width="70" height="70" src="{{ uploadUrl ~ file.filename }}" alt="no-img" />
                 </td>
                 <td>
                     <a href="{{ url('backend_media_edit', {'id': file.id}) }}">
@@ -69,21 +69,21 @@
 
             if ( 0 < elementsCount) {
                 $('#media-table').dataTable({
-                    "iDisplayLength": 50,
-                    "sDom": "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
-                    "sPaginationType": "bootstrap",
-                    "oLanguage": {
-                        "sLengthMenu": "_MENU_ records per page"
+                    'iDisplayLength': 50,
+                    'sDom': "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
+                    'sPaginationType': 'bootstrap',
+                    'oLanguage': {
+                        'sLengthMenu': '_MENU_ records per page'
                     },
-                    "aoColumns": [
+                    'aoColumns': [
                         null,
-                        { "bSearchable": false, "bSortable": false },
+                        { 'bSearchable': false, 'bSortable': false },
                         null,
                         null,
                         null,
-                        { "bSearchable": false, "bSortable": false }
+                        { 'bSearchable': false, 'bSortable': false }
                     ],
-                    "aaSorting": [[0, 'desc']]
+                    'aaSorting': [[0, 'desc']]
                 });
             }
         });

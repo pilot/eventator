@@ -73,14 +73,13 @@ class Media
      * @ORM\Column(name="updated_date", type="datetime")
      */
     private $updatedDate;
-    
-    public function getUploadImg(){
-        return '/uploads/media/' . $this->filename;
-    }
 
     public function __construct()
     {
-
+        if (is_null($this->getId())){
+            $this->setCreatedDate(new \DateTime());
+        }
+        $this->setUpdatedDate(new \DateTime());
     }
 
     /**

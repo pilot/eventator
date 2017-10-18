@@ -13,12 +13,11 @@ class MediaController extends Controller
 
     public function getUploadPath()
     {
-        return $this->get('kernel')->getRootDir() . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .
-            'web' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
+        return $this->container->getParameter('media.uploadPath');
     }
     
     public function getUploadUrl(){
-        return '/uploads/media/';
+        return $this->container->getParameter('media.uploadUrl');
     }
 
     public function indexAction()
@@ -34,41 +33,38 @@ class MediaController extends Controller
     {
         $oldFileName = '';
         if ($id === null) {
-            $entity = new Media();
+            $media = new Media();
         } else {
-            $entity = $this->findOr404('EventEventBundle:Media', $id);
-            $oldFileName = $entity->getFilename();
+            $media = $this->findOr404('EventEventBundle:Media', $id);
+            $oldFileName = $media->getFilename();
         }
 
-        $form = $this->createForm(MediaType::class, $entity);
+        $form = $this->createForm(MediaType::class, $media);
 
         if ($request->getMethod() === 'POST') {
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-                if(is_null($entity->getId())){
-                    $entity->setCreatedDate(new \DateTime());
-                }
 
-                if($oldFileName !== $entity->getFilename()) {
+
+                if ($oldFileName !== $media->getFilename()) {
                     $url = $request->request->get('file_url');
                     $path = $this->getUploadPath();
-                    $entity->setFilename( time() . '_' . $entity->getFilename());
+                    $media->setFilename(time() . '_' . $media->getFilename());
                     $file = $this->getFile($url);
-                    file_put_contents($path . $entity->getFilename(), $file);
-                    chmod($path . $entity->getFilename(), 0777);
-                    if(is_file($path . $oldFileName)) {
+                    file_put_contents($path . $media->getFilename(), $file);
+                    chmod($path . $media->getFilename(), 0777);
+                    if (is_file($path . $oldFileName)) {
                         unlink($path . $oldFileName);
                     }
                 }
 
-                $entity->setUpdatedDate(new \DateTime());
-                $this->getManager()->persist($entity);
+                $this->getManager()->persist($media);
                 $this->getManager()->flush();
 
-                $successFlashText = sprintf('Media %s updated.', $entity->getTitle());
+                $successFlashText = sprintf('Media %s updated.', $media->getTitle());
                 if (!$id) {
-                    $successFlashText = sprintf('Media %s added.', $entity->getTitle());
+                    $successFlashText = sprintf('Media %s added.', $media->getTitle());
                 }
                 $this->setSuccessFlash($successFlashText);
 
@@ -77,9 +73,8 @@ class MediaController extends Controller
         }
 
         return $this->render('EventEventBundle:Backend/Media:manage.html.twig', [
-            'media' => $entity,
+            'media' => $media,
             'form' => $form->createView(),
-//            'configLocales' => $this->container->getParameter('media.locales'),
         ]);
     }
 
@@ -89,6 +84,7 @@ class MediaController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $file = curl_exec($ch);
         curl_close($ch);
+
         return $file;
     }
 
@@ -100,7 +96,7 @@ class MediaController extends Controller
         $file = $this->getUploadPath() . $entity->getFilename();
         $this->getManager()->remove($entity);
         $this->getManager()->flush();
-        if(is_file($file)) {
+        if (is_file($file)) {
             unlink($file);
         }
 
@@ -108,6 +104,4 @@ class MediaController extends Controller
 
         return $this->redirectToRoute('backend_media');
     }
-
-
 }
