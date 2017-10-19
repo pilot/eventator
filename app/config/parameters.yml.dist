@@ -21,3 +21,7 @@ parameters:
     from_email:        bot@email.com
 
     admin_password:    admin
+
+    media.uploadPath: %kernel.root_dir%/../web/uploads/media/
+    media.uploadUrl: /uploads/media/
+    filestack.api_key: A3w1aZwZmQBibC09rAcZnz

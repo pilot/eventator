@@ -36,7 +36,7 @@
 
     <script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
     <script>
-        var client = filestack.init('A3w1aZwZmQBibC09rAcZnz');
+        var client = filestack.init('{{ fs_api }}');
         function showPicker() {
             client.pick({
                 accept: 'image/*'

@@ -85,6 +85,7 @@ class MediaController extends Controller
         return $this->render('EventEventBundle:Backend/Media:manage.html.twig', [
             'media' => $media,
             'form' => $form->createView(),
+            'fs_api' => $this->container->getParameter('filestack.api_key'),
         ]);
     }
 
