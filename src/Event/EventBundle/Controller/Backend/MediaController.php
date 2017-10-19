@@ -45,7 +45,7 @@ class MediaController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-
+                $media->setUpdated(new \DateTime());
 
                 if ($oldFileName !== $media->getFilename()) {
                     $url = $request->request->get('file_url');
@@ -78,7 +78,8 @@ class MediaController extends Controller
         ]);
     }
 
-    protected function getFile($url){
+    protected function getFile($url)
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

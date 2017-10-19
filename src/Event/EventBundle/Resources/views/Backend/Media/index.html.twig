@@ -30,8 +30,8 @@
                         {{ file.title }}
                     </a>
                 </td>
-                <td>{{ file.createdDate|date }}</td>
-                <td>{{ file.updatedDate|date }}</td>
+                <td>{{ file.created|date }}</td>
+                <td>{{ file.updated|date }}</td>
                 <td>
                     <div class="btn-group">
                         <a class="btn btn-small" href="{{ url('backend_media_edit', {'id': file.id}) }}">

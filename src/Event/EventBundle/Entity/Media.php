@@ -65,21 +65,21 @@ class Media
      *
      * @ORM\Column(name="created_date", type="datetime")
      */
-    private $createdDate;
+    private $created;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_date", type="datetime")
      */
-    private $updatedDate;
+    private $updated;
 
     public function __construct()
     {
         if (is_null($this->getId())){
-            $this->setCreatedDate(new \DateTime());
+            $this->setCreated(new \DateTime());
         }
-        $this->setUpdatedDate(new \DateTime());
+        $this->setUpdated(new \DateTime());
     }
 
     /**
@@ -208,57 +208,57 @@ class Media
     }
 
     /**
-     * Set createdDate
+     * Set created
      *
-     * @param \DateTime $createdDate
+     * @param \DateTime $created
      * @return Media
      */
-    public function setCreatedDate($createdDate)
+    public function setCreated($created)
     {
-        if (!$createdDate instanceOf \DateTime) {
-            $createdDate = \DateTime::createFromFormat('m/d/Y', $createdDate);
+        if (!$created instanceOf \DateTime) {
+            $created = \DateTime::createFromFormat('m/d/Y', $created);
         }
 
-        $this->createdDate = $createdDate;
+        $this->created = $created;
 
         return $this;
     }
 
     /**
-     * Get createdDate
+     * Get created
      *
      * @return \DateTime
      */
-    public function getCreatedDate()
+    public function getCreated()
     {
-        return $this->createdDate;
+        return $this->created;
     }
 
     /**
-     * Set updatedDate
+     * Set updated
      *
-     * @param \DateTime $updatedDate
+     * @param \DateTime $updated
      * @return Media
      */
-    public function setUpdatedDate($updatedDate)
+    public function setUpdated($updated)
     {
-        if (!$updatedDate instanceOf \DateTime) {
-            $updatedDate = \DateTime::createFromFormat('m/d/Y', $updatedDate);
+        if (!$updated instanceOf \DateTime) {
+            $updated = \DateTime::createFromFormat('m/d/Y', $updated);
         }
 
-        $this->updatedDate = $updatedDate;
+        $this->updated = $updated;
 
         return $this;
     }
 
     /**
-     * Get updatedDate
+     * Get updated
      *
      * @return \DateTime
      */
-    public function getUpdatedDate()
+    public function getUpdated()
     {
-        return $this->updatedDate;
+        return $this->updated;
     }
 
     public function __toString()
