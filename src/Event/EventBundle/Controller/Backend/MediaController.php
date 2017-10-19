@@ -4,6 +4,8 @@ namespace Event\EventBundle\Controller\Backend;
 
 use Guzzle\Http\Client;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Event\EventBundle\Controller\Controller;
 use Event\EventBundle\Entity\Media;
@@ -53,10 +55,17 @@ class MediaController extends Controller
                     $path = $this->getUploadPath();
                     $media->setFilename(time() . '_' . $media->getFilename());
                     $file = $this->getFile($url);
-                    file_put_contents($path . $media->getFilename(), $file);
-                    chmod($path . $media->getFilename(), 0777);
-                    if (is_file($path . $oldFileName)) {
-                        unlink($path . $oldFileName);
+
+                    $fs = new Filesystem();
+
+                    try {
+                        $fs->dumpFile($path . $media->getFilename(), $file, 0777);
+                    } catch (IOExceptionInterface $e) {
+                        throw new Exception($e->getMessage());
+                    }
+
+                    if ($oldFileName !== '' && $fs->exists($path . $oldFileName)) {
+                        $fs->remove($path . $oldFileName);
                     }
                 }
 
