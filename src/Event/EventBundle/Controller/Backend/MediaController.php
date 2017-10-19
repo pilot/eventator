@@ -2,6 +2,7 @@
 
 namespace Event\EventBundle\Controller\Backend;
 
+use Guzzle\Http\Client;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Event\EventBundle\Controller\Controller;
@@ -80,11 +81,8 @@ class MediaController extends Controller
 
     protected function getFile($url)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $file = curl_exec($ch);
-        curl_close($ch);
+        $client = new Client();
+        $file = $client->createRequest('GET', $url)->send()->getBody(true);
 
         return $file;
     }
