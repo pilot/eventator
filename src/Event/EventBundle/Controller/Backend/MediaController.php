@@ -63,10 +63,6 @@ class MediaController extends Controller
                     } catch (IOExceptionInterface $e) {
                         throw new Exception($e->getMessage());
                     }
-
-                    if ($oldFileName !== '' && $fs->exists($path . $oldFileName)) {
-                        $fs->remove($path . $oldFileName);
-                    }
                 }
 
                 $this->getManager()->persist($media);
