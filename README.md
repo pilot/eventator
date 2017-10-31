@@ -56,3 +56,8 @@ old view before 1.5 release
 ## License
 
 All what you can find at this repo shared under the MIT License
+
+## about filestack
+As image uploader we use https://www.filestack.com/.
+To use it You should visit https://dev.filestack.com/apps/ and create new app.
+After that You should put your api_key to parameters.yml as filestack.api_key
