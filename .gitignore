@@ -16,6 +16,5 @@ app/config/parameters.yml
 composer.phar
 behat.yml
 .idea
-web/uploads/*
 !web/uploads/.gitkeep
 !web/uploads/media/.gitkeep
