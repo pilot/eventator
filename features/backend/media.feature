@@ -8,7 +8,7 @@ Background:
     Given following "Event":
         | ref    | title          | description                | startDate        | endDate          | venue              | email               | host                      |
         | event  | My event       | My another awesome event!  | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@email.com | http://localhost:8000     |
-        | event2 | My other event | My other awesome event!    | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@gmail.com | http://eventator.loc      |
+        | event2 | My other event | My other awesome event!    | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@gmail.com | http://eventator.loc:8080 |
         | event3 | His event      | His another awesome event! | 2016-04-01 10:00 | 2016-04-01 18:00 | Kuala-lumpur Tower | eventator@gmail.com | http://event.com          |
     And following "EventTranslation":
         | event  | locale |
@@ -114,6 +114,7 @@ Background:
         | title  | filename | created_date     | updated_date     |
         | Media1 | logo.png | 2017-10-27 16:02 | 2017-10-27 16:02 |
         | Media2 | logo.png | 2017-10-27 17:02 | 2017-10-27 17:02 |
+
 @javascript
 Scenario: Admin should have access to the media manage
     Given I am sign in as admin
