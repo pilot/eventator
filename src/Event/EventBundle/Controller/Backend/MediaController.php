@@ -56,7 +56,6 @@ class MediaController extends Controller
                     $media->setFilename(time() . '_' . $media->getFilename());
                     $file = $this->getFile($url);
 
-                    $this->checkAccessFolder($path);
                     $fs = new Filesystem();
 
                     try {
