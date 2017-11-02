@@ -147,7 +147,7 @@ Scenario: Admin should be able to add media
     Then I wait "10" seconds
     And I press "Add"
     Then I wait for a form
-#    Then I should see "Media Media3 added."
+    Then I should see "Media Media3 added."
     Then I should see the row containing "3;Media3"
 
 @javascript

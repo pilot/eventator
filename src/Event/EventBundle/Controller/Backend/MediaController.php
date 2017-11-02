@@ -56,6 +56,7 @@ class MediaController extends Controller
                     $media->setFilename(time() . '_' . $media->getFilename());
                     $file = $this->getFile($url);
 
+                    $this->checkAccessFolder($path);
                     $fs = new Filesystem();
 
                     try {
@@ -83,6 +84,14 @@ class MediaController extends Controller
             'form' => $form->createView(),
             'fs_api' => $this->container->getParameter('filestack.api_key'),
         ]);
+    }
+
+    protected function checkAccessFolder($path){
+        if(is_dir($path)){
+            chmod($path, 0777);
+        } else {
+            mkdir($path, 0777, true);
+        }
     }
 
     protected function getFile($url)
