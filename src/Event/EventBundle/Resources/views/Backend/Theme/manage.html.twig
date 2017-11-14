@@ -1,0 +1,52 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3 class="text-capitalize">{{ theme.id ? theme.title : 'New theme' }}{{ ' settings' }}</h3>
+        </div>
+
+        {{ form_start(form, {'method': 'POST', 'attr': {'id': 'theme'}, 'action': path('backend_theme_edit', {'id': theme.id})}) }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="{{ app.request.locale }}">
+                {{ form_row(form.title) }}
+                {% if theme.id %}
+                    <a href="{{ css_url }}" target="_blank">
+                        {{ 'view style.css' }}
+                    </a>
+                {% endif %}
+                <div class="uploader-container">
+                    <input class="btn btn-primary" type="button" value="{{ 'Upload file'|trans }}" onclick="showPicker()" />
+                    <input type="hidden" name="file_url" id="file_url"/>
+                </div>
+                <div class="hide">
+                    {{ form_row(form.isActive) }}
+                    {{ form_row(form.changedFile) }}
+                </div>
+            </div>
+            {{ form_rest(form) }}
+
+            <input class="btn btn-success" type="submit" value="{{ theme.id ? 'Update' : 'Add' }}" />
+        </div>
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+    <script>
+        var client = filestack.init('{{ fs_api }}');
+        function showPicker() {
+            client.pick({
+                accept: '.css'
+            }).then(function(result) {
+                var file = result.filesUploaded[0];
+                $('#file_url').val(file.url);
+                $('#theme_changedFile').attr('checked', 'checked');
+            });
+        }
+    </script>
+{% endblock %}

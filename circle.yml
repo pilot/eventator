@@ -35,6 +35,7 @@ test:
     - chmod -R 777 app/logs
     - wget http://selenium-release.storage.googleapis.com/2.48/selenium-server-standalone-2.48.2.jar
     - nohup bash -c "java -jar selenium-server-standalone-2.48.2.jar &"
+    - chmod 777 -R web/uploads/themes/
   override:
     - bin/phpspec run -fpretty --verbose --no-interaction
     - bin/behat --no-snippets --verbose -fpretty -p frontend

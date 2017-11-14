@@ -21,3 +21,6 @@ parameters:
     from_email:        bot@email.com
 
     admin_password:    admin
+    theme: 'default'
+    themes.uploadPath: %kernel.root_dir%/../web/uploads/themes/
+    themes.uploadUrl: /uploads/themes/
