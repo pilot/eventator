@@ -33,6 +33,7 @@ test:
   pre:
     - chmod -R 777 app/cache
     - chmod -R 777 app/logs
+    - chmod -R 777 web/uploads/media
     - wget http://selenium-release.storage.googleapis.com/2.48/selenium-server-standalone-2.48.2.jar
     - nohup bash -c "java -jar selenium-server-standalone-2.48.2.jar &"
   override:
