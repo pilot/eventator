@@ -104,6 +104,7 @@ class MediaController extends Controller
     public function deleteAction($id)
     {
         $this->isGrantedAdmin();
+        $translator = $this->get('translator');
 
         $entity = $this->findOr404('EventEventBundle:Media', $id);
         $file = $this->getUploadPath() . $entity->getFilename();
@@ -113,7 +114,7 @@ class MediaController extends Controller
             unlink($file);
         }
 
-        $this->setSuccessFlash('Media deleted.');
+        $this->setSuccessFlash($translator->trans('Media deleted.'));
 
         return $this->redirectToRoute('backend_media');
     }
