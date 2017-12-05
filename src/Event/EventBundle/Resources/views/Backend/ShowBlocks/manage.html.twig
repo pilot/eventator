@@ -3,7 +3,7 @@
 {% block content %}
     <section>
         <div class="page-header">
-            <h3 class="text-capitalize">{{ 'Active blocks'|trans }}</h3>
+            <h3 class="text-capitalize">{{ 'Active blocks settings'|trans }}</h3>
         </div>
 
         {{ form_start(form, {'method': 'POST', 'attr': {'id': 'showBlocks'}, 'action': path('backend_show_blocks', {'id': showBlocks.id})}) }}
