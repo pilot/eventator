@@ -35,6 +35,7 @@ class Builder implements ContainerAwareInterface
         $event->addChild('Organizers', array('route' => 'backend_organizer'));
         $event->addChild('Calls For Paper', array('route' => 'backend_call_for_paper'));
         $event->addChild('Themes', array('route' => 'backend_theme'));
+        $event->addChild('Active Blocks', array('route' => 'backend_show_blocks'));
 
         return $menu;
     }
