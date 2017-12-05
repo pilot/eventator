@@ -29,7 +29,6 @@ class ThemeController extends Controller
         } else {
             $theme = $this->findOr404('EventEventBundle:Theme', $id);
             $css_url = $this->getUploadUrl() . $theme->getTitle() . '/css/style.css';
-//            '/uploads/themes/test/css/style.css'
         }
 
         $form = $this->createForm(ThemeType::class, $theme);
@@ -76,6 +75,7 @@ class ThemeController extends Controller
         $this->isGrantedAdmin();
 
         $entity = $this->findOr404('EventEventBundle:Theme', $id);
+        $translator = $this->get('translator');
         try {
             $fs = new Filesystem();
             $fs->remove($this->getUploadPath() . DIRECTORY_SEPARATOR . $entity->getTitle());
@@ -87,7 +87,7 @@ class ThemeController extends Controller
         $this->getManager()->flush();
 
 
-        $this->setSuccessFlash('Theme deleted.');
+        $this->setSuccessFlash($translator->trans('Theme deleted.'));
 
         return $this->redirectToRoute('backend_theme');
     }

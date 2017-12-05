@@ -188,3 +188,9 @@ backend_theme_delete:
     path:  /theme/delete/{id}
     defaults: { _controller: EventEventBundle:Backend/Theme:delete }
     requirements: { id: \d+ }
+
+# Show blocks
+backend_show_blocks:
+    path:  /active_blocks
+    defaults: { _controller: EventEventBundle:Backend/ShowBlocks:manage }
+

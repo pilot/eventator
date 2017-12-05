@@ -1,0 +1,65 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3 class="text-capitalize">{{ 'Active blocks'|trans }}</h3>
+        </div>
+
+        {{ form_start(form, {'method': 'POST', 'attr': {'id': 'showBlocks'}, 'action': path('backend_show_blocks', {'id': showBlocks.id})}) }}
+        <div class="form-check">
+            {{ form_label(form.showWhereItBeSection, 'Show "Where it be"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showWhereItBeSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showSpeakersSection, 'Show "Speakers"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showSpeakersSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showScheduleSection, 'Show "Schedule"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showScheduleSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showAboutSection, 'Show "About"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showAboutSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showVenueSection, 'Show "Venue"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showVenueSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showMapSection, 'Show "Map"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showMapSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showHowItWasSection, 'Show "How It Was"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showHowItWasSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showSponsorsSection, 'Show "Sponsors"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showSponsorsSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showOrganizersSection, 'Show "Organizers"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showOrganizersSection) }}
+        </div>
+        <div class="form-check">
+            {{ form_label(form.showContactSection, 'Show "Contact"',
+            { 'label_attr': {'class': 'control-label', 'style':'display:inline-block'} }) }}
+            {{ form_widget(form.showContactSection) }}
+        </div>
+        <input class="btn btn-success" type="submit" value="{{ 'Save'|trans }}" />
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}
+
