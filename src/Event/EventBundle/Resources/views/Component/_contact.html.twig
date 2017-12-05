@@ -1,6 +1,6 @@
 {% form_theme form 'EventEventBundle::form_theme.html.twig' %}
 <div id="contact" class="indent"></div>
-<section class="contact_us">
+<section class="contact_us" style="{{ blocks.showContactSection ? '' : 'display:none' }}">
     <div class="container">
         <div class="flex">
             <div class="form">
@@ -64,6 +64,7 @@
     </div>
 </section>
 
+{% if blocks.showContactSection %}
 <script type="text/javascript">
     $(function(){
         $('button.btn-contact-send').on('click', function(e) {
@@ -77,3 +78,4 @@
         });
     });
 </script>
+{% endif %}

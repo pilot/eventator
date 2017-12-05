@@ -16,6 +16,11 @@ class Controller extends BaseController
         return $this->get('eventator.event_manager')->getCurrentEvent();
     }
 
+    public function getBlocks()
+    {
+        return $this->getRepository('EventEventBundle:ShowBlocks')->findOrCreate();
+    }
+
     protected function getRepository($name)
     {
         return $this->getManager()->getRepository($name);

@@ -15,10 +15,18 @@ class EventController extends Controller
         return $this->render('EventEventBundle:Event:index.html.twig', []);
     }
 
+    public function whereItBeAction(){
+        return $this->render('EventEventBundle:Component:_whereItBe.html.twig', [
+            'event'  => $this->getEvent(),
+            'blocks' => $this->getBlocks(),
+        ]);
+    }
+
     public function carouselAction()
     {
         return $this->render('EventEventBundle:Component:_carousel.html.twig', [
-            'event' => $this->getEvent()
+            'event'  => $this->getEvent(),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
@@ -30,27 +38,32 @@ class EventController extends Controller
             'currentEvent' => $this->getEvent(),
             'speakers' => $this->getEvent()->getSpeakers(),
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha('captchaResultCall')
+            'captcha' => $this->getCaptcha('captchaResultCall'),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
     public function aboutSymfonyAction()
     {
         return $this->render('EventEventBundle:Component:_about.html.twig', [
-            'event' => $this->getEvent()
+            'event' => $this->getEvent(),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
     public function venueAction()
     {
         return $this->render('EventEventBundle:Component:_venue.html.twig', [
-            'event' => $this->getEvent()
+            'event' => $this->getEvent(),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
     public function conferencesAction()
     {
-        return $this->render('EventEventBundle:Component:conferences.html.twig', []);
+        return $this->render('EventEventBundle:Component:conferences.html.twig', [
+            'blocks' => $this->getBlocks(),
+        ]);
     }
 
     public function scheduleAction(Request $request)
@@ -58,21 +71,24 @@ class EventController extends Controller
         $host = $request->getHttpHost();
 
         return $this->render('EventEventBundle:Component:_schedule.html.twig', [
-            'schedule' => $this->getRepository('EventEventBundle:Event')->getProgram($host)
+            'schedule' => $this->getRepository('EventEventBundle:Event')->getProgram($host),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
     public function sponsorsAction()
     {
         return $this->render('EventEventBundle:Component:_sponsors.html.twig', [
-            'event' => $this->getEvent()
+            'event' => $this->getEvent(),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
     public function organizersAction()
     {
         return $this->render('EventEventBundle:Component:_organizers.html.twig', [
-            'event' => $this->getEvent()
+            'event' => $this->getEvent(),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
@@ -102,7 +118,8 @@ class EventController extends Controller
         return $this->render('EventEventBundle:Component:_contact.html.twig', [
             'event' => $event,
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha()
+            'captcha' => $this->getCaptcha(),
+            'blocks' => $this->getBlocks(),
         ]);
     }
 
@@ -137,7 +154,8 @@ class EventController extends Controller
 
         return new Response($this->renderView('EventEventBundle:Event:_form.html.twig', [
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha('captchaResultCall')
+            'captcha' => $this->getCaptcha('captchaResultCall'),
+            'blocks' => $this->getBlocks(),
         ]));
     }
 
@@ -160,7 +178,8 @@ class EventController extends Controller
         return new Response($this->renderView('@EventEvent/Component/_block_menu.html.twig', [
             'hosts' => $this->getHostYear(),
             'event' => $this->getEvent(),
-            'home_page' => true
+            'home_page' => true,
+            'blocks' => $this->getBlocks(),
         ]));
     }
 
