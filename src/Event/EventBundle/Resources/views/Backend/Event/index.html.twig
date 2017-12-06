@@ -39,6 +39,7 @@
                         <a class="btn btn-small" href="{{ url('backend_event_edit', {'id': event.id}) }}"><i class="icon-user"></i> Edit</a>
                         <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ url('backend_event_clone', {'id': event.id, 'clone': 1}) }}"><i class="icon-folder-open"></i> Clone</a></li>
                             <li><a href="{{ url('backend_event_delete', {'id': event.id}) }}"><i class="icon-trash"></i> Delete</a></li>
                         </ul>
                     </div>

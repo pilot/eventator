@@ -17,13 +17,16 @@ class EventController extends Controller
         ));
     }
 
-    public function manageAction(Request $request, $id = null)
+    public function manageAction(Request $request, $id = null, $clone = false)
     {
         if ($id === null) {
             $entity = new Event();
             $entity = $this->initObjectLocales($entity, new EventTranslation());
         } else {
             $entity = $this->findOr404('EventEventBundle:Event', $id);
+            if($clone){
+                $entity->setId(null)->setIsActive(false)->setHost(null);
+            }
         }
 
         $form = $this->createForm(EventType::class, $entity);

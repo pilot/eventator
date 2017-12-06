@@ -20,6 +20,11 @@ backend_event_edit:
     defaults: { _controller: EventEventBundle:Backend/Event:manage, id: null }
     requirements: { id: \d+ }
 
+backend_event_clone:
+    path:  /event/clone/{id}
+    defaults: { _controller: EventEventBundle:Backend/Event:manage, id: null, clone: 1 }
+    requirements: { id: \d+, clone: \d+ }
+
 backend_event_delete:
     path:  /event/delete/{id}
     defaults: { _controller: EventEventBundle:Backend/Event:delete }

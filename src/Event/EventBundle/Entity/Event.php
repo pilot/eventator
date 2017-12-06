@@ -290,6 +290,18 @@ class Event
     }
 
     /**
+     * Set id
+     *
+     * @param int $id
+     * @return integer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * Set host
      *
      * @param string $host
