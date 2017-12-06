@@ -169,7 +169,8 @@ class EventController extends Controller
             'event' => $this->getEvent(),
             'hosts' => $this->getHostYear(),
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha('captchaResultCall')
+            'captcha' => $this->getCaptcha('captchaResultCall'),
+            'blocks' => $this->getBlocks(),
         ]));
     }
 
