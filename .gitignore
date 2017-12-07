@@ -15,3 +15,7 @@ app/config/parameters.yml
 
 composer.phar
 behat.yml
+.idea
+!web/uploads/themes/.gitkeep
+!web/uploads/themes/test.css
+#composer.lock

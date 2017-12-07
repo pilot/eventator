@@ -1,0 +1,14 @@
+<article class="info bg" style="{{ blocks.showWhereItBeSection ? '' : 'display:none' }}">
+    <div class="event-place-wrap">
+        <h2>Where will it be?</h2>
+        <p>
+            <i class="ico_map_pin_min"></i> <strong>{{ event.venue }}, {{ event.country ~ ' ' ~ event.city }} /</strong>
+            <i class="ico_group"></i> <strong>{{ event.startDate|date }}</strong>
+        </p>
+    </div>
+    <div class="container">
+        <div class="wrapper">
+            <h2>{{ event.description|raw }}</h2>
+        </div>
+    </div>
+</article>

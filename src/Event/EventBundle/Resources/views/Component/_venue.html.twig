@@ -1,4 +1,4 @@
-<section class="venue">
+<section class="venue" style="{{ blocks.showVenueSection ? '' : 'display:none' }}">
     <div id="venue" class="indent"></div>
     <div class="container">
         <div class="wrapper">
@@ -11,9 +11,10 @@
         </div>
     </div>
 </section>
-<section class="map">
+<section class="map" style="{{ blocks.showMapSection ? '' : 'display:none' }}">
     <div id="map-canvas" style="height: 500px;"></div>
 </section>
+{% if blocks.showMapSection %}
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
     function initialize() {
@@ -37,3 +38,4 @@
 
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+{% endif %}

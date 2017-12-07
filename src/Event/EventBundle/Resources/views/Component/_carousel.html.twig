@@ -2,9 +2,11 @@
     <div id="home" class="indent"></div>
     <ul id="slides">
         {% set slides = ['slideOne', 'slideTwo', 'slideThree'] %}
+        {% set countSlides = 0 %}
         {% for index in 0..2 %}
+            {% if attribute(event, slides[index]) %}
             <li>
-                <img src="{{ attribute(event, slides[index]) ?: 'http://lorempixel.com/g/1500/800/business/' ~ (index + 1) }}"
+                <img src="{{ attribute(event, slides[index]) }}"
                      alt="image">
                 <div class="content_slide">
                     <div class="container">
@@ -22,7 +24,29 @@
                 </div>
                 <div class="overlay_slider"></div>
             </li>
+            {% set countSlides = countSlides + 1 %}
+            {% endif %}
         {% endfor %}
+        {% if countSlides == 0 %}
+            <li>
+                <img src="/uploads/slider/eventator-placeholder.jpg" alt="image">
+                <div class="content_slide">
+                    <div class="container">
+                        <div class="wrapper_text">
+                            <p class="title_slide">{{ event.title }}</p>
+                            <p class="text_slide">{{ event.briefDescription }}</p>
+                        </div>
+                        {% if event.isActive and event.embedTicket %}
+                            <a class="btn_blue modal-active" href="#">{{ 'Registration'|trans }}</a>
+                        {% else %}
+                            <button class="btn btn_blue"
+                                    disabled="disabled">{{ 'Registration closed'|trans }}</button>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="overlay_slider"></div>
+            </li>
+        {% endif %}
     </ul>
 </section>
 
@@ -61,3 +85,4 @@
         });
     })
 </script>
+

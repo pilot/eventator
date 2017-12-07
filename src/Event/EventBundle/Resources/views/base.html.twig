@@ -9,7 +9,15 @@
         <link href="{{ asset('bundles/eventevent/css/bootstrap.css') }}" media="screen" rel="stylesheet" type="text/css">
         <link href="{{ asset('bundles/eventevent/css/slick-theme.css') }}" media="screen" rel="stylesheet" type="text/css">
         <link href="{{ asset('bundles/eventevent/css/slick.css') }}" media="screen" rel="stylesheet" type="text/css">
-        <link href="{{ asset('bundles/eventevent/css/allstyle.css') }}" media="screen" rel="stylesheet" type="text/css">
+        {% if theme is defined %}
+            {% if theme == 'default' %}
+                {% set css_path = 'bundles/eventevent/css/allstyle.css' %}
+            {% else %}
+                {% set css_path = 'uploads/themes/' ~ theme ~ '/css/style.css' %}
+            {% endif %}
+        {% endif %}
+        <link href="{{ asset(css_path) }}" media="screen" rel="stylesheet" type="text/css">
+
 
         {% block stylesheets %}{% endblock %}
 
@@ -19,6 +27,7 @@
         <script>window.jQuery || document.write("<script src=\"{{ asset('bundles/eventevent/js/jquery-1.10.1.min.js') }}\"><\/script>")</script>
     </head>
     <body>
+
         {% block body %}
         {% endblock %}
 

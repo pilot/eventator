@@ -169,3 +169,28 @@ backend_call_for_paper_delete:
         id: \d+
     options:
         expose: true
+
+# Theme
+backend_theme:
+    path:  /themes
+    defaults: { _controller: EventEventBundle:Backend/Theme:index }
+
+backend_theme_add:
+    path:  /theme/add
+    defaults: { _controller: EventEventBundle:Backend/Theme:manage }
+
+backend_theme_edit:
+    path:  /theme/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Theme:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_theme_delete:
+    path:  /theme/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Theme:delete }
+    requirements: { id: \d+ }
+
+# Show blocks
+backend_show_blocks:
+    path:  /active_blocks
+    defaults: { _controller: EventEventBundle:Backend/ShowBlocks:manage }
+
