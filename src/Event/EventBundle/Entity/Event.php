@@ -267,6 +267,13 @@ class Event
      */
     private $papers;
 
+    /**
+     * @var Ticket
+     *
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="event", cascade={"all"})
+     */
+    private $tickets;
+
 
     public function __construct()
     {
@@ -277,6 +284,7 @@ class Event
         $this->program = new ArrayCollection();
         $this->organizers = new ArrayCollection();
         $this->papers = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -1007,5 +1015,37 @@ class Event
     public function getPapers()
     {
         return $this->papers;
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * Add ticket
+     *
+     * @param Ticket $ticket
+     */
+    public function addTicket(Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        $ticket->setEvent($this);
+    }
+
+    /**
+     * Remove ticket
+     *
+     * @param Ticket $ticket
+     */
+    public function removeTicket(Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
     }
 }

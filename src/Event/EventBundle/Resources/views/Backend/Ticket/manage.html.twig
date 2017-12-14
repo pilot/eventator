@@ -1,0 +1,33 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>{{ ticket.id ? 'Edit'|trans : 'Add'|trans }} {{ 'ticket'|trans }}</h3>
+            <a href="{{ path('backend_ticket') }}" class="btn btn-small">&larr; {{ 'Back to the list'|trans }}</a>
+        </div>
+
+
+        {{ form_start(form, {'method': 'POST', 'action': path('backend_ticket_edit', {'id': ticket.id})}) }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="{{ app.request.locale }}">
+                <div class="well">
+                    {{ form_row(form.event) }}
+                </div>
+                {{ form_row(form.name) }}
+                {{ form_row(form.price) }}
+                {{ form_row(form.currency) }}
+                {{ form_row(form.lunch_price) }}
+                {{ form_row(form.ap_price) }}
+                {{ form_row(form.isActive) }}
+                {{ form_row(form.count) }}
+            </div>
+
+            {{ form_rest(form) }}
+
+            <input type="submit" value="{{ ticket.id ? 'Update'|trans : 'Add'|trans }}" class="btn btn-success" />
+        </div>
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}
