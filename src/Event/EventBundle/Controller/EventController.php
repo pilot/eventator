@@ -2,6 +2,8 @@
 
 namespace Event\EventBundle\Controller;
 
+use Event\EventBundle\Entity\SoldTicket;
+use Event\EventBundle\Form\Type\SoldTicketType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Event\EventBundle\Entity\CallForPaper;
@@ -73,6 +75,79 @@ class EventController extends Controller
     {
         return $this->render('EventEventBundle:Component:_organizers.html.twig', [
             'event' => $this->getEvent()
+        ]);
+    }
+
+    public function ticketsAction()
+    {
+        return $this->render('EventEventBundle:Component:_tickets.html.twig', [
+            'event' => $this->getEvent()
+        ]);
+    }
+
+    public function buyTicketAction (Request $request){
+        $ticket = $this->findOr404('EventEventBundle:Ticket', $request->request->get('ticket_id'));
+        $total = $ticket->getPrice();
+        if($lunch = $request->request->get('lunch')){
+            $total += $ticket->getLunchPrice();
+        }
+        if($ap = $request->request->get('after-party')){
+            $total += $ticket->getApPrice();
+        }
+        $uid = time();
+
+        if ($request->isMethod('POST') && $sold_tickets = $request->request->get('soldTickets')) {
+            foreach ($sold_tickets as $sold_ticket) {
+                $entity = new SoldTicket();
+                $entity->setTicket($ticket);
+                $entity->setFirstName($sold_ticket['firstName']);
+                $entity->setLastName($sold_ticket['lastName']);
+                $entity->setEmail($request->request->get('email'));
+                $entity->setStatus(SoldTicket::STATUS_RESERVED);
+                $entity->setUid($uid);
+                $this->getManager()->persist($entity);
+                $this->getManager()->flush();
+            }
+            $public_key = $this->container->getParameter('liqpay.publickey');
+            $private_key = $this->container->getParameter('liqpay.privatekey');
+            $liqpay = new \LiqPay($public_key, $private_key);
+            $amount = $total * count($sold_tickets);
+            $html = $liqpay->cnb_form(array(
+                'action'         => 'pay',
+                'amount'         => $total * count($sold_tickets),
+                'currency'       => $ticket->getCurrencylabel(),
+                'description'    => 'buying ticket(s)',
+                'order_id'       => $uid,
+                'version'        => '3',
+                'sandbox'        => '1',
+                'server_url'     => '',
+                'result_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_payment_success'),
+            ));
+            return $this->render('EventEventBundle:Event:liqPay.html.twig', [
+                'event'  => $this->getEvent(),
+                'hosts'  => $this->getHostYear(),
+                'button' => $html,
+                'amount' => $amount . ' ' . $ticket->getCurrencyLabel(),
+                'count' => count($sold_tickets),
+            ]);
+        }
+        return $this->render('EventEventBundle:Event:buyTicket.html.twig', [
+            'event'  => $this->getEvent(),
+            'ticket' => $ticket,
+            'lunch'  => $lunch,
+            'ap'     => $ap,
+            'hosts'  => $this->getHostYear(),
+            'uid'    => $uid,
+            'total'  => $total,
+//            'form' => $form->createView(),
+        ]);
+
+    }
+    
+    public function ticketPaymentSuccessAction(){
+        return $this->render('EventEventBundle:Event:ticketPaySuccess.html.twig', [
+            'event'  => $this->getEvent(),
+            'hosts'  => $this->getHostYear(),
         ]);
     }
 

@@ -1,0 +1,81 @@
+{#{% if event.tickets is not empty %}#}
+<section class="tickets">
+    <div id="tickets" class="indent"></div>
+    <a name="tickets"></a>
+    <div class="container">
+        <h2><i class="ico_tickets"></i>{{ 'Ticket prices'|trans }}</h2>
+
+        <ul class="list_tickets">
+            {%  set counter = 1 %}
+            {% set disabled = 'disabled="disabled"' %}
+            {% for ticket in event.tickets %}
+                {% if counter == event.tickets|length %}
+                    {% set class = 'last' %}
+                {% elseif counter == 1 %}
+                    {% set class = 'first' %}
+                {% else %}
+                    {% set class = '' %}
+                {% endif %}
+                {% set counter = counter + 1 %}
+                <li class="ticket-item {{ class }}">
+                    <form class="buy-tickets" method="POST" action="{{ url('event_component_ticket') }}">
+                        <p class="ticket_name">{{ ticket.name }}</p>
+                        <p class="ticket_price">{{ ticket.PriceWithLabel}} </p>
+                        <p class="lunch_price">
+                            <input id="lunch-{{ ticket.id }}"
+                                   {{ ticket.lunchPrice is null ? disabled : '' }}
+                                   type="checkbox"
+                                   class="ticket-features-checkbox"
+                                   name="lunch" data-price="{{ ticket.lunchPrice }}"
+                            />
+                            <label for="lunch-{{ ticket.id }}"
+                                   class="ticket-features-label {{ ticket.lunchPrice is null ? 'cross_out' : '' }}" >
+                                {{ 'Lunch'|trans }} ({{ ticket.lunch }})
+                            </label>
+                        </p>
+                        <p class="ap_price">
+                            <input id="ap-{{ ticket.id }}"
+                                   {{ ticket.apPrice is null ? disabled : '' }}
+                                   type="checkbox"
+                                   name="after-party"
+                                   class="ticket-features-checkbox"
+                                   data-price="{{ ticket.apPrice }}"
+                            />
+                            <label for="ap-{{ ticket.id }}"
+                                   class="ticket-features-label {{ ticket.apPrice is null ? 'cross_out' : '' }}" >
+                                {{ 'After party'|trans }} ({{ ticket.ap }})
+                            </label>
+                        </p>
+                        <p class="total_price">
+                            {{ 'Total price'|trans }}:
+                            <span class="total-price-span">{{ ticket.price }}</span>
+                            {{ ticket.currencyLabel }}
+                        </p>
+                        <input type="hidden" name="ticket_id" value="{{ ticket.id }}" />
+                        <div class="tickets-submit-container">
+                            <button type="submit" class="buy_tickets_button btn btn_blue">
+                                <span>{{ 'Buy tickets'|trans }}</span>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{#{% endif %}#}
+<script>
+    $(document).ready(function(){
+        $('.ticket-features-checkbox').on('change', function(){
+            var price_span = $(this).closest('form').find('.total-price-span');
+            var price = $(price_span).html();
+            if($(this).prop('checked')){
+                price = +price + +$(this).data('price');
+                $(price_span).html(price);
+            } else {
+                price = price - $(this).data('price');
+                $(price_span).html(price);
+            }
+        });
+    });
+</script>

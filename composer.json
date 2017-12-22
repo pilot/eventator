@@ -26,7 +26,8 @@
         "doctrine/common": "^2.6",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
-        "friendsofsymfony/jsrouting-bundle": "^1.6"
+        "friendsofsymfony/jsrouting-bundle": "^1.6",
+        "liqpay/liqpay": "^1.2"
     },
     "require-dev": {
         "behat/behat": "2.5.*",

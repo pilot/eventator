@@ -15,7 +15,6 @@ use Event\EventBundle\Entity\Translation\Translation;
  */
 class SoldTicket
 {
-
     /**
      * @var integer
      *
@@ -49,6 +48,13 @@ class SoldTicket
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="uid", type="string", length=255)
+     */
+    private $uid;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="status", type="integer")
@@ -69,6 +75,8 @@ class SoldTicket
      * @ORM\ManyToOne(targetEntity="Discount", inversedBy="soldTickets")
      */
     private $discount;
+
+    public $count;
 
     const STATUS_RESERVED = 1;
     const STATUS_SOLD = 2;
@@ -209,7 +217,7 @@ class SoldTicket
      * @param integer $status
      * @return SoldTicket
      */
-    public function setPrice($status)
+    public function setStatus($status)
     {
         $this->status = $status;
         return $this;
@@ -242,5 +250,36 @@ class SoldTicket
     //@TODO
     public function getDiscountString(){
         return '-';
+    }
+
+    /**
+     * Set uid
+     *
+     * @param string $uid
+     * @return SoldTicket
+     */
+    public function setUid($uid)
+    {
+        $this->uid = $uid;
+
+        return $this;
+    }
+
+    /**
+     * Get uid
+     *
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    public function getStatusLabel(){
+        $labels = [
+            self::STATUS_RESERVED => 'reserved',
+            self::STATUS_SOLD => 'sold',
+        ];
+        return isset ($labels[$this->status]) ? $labels[$this->status] : $this->status;
     }
 }

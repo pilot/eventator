@@ -45,3 +45,11 @@ event_component_call_for_paper_view:
     defaults: { _controller: EventEventBundle:Event:callForPaperView }
     requirements:
         methods: POST
+
+event_component_ticket:
+    path: /buy-ticket
+    defaults: { _controller: EventEventBundle:Event:buyTicket }
+
+tickets_payment_success:
+    path: /payment-success
+    defaults: { _controller: EventEventBundle:Event:ticketPaymentSuccess }

@@ -346,7 +346,7 @@ class Ticket
             self::UAH => 'UAH',
             self::USD => 'USD',
             self::EUR => 'EUR',
-            self::RUR => 'RUR',
+            self::RUR => 'RUB',
         );
         if(is_null($label)){
             return $labels;
@@ -354,6 +354,13 @@ class Ticket
             return $labels[$label];
         }
         return $label;
+    }
+    
+    public function getCurrencyLabel($sign = false){
+        if($sign) {
+            return self::getCurrencySigns($this->currency);
+        }
+        return self::getCurrencyLabels($this->currency);
     }
 
     /**

@@ -2009,4 +2009,92 @@ footer .footer_text {
 
 }
 
+/* Tickets */
+.ico_tickets {
+    background: url(../img/ticket.png) no-repeat;
+    background-size: 46px;
+    top: 11px;
+    position: relative;
+    right: 0;
+    margin-right: 10px;
+    width: 50px;
+    height: 43px;
+}
+.list_tickets {
+    display: flex;
+    justify-content: center;
+}
+.list_tickets .ticket-item {
+    border: 1px solid #000;
+    padding: 15px 25px;
+    margin: 15px;
+    height: 360px;
+    position: relative;
+    justify-content: center;
+    width: 200px;
+}
+.list_tickets .first {
+    margin-left: 0;
+}
+.list_tickets .last {
+    margin-right: 0;
+}
+.tickets-submit-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.ticket_name {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(29, 31, 50, 0.2);
+    padding-bottom: 10px;
+    font-size: 21px;
+}
+.ticket_price {
+    font-size: 36px;
+    color: #05A5D1;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+.buy_tickets_button {
+    display: block;
+    margin: 0 auto;
+}
+.total_price {
+    margin-top: 65px;
+    color: #05A5D1;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+.lunch_price {
+    margin-top: 70px;
+    margin-bottom: 15px;
+}
 
+.ticket-features-checkbox, .ticket-features-label {
+    cursor: pointer;
+}
+
+.buy_tickets_button[disabled] {
+    background-color: #BDBDBD;
+}
+.cross_out {
+    text-decoration: line-through;
+}
+
+#buyTicketForm, #successPaymentContainer {
+    margin-top: 100px;
+}
+
+.ticket-container .remove-add-ticket{
+    display: none;
+}
+
+.liqpay_ticket{
+    text-align: center;
+}

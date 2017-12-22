@@ -14,6 +14,7 @@
                 <th>{{ 'Fullname'|trans }}</th>
                 <th>{{ 'Email'|trans }}</th>
                 <th>{{ 'Discount'|trans }}</th>
+                <th>{{ 'Status'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                 </td>
                 <td>{{ sold_ticket.email }}</td>
                 <td>{{ sold_ticket.discountString }}</td>
+                <td>{{ sold_ticket.statusLabel }} </td>
             </tr>
         {% else %}
             <tr>
