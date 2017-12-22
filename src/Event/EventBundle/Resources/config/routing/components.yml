@@ -53,3 +53,7 @@ event_component_ticket:
 tickets_payment_success:
     path: /payment-success
     defaults: { _controller: EventEventBundle:Event:ticketPaymentSuccess }
+
+tickets_handle_liqpay:
+    path: /liqpay-handle
+    defaults: { _controller: EventEventBundle:Event:handleLiqPayRequest }

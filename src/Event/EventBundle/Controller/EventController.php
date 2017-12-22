@@ -2,6 +2,7 @@
 
 namespace Event\EventBundle\Controller;
 
+use Behat\Mink\Exception\ResponseTextException;
 use Event\EventBundle\Entity\SoldTicket;
 use Event\EventBundle\Form\Type\SoldTicketType;
 use Symfony\Component\HttpFoundation\Request;
@@ -139,11 +140,43 @@ class EventController extends Controller
             'hosts'  => $this->getHostYear(),
             'uid'    => $uid,
             'total'  => $total,
-//            'form' => $form->createView(),
         ]);
 
     }
-    
+
+    public function handleLiqPayRequestAction(Request $request){
+        $data = $request->request->get('data');
+        $uid = $data['order_id'];
+        $status = $data['status'];
+        $signature = $request->request->get('signature');
+        $privateKey = $this->container->getParameter('liqpay.privatekey');
+        $check = base64_encode( sha1( $privateKey + $data + $privateKey) );
+        if($check == $signature){
+            if($status == 'sandbox' || $status == 'success') {
+                $this->changeTicketStatusByUid($uid);
+            }
+        }
+        return new Response();
+    }
+
+    protected function changeTicketStatusByUid($uid){
+        $repository = $this->getDoctrine()->getRepository(SoldTicket::class);
+        $tickets = $repository->findBy(
+            ['uid' => $uid]
+        );
+        foreach ($tickets as $ticket){
+            $ticket->setStatus(SoldTicket::STATUS_SOLD);
+            $this->getManager()->persist($ticket);
+            $this->getManager()->flush();
+            $this->sendTicket($ticket);
+        }
+    }
+
+    public function sendTicket($ticket){
+        //@todo
+        return true;
+    }
+
     public function ticketPaymentSuccessAction(){
         return $this->render('EventEventBundle:Event:ticketPaySuccess.html.twig', [
             'event'  => $this->getEvent(),
