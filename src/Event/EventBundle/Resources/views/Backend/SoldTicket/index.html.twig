@@ -15,6 +15,7 @@
                 <th>{{ 'Email'|trans }}</th>
                 <th>{{ 'Discount'|trans }}</th>
                 <th>{{ 'Status'|trans }}</th>
+                <th>{{ 'Event'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
                 <td>{{ sold_ticket.email }}</td>
                 <td>{{ sold_ticket.discountString }}</td>
                 <td>{{ sold_ticket.statusLabel }} </td>
+                <td>{{ sold_ticket.ticket.event.title }} </td>
             </tr>
         {% else %}
             <tr>
@@ -60,6 +62,8 @@
                         null,
                         null,
                         null,
+                        null,
+                        null
                     ],
                     "aaSorting": [[0, 'desc']]
                 });

@@ -12,6 +12,7 @@
             <tr>
                 <th>id</th>
                 <th>{{ 'Name'|trans }}</th>
+                <th>{{ 'Event'|trans }}</th>
                 <th>{{ 'Price'|trans }}</th>
                 <th>{{ 'Status'|trans }}</th>
                 <th>{{ 'Lunch'|trans }}</th>
@@ -26,6 +27,7 @@
             <tr>
                 <td>{{ ticket.id }}</td>
                 <td><a href="{{ url('backend_ticket_edit', {'id': ticket.id}) }}">{{ ticket.name }}</a></td>
+                <td>{{ ticket.event.title }}</td>
                 <td>{{ ticket.getPriceWithLabel(true) }}</td>
                 <td>{{ ticket.isActive ? 'Yes'|trans : 'No'|trans }}</td>
                 <td>{{ ticket.getLunch(true) }}</td>
@@ -65,6 +67,8 @@
                         "sLengthMenu": "_MENU_ records per page"
                     },
                     "aoColumns": [
+                        null,
+                        null,
                         null,
                         null,
                         null,
