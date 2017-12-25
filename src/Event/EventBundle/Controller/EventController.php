@@ -121,7 +121,7 @@ class EventController extends Controller
                 'order_id'       => $uid,
                 'version'        => '3',
                 'sandbox'        => '1',
-                'server_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_payment_success'),
+                'server_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_handle_liqpayg'),
                 'result_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_payment_success'),
             ));
             return $this->render('EventEventBundle:Event:liqPay.html.twig', [
