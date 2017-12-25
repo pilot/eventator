@@ -146,9 +146,7 @@ class EventController extends Controller
 
     public function handleLiqPayRequestAction(Request $request){
         $data = $request->request->get('data');
-        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
         file_put_contents(__DIR__. '../../../../web/uploads/test', $data);
-        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
         $signature = $request->request->get('signature');
         $privateKey = $this->container->getParameter('liqpay.privatekey');
         $publicKey = $this->container->getParameter('liqpay.publickey');
@@ -184,9 +182,7 @@ class EventController extends Controller
     }
 
     public function ticketPaymentSuccessAction(){
-        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
         file_put_contents(__DIR__. '../../../../web/uploads/test', 'success_page');
-        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
         return $this->render('EventEventBundle:Event:ticketPaySuccess.html.twig', [
             'event'  => $this->getEvent(),
             'hosts'  => $this->getHostYear(),
