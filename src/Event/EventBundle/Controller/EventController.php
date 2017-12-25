@@ -146,7 +146,7 @@ class EventController extends Controller
 
     public function handleLiqPayRequestAction(Request $request){
         $data = $request->request->get('data');
-        file_put_contents(__DIR__. '/../../../../web/uploads/test', $data);
+        file_put_contents(__DIR__. '/../../../../web/uploads/test', $request->request);
         $signature = $request->request->get('signature');
         $privateKey = $this->container->getParameter('liqpay.privatekey');
         $publicKey = $this->container->getParameter('liqpay.publickey');
