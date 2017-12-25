@@ -121,7 +121,7 @@ class EventController extends Controller
                 'order_id'       => $uid,
                 'version'        => '3',
                 'sandbox'        => '1',
-                'server_url'     => '',
+                'server_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_payment_success'),
                 'result_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_payment_success'),
             ));
             return $this->render('EventEventBundle:Event:liqPay.html.twig', [
@@ -146,11 +146,17 @@ class EventController extends Controller
 
     public function handleLiqPayRequestAction(Request $request){
         $data = $request->request->get('data');
-        $uid = $data['order_id'];
-        $status = $data['status'];
+        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
+        file_put_contents(__DIR__. '../../../../web/uploads/test', $data);
+        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
         $signature = $request->request->get('signature');
         $privateKey = $this->container->getParameter('liqpay.privatekey');
+        $publicKey = $this->container->getParameter('liqpay.publickey');
+        $liqpay = new \LiqPay($publicKey, $privateKey);
         $check = base64_encode( sha1( $privateKey + $data + $privateKey) );
+        $data = $liqpay->decode_params($data);
+        $uid = $data['order_id'];
+        $status = $data['status'];
         if($check == $signature){
             if($status == 'sandbox' || $status == 'success') {
                 $this->changeTicketStatusByUid($uid);
