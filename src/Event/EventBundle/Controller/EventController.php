@@ -151,7 +151,7 @@ class EventController extends Controller
         $privateKey = $this->container->getParameter('liqpay.privatekey');
         $publicKey = $this->container->getParameter('liqpay.publickey');
         $liqpay = new \LiqPay($publicKey, $privateKey);
-        $check = base64_encode( sha1( $privateKey + $data + $privateKey) );
+        $check = base64_encode( sha1( $privateKey . $data . $privateKey) );
         $data = $liqpay->decode_params($data);
         $uid = $data['order_id'];
         $status = $data['status'];
