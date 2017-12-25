@@ -184,6 +184,9 @@ class EventController extends Controller
     }
 
     public function ticketPaymentSuccessAction(){
+        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
+        file_put_contents(__DIR__. '../../../../web/uploads/test', 'success_page');
+        file_put_contents(__DIR__. '../../../../web/uploads/test', '========/n');
         return $this->render('EventEventBundle:Event:ticketPaySuccess.html.twig', [
             'event'  => $this->getEvent(),
             'hosts'  => $this->getHostYear(),
