@@ -15,3 +15,4 @@ app/config/parameters.yml
 
 composer.phar
 behat.yml
+.idea

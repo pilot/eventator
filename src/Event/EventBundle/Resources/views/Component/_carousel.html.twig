@@ -13,7 +13,8 @@
                             <p class="text_slide">{{ event.briefDescription }}</p>
                         </div>
                         {% if event.isActive and event.embedTicket %}
-                            <a class="btn_blue modal-active" href="#">{{ 'Registration'|trans }}</a>
+                            {#<a class="btn_blue modal-active" href="#">{{ 'Registration'|trans }}</a>#}
+                            <a href="{{ path('event_homepage') }}#tickets" class="btn btn_blue block_menu_btn">{{ 'Registration'|trans }}</a>
                         {% else %}
                             <button class="btn btn_blue"
                                     disabled="disabled">{{ 'Registration closed'|trans }}</button>

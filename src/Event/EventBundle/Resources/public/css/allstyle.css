@@ -2098,3 +2098,11 @@ footer .footer_text {
 .liqpay_ticket{
     text-align: center;
 }
+
+.tickets {
+    position: relative;
+}
+
+.block_menu_btn.active {
+    color: #fff !important;
+}

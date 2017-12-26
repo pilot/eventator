@@ -1,7 +1,5 @@
-{#{% if event.tickets is not empty %}#}
 <section class="tickets">
     <div id="tickets" class="indent"></div>
-    <a name="tickets"></a>
     <div class="container">
         <h2><i class="ico_tickets"></i>{{ 'Ticket prices'|trans }}</h2>
 
@@ -63,7 +61,6 @@
         </ul>
     </div>
 </section>
-{#{% endif %}#}
 <script>
     $(document).ready(function(){
         $('.ticket-features-checkbox').on('change', function(){
