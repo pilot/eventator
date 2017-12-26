@@ -147,8 +147,8 @@ class EventController extends Controller
     public function handleLiqPayRequestAction(Request $request){
         $data = $request->request->get('data');
         $signature = $request->request->get('signature');
-        file_put_contents(__DIR__. '/../../../../web/uploads/test', $data, FILE_APPEND);
-        file_put_contents(__DIR__. '/../../../../web/uploads/test', $signature, FILE_APPEND);
+        file_put_contents(__DIR__. '/../../../../web/uploads/test', PHP_EOL . $data . PHP_EOL, FILE_APPEND);
+        file_put_contents(__DIR__. '/../../../../web/uploads/test', $signature . PHP_EOL, FILE_APPEND);
         $privateKey = $this->container->getParameter('liqpay.privatekey');
         $publicKey = $this->container->getParameter('liqpay.publickey');
         $liqpay = new \LiqPay($publicKey, $privateKey);
@@ -159,7 +159,12 @@ class EventController extends Controller
         if($check == $signature){
             if($status == 'sandbox' || $status == 'success') {
                 $this->changeTicketStatusByUid($uid);
+            } else {
+                file_put_contents(__DIR__. '/../../../../web/uploads/test', $status . PHP_EOL, FILE_APPEND);
+                file_put_contents(__DIR__. '/../../../../web/uploads/test', $uid . PHP_EOL, FILE_APPEND);
             }
+        } else {
+            file_put_contents(__DIR__. '/../../../../web/uploads/test', "$check = $signature" . PHP_EOL, FILE_APPEND);
         }
         return new Response();
     }
