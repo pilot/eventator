@@ -81,6 +81,8 @@ class SoldTicket
     const STATUS_RESERVED = 1;
     const STATUS_SOLD = 2;
 
+    const QR_GEN_URL = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
+
     public function __construct()
     {
     }
@@ -282,4 +284,13 @@ class SoldTicket
         ];
         return isset ($labels[$this->status]) ? $labels[$this->status] : $this->status;
     }
+
+    public function getCodeForQR(){
+        return md5($this->uid . '_' . $this->id);
+    }
+
+    public function getQRCode(){
+        return self::QR_GEN_URL . $this->getCodeForQR();
+    }
+
 }

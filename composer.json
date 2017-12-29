@@ -27,7 +27,9 @@
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
-        "liqpay/liqpay": "^1.2"
+        "liqpay/liqpay": "^1.2",
+        "knplabs/knp-snappy-bundle": "^1.5",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.3"
     },
     "require-dev": {
         "behat/behat": "2.5.*",

@@ -21,3 +21,6 @@ parameters:
     from_email:        bot@email.com
 
     admin_password:    admin
+    liqpay.publickey: i81503181518
+    liqpay.privatekey: 0BKsMiFrdqh8VshE0iq7Ab5xSblonjGjEM1kWgUi
+    liqpay.sandbox: 1

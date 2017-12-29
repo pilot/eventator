@@ -57,3 +57,7 @@ tickets_payment_success:
 tickets_handle_liqpay:
     path: /liqpay-handle
     defaults: { _controller: EventEventBundle:Event:handleLiqPayRequest }
+
+ticketPDF:
+    path: /ticketPDF
+    defaults: { _controller: EventEventBundle:Event:viewPDFHtml }

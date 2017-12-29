@@ -6,6 +6,7 @@ vendor/*
 */logs/*
 */cache/*
 web/uploads/*
+!web/uploads/tickets/.gitkeep
 web/bundles/*
 bin/*
 

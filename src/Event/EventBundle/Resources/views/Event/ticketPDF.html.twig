@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>TicketPDF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        body {
+            width: 900px;
+        }
+        .ticket-container{
+            color: white;
+            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/ticket_bg.png') }}) no-repeat;
+            background-size: 108%;
+            width: 100%;
+            font: 26px PermianSansTypeface;
+        }
+        .ticket-container:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .event_logo {
+            width: 75%;
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+        .left_side{
+            width: 60%;
+            float: left;
+        }
+        .right_side{
+            width: 40%;
+            text-align: right;
+            float: left;
+            padding-top: 120px;
+        }
+        .ticket_qr_container img {
+            width: 60%;
+            margin-right: 50px;
+        }
+        .eventator_logo_container img{
+            width: 60%;
+            margin-top: 25px;
+            margin-right: 50px;
+        }
+        .name_container, .venue_container {
+            margin-left: 50px;
+        }
+        .name_container {
+            font: 38pt PT sans-serif;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .venue_container {
+            margin-bottom: 25px;
+        }
+        .name_container p, .venue_container p{
+            margin: 5px;
+        }
+        .venue_container img {
+            width: 20px;
+            margin-right: 35px;
+        }
+    </style>
+</head>
+<body>
+<div class="ticket-container">
+    <div class="left_side">
+        <img class="event_logo" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/rn_logo.png') }}" alt />
+        <div class="name_container">
+            <p class="guest_firstname">{{ soldTicket.firstName }}</p>
+            <p class="guest_lastname">{{ soldTicket.lastName }}</p>
+        </div>
+        <div class="venue_container">
+            <p>
+                <img  src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/venue_icon.png') }}" alt/>
+                {{ soldTicket.ticket.event.venue }}
+            </p>
+            <p>
+                <img  src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/date_icon.png') }}" alt/>
+                {{ soldTicket.ticket.event.startDate|date }}
+            </p>
+        </div>
+    </div>
+    <div class="right_side">
+        <div class="ticket_qr_container">
+            <img src="{{ soldTicket.QRCode }}" alt />
+        </div>
+        <div class="eventator_logo_container">
+            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/eventator_logo.png') }}" alt />
+        </div>
+    </div>
+</div>
+</body>
+</html>

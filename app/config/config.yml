@@ -62,6 +62,7 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
+    port:      %mailer_port%
     spool:     { type: memory }
 
 # Event configuration
@@ -70,3 +71,16 @@ event_event:
     locales: {'ru_RU': 'ru', 'de_DE': 'de'}
     speech_languages: ['English', 'Russian', 'Other']
     speech_levels: ['For all attendees', 'Intermediate', 'Experts']
+
+knp_snappy:
+    temporary_folder: "%kernel.cache_dir%/snappy"
+    process_timeout: 20
+    pdf:
+        enabled:    true
+#        binary:     /usr/local/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        binary:     %kernel.root_dir%/../vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64
+        options:    []
+    image:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltoimage #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
+        options:    []

@@ -113,17 +113,20 @@ class EventController extends Controller
             $private_key = $this->container->getParameter('liqpay.privatekey');
             $liqpay = new \LiqPay($public_key, $private_key);
             $amount = $total * count($sold_tickets);
-            $html = $liqpay->cnb_form(array(
+            $liqpayData = array(
                 'action'         => 'pay',
                 'amount'         => $total * count($sold_tickets),
                 'currency'       => $ticket->getCurrencylabel(),
                 'description'    => 'buying ticket(s)',
                 'order_id'       => $uid,
                 'version'        => '3',
-                'sandbox'        => '1',
                 'server_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_handle_liqpay'),
                 'result_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_payment_success'),
-            ));
+            );
+            if($this->container->getParameter('liqpay.sandbox') == 1){
+                $liqpayData['sandbox'] = '1';
+            }
+            $html = $liqpay->cnb_form($liqpayData);
             return $this->render('EventEventBundle:Event:liqPay.html.twig', [
                 'event'  => $this->getEvent(),
                 'hosts'  => $this->getHostYear(),
@@ -147,8 +150,6 @@ class EventController extends Controller
     public function handleLiqPayRequestAction(Request $request){
         $data = $request->request->get('data');
         $signature = $request->request->get('signature');
-        file_put_contents(__DIR__. '/../../../../web/uploads/test', PHP_EOL . $data . PHP_EOL, FILE_APPEND);
-        file_put_contents(__DIR__. '/../../../../web/uploads/test', $signature . PHP_EOL, FILE_APPEND);
         $privateKey = $this->container->getParameter('liqpay.privatekey');
         $publicKey = $this->container->getParameter('liqpay.publickey');
         $liqpay = new \LiqPay($publicKey, $privateKey);
@@ -182,13 +183,59 @@ class EventController extends Controller
         }
     }
 
-    public function sendTicket($ticket){
-        //@todo
+    public function createPDF($soldTicket){
+        $path = __DIR__ . '/../../../../web/uploads/tickets/' . $soldTicket->getId() . '.pdf';
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $this->renderView('EventEventBundle:Event:ticketPDF.html.twig', [
+                'soldTicket' => $soldTicket,
+            ]),
+            $path,
+            [],
+            true
+        );
+        return $path;
+    }
+
+    public function viewPDFHtmlAction(Request $request) {
+        $soldTicket = $ticket = $this->findOr404('EventEventBundle:SOldTicket', 5);
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $this->renderView('EventEventBundle:Event:ticketPDF.html.twig', [
+                'soldTicket' => $soldTicket,
+            ]),
+            __DIR__ . '/../../../../web/uploads/tickets/' . $soldTicket->getId() . '.pdf',
+           [],
+            true
+        );
+        return $this->render('EventEventBundle:Event:ticketPDF.html.twig', [
+            'soldTicket' => $soldTicket,
+        ]);
+    }
+
+    public function sendTicket(SoldTicket $soldTicket){
+        $attachmentData = [
+            'data' => $this->createPDF($soldTicket),
+            'filename' => $soldTicket->getTicket()->getEvent()->getTitle() . ' ticket.pdf',
+            'contentType' => 'application/pdf',
+        ];
+
+        $this->get('eventator_mailer')->sendWithPdfPathAttach(
+            $soldTicket->getEmail(),
+            'Your ticket for - ' . $soldTicket->getTicket()->getEvent()->getTitle(),
+            $this->renderView('EventEventBundle:Email:_ticket.html.twig', [
+                'soldTicket' => $soldTicket,
+                'from' => $soldTicket->getTicket()->getEvent()->getEmail(),
+                'languages' => $this->container->getParameter('event.speech_languages'),
+                'levels' => $this->container->getParameter('event.speech_levels'),
+            ]),
+            $soldTicket->getTicket()->getEvent()->getEmail(),
+            null,
+            $attachmentData
+        );
+
         return true;
     }
 
     public function ticketPaymentSuccessAction(){
-        file_put_contents(__DIR__. '/../../../../web/uploads/test', 'success_page');
         return $this->render('EventEventBundle:Event:ticketPaySuccess.html.twig', [
             'event'  => $this->getEvent(),
             'hosts'  => $this->getHostYear(),
