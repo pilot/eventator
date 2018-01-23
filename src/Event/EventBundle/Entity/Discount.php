@@ -6,12 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Event\EventBundle\Entity\Translation\Translation;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Speaker
  *
- * @ORM\Table(name="ev_discount")
- * @ORM\Entity
+ * @ORM\Table(
+ *      name="ev_discount",
+ *      uniqueConstraints={@ORM\UniqueConstraint(columns={"name"})}
+ * ) * @ORM\Entity
  */
 class Discount
 {
@@ -297,5 +300,21 @@ class Discount
     public function removeSoldTicket(SoldTicket $soldTicket)
     {
         $this->soldTickets->removeElement($soldTicket);
+    }
+
+    public function isEnable(){
+        if (false == $this->isActive){
+            return false;
+        }
+        if($this->type == self::TYPE_AMOUNT && $this->amount == 0){
+            return false;
+        }
+        if($this->type == self::TYPE_DATE){
+            $now = new \DateTime();
+            if($this->dateTo < $now) {
+                return false;
+            }
+        }
+        return true;
     }
 }

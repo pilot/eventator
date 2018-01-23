@@ -39,6 +39,15 @@
                 <input type="hidden" name="ticket_id" value="{{ ticket.id }}"  />
                 <div class="flex">
                     <div class="form-group">
+                        <label for="soldTickets_discount">{{ 'Discount'|trans }}:</label>
+                        <input type="text" id="soldTickets_discount" name="discount" class="form-control">
+                        <small id="discountHelp" class="form-text">
+                            {{ 'Is You have the discount code, please enter it here'|trans }}
+                        </small>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">
                             <span>{{ 'Pay'|trans }}</span>
                         </button>

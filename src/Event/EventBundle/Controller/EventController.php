@@ -3,6 +3,7 @@
 namespace Event\EventBundle\Controller;
 
 use Behat\Mink\Exception\ResponseTextException;
+use Event\EventBundle\Entity\Discount;
 use Event\EventBundle\Entity\SoldTicket;
 use Event\EventBundle\Form\Type\SoldTicketType;
 use Symfony\Component\HttpFoundation\Request;
@@ -98,6 +99,13 @@ class EventController extends Controller
         $uid = time();
 
         if ($request->isMethod('POST') && $sold_tickets = $request->request->get('soldTickets')) {
+            if($discount = $request->request->get('discount')){
+                $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneBy(['name' => $discount]);
+                if($discount && $discount->isEnable()){
+                    $discount = 1 - $discount->getDiscount() / 100;
+                    $total *= $discount;
+                } 
+            } 
             foreach ($sold_tickets as $sold_ticket) {
                 $entity = new SoldTicket();
                 $entity->setTicket($ticket);
@@ -129,6 +137,7 @@ class EventController extends Controller
                 $liqpayData['sandbox'] = '1';
             }
             $html = $liqpay->cnb_form($liqpayData);
+            
             return $this->render('EventEventBundle:Event:liqPay.html.twig', [
                 'event'  => $this->getEvent(),
                 'hosts'  => $this->getHostYear(),
