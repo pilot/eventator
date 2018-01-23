@@ -76,6 +76,28 @@ class SoldTicket
      */
     private $discount;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_date", type="datetime")
+     */
+    private $dateCreated;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="sold_date", type="datetime", nullable=true)
+     */
+    private $dateSold;
+
+    /**
+     * @var integer
+     *
+     * @Assert\NotNull()
+     * @ORM\Column(name="price", type="integer")
+     */
+    private $price;
+
     public $count;
 
     const STATUS_RESERVED = 1;
@@ -290,7 +312,77 @@ class SoldTicket
     }
 
     public function getQRCode(){
-        return self::QR_GEN_URL . $this->getCodeForQR();
+        $code = $this->id . '***' . $this->getCodeForQR();
+        return self::QR_GEN_URL . $code;
     }
 
+    /**
+     * Get price
+     *
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     * @return SoldTicket
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    /**
+     * Set date created
+     *
+     * @param \DateTime $createdDate
+     * @return SoldTicket
+     */
+    public function setDateCreated($createdDate)
+    {
+        if (!$createdDate instanceOf \DateTime) {
+            $createdDate = \DateTime::createFromFormat('m/d/Y', $createdDate);
+        }
+        $this->dateCreated = $createdDate;
+        return $this;
+    }
+    /**
+     * Get date created
+     *
+     * @return \DateTime
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    /**
+     * Set date sold
+     *
+     * @param \DateTime $soldDate
+     * @return SoldTicket
+     */
+    public function setDateSold($soldDate)
+    {
+        if (!$soldDate instanceOf \DateTime) {
+            $soldDate = \DateTime::createFromFormat('m/d/Y', $soldDate);
+        }
+        $this->dateSold = $soldDate;
+        return $this;
+    }
+    /**
+     * Get date sold
+     *
+     * @return \DateTime
+     */
+    public function getDateSold()
+    {
+        return $this->dateSold;
+    }
 }

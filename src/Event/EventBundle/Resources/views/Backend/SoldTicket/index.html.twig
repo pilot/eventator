@@ -16,6 +16,10 @@
                 <th>{{ 'Discount'|trans }}</th>
                 <th>{{ 'Status'|trans }}</th>
                 <th>{{ 'Event'|trans }}</th>
+                <th>{{ 'Price'|trans }}</th>
+                <th>{{ 'Created'|trans }}</th>
+                <th>{{ 'Sold'|trans }}</th>
+                <th>{{ 'Order id'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -23,13 +27,15 @@
             <tr>
                 <td>{{ sold_ticket.id }}</td>
                 <td>{{ sold_ticket.ticket.name }}</td>
-                <td>
-                    {{ sold_ticket.firstName ~ sold_ticket.lastName }}
-                </td>
+                <td>{{ sold_ticket.fullName }}</td>
                 <td>{{ sold_ticket.email }}</td>
                 <td>{{ sold_ticket.discountString }}</td>
                 <td>{{ sold_ticket.statusLabel }} </td>
                 <td>{{ sold_ticket.ticket.event.title }} </td>
+                <td>{{ sold_ticket.price }} </td>
+                <td>{{ sold_ticket.dateCreated|date('d M Y') }} </td>
+                <td>{{ sold_ticket.dateSold ? sold_ticket.dateSold|date('Y m d'): '' }} </td>
+                <td>{{ sold_ticket.uid }} </td>
             </tr>
         {% else %}
             <tr>
@@ -57,6 +63,9 @@
                         "sLengthMenu": "_MENU_ records per page"
                     },
                     "aoColumns": [
+                        null,
+                        null,
+                        null,
                         null,
                         null,
                         null,

@@ -9,8 +9,8 @@
             width: 900px;
         }
         .ticket-container{
-            color: white;
-            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/ticket_bg.png') }}) no-repeat;
+            border: 1px solid black;
+            color: black;
             background-size: 108%;
             width: 100%;
             font: 26px PermianSansTypeface;
@@ -33,7 +33,7 @@
             width: 40%;
             text-align: right;
             float: left;
-            padding-top: 120px;
+            padding-top: 52px;
         }
         .ticket_qr_container img {
             width: 60%;
@@ -41,7 +41,7 @@
         }
         .eventator_logo_container img{
             width: 60%;
-            margin-top: 25px;
+            margin-bottom: 25px;
             margin-right: 50px;
         }
         .name_container, .venue_container {
@@ -63,6 +63,26 @@
             width: 20px;
             margin-right: 35px;
         }
+        span.social_link {
+            padding-left: 25px;
+            position: relative;
+        }
+        span.social_link:before {
+            display: inline-block;
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-size: contain !important;
+            position: absolute;
+            left: -25px;
+            top: 5px;
+        }
+        span.social_fb:before {
+            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/fb-pdf.png') }}) no-repeat center;
+        }
+        span.social_twt:before {
+            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/twitter-pdf.png') }}) no-repeat center;
+        }
     </style>
 </head>
 <body>
@@ -74,22 +94,24 @@
             <p class="guest_lastname">{{ soldTicket.lastName }}</p>
         </div>
         <div class="venue_container">
-            <p>
-                <img  src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/venue_icon.png') }}" alt/>
-                {{ soldTicket.ticket.event.venue }}
+            {% if soldTicket.ticket.event.facebook %}
+            <p class="social">
+                <span class="social_link social_fb">{{ soldTicket.ticket.event.facebook }}</span>
             </p>
-            <p>
-                <img  src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/date_icon.png') }}" alt/>
-                {{ soldTicket.ticket.event.startDate|date }}
+            {% endif %}
+            {% if soldTicket.ticket.event.twitter %}
+            <p class="social">
+                <span class="social_link social_twt">{{ soldTicket.ticket.event.twitter }}</span>
             </p>
+            {% endif %}
         </div>
     </div>
     <div class="right_side">
+        <div class="eventator_logo_container">
+            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/eventator-logo-pdf.png') }}" alt />
+        </div>
         <div class="ticket_qr_container">
             <img src="{{ soldTicket.QRCode }}" alt />
-        </div>
-        <div class="eventator_logo_container">
-            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/eventator_logo.png') }}" alt />
         </div>
     </div>
 </div>

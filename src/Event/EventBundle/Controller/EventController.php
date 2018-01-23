@@ -106,6 +106,8 @@ class EventController extends Controller
                 $entity->setEmail($request->request->get('email'));
                 $entity->setStatus(SoldTicket::STATUS_RESERVED);
                 $entity->setUid($uid);
+                $entity->setDateCreated(new \DateTime());
+                $entity->setPrice($total);
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
             }
@@ -177,6 +179,7 @@ class EventController extends Controller
         );
         foreach ($tickets as $ticket){
             $ticket->setStatus(SoldTicket::STATUS_SOLD);
+            $ticket->setDateSold(new \DateTime());
             $this->getManager()->persist($ticket);
             $this->getManager()->flush();
             $this->sendTicket($ticket);
