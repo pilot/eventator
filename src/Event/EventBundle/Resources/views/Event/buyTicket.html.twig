@@ -8,6 +8,13 @@
     <div class="container">
         <div class="form_but_ticket" id="buyTicketForm">
             <form name="soldTickets" method="post" action="{{ url('event_component_ticket') }}">
+                <div class="flex ticket_price_container">
+                    <h3>
+                        {{ 'Price for one ticket: '|trans }}
+                        {{  total+lunch_price+ap_price }}
+                        {{  label }}
+                    </h3>
+                </div>
                 <div class="flex">
                     <div class="form-group">
                         <label for="soldTickets_email">{{ 'Email'|trans }}:</label>
@@ -32,9 +39,12 @@
                 <a href="javascript:" id="add_one_more_ticket" class="btn btn-link">
                     {{ 'Add one more ticket'|trans }}
                 </a>
-                <input name="uid" type="hidden" value="{{ uid }}" />
                 <input name="lunch" type="hidden" value="{{ lunch }}" />
+                <input name="price" id="ticket_price" type="hidden" value="{{ total }}" />
+                <input name="lunch_price" id="lunch_price" type="hidden" value="{{ lunch_price }}" />
                 <input name="after-party" type="hidden" value="{{ ap }}" />
+                <input name="ap_price" id="ap_price" type="hidden" value="{{ ap_price }}" />
+                <input name="discountAmount" id="discountAmount" type="hidden" value="1" />
                 <span class="hidden" id="tickets_count" data-count="1"></span>
                 <input type="hidden" name="ticket_id" value="{{ ticket.id }}"  />
                 <div class="flex">
@@ -44,6 +54,22 @@
                         <small id="discountHelp" class="form-text">
                             {{ 'Is You have the discount code, please enter it here'|trans }}
                         </small>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+                        <h3>
+                            {{ 'Total price: '|trans }}
+                            <span id="total_price">{{  total+lunch_price+ap_price }}</span>
+                            {{  label }}
+                        </h3>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+                        <a href="javascript:" id="update_total">
+                            {{ 'Update total'|trans }}
+                        </a>
                     </div>
                 </div>
                 <div class="flex">
@@ -71,10 +97,37 @@
             "<input type='text' id='soldTickets_lastName' name='soldTickets["+$count+"][lastName]' required='required' class='form-control'>" +                    "</div>" +
                     "<a href='javascript:' class='remove-add-ticket' onclick='$(this).closest(\".flex\").remove();'>X</a>"+
                     "</div>";
-//            $( ".ticket-container" ).clone().removeClass('ticket-container').appendTo( ".additional-tickets" );
             $( ".additional-tickets" ).append($ticket_container);
             $count = +$count + 1;
             $('#tickets_count').data('count', $count)
+            var totalPrice = $('#ticket_price').val();
+            var lunchPrice = $('#lunch_price').val();
+            var apPrice = $('#ap_price').val();
+            var discount = $('#discountAmount').val();
+            var total = (totalPrice * discount + (+lunchPrice) + (+apPrice)) * $count;
+            $('#total_price').text(total);
+        });
+        $('#update_total').on('click', function(){
+            $.ajax({
+                url:'{{ (path('update_total')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "discount": $('#soldTickets_discount').val()
+                },
+                async: true,
+                success: function (data)
+                {
+                    $('#discountAmount').val(data.discount);
+                    var totalPrice = $('#ticket_price').val();
+                    var lunchPrice = $('#lunch_price').val();
+                    var apPrice = $('#ap_price').val();
+                    var count = $('#tickets_count').data('count');
+                    var total = (totalPrice * data.discount + (+lunchPrice) + (+apPrice)) * count;
+                    $('#total_price').text(total);
+                }
+            });
+            return false;
         });
     });
 </script>

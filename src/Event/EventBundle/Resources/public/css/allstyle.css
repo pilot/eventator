@@ -2106,3 +2106,7 @@ footer .footer_text {
 .block_menu_btn.active {
     color: #fff !important;
 }
+
+.ticket_price_container {
+    margin-bottom: 15px;
+}

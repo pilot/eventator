@@ -6,7 +6,7 @@
         <ul class="list_tickets">
             {%  set counter = 1 %}
             {% set disabled = 'disabled="disabled"' %}
-            {% for ticket in event.tickets %}
+            {% for ticket in event.tickets if ticket.remainingCount > 0 and ticket.isActive %}
                 {% if counter == event.tickets|length %}
                     {% set class = 'last' %}
                 {% elseif counter == 1 %}

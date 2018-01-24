@@ -61,3 +61,7 @@ tickets_handle_liqpay:
 ticketPDF:
     path: /ticketPDF
     defaults: { _controller: EventEventBundle:Event:viewPDFHtml }
+
+update_total:
+    path: /update-total-ajax
+    defaults: { _controller: EventEventBundle:Event:updateTotalAjax }

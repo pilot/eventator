@@ -94,9 +94,23 @@ class SoldTicket
      * @var integer
      *
      * @Assert\NotNull()
-     * @ORM\Column(name="price", type="integer")
+     * @ORM\Column(name="price", type="float")
      */
     private $price;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="lunch", type="boolean")
+     */
+    private $lunch;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ap", type="boolean")
+     */
+    private $ap;
 
     public $count;
 
@@ -271,8 +285,10 @@ class SoldTicket
         return $this->discount;
     }
     
-    //@TODO
     public function getDiscountString(){
+        if($this->discount) {
+            return $this->discount->getDiscount() . '%';
+        }
         return '-';
     }
 
@@ -384,5 +400,49 @@ class SoldTicket
     public function getDateSold()
     {
         return $this->dateSold;
+    }
+
+    /**
+     * Get lunch 
+     *
+     * @return boolean
+     */
+    public function getLunch()
+    {
+        return $this->lunch;
+    }
+
+    /**
+     * Set lunch 
+     *
+     * @param boolean $lunch
+     * @return SoldTicket
+     */
+    public function setLunch($lunch)
+    {
+        $this->lunch = $lunch;
+        return $this;
+    }
+
+    /**
+     * Get after party
+     *
+     * @return integer
+     */
+    public function getAp()
+    {
+        return $this->ap;
+    }
+
+    /**
+     * Set after party
+     *
+     * @param integer $ap
+     * @return SoldTicket
+     */
+    public function setAp($ap)
+    {
+        $this->ap = $ap;
+        return $this;
     }
 }

@@ -5,7 +5,9 @@ namespace Event\EventBundle\Controller;
 use Behat\Mink\Exception\ResponseTextException;
 use Event\EventBundle\Entity\Discount;
 use Event\EventBundle\Entity\SoldTicket;
+use Event\EventBundle\Entity\Ticket;
 use Event\EventBundle\Form\Type\SoldTicketType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Event\EventBundle\Entity\CallForPaper;
@@ -87,25 +89,46 @@ class EventController extends Controller
         ]);
     }
 
+    public function updateTotalAjaxAction(Request $request){
+        $discount = $request->request->get('discount');
+        $discountAmount = 1;
+        $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneBy(['name' => $discount]);
+        if($discount && $discount->isEnable()){
+            $discountAmount = 1 - $discount->getDiscount() / 100;
+        }
+        $arrData = [
+            'discount' => $discountAmount,
+        ];
+
+        return new JsonResponse($arrData);
+    }
+
     public function buyTicketAction (Request $request){
         $ticket = $this->findOr404('EventEventBundle:Ticket', $request->request->get('ticket_id'));
+        $label = Ticket::getCurrencyLabels($ticket->getCurrency());
         $total = $ticket->getPrice();
+        $lunch_price = 0;
+        $ap_price = 0;
         if($lunch = $request->request->get('lunch')){
-            $total += $ticket->getLunchPrice();
+            $lunch_price = $ticket->getLunchPrice();
         }
         if($ap = $request->request->get('after-party')){
-            $total += $ticket->getApPrice();
+            $ap_price = $ticket->getApPrice();
         }
-        $uid = time();
 
         if ($request->isMethod('POST') && $sold_tickets = $request->request->get('soldTickets')) {
+            $discountAmount = 1;
             if($discount = $request->request->get('discount')){
                 $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneBy(['name' => $discount]);
                 if($discount && $discount->isEnable()){
-                    $discount = 1 - $discount->getDiscount() / 100;
-                    $total *= $discount;
-                } 
-            } 
+                    $discountAmount = 1 - $discount->getDiscount() / 100;
+                    $total *= $discountAmount;
+                }
+            }
+            $total += $lunch_price;
+            $total += $ap_price;
+            $uid = time();
+
             foreach ($sold_tickets as $sold_ticket) {
                 $entity = new SoldTicket();
                 $entity->setTicket($ticket);
@@ -116,6 +139,11 @@ class EventController extends Controller
                 $entity->setUid($uid);
                 $entity->setDateCreated(new \DateTime());
                 $entity->setPrice($total);
+                if($discount){
+                    $entity->setDiscount($discount);
+                }
+                $entity->setLunch($lunch == true);
+                $entity->setAp($ap == true);
                 $this->getManager()->persist($entity);
                 $this->getManager()->flush();
             }
@@ -123,6 +151,13 @@ class EventController extends Controller
             $private_key = $this->container->getParameter('liqpay.privatekey');
             $liqpay = new \LiqPay($public_key, $private_key);
             $amount = $total * count($sold_tickets);
+
+            //@TODO change for 100% discount
+            if($discountAmount == 0 && !$lunch && !$ap){
+                $this->changeTicketStatusByUid($uid);
+                return $this->redirectToRoute('tickets_payment_success');
+            }
+
             $liqpayData = array(
                 'action'         => 'pay',
                 'amount'         => $total * count($sold_tickets),
@@ -137,7 +172,7 @@ class EventController extends Controller
                 $liqpayData['sandbox'] = '1';
             }
             $html = $liqpay->cnb_form($liqpayData);
-            
+
             return $this->render('EventEventBundle:Event:liqPay.html.twig', [
                 'event'  => $this->getEvent(),
                 'hosts'  => $this->getHostYear(),
@@ -147,13 +182,15 @@ class EventController extends Controller
             ]);
         }
         return $this->render('EventEventBundle:Event:buyTicket.html.twig', [
-            'event'  => $this->getEvent(),
-            'ticket' => $ticket,
-            'lunch'  => $lunch,
-            'ap'     => $ap,
-            'hosts'  => $this->getHostYear(),
-            'uid'    => $uid,
-            'total'  => $total,
+            'event'       => $this->getEvent(),
+            'ticket'      => $ticket,
+            'lunch'       => $lunch,
+            'ap'          => $ap,
+            'hosts'       => $this->getHostYear(),
+            'total'       => $total,
+            'lunch_price' => $lunch_price,
+            'ap_price'    => $ap_price,
+            'label'       => $label,
         ]);
 
     }
