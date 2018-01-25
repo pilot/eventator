@@ -48,13 +48,15 @@
             margin-left: 50px;
         }
         .name_container {
-            font: 38pt PT sans-serif;
+            font: 34pt PT sans-serif;
             margin-top: 50px;
             margin-bottom: 30px;
             font-weight: bold;
         }
         .venue_container {
             margin-bottom: 25px;
+            margin-left: 78px;
+            font-size: 17pt;
         }
         .name_container p, .venue_container p{
             margin: 5px;
@@ -78,10 +80,19 @@
             top: 5px;
         }
         span.social_fb:before {
-            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/fb-pdf.png') }}) no-repeat center;
+            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/venue_icon_dark.png') }}) no-repeat center;
         }
         span.social_twt:before {
-            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/twitter-pdf.png') }}) no-repeat center;
+            background: url({{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/date_icon_dark.png') }}) no-repeat center;
+        }
+        .site_url_container {
+            text-align: left;
+            margin-left: 94px;
+            margin-top: 61px;
+            font-size: 17pt;
+        }
+        .venue {
+            margin-left: 25px;
         }
     </style>
 </head>
@@ -94,16 +105,21 @@
             <p class="guest_lastname">{{ soldTicket.lastName }}</p>
         </div>
         <div class="venue_container">
-            {% if soldTicket.ticket.event.facebook %}
             <p class="social">
-                <span class="social_link social_fb">{{ soldTicket.ticket.event.facebook }}</span>
+                <span class="social_link social_fb">
+                    {{ soldTicket.ticket.event.country ~ ', ' ~ soldTicket.ticket.event.city }}
+                </span>
             </p>
-            {% endif %}
-            {% if soldTicket.ticket.event.twitter %}
             <p class="social">
-                <span class="social_link social_twt">{{ soldTicket.ticket.event.twitter }}</span>
+                <span class="social-link venue">
+                    {{ soldTicket.ticket.event.venue }}
+                </span>
             </p>
-            {% endif %}
+            <p class="social">
+                <span class="social_link social_twt">
+                    {{ soldTicket.ticket.event.startDate|date }}
+                </span>
+            </p>
         </div>
     </div>
     <div class="right_side">
@@ -112,6 +128,9 @@
         </div>
         <div class="ticket_qr_container">
             <img src="{{ soldTicket.QRCode }}" alt />
+        </div>
+        <div class="site_url_container">
+            {{ app.request.getSchemeAndHttpHost() }}
         </div>
     </div>
 </div>
