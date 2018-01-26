@@ -114,7 +114,8 @@
                 type: "POST",
                 dataType: "json",
                 data: {
-                    "discount": $('#soldTickets_discount').val()
+                    "discount": $('#soldTickets_discount').val(),
+                    "count": $('#tickets_count').data('count')
                 },
                 async: true,
                 success: function (data)

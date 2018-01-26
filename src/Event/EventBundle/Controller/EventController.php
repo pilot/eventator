@@ -94,13 +94,12 @@ class EventController extends Controller
         $count = $request->request->get('count');
         $discountAmount = 1;
         $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneBy(['name' => $discount]);
-        if($discount && $discount->isEnable()){
+        if($discount && $discount->isEnable($count)){
             $discountAmount = 1 - $discount->getDiscount() / 100;
         }
         $arrData = [
             'discount' => $discountAmount,
         ];
-
         return new JsonResponse($arrData);
     }
 
@@ -119,9 +118,10 @@ class EventController extends Controller
 
         if ($request->isMethod('POST') && $sold_tickets = $request->request->get('soldTickets')) {
             $discountAmount = 1;
+            $count = count($sold_tickets);
             if($discount = $request->request->get('discount')){
                 $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneBy(['name' => $discount]);
-                if($discount && $discount->isEnable()){
+                if($discount && $discount->isEnable($count)){
                     $discountAmount = 1 - $discount->getDiscount() / 100;
                     $total *= $discountAmount;
                 }
@@ -140,7 +140,7 @@ class EventController extends Controller
                 $entity->setUid($uid);
                 $entity->setDateCreated(new \DateTime());
                 $entity->setPrice($total);
-                if($discount){
+                if($discount && $discount->isEnable($count)){
                     $entity->setDiscount($discount);
                 }
                 $entity->setLunch($lunch == true);
