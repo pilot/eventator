@@ -91,6 +91,7 @@ class EventController extends Controller
 
     public function updateTotalAjaxAction(Request $request){
         $discount = $request->request->get('discount');
+        $count = $request->request->get('count');
         $discountAmount = 1;
         $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneBy(['name' => $discount]);
         if($discount && $discount->isEnable()){

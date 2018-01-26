@@ -2110,3 +2110,14 @@ footer .footer_text {
 .ticket_price_container {
     margin-bottom: 15px;
 }
+#soldTickets_discount{
+    display: inline;
+    width: 25%;
+}
+#discountHelp{
+    display: block;
+}
+#update_total {
+    margin-left: 12px;
+    display: none;
+}

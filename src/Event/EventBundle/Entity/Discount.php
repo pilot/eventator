@@ -103,7 +103,7 @@ class Discount
     public function getCondition(){
         switch($this->type){
             case self::TYPE_AMOUNT:
-                $amount = $this->amount - count($this->soldTickets);
+                $amount = $this->getAvailable();
                 return $amount . ' times more';
             case self::TYPE_INFINITY:
                 return '&infin;';
@@ -112,6 +112,9 @@ class Discount
             default:
                 return 'error';
         }
+    }
+    public function getAvailable(){
+        return $this->amount - count($this->soldTickets);
     }
 
     public function __construct()
@@ -302,11 +305,11 @@ class Discount
         $this->soldTickets->removeElement($soldTicket);
     }
 
-    public function isEnable(){
+    public function isEnable($count = 1){
         if (false == $this->isActive){
             return false;
         }
-        if($this->type == self::TYPE_AMOUNT && $this->amount == 0){
+        if($this->type == self::TYPE_AMOUNT && $this->getAvailable() < $count){
             return false;
         }
         if($this->type == self::TYPE_DATE){
