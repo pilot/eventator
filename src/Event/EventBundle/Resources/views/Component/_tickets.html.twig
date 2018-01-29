@@ -19,6 +19,7 @@
                     <form class="buy-tickets" method="POST" action="{{ url('event_component_ticket') }}">
                         <p class="ticket_name">{{ ticket.name }}</p>
                         <p class="ticket_price">{{ ticket.PriceWithLabel}} </p>
+                        {% if ticket.lunchPrice %}
                         <p class="lunch_price">
                             <input id="lunch-{{ ticket.id }}"
                                    {{ ticket.lunchPrice is null ? disabled : '' }}
@@ -31,6 +32,8 @@
                                 {{ 'Lunch'|trans }} ({{ ticket.lunch }})
                             </label>
                         </p>
+                        {% endif %}
+                        {% if ticket.apPrice %}
                         <p class="ap_price">
                             <input id="ap-{{ ticket.id }}"
                                    {{ ticket.apPrice is null ? disabled : '' }}
@@ -44,6 +47,7 @@
                                 {{ 'After party'|trans }} ({{ ticket.ap }})
                             </label>
                         </p>
+                        {% endif %}
                         <p class="total_price">
                             {{ 'Total price'|trans }}:
                             <span class="total-price-span">{{ ticket.price }}</span>
