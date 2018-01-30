@@ -2095,8 +2095,10 @@ footer .footer_text {
     display: none;
 }
 
-.liqpay_ticket{
-    text-align: center;
+.liqpay_ticket form{
+    /*text-align: center;*/
+    margin-left: 65px;
+    margin-top: 10px;
 }
 
 .tickets {
@@ -2121,3 +2123,22 @@ footer .footer_text {
     margin-left: 12px;
     display: none;
 }
+
+.ap_no_lunch{
+    margin-top: 104px;
+}
+.error-count-tickets{
+    color: red;
+    font-size: 20pt;
+    margin-bottom: 15px;
+}
+#buyTicketForm{
+    margin-left: 33%;
+}
+#soldTickets_email{
+    width: calc(100% - 15px);
+}
+#successPaymentContainer {
+    text-align: center;
+}
+

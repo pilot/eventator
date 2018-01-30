@@ -34,7 +34,7 @@
                         </p>
                         {% endif %}
                         {% if ticket.apPrice %}
-                        <p class="ap_price">
+                        <p class="ap_price {{ ticket.lunchPrice ? '' : 'ap_no_lunch' }}">
                             <input id="ap-{{ ticket.id }}"
                                    {{ ticket.apPrice is null ? disabled : '' }}
                                    type="checkbox"

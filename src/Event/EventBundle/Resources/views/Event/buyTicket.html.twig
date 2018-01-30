@@ -7,6 +7,9 @@
     {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}
     <div class="container">
         <div class="form_but_ticket" id="buyTicketForm">
+            <p class="error-count-tickets">
+                {{ error }}
+            </p>
             <form name="soldTickets" method="post" action="{{ url('event_component_ticket') }}">
                 <div class="flex ticket_price_container">
                     <h3>
@@ -26,18 +29,18 @@
                 </div>
                 <div class="flex ticket-container">
                     <div class="form-group">
-                        <label for="soldTickets_firstName">{{ 'FirstName'|trans }}:</label>
+                        <label for="soldTickets_firstName">{{ 'First Name'|trans }}:</label>
                         <input type="text" id="soldTickets_firstName" name="soldTickets[0][firstName]" required="required" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="soldTickets_lastName">{{ 'LastName'|trans }}:</label>
+                        <label for="soldTickets_lastName">{{ 'Last Name'|trans }}:</label>
                         <input type="text" id="soldTickets_lastName" name="soldTickets[0][lastName]" required="required" class="form-control">
                     </div>
                     <a href="javascript:" class="remove-add-ticket" onclick="$(this).closest('.flex').remove();">X</a>
                 </div>
                 <div class="additional-tickets"></div>
                 <a href="javascript:" id="add_one_more_ticket" class="btn btn-link">
-                    {{ 'Add one more ticket'|trans }}
+                    + {{ 'Add one more ticket'|trans }}
                 </a>
                 <input name="lunch" type="hidden" value="{{ lunch }}" />
                 <input name="price" id="ticket_price" type="hidden" value="{{ total }}" />
@@ -126,7 +129,7 @@
                     updateTotal(data.discount);
                     if(data.discount != 1) {
                         var $discountAmount = 100 - data.discount * 100;
-                        var text = '{{'Promo code has been successfully activated! Discount:'}}' + $discountAmount + '%';
+                        var text = '{{'Promo code has been successfully activated! Discount: '}}' + $discountAmount + '%';
                         $('#discountHelp').text(text).css('color', 'green');
                     } else {
                         $('#discountHelp').text('{{ 'Not found promocode'|trans }}').css('color', 'red');
@@ -142,6 +145,10 @@
             var apPrice = $('#ap_price').val();
             var count = $('#tickets_count').data('count');
             var total = (totalPrice * $discount + (+lunchPrice) + (+apPrice)) * count;
+            console.log($discount);
+            console.log(totalPrice);
+            console.log(total);
+            total = total.toFixed(2);
             $('#total_price').text(total);
         }
         var $discountInput = $('#soldTickets_discount');

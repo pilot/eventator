@@ -13,7 +13,8 @@
                 <th>{{ 'Ticket'|trans }}</th>
                 <th>{{ 'Fullname'|trans }}</th>
                 <th>{{ 'Email'|trans }}</th>
-                <th>{{ 'Discount'|trans }}</th>
+                <th>{{ 'Discount Name'|trans }}</th>
+                <th>{{ 'Discount Amount'|trans }}</th>
                 <th>{{ 'Status'|trans }}</th>
                 <th>{{ 'Event'|trans }}</th>
                 <th>{{ 'Price'|trans }}</th>
@@ -31,14 +32,15 @@
                 <td>{{ sold_ticket.ticket.name }}</td>
                 <td>{{ sold_ticket.fullName }}</td>
                 <td nowrap>{{ sold_ticket.email }}</td>
+                <td nowrap>{{ sold_ticket.discount ? sold_ticket.discount.name : '-'}}</td>
                 <td nowrap>{{ sold_ticket.discountString }}</td>
                 <td nowrap>{{ sold_ticket.statusLabel }} </td>
                 <td nowrap>{{ sold_ticket.ticket.event.title }} </td>
                 <td nowrap>{{ sold_ticket.price }} </td>
                 <td>{{ sold_ticket.lunch == true ? '+' : '-' }} </td>
                 <td>{{ sold_ticket.ap == true ? '+' : '-' }} </td>
-                <td nowrap>{{ sold_ticket.dateCreated|date('d M Y') }} </td>
-                <td nowrap>{{ sold_ticket.dateSold ? sold_ticket.dateSold|date('Y m d'): '' }} </td>
+                <td nowrap>{{ sold_ticket.dateCreated|date('Y-m-d H:i:s') }} </td>
+                <td nowrap>{{ sold_ticket.dateSold ? sold_ticket.dateSold|date('Y-m-d H:i:s'): '' }} </td>
                 <td>{{ sold_ticket.uid }} </td>
             </tr>
         {% else %}

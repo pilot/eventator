@@ -117,8 +117,24 @@ class EventController extends Controller
         }
 
         if ($request->isMethod('POST') && $sold_tickets = $request->request->get('soldTickets')) {
+            $available = $ticket->getRemainingCount();
+
             $discountAmount = 1;
             $count = count($sold_tickets);
+            if($available < $count) {
+                return $this->render('EventEventBundle:Event:buyTicket.html.twig', [
+                    'event'       => $this->getEvent(),
+                    'ticket'      => $ticket,
+                    'lunch'       => $lunch,
+                    'ap'          => $ap,
+                    'hosts'       => $this->getHostYear(),
+                    'total'       => $total,
+                    'lunch_price' => $lunch_price,
+                    'ap_price'    => $ap_price,
+                    'label'       => $label,
+                    'error'       => "Only $available tickets are available.",
+                ]);
+            }
             if($discount = $request->request->get('discount')){
                 $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneBy(['name' => $discount]);
                 if($discount && $discount->isEnable($count)){
@@ -139,6 +155,7 @@ class EventController extends Controller
                 $entity->setStatus(SoldTicket::STATUS_RESERVED);
                 $entity->setUid($uid);
                 $entity->setDateCreated(new \DateTime());
+                $total = round($total, 2);
                 $entity->setPrice($total);
                 if($discount && $discount->isEnable($count)){
                     $entity->setDiscount($discount);
@@ -192,6 +209,7 @@ class EventController extends Controller
             'lunch_price' => $lunch_price,
             'ap_price'    => $ap_price,
             'label'       => $label,
+            'error'       => '',
         ]);
 
     }
@@ -273,7 +291,7 @@ class EventController extends Controller
             'Your ticket for - ' . $soldTicket->getTicket()->getEvent()->getTitle(),
             $this->renderView('EventEventBundle:Email:_ticket.html.twig', [
                 'soldTicket' => $soldTicket,
-                'from' => $soldTicket->getTicket()->getEvent()->getEmail(),
+                'from' => [$soldTicket->getTicket()->getEvent()->getEmail() => $this->container->getParameter('mail-from-name')],
                 'languages' => $this->container->getParameter('event.speech_languages'),
                 'levels' => $this->container->getParameter('event.speech_levels'),
             ]),
