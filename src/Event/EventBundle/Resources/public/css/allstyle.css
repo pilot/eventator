@@ -2070,6 +2070,7 @@ footer .footer_text {
     text-align: center;
     font-size: 17px;
     font-weight: bold;
+    position: absolute;
     left: 52px;
     bottom: 82px;
 }
