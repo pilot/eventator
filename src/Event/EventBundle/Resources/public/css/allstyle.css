@@ -2071,8 +2071,11 @@ footer .footer_text {
     font-size: 17px;
     font-weight: bold;
     position: absolute;
-    left: 52px;
     bottom: 82px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 .lunch_price {
     margin-top: 70px;
