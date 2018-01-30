@@ -291,11 +291,11 @@ class EventController extends Controller
             'Your ticket for - ' . $soldTicket->getTicket()->getEvent()->getTitle(),
             $this->renderView('EventEventBundle:Email:_ticket.html.twig', [
                 'soldTicket' => $soldTicket,
-                'from' => [$soldTicket->getTicket()->getEvent()->getEmail() => $this->container->getParameter('mail-from-name')],
+                'from' => $soldTicket->getTicket()->getEvent()->getEmail(),
                 'languages' => $this->container->getParameter('event.speech_languages'),
                 'levels' => $this->container->getParameter('event.speech_levels'),
             ]),
-            $soldTicket->getTicket()->getEvent()->getEmail(),
+            [$soldTicket->getTicket()->getEvent()->getEmail() => $this->container->getParameter('mail-from-name')],
             null,
             $attachmentData
         );
