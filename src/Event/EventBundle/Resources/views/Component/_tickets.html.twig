@@ -6,6 +6,7 @@
         <ul class="list_tickets">
             {%  set counter = 1 %}
             {% set disabled = 'disabled="disabled"' %}
+            {% set activeTicket = true %}
             {% for ticket in event.tickets if ticket.remainingCount > 0 and ticket.isActive %}
                 {% if counter == event.tickets|length %}
                     {% set class = 'last' %}
@@ -55,9 +56,10 @@
                         </p>
                         <input type="hidden" name="ticket_id" value="{{ ticket.id }}" />
                         <div class="tickets-submit-container">
-                            <button type="submit" class="buy_tickets_button btn btn_blue">
+                            <button type="submit" class="buy_tickets_button btn btn_blue" {{ activeTicket ? '' : 'disabled="disabled"' }}>
                                 <span>{{ 'Buy tickets'|trans }}</span>
                             </button>
+                            {% set activeTicket = false %}
                         </div>
                     </form>
                 </li>

@@ -271,6 +271,7 @@ class Event
      * @var Ticket
      *
      * @ORM\OneToMany(targetEntity="Ticket", mappedBy="event", cascade={"all"})
+     * @ORM\OrderBy({"price" = "ASC"})
      */
     private $tickets;
 
