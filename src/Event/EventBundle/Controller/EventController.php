@@ -225,7 +225,7 @@ class EventController extends Controller
         $uid = $data['order_id'];
         $status = $data['status'];
         if($check == $signature){
-            if($status == 'sandbox' || $status == 'success') {
+            if($status == 'sandbox' || $status == 'success' || $status == 'wait_accept') {
                 $this->changeTicketStatusByUid($uid);
             } else {
                 file_put_contents(__DIR__. '/../../../../web/uploads/test', $status . PHP_EOL, FILE_APPEND);

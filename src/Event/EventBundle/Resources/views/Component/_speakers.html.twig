@@ -9,7 +9,9 @@
                 <ul class="list_speakers">
                     {% for speaker in speakers %}
                         <li>
-                            <a href="#{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}" role="button" data-toggle="modal">
+                            {% set id = speaker.firstName ~ '-' ~ speaker.lastName ~ '-' ~ speaker.id %}
+                            {% set id = id|replace(' ', '_') %}
+                            <a href="#{{ id }}" role="button" data-toggle="modal">
                                 <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="140" />
                                 <span>{{ speaker.fullName }}</span>
                             </a>
