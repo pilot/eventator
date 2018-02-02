@@ -112,6 +112,13 @@ class SoldTicket
      */
     private $ap;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="liqpay_status", type="string", length=255, nullable=true)
+     */
+    private $liqpay_status;
+
     public $count;
 
     const STATUS_RESERVED = 1;
@@ -444,5 +451,28 @@ class SoldTicket
     {
         $this->ap = $ap;
         return $this;
+    }
+
+    /**
+     * Set liqpay_status
+     *
+     * @param string $liqpay_status
+     * @return SoldTicket
+     */
+    public function setLiqpayStatus($liqpay_status)
+    {
+        $this->liqpay_status = $liqpay_status;
+
+        return $this;
+    }
+
+    /**
+     * Get liqpay_status
+     *
+     * @return string
+     */
+    public function getLiqpayStatus()
+    {
+        return $this->liqpay_status;
     }
 }

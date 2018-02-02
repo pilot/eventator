@@ -104,6 +104,9 @@ class EventController extends Controller
     }
 
     public function buyTicketAction (Request $request){
+        if(is_null( $request->request->get('ticket_id'))){
+            return $this->redirect('/');
+        }
         $ticket = $this->findOr404('EventEventBundle:Ticket', $request->request->get('ticket_id'));
         $label = Ticket::getCurrencyLabels($ticket->getCurrency());
         $total = $ticket->getPrice();
@@ -226,7 +229,7 @@ class EventController extends Controller
         $status = $data['status'];
         if($check == $signature){
             if($status == 'sandbox' || $status == 'success' || $status == 'wait_accept') {
-                $this->changeTicketStatusByUid($uid);
+                $this->changeTicketStatusByUid($uid, $status);
             } else {
                 file_put_contents(__DIR__. '/../../../../web/uploads/test', $status . PHP_EOL, FILE_APPEND);
                 file_put_contents(__DIR__. '/../../../../web/uploads/test', $uid . PHP_EOL, FILE_APPEND);
@@ -237,7 +240,7 @@ class EventController extends Controller
         return new Response();
     }
 
-    protected function changeTicketStatusByUid($uid){
+    protected function changeTicketStatusByUid($uid, $liqpayStatus = null){
         $repository = $this->getDoctrine()->getRepository(SoldTicket::class);
         $tickets = $repository->findBy(
             ['uid' => $uid]
@@ -245,6 +248,9 @@ class EventController extends Controller
         foreach ($tickets as $ticket){
             $ticket->setStatus(SoldTicket::STATUS_SOLD);
             $ticket->setDateSold(new \DateTime());
+            if($liqpayStatus){
+                $ticket->setLiqpayStatus($liqpayStatus);
+            }
             $this->getManager()->persist($ticket);
             $this->getManager()->flush();
             $this->sendTicket($ticket);
