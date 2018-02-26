@@ -13,7 +13,7 @@
             <form name="soldTickets" method="post" action="{{ url('event_component_ticket') }}">
                 <div class="flex ticket_price_container">
                     <h3>
-                        {{ 'Price for one ticket: '|trans }}
+                        {{ 'Price for one ticket'|trans }}:
                         {{  total+lunch_price+ap_price }}
                         {{  label }}
                     </h3>
@@ -68,7 +68,7 @@
                 <div class="flex">
                     <div class="form-group">
                         <h3>
-                            {{ 'Total price: '|trans }}
+                            {{ 'Total price'|trans }}:
                             <span id="total_price">{{  total+lunch_price+ap_price }}</span>
                             {{  label }}
                         </h3>
@@ -129,7 +129,7 @@
                     updateTotal(data.discount);
                     if(data.discount != 1) {
                         var $discountAmount = 100 - data.discount * 100;
-                        var text = '{{'Promo code has been successfully activated! Discount: '}}' + $discountAmount + '%';
+                        var text = '{{'Promo code has been successfully activated! Discount'}}: ' + $discountAmount + '%';
                         $('#discountHelp').text(text).css('color', 'green');
                     } else {
                         $('#discountHelp').text('{{ 'Not found promocode'|trans }}').css('color', 'red');

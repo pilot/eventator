@@ -10,7 +10,7 @@
                 <img src="{{ speaker.photo ?: '' }}" alt="">
             </div>
             <div class="modal_content" id="speaker-info">
-                <h3>Info</h3>
+                <h3>{{ 'Info'|trans }}</h3>
                 {% if speaker.bio %}
                     <p>{{ speaker.bio }}</p>
                 {% endif %}
@@ -29,7 +29,7 @@
                 <p>
                     {{ social|join(', ')|raw }}
                 </p>
-                <h3>Speech</h3>
+                <h3>{{ 'Speech'|trans }}</h3>
                 {% for speech in speaker.speeches %}
                     {% if currentEvent == speech.event %}
                         <p><strong>{{ speech.title }}</strong> <small>({{ speech.language }})</small></p>

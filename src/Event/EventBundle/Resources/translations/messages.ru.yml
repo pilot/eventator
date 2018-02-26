@@ -1,0 +1,75 @@
+Home: Главная
+Speakers: Спикеры
+Schedule: Расписание
+Venue: Место
+Sponsors: Спонсоры
+Organizers: Организаторы
+Contact: Контакты
+Call for paper: Форма регистрации
+Past years: Прошлые годы
+buy tickets: Купить билеты
+Registration: Регистрация
+Where will it be: Где это будет
+Apply to speak through our: Чтобы стать спикером, заполните
+call for paper: форму регистрации
+Call for Paper: Форма регистрации
+Name: Имя
+Title: Название
+Talk level: Уровень языка
+Language: Язык
+Notes: Комментарии
+Abstract of your talk: Основные тезисы выступления
+Close: Закрыть
+Send: Отправить
+Other: Другой
+Russian: Русский
+For all attendees: Для всех участников
+Intermediate: Средний
+Experts: Эксперт
+Schedule: Расписание
+Info: Информация
+Speech: Тема
+index.schedule.no_shedules: В разработке
+About symfony camp: Про Symfony Camp
+watch video: Посмотреть видео
+How it was on past conferences: Как это было раньше
+watch video from the past years: Видео с прошлых конференций
+Ticket prices: Билеты
+Buy tickets: Купить билеты
+Total price: Цена
+General sponsors: Генеральные спонсоры
+Gold sponsors: Золотые спонсоры
+Silver sponsors: Серебрянные спонсоры
+Info Partners: Инфо-партнеры
+Sponsors: Спонсоры
+Organizers: Организаторы
+Contact US: Связаться с нами
+Find Us: Найти нас
+Message: Сообщение
+Description: Описание
+Speaker: Спикер
+Buy ticket(s): Купить билет(ы)
+Price for one ticket: Стоимость одного билета
+First Name: имя
+Last Name: Фамилия
+Add one more ticket: Добавить билет
+Discount: Скидка
+Is You have the discount code, please enter it here: Если у Вас есть прмокод, пожалуйста. введите его здесь
+If you change the number of tickets, promo code will be canceled!: Если Вы измените количетсво билетов, промокод будет отменен
+Pay: Оплатить
+Promo code has been successfully activated! Discount: Промокод успешно активирован. Ваша скидка:
+Not found promocode: Промокод не найден
+Total price for: Итого за
+ticket(s): билет(ов)
+Please, be sure You entered right Email. You'll receive your ticket(s) there: Убедитесь, что вы ввели правильный Email. На него будет отправлен купленный билет
+security.login.remember_me: Запомнить меня
+security.login.submit: Вход
+security.login.username: Login
+security.login.password: Password
+Thank You: Спасибо
+We will send the ticket(s) to Email You specified earlier: Вы вышлем Вам билет на Email, указанный Вами ранее
+Payment success: Платеж совершен успешно
+made by: Сделано
+team, build on top of: командой. Построено на базе
+platform: платформы.
+made by %name% team, build on top of %platform% platform: Сделано командой %name% на базе платформы %platform%

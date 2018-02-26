@@ -2,7 +2,7 @@
     {% if type == 4 and sponsors|length > 0 %}
     <div class="center">
         <ul class="list_sponsors">
-            <h2 class="text">General sponsors</h2>
+            <h2 class="text">{{ 'General sponsors'|trans }}</h2>
             {% for sponsor in sponsors %}
                 <li>
                     <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
@@ -17,7 +17,7 @@
     {% elseif type == 2 and sponsors|length > 0 %}
         <div class="center">
             <ul class="list_sponsors gold">
-                <h3 class="text">Gold sponsors</h3>
+                <h3 class="text">{{ 'Gold sponsors'|trans }}</h3>
                 {% for sponsor in sponsors %}
                     <li>
                         <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
@@ -32,7 +32,7 @@
     {% elseif type == 3 and sponsors|length > 0 %}
         <div class="center">
             <ul class="list_sponsors middle">
-                <h4 class="text">Silver sponsors</h4>
+                <h4 class="text">{{ 'Silver sponsors'|trans }}</h4>
                 {% for sponsor in sponsors %}
                     <li>
                         <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
@@ -47,7 +47,7 @@
     {% elseif type == 5 and sponsors|length > 0 %}
         <div class="center">
             <ul class="list_sponsors middle">
-                <h4 class="text">Info Partners</h4>
+                <h4 class="text">{{ 'Info Partners'|trans }}</h4>
                 {% for sponsor in sponsors %}
                     <li>
                         <a href="#company-{{ sponsor.id }}" role="button" data-toggle="modal">
@@ -65,7 +65,7 @@
 <section class="sponsors">
     <div id="sponsors" class="indent"></div>
     <div class="container">
-        <h2><i class="ico_sponsors"></i>Sponsors</h2>
+        <h2><i class="ico_sponsors"></i>{{ 'Sponsors'|trans }}</h2>
         <p class="lead">{{ event.sponsorDescription|nl2br }}</p>
         {% set generalType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_GENERAL') %}
         {% set goldType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_GOLD') %}

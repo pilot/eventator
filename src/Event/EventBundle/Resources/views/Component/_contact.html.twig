@@ -4,7 +4,7 @@
     <div class="container">
         <div class="flex">
             <div class="form">
-                <h2><i class="ico_contact_us"></i>Contact US</h2>
+                <h2><i class="ico_contact_us"></i>{{ 'Contact US'|trans }}</h2>
                 <fieldset>
                     {{ form_start(form, {'method': 'POST', 'attr': {'id': 'contact'}, 'action': url('event_component_contact')}) }}
 
@@ -12,17 +12,17 @@
                         <div class="field_text">
                             {{ form_errors(form.name) }}
                             {{ form_widget(form.name) }}
-                            <span>Name</span>
+                            <span>{{ 'Name'|trans }}</span>
                         </div>
                         <div class="field_text">
                             {{ form_errors(form.email) }}
                             {{ form_widget(form.email) }}
-                            <span>Email</span>
+                            <span>{{ 'Email'|trans }}</span>
                         </div>
                         <div class="field_text">
                             {{ form_errors(form.message) }}
                             {{ form_widget(form.message) }}
-                            <span>Message</span>
+                            <span>{{ 'Message'|trans }}</span>
                         </div>
                     {% endblock form_row %}
 
