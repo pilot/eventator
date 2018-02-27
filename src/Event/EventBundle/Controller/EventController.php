@@ -8,17 +8,30 @@ use Event\EventBundle\Entity\SoldTicket;
 use Event\EventBundle\Entity\Ticket;
 use Event\EventBundle\Form\Type\SoldTicketType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Event\EventBundle\Entity\CallForPaper;
 use Event\EventBundle\Form\Type\ContactType;
 use Event\EventBundle\Form\Type\CallForPaperType;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class EventController extends Controller
 {
     public function indexAction()
     {
         return $this->render('EventEventBundle:Event:index.html.twig', []);
+    }
+
+    public function changeLanguageAction(Request $request, $lang = null){
+        if(is_null($lang)){
+            $lang = $this->container->getParameter('locale');
+        }
+        $ref = $request->headers->get('referer');
+        $response = new RedirectResponse($ref);
+        $response->headers->setCookie(new Cookie('user_locale', $lang));
+
+        return $response;
     }
 
     public function carouselAction()
@@ -173,7 +186,6 @@ class EventController extends Controller
             $liqpay = new \LiqPay($public_key, $private_key);
             $amount = $total * count($sold_tickets);
 
-            //@TODO change for 100% discount
             if($discountAmount == 0 && !$lunch && !$ap){
                 $this->changeTicketStatusByUid($uid);
                 return $this->redirectToRoute('tickets_payment_success');
@@ -391,7 +403,9 @@ class EventController extends Controller
             'event' => $this->getEvent(),
             'hosts' => $this->getHostYear(),
             'form' => $form->createView(),
-            'captcha' => $this->getCaptcha('captchaResultCall')
+            'captcha' => $this->getCaptcha('captchaResultCall'),
+            'user_languages' => $this->container->getParameter('user.locales'),
+            'default_lang' => $this->container->getParameter('locale')
         ]));
     }
 
@@ -400,7 +414,9 @@ class EventController extends Controller
         return new Response($this->renderView('@EventEvent/Component/_block_menu.html.twig', [
             'hosts' => $this->getHostYear(),
             'event' => $this->getEvent(),
-            'home_page' => true
+            'home_page' => true,
+            'user_languages' => $this->container->getParameter('user.locales'),
+            'default_lang' => $this->container->getParameter('locale')
         ]));
     }
 

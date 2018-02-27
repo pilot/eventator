@@ -28,6 +28,11 @@ class InitListener implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
+
+        if ($request->cookies->has('user_locale')) {
+            $locale = $request->cookies->get('user_locale');
+            $request->setLocale($locale);
+        }
         $host = $request->getHttpHost();
         $event = $this->eventRepository->findOneBy(['host' => 'http://'.$host]);
 

@@ -2148,3 +2148,26 @@ footer .footer_text {
     text-align: center;
 }
 
+.lang_switcher_container {
+    display: block;
+    margin: auto;
+    font-size: 17px;
+}
+
+.lang_switcher_container a {
+    color: #000;
+}
+
+.lang_switcher_container .active_locale {
+    color: #2D9CDB;
+}
+
+.languages_ul li {
+    margin-right: 5px;
+    border-left: 1px solid black;
+    padding-left: 6px;
+}
+
+.languages_ul li:first-child {
+    border-left: 0 !important;
+}

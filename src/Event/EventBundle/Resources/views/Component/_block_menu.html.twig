@@ -16,7 +16,19 @@
                 {% endfor %}
 
             </div>
-
+            <div class="lang_switcher_container">
+                {% set active_locale = app.request.cookies.get('user_locale') %}
+                {% if active_locale is null %}
+                    {% set active_locale = default_lang %}
+                {% endif %}
+                <ul class="languages_ul">
+                {% for lang in user_languages %}
+                    <li>
+                        <a class="{{ lang == active_locale ? 'active_locale' : ""}}" href="{{ url('lang_switch', {'lang': lang}) }}">{{ lang }}</a>
+                    </li>
+                {%  endfor %}
+                </ul>
+            </div>
             <div class="menu">
                 <ul>
                     {{ app.request.get('event_component_call_for_paper_view')}}

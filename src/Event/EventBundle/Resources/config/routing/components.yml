@@ -65,3 +65,7 @@ ticketPDF:
 update_total:
     path: /update-total-ajax
     defaults: { _controller: EventEventBundle:Event:updateTotalAjax }
+
+lang_switch:
+    path:  /change-locale/{lang}
+    defaults: { _controller: EventEventBundle:Event:changeLanguage, lang: null }
