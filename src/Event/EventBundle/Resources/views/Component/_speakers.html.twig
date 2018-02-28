@@ -12,8 +12,8 @@
                             {% set id = speaker.firstName ~ '-' ~ speaker.lastName ~ '-' ~ speaker.id %}
                             {% set id = id|replace(' ', '_') %}
                             <a href="#{{ id }}" role="button" data-toggle="modal">
-                                <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="140" />
-                                <span>{{ speaker.translated('fullName', app.request.locale) }}</span>
+                                <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.translated('firstName', app.request.locale) ~ ' ' ~ speaker.translated('lastName', app.request.locale) }}" src="{{ speaker.photo ?: '' }}" width="140" />
+                                <span>{{ speaker.translated('firstName', app.request.locale) ~ ' ' ~ speaker.translated('lastName', app.request.locale) }}</span>
                             </a>
                         </li>
                         {% include 'EventEventBundle:Event:_speaker-modal.html.twig' %}

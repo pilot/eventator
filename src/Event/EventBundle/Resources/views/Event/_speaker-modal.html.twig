@@ -3,7 +3,7 @@
         <div class="wrap_modal">
             <div class="modal_header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="name">{{ speaker.translated('fullName', app.request.locale) }}</h3>
+                <h3 class="name">{{ speaker.translated('firstName', app.request.locale) ~ ' ' ~ speaker.translated('lastName', app.request.locale) }}</h3>
                 <h4 class="company">{{ speaker.company ? speaker.translated('company', app.request.locale) : '' }} {{ speaker.position ? '(' ~ speaker.translated('position', app.request.locale) ~ ')' }}</h4>
             </div>
             <div class="modal_img">
