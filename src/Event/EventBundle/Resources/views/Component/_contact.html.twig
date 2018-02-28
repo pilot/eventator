@@ -58,7 +58,7 @@
                         <a href="{{ event.google }}" target="_blank" class="google"></a>
                     {% endif %}
                 </ul>
-                <p>{{ event.contact|raw }}</p>
+                <p>{{ event.translated('contact', app.request.locale)|raw }}</p>
             </div>
         </div>
     </div>

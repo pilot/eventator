@@ -7,9 +7,9 @@
         <ul class="list_speakers">
             {% for organizer in event.organizers %}
                 <li>
-                    <a href="{{ organizer.homepage }}">
-                        <img class="img-circle face" data-src="holder.js/140x140/text:{{ organizer.homepage }}" src="{{ organizer.logo ?: '' }}" width="140" />
-                        <span>{{ organizer.title }}</span>
+                    <a href="{{ organizer.translated('homepage', app.request.locale) }}">
+                        <img class="img-circle face" data-src="holder.js/140x140/text:{{ organizer.translated('homepage', app.request.locale) }}" src="{{ organizer.logo ?: '' }}" width="140" />
+                        <span>{{ organizer.translated('title', app.request.locale) }}</span>
                     </a>
                 </li>
             {% endfor %}

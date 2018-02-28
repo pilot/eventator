@@ -3,8 +3,8 @@
         <div class="wrap_modal">
             <div class="modal_header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="name">{{ speaker.fullName }}</h3>
-                <h4 class="company">{{ speaker.company ? speaker.company : '' }} {{ speaker.position ? '(' ~ speaker.position ~ ')' }}</h4>
+                <h3 class="name">{{ speaker.translated('fullName', app.request.locale) }}</h3>
+                <h4 class="company">{{ speaker.company ? speaker.translated('company', app.request.locale) : '' }} {{ speaker.position ? '(' ~ speaker.translated('position', app.request.locale) ~ ')' }}</h4>
             </div>
             <div class="modal_img">
                 <img src="{{ speaker.photo ?: '' }}" alt="">
@@ -12,7 +12,7 @@
             <div class="modal_content" id="speaker-info">
                 <h3>{{ 'Info'|trans }}</h3>
                 {% if speaker.bio %}
-                    <p>{{ speaker.bio }}</p>
+                    <p>{{ speaker.translated('bio', app.request.locale) }}</p>
                 {% endif %}
                 {% set social = [] %}
                 <ul>
@@ -32,8 +32,8 @@
                 <h3>{{ 'Speech'|trans }}</h3>
                 {% for speech in speaker.speeches %}
                     {% if currentEvent == speech.event %}
-                        <p><strong>{{ speech.title }}</strong> <small>({{ speech.language }})</small></p>
-                        <p>{{ speech.description }}</p>
+                        <p><strong>{{ speech.translated('title', app.request.locale) }}</strong> <small>({{ speech.language }})</small></p>
+                        <p>{{ speech.translated('description', app.request.locale) }}</p>
                     {% endif %}
                 {% endfor %}
             </div>

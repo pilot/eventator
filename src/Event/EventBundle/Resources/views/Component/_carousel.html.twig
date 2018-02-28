@@ -9,8 +9,8 @@
                 <div class="content_slide">
                     <div class="container">
                         <div class="wrapper_text">
-                            <p class="title_slide">{{ event.title }}</p>
-                            <p class="text_slide">{{ event.briefDescription }}</p>
+                            <p class="title_slide">{{ event.translated('title', app.request.locale) }}</p>
+                            <p class="text_slide">{{ event.translated('briefDescription', app.request.locale) }}</p>
                         </div>
                         {% if event.isActive and event.embedTicket %}
                             {#<a class="btn_blue modal-active" href="#">{{ 'Registration'|trans }}</a>#}
