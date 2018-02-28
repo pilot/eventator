@@ -1,10 +1,11 @@
 {% extends 'EventEventBundle::base.html.twig' %}
 {% set event = app.request.attributes.get('event') %}
 
-{% block title %}Call for paper{% endblock %}
+{% block title %}{{ 'Call for Paper'|trans }}{% endblock %}
 
 {% block body %}
-    {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}
+    {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}
+    {{ render(controller('EventEventBundle:Event:blockMenu')) }}
         <section>
             <div class="gradient">
                 <div class="container">
@@ -16,7 +17,6 @@
     <h2>{{ 'Call for Paper'|trans }}</h2>
         {% include 'EventEventBundle:Event:_form.html.twig' with {'home_page': false} %}
     </div>
-
     {% include 'EventEventBundle:Event:_footer.html.twig' %}
 
 {% endblock %}
