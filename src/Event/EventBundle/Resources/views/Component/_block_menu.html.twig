@@ -1,5 +1,6 @@
 {% set current_route = app.request.server.get('PHP_SELF')|replace({'/app_dev.php': ''}) %}
-    {% if current_route != '/' %}
+{% set current_route = app.request.server.get('PHP_SELF')|replace({'/app.php': ''}) %}
+{% if current_route != '/' %}
     {% set home_page = false %}
 {% endif %}
 <header>
