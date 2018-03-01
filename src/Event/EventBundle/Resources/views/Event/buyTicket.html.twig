@@ -4,7 +4,8 @@
 {% block title %}{{ 'Buy ticket(s)'|trans }}{% endblock %}
 
 {% block body %}
-    {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}
+    {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}
+    {{ render(controller('EventEventBundle:Event:blockMenu')) }}
     <div class="container">
         <div class="form_but_ticket" id="buyTicketForm">
             <p class="error-count-tickets">
@@ -96,11 +97,11 @@
             var $count = $('#tickets_count').data('count');
             var $ticket_container = "<div class='flex'>" +
                     "<div class='form-group'>" +
-                    "<label for='soldTickets_firstName'>" + "{{ 'FirstName'|trans }}" + ":</label>" +
+                    "<label for='soldTickets_firstName'>" + "{{ 'First Name'|trans }}" + ":</label>" +
             "<input type='text' id='soldTickets_firstName' name='soldTickets[" + $count + "][firstName]' required='required' class='form-control'>" +
                     "</div>" +
                     "<div class='form-group'>" +
-                    "<label for='soldTickets_lastName'>" + "{{ 'LastName'|trans }}" + ":</label>" +
+                    "<label for='soldTickets_lastName'>" + "{{ 'Last Name'|trans }}" + ":</label>" +
             "<input type='text' id='soldTickets_lastName' name='soldTickets["+$count+"][lastName]' required='required' class='form-control'>" +                    "</div>" +
                     "<a href='javascript:' class='remove-add-ticket'>X</a>"+
                     "</div>";

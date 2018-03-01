@@ -4,7 +4,8 @@
 {% block title %}{{ 'Payment success'|trans }}{% endblock %}
 
 {% block body %}
-    {% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}
+    {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}
+    {{ render(controller('EventEventBundle:Event:blockMenu')) }}
     <div class="container">
         <div class="payment_success" id="successPaymentContainer">
             <h3>

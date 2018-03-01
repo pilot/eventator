@@ -2186,3 +2186,74 @@ footer .footer_text {
         margin-left: 15px;
     }
 }
+
+.additional-tickets .flex {
+    border-top: 1px solid black;
+}
+
+@media only screen and (max-width: 1090px) {
+    #buyTicketForm .form-control{
+        float: none;
+        /*width: 50%;*/
+    }
+    .ticket-container, .additional-tickets{
+        flex-direction: column;
+    }
+    #buyTicketForm .form-control{
+        float: none;
+        width: 90%;
+    }
+    #buyTicketForm .form-group{
+        width: 100%;
+    }
+
+    #update_total {
+        margin-left: 25px;
+    }
+    .additional-tickets .flex {
+        display: block;
+        position: relative;
+    }
+    .remove-add-ticket {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .lang_switcher_container {
+        margin: 30px;
+    }
+    .languages_ul {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    #buyTicketForm {
+        margin-left: 0;
+    }
+    .liqpay_ticket form {
+        margin-left: 0;
+    }
+    .liqpay-price {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    #buyTicketForm {
+        margin-left: 0;
+    }
+    .liqpay_ticket form {
+        margin-left: 0;
+    }
+    .lang_switcher_container {
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .menu, .languages_ul {
+        font-size: 11px;
+    }
+}
+
