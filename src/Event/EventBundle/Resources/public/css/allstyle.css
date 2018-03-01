@@ -2187,10 +2187,6 @@ footer .footer_text {
     }
 }
 
-.additional-tickets .flex {
-    border-top: 1px solid black;
-}
-
 @media only screen and (max-width: 1090px) {
     #buyTicketForm .form-control{
         float: none;
@@ -2224,6 +2220,9 @@ footer .footer_text {
     }
     .languages_ul {
         font-size: 10px;
+    }
+    .additional-tickets .flex {
+        border-top: 1px solid black;
     }
 }
 
