@@ -2171,3 +2171,18 @@ footer .footer_text {
 .languages_ul li:first-child {
     border-left: 0 !important;
 }
+
+@media only screen and (max-width: 700px) {
+
+    .list_tickets .ticket-item {
+        width: 50%;
+    }
+
+    .list_tickets {
+        flex-wrap: wrap;
+    }
+
+    .list_tickets .first {
+        margin-left: 15px;
+    }
+}
