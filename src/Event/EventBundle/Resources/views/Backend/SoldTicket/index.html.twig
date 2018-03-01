@@ -13,6 +13,9 @@
                 <th>{{ 'Ticket'|trans }}</th>
                 <th>{{ 'Fullname'|trans }}</th>
                 <th>{{ 'Email'|trans }}</th>
+                <th>{{ 'Company'|trans }}</th>
+                <th>{{ 'Position'|trans }}</th>
+                <th>{{ 'City'|trans }}</th>
                 <th>{{ 'Discount Name'|trans }}</th>
                 <th>{{ 'Discount Amount'|trans }}</th>
                 <th>{{ 'Status'|trans }}</th>
@@ -33,6 +36,9 @@
                 <td>{{ sold_ticket.ticket.name }}</td>
                 <td>{{ sold_ticket.fullName }}</td>
                 <td nowrap>{{ sold_ticket.email }}</td>
+                <td nowrap>{{ sold_ticket.company }}</td>
+                <td nowrap>{{ sold_ticket.position }}</td>
+                <td nowrap>{{ sold_ticket.city }}</td>
                 <td nowrap>{{ sold_ticket.discount ? sold_ticket.discount.name : '-'}}</td>
                 <td nowrap>{{ sold_ticket.discountString }}</td>
                 <td nowrap>{{ sold_ticket.statusLabel }} </td>

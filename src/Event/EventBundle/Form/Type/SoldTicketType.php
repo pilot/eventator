@@ -25,6 +25,9 @@ class SoldTicketType extends AbstractType
     {
         $builder->add('firstName', TextType::class, ['required' => true])
             ->add('lastName', TextType::class, ['required' => true])
+            ->add('company', TextType::class)
+            ->add('position', TextType::class)
+            ->add('city', TextType::class)
             ->add('email', EmailType::class, ['required' => true])
             ->add('count', ChoiceType::class, [
                 'choices' => $this->getCountChoices(),

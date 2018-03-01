@@ -167,6 +167,9 @@ class EventController extends Controller
                 $entity->setTicket($ticket);
                 $entity->setFirstName($sold_ticket['firstName']);
                 $entity->setLastName($sold_ticket['lastName']);
+                $entity->setCompany($sold_ticket['company']);
+                $entity->setPosition($sold_ticket['position']);
+                $entity->setCity($sold_ticket['city']);
                 $entity->setEmail($request->request->get('email'));
                 $entity->setStatus(SoldTicket::STATUS_RESERVED);
                 $entity->setUid($uid);

@@ -119,6 +119,27 @@ class SoldTicket
      */
     private $liqpay_status;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="company", type="string", length=255, nullable=true)
+     */
+    private $company;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
+     */
+    private $position;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
     public $count;
 
     const STATUS_RESERVED = 1;
@@ -144,7 +165,7 @@ class SoldTicket
      * Set firstName
      *
      * @param string $firstName
-     * @return Speaker
+     * @return SoldTicket
      */
     public function setFirstName($firstName)
     {
@@ -474,5 +495,73 @@ class SoldTicket
     public function getLiqpayStatus()
     {
         return $this->liqpay_status;
+    }
+
+    /**
+     * Set company
+     *
+     * @param string $company
+     * @return SoldTicket
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set position
+     *
+     * @param string $position
+     * @return SoldTicket
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return SoldTicket
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
