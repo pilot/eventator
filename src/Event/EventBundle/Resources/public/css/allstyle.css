@@ -2098,7 +2098,7 @@ footer .footer_text {
 }
 
 .ticket-container .remove-add-ticket{
-    display: none;
+    /*display: none;*/
 }
 
 .liqpay_ticket form{
@@ -2186,19 +2186,78 @@ footer .footer_text {
         margin-left: 15px;
     }
 }
+.sponsors .sponsors_desc {
+
+}
+
+.main_fields_container, .add_fields_container {
+    width: 60%;
+    display: flex;
+}
+.main_fields_container .form-group  {
+    width: calc(50% - 5px);
+    margin-right: 15px;
+}
+
+.add_fields_container .form-group {
+    width: calc(33% - 5px);
+    margin-right: 15px;
+}
+
+.ticket-container{
+    flex-wrap: wrap;
+}
+
+.ticket-container .form-control {
+    width:100%;
+    box-sizing: border-box;
+    height: 38px;
+}
+
+.main_fields_container .last-ticket-field, .add_fields_container .last-ticket-field{
+    margin-right: 0;
+}
+
+.additional-tickets .flex {
+    border-top: 1px solid black;
+}
+
+.remove-add-ticket {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.additional-tickets .flex {
+    position: relative;
+}
+
+.additional-tickets .ticket-container{
+    width: 62%;
+}
+
+.additional-tickets .main_fields_container, .additional-tickets .add_fields_container {
+    width: 100%;
+}
 
 @media only screen and (max-width: 1090px) {
+    .additional-tickets .ticket-container{
+        width: 100%;
+    }
+
     #buyTicketForm .form-control{
         float: none;
-        /*width: 50%;*/
     }
+
     .ticket-container, .additional-tickets{
         flex-direction: column;
     }
+
     #buyTicketForm .form-control{
         float: none;
         width: 90%;
     }
+
     #buyTicketForm .form-group{
         width: 100%;
     }
@@ -2206,23 +2265,41 @@ footer .footer_text {
     #update_total {
         margin-left: 25px;
     }
+
     .additional-tickets .flex {
         display: block;
-        position: relative;
+        /*position: relative;*/
     }
-    .remove-add-ticket {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
+
     .lang_switcher_container {
         margin: 30px;
     }
+
     .languages_ul {
         font-size: 10px;
     }
-    .additional-tickets .flex {
-        border-top: 1px solid black;
+
+    .main_fields_container, .add_fields_container {
+        width: 100%;
+    }
+
+    .main_fields_container .form-group, .add_fields_container .form-group {
+        margin-right: 0;
+    }
+
+    .main_fields_container .form-group  {
+        width: calc(50% - 5px) !important;
+    }
+
+    .add_fields_container .form-group {
+        width: calc(33% - 5px) !important;
+    }
+    #soldTickets_discount {
+         display: block;
+    }
+
+    #buyTicketForm {
+        margin-left: 0;
     }
 }
 
@@ -2230,11 +2307,30 @@ footer .footer_text {
     #buyTicketForm {
         margin-left: 0;
     }
+
     .liqpay_ticket form {
         margin-left: 0;
     }
+
     .liqpay-price {
         font-size: 16px;
+    }
+
+    .main_fields_container, .add_fields_container {
+        display: block;
+    }
+
+    .main_fields_container .form-group  {
+        width: 100% !important;
+    }
+
+    .add_fields_container .form-group {
+        width: 100% !important;
+    }
+
+    #buyTicketForm .form-control{
+        box-sizing: border-box;
+        height: 38px;
     }
 }
 
@@ -2242,9 +2338,11 @@ footer .footer_text {
     #buyTicketForm {
         margin-left: 0;
     }
+
     .liqpay_ticket form {
         margin-left: 0;
     }
+
     .lang_switcher_container {
         margin: auto;
     }
@@ -2254,8 +2352,4 @@ footer .footer_text {
     .menu, .languages_ul {
         font-size: 11px;
     }
-}
-
-.sponsors_desc {
-
 }

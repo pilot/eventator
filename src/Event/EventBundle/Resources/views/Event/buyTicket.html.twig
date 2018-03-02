@@ -29,27 +29,31 @@
                     </div>
                 </div>
                 <div class="flex ticket-container">
-                    <div class="form-group">
-                        <label for="soldTickets_firstName">{{ 'First Name'|trans }}:</label>
-                        <input type="text" id="soldTickets_firstName" name="soldTickets[0][firstName]" required="required" class="form-control">
+                    <div class="main_fields_container">
+                        <div class="form-group">
+                            <label for="soldTickets_firstName">{{ 'First Name'|trans }}:</label>
+                            <input type="text" id="soldTickets_firstName" name="soldTickets[0][firstName]" required="required" class="form-control">
+                        </div>
+                        <div class="form-group last-ticket-field">
+                            <label for="soldTickets_lastName">{{ 'Last Name'|trans }}:</label>
+                            <input type="text" id="soldTickets_lastName" name="soldTickets[0][lastName]" required="required" class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="soldTickets_lastName">{{ 'Last Name'|trans }}:</label>
-                        <input type="text" id="soldTickets_lastName" name="soldTickets[0][lastName]" required="required" class="form-control">
+                    <div class="add_fields_container">
+                        <div class="form-group">
+                            <label for="soldTickets_company">{{ 'Company'|trans }}:</label>
+                            <input type="text" id="soldTickets_company" name="soldTickets[0][company]" required='required' class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="soldTickets_position">{{ 'Position'|trans }}:</label>
+                            <input type="text" id="soldTickets_position" name="soldTickets[0][position]" required='required' class="form-control">
+                        </div>
+                        <div class="form-group last-ticket-field">
+                            <label for="soldTickets_city">{{ 'City'|trans }}:</label>
+                            <input type="text" id="soldTickets_city" name="soldTickets[0][city]" required='required' class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="soldTickets_company">{{ 'Company'|trans }}:</label>
-                        <input type="text" id="soldTickets_company" name="soldTickets[0][company]" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="soldTickets_position">{{ 'Position'|trans }}:</label>
-                        <input type="text" id="soldTickets_position" name="soldTickets[0][position]" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="soldTickets_city">{{ 'City'|trans }}:</label>
-                        <input type="text" id="soldTickets_city" name="soldTickets[0][city]" class="form-control">
-                    </div>
-                    <a href="javascript:" class="remove-add-ticket" onclick="$(this).closest('.flex').remove();">X</a>
+                    {#<a href="javascript:" class="remove-add-ticket" onclick="$(this).closest('.flex').remove();">X</a>#}
                 </div>
                 <div class="additional-tickets"></div>
                 <a href="javascript:" id="add_one_more_ticket" class="btn btn-link">
@@ -107,28 +111,30 @@
     $(document).ready(function(){
         $('#add_one_more_ticket').on('click', function(){
             var $count = $('#tickets_count').data('count');
-            var $ticket_container = "<div class='flex'>" +
+            var $ticket_container = "<div class='flex ticket-container'>" +
+                    "<div class='main_fields_container'>" +
                     "<div class='form-group'>" +
                     "<label for='soldTickets_firstName'>" + "{{ 'First Name'|trans }}" + ":</label>" +
             "<input type='text' id='soldTickets_firstName' name='soldTickets[" + $count + "][firstName]' required='required' class='form-control'>" +
                     "</div>" +
                     "<div class='form-group'>" +
                     "<label for='soldTickets_lastName'>" + "{{ 'Last Name'|trans }}" + ":</label>" +
-            "<input type='text' id='soldTickets_lastName' name='soldTickets[" + $count + "][lastName]' required='required' class='form-control'>" +                    "</div>" +
+            "<input type='text' id='soldTickets_lastName' name='soldTickets[" + $count + "][lastName]' required='required' class='form-control'>" +
+                    "</div></div>" +
+                    "<div class='add_fields_container'>" +
                     "<div class='form-group'>" +
             "<label for='soldTickets_company'>" + "{{ 'Company'|trans }}" + ":</label>" +
-            "<input type='text' id='soldTickets_company' name='soldTickets[" + $count + "][company]' class='form-control'>" +
+            "<input type='text' id='soldTickets_company' name='soldTickets[" + $count + "][company]' required='required' class='form-control'>" +
                     "</div>" +
                     "<div class='form-group'>" +
                     "<label for='soldTickets_position'>" + "{{ 'Position'|trans }}" + ":</label>" +
-            "<input type='text' id='soldTickets_position' name='soldTickets[" + $count + "][position]' class='form-control'>" +
+            "<input type='text' id='soldTickets_position' name='soldTickets[" + $count + "][position]' required='required' class='form-control'>" +
                     "</div>" +
                     "<div class='form-group'>" +
                     "<label for='soldTickets_city'>" + "{{ 'City'|trans }}" + ":</label>" +
-            "<input type='text' id='soldTickets_city' name='soldTickets[" + $count + "][city]' class='form-control'>" +
+            "<input type='text' id='soldTickets_city' name='soldTickets[" + $count + "][city]' required='required' class='form-control'>" +
                     "</div>" +
-                    "<a href='javascript:' class='remove-add-ticket'>X</a>" +
-                    "</div>";
+                    "</div>" + "<a href='javascript:' class='remove-add-ticket'>X</a>" + "</div>";
             $( ".additional-tickets" ).append($ticket_container);
             $count = +$count + 1;
             $('#tickets_count').data('count', $count)
