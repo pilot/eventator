@@ -2141,18 +2141,18 @@ footer .footer_text {
 #buyTicketForm{
     margin-left: 33%;
 }
-#soldTickets_email{
+#soldTickets_email, #soldTickets_discount   {
     /*width: calc(100% - 15px);*/
     width: 100%;
     box-sizing: border-box;
     height: 38px;
 }
 
-.ticket_email_container {
+.ticket_email_container, .discount_container {
     flex-wrap: wrap;
 }
 
-.ticket_email_container .form-group {
+.ticket_email_container .form-group, .discount_container .form-group {
     width: 60%;
 }
 
@@ -2292,7 +2292,7 @@ footer .footer_text {
     }
 
     .main_fields_container, .add_fields_container {
-        width: 100%;
+        width: calc(100% - 47px);
     }
 
     .main_fields_container .form-group, .add_fields_container .form-group {
@@ -2343,6 +2343,10 @@ footer .footer_text {
     #buyTicketForm .form-control{
         box-sizing: border-box;
         height: 38px;
+    }
+
+    .main_fields_container, .add_fields_container {
+        width: 100%;
     }
 }
 
