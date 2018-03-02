@@ -2142,8 +2142,20 @@ footer .footer_text {
     margin-left: 33%;
 }
 #soldTickets_email{
-    width: calc(100% - 15px);
+    /*width: calc(100% - 15px);*/
+    width: 100%;
+    box-sizing: border-box;
+    height: 38px;
 }
+
+.ticket_email_container {
+    flex-wrap: wrap;
+}
+
+.ticket_email_container .form-group {
+    width: 60%;
+}
+
 #successPaymentContainer {
     text-align: center;
 }
