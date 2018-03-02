@@ -412,12 +412,12 @@ class EventController extends Controller
         ]));
     }
 
-    public function blockMenuAction()
+    public function blockMenuAction($homepage = true)
     {
         return new Response($this->renderView('@EventEvent/Component/_block_menu.html.twig', [
             'hosts' => $this->getHostYear(),
             'event' => $this->getEvent(),
-            'home_page' => true,
+            'home_page' => $homepage,
             'user_languages' => $this->container->getParameter('user.locales'),
             'default_lang' => $this->container->getParameter('locale')
         ]));
