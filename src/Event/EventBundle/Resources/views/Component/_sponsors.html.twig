@@ -66,7 +66,7 @@
     <div id="sponsors" class="indent"></div>
     <div class="container">
         <h2><i class="ico_sponsors"></i>{{ 'Sponsors'|trans }}</h2>
-        <p class="lead">{{ event.translated('sponsorDescription', app.request.locale)|nl2br }}</p>
+        <p class="lead sponsors_desc">{{ event.translated('sponsorDescription', app.request.locale)|nl2br }}</p>
         {% set generalType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_GENERAL') %}
         {% set goldType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_GOLD') %}
         {% set silverType = constant('Event\\EventBundle\\Entity\\Sponsor::TYPE_SILVER') %}
