@@ -5,7 +5,7 @@
 
 {% block body %}
     {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}
-    {{ render(controller('EventEventBundle:Event:blockMenu')) }}
+    {{ render(controller('EventEventBundle:Event:blockMenu', { 'homepage': false })) }}
     <div class="container">
         <div class="payment_success" id="successPaymentContainer">
             <h3>

@@ -5,7 +5,7 @@
 
 {% block body %}
     {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}
-    {{ render(controller('EventEventBundle:Event:blockMenu')) }}
+    {{ render(controller('EventEventBundle:Event:blockMenu', { 'homepage': false })) }}
     <div class="container">
         <div class="liqpay_ticket" id="buyTicketForm">
                 <h3 class="liqpay-price">
