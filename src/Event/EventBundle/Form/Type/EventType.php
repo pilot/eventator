@@ -96,6 +96,21 @@ class EventType extends AbstractType
             ->add('translations', CollectionType::class, [
                 'entry_type' => EventTranslationType::class
             ])
+            ->add('metaTitle', TextType::class, ['required' => false])
+            ->add('metaDesc', TextareaType::class, [
+                'label' => 'Meta Description',
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
+                'required' => false
+            ])
+            ->add('metaKw', TextType::class, ['required' => false])
+            ->add('ogTitle', TextType::class, ['required' => false])
+            ->add('ogDesc', TextareaType::class, [
+                'label' => 'OG Description',
+                'attr' => array('class' => 'input-xxlarge', 'rows' => 5),
+                'required' => false
+            ])
+            ->add('ogUrl', TextType::class, ['required' => false])
+            ->add('ogImage', TextType::class, ['required' => false])
         ;
     }
 

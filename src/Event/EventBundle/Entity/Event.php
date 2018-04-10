@@ -275,6 +275,49 @@ class Event
      */
     private $tickets;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_title", type="string", length=255, nullable=true)
+     */
+    private $metaTitle;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_desc", type="text", nullable=true)
+     */
+    private $metaDesc;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_kw", type="string", length=255, nullable=true)
+     */
+    private $metaKw;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="og_title", type="string", length=255, nullable=true)
+     */
+    private $ogTitle;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="og_desc", type="text", nullable=true)
+     */
+    private $ogDesc;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="og_url", type="string", length=255, nullable=true)
+     */
+    private $ogUrl;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="og_image", type="string", length=255, nullable=true)
+     */
+    private $ogImage;
+
 
     public function __construct()
     {
@@ -1048,5 +1091,161 @@ class Event
     public function removeTicket(Ticket $ticket)
     {
         $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * get metaTitle
+     *
+     * @return string
+     */
+    public function getMetaTitle(){
+        return $this->metaTitle;
+    }
+
+    /**
+     * set metaTitle
+     *
+     * @param $metaTitle
+     * @return Event
+     */
+    public function setMetaTitle($metaTitle){
+        $this->metaTitle = $metaTitle;
+        return $this;
+    }
+
+    /**
+     * get metaDesc
+     *
+     * @return string
+     */
+    public function getMetaDesc(){
+        return $this->metaDesc;
+    }
+
+    /**
+     * set metaDesc
+     *
+     * @param $metaDesc
+     * @return Event
+     */
+    public function setMetaDesc($metaDesc){
+        $this->metaDesc = $metaDesc;
+        return $this;
+    }
+
+    /**
+     * get metaKw
+     *
+     * @return string
+     */
+    public function getMetaKw(){
+        return $this->metaKw;
+    }
+
+    /**
+     * set metaKw
+     *
+     * @param $metaKw
+     * @return Event
+     */
+    public function setMetaKw($metaKw){
+        $this->metaKw = $metaKw;
+        return $this;
+    }
+
+    /**
+     * get ogTitle
+     *
+     * @return string
+     */
+    public function getOgTitle(){
+        return $this->ogTitle;
+    }
+
+    /**
+     * set ogTitle
+     *
+     * @param $ogTitle
+     * @return Event
+     */
+    public function setOgTitle($ogTitle){
+        $this->ogTitle = $ogTitle;
+        return $this;
+    }
+
+    /**
+     * get ogDesc
+     *
+     * @return string
+     */
+    public function getOgDesc(){
+        return $this->ogDesc;
+    }
+
+    /**
+     * set ogDesc
+     *
+     * @param $ogDesc
+     * @return Event
+     */
+    public function setOgDesc($ogDesc){
+        $this->ogDesc = $ogDesc;
+        return $this;
+    }
+
+    /**
+     * get ogUrl
+     *
+     * @return string
+     */
+    public function getOgUrl(){
+        return $this->ogUrl;
+    }
+
+    /**
+     * set ogUrl
+     *
+     * @param $ogUrl
+     * @return Event
+     */
+    public function setOgUrl($ogUrl){
+        $this->ogUrl = $ogUrl;
+        return $this;
+    }
+
+    /**
+     * get ogImage
+     *
+     * @return string
+     */
+    public function getOgImage(){
+        return $this->ogImage;
+    }
+
+    /**
+     * set ogImage
+     *
+     * @param $ogImage
+     * @return Event
+     */
+    public function setOgImage($ogImage){
+        $this->ogImage = $ogImage;
+        return $this;
+    }
+
+    public function getLogicMetaTitle(){
+        return $this->metaTitle ? $this->metaTitle : $this->title;
+    }
+
+    public function getLogicOgTitle(){
+        return $this->ogTitle ? $this->ogTitle : $this->getLogicMetaTitle();
+    }
+
+    public function getLogicMetaDesc(){
+        return $this->metaDesc;
+    }
+
+    public function getLogicOgDesc(){
+        return $this->ogDesc ? $this->ogDesc : $this->getLogicDesc();
     }
 }
