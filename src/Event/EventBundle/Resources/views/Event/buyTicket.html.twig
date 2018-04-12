@@ -1,7 +1,7 @@
 {% extends 'EventEventBundle::base.html.twig' %}
 {% set event = app.request.attributes.get('event') %}
 
-{% block title %}{{ 'Buy ticket(s)'|trans }}{% endblock %}
+{% block title %}{{ 'Buy ticket(s)'|trans }} - {{ event.title }}{% endblock %}
 
 {% block body %}
     {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}

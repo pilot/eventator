@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}{{ event.logicMetaTitle }}{% endblock %}</title>
+        <title>{% block title %}Symfony-camp!{% endblock %}</title>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
@@ -18,7 +18,7 @@
         {% endif %}
 
         {%  if event.metaKw  %}
-        <meta name="keywords" content="{{ event.metaKw }}">
+        <meta name="Keywords" content="{{ event.metaKw }}">
         {% endif %}
 
         <meta property="og:title" content="{{ event.logicOgTitle }}" />
