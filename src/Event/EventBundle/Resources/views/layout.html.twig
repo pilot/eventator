@@ -1,7 +1,7 @@
 {% extends 'EventEventBundle::base.html.twig' %}
 {% set event = app.request.attributes.get('event') %}
 
-{% block title %}{{ event.title }}{% endblock %}
+{% block title %}{{ event.logicMetaTitle }}{% endblock %}
 
 {% block body %}
     {% block menu %}
