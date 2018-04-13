@@ -1246,6 +1246,6 @@ class Event
     }
 
     public function getLogicOgDesc(){
-        return $this->ogDesc ? $this->ogDesc : $this->getLogicDesc();
+        return $this->ogDesc ? $this->ogDesc : $this->getLogicMetaDesc();
     }
 }

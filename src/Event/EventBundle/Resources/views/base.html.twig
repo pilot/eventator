@@ -14,11 +14,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
         {% if event.MetaDesc %}
-        <meta name="description" content="{{ event.MetaDesc }}">
+        <meta name="description" content="{{ event.logicMetaDesc }}">
         {% endif %}
 
         {%  if event.metaKw  %}
-        <meta name="Keywords" content="{{ event.metaKw }}">
+        <meta name="keywords" content="{{ event.metaKw }}">
         {% endif %}
 
         <meta property="og:title" content="{{ event.logicOgTitle }}" />
