@@ -11,6 +11,7 @@
             <tr>
                 <th>id</th>
                 <th>{{ 'Ticket'|trans }}</th>
+                <th>{{ 'Event'|trans }}</th>
                 <th>{{ 'Fullname'|trans }}</th>
                 <th>{{ 'Email'|trans }}</th>
                 <th>{{ 'Company'|trans }}</th>
@@ -34,6 +35,7 @@
             <tr>
                 <td>{{ sold_ticket.id }}</td>
                 <td>{{ sold_ticket.ticket.name }}</td>
+                <td>{{ sold_ticket.ticket.event.title }}</td>
                 <td>{{ sold_ticket.fullName }}</td>
                 <td nowrap>{{ sold_ticket.email }}</td>
                 <td nowrap>{{ sold_ticket.company }}</td>
