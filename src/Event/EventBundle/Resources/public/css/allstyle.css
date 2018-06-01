@@ -2369,3 +2369,29 @@ footer .footer_text {
         font-size: 11px;
     }
 }
+
+.tickets-modal-close {
+    /*position: absolute;*/
+    /*top: -19px;*/
+    /*right: -17px;*/
+    opacity: 1;
+}
+
+.tickets-modal-bg {
+    background-image: url('/bundles/eventevent/img/tickets-modal-bg.png');
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    height: 460px;
+    box-shadow: none;
+}
+
+.tickets-modal-buy-button {
+    position: absolute;
+    bottom: 100px;
+    text-align: center;
+}
+
+.tickets-modal-buy-button a {
+    background-color: #240456 !important;
+}

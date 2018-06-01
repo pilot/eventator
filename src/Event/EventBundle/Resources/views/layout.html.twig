@@ -55,4 +55,54 @@
 
     {% include 'EventEventBundle:Event:_footer.html.twig' %}
 
+    <script>
+        $(document).ready(function () {
+            var modal_timeout = 30000;
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
+            }
+
+            function showTicketsModal(time){
+                if(!getCookie('ticketModal')) {
+                    setTimeout(function () {
+                        $('#buy-tickets-modal').modal();
+                    }, time);
+                }
+            }
+
+            showTicketsModal(modal_timeout);
+
+            $("#buy-tickets-modal").on("hidden.bs.modal", function () {
+                showTicketsModal(modal_timeout);
+            });
+
+            $('#tickets-modal-buy').on('click', function () {
+                $('#buy-tickets-modal').modal('toggle');
+                document.cookie = "ticketModal=hide";
+            });
+        });
+
+    </script>
+    <div class="modal fade" id="buy-tickets-modal">
+        <div class="modal-dialog">
+            <div class="modal-content tickets-modal-bg">
+                <div class="modal-header">
+                    <button type="button" class="close tickets-modal-close" data-dismiss="modal" aria-hidden="true">
+                        <img src="{{ asset('bundles/eventevent/img/tickets-modal-close.svg') }}" alt="" />
+                    </button>
+
+                </div>
+                <div class="modal_content">
+                    <div class="row">
+                        <div class="col-sm-12 tickets-modal-buy-button">
+                            <a href="#tickets" class="btn btn_blue" id="tickets-modal-buy">buy ticket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
