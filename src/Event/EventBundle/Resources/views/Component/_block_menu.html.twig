@@ -11,7 +11,13 @@
             <div class="logo">
                 {% for host in hosts %}
                     {% if loop.last %}
-                        <a href="{{host.host}}"><img src="{{ asset('bundles/eventevent/img/logo.png') }}" alt=""></a>
+                        <a href="{{host.host}}">
+                            {% if event.logo %}
+                                <img src="{{ event.logo }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('bundles/eventevent/img/logo.png') }}" alt="">
+                            {% endif %}
+                        </a>
                     {% endif %}
                 {% endfor %}
 
