@@ -171,6 +171,7 @@ class EventController extends Controller
                 $entity->setPosition($sold_ticket['position']);
                 $entity->setCity($sold_ticket['city']);
                 $entity->setEmail($request->request->get('email'));
+                $entity->setPhone($request->request->get('phone'));
                 $entity->setStatus(SoldTicket::STATUS_RESERVED);
                 $entity->setUid($uid);
                 $entity->setDateCreated(new \DateTime());

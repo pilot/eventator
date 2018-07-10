@@ -50,6 +50,13 @@ class SoldTicket
     /**
      * @var string
      *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="uid", type="string", length=255)
      */
     private $uid;
@@ -228,6 +235,29 @@ class SoldTicket
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return SoldTicket
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 
     public function getFullName()

@@ -2141,7 +2141,7 @@ footer .footer_text {
 #buyTicketForm{
     margin-left: 33%;
 }
-#soldTickets_email, #soldTickets_discount   {
+#soldTickets_email, #soldTickets_discount, #soldTickets_phone   {
     /*width: calc(100% - 15px);*/
     width: 100%;
     box-sizing: border-box;
