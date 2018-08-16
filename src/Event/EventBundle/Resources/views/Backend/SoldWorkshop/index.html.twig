@@ -1,0 +1,82 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+<section>
+    <div class="page-header">
+        <h3>{{ 'Sold Workshop'|trans }}</h3>
+    </div>
+
+    <table class="table table-striped table-bordered" id="sold_workshops">
+        <thead>
+            <tr>
+                <th></th>
+                <th>id</th>
+                <th>{{ 'Workshop'|trans }}</th>
+                <th>{{ 'Event'|trans }}</th>
+                <th>{{ 'Fullname'|trans }}</th>
+                <th>{{ 'Email'|trans }}</th>
+                <th>{{ 'Phone'|trans }}</th>
+                <th>{{ 'Company'|trans }}</th>
+                <th>{{ 'Position'|trans }}</th>
+                <th>{{ 'City'|trans }}</th>
+                <th>{{ 'Status'|trans }}</th>
+                <th>{{ 'Created'|trans }}</th>
+                <th>{{ 'Sold'|trans }}</th>
+                <th>{{ 'Order id'|trans }}</th>
+                <th>{{ 'Liqpay status'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sold_workshop in sold_workshops %}
+            <tr>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-small" onclick="return confirm('{{ 'Are You sure?'|trans }}')" href="{{ url('backend_sold_workshop_delete', {'id': sold_workshop.id}) }}"><i class="icon-trash"></i></a>
+                    </div>
+                </td>
+                <td>{{ sold_workshop.id }}</td>
+                <td>{{ sold_workshop.workshop.name }}</td>
+                <td>{{ sold_workshop.workshop.event.title }}</td>
+                <td>{{ sold_workshop.fullName }}</td>
+                <td nowrap>{{ sold_workshop.email }}</td>
+                <td nowrap>{{ sold_workshop.phone }}</td>
+                <td nowrap>{{ sold_workshop.company }}</td>
+                <td nowrap>{{ sold_workshop.position }}</td>
+                <td nowrap>{{ sold_workshop.city }}</td>
+                <td nowrap>{{ sold_workshop.statusLabel }} </td>
+                <td nowrap>{{ sold_workshop.dateCreated|date('Y-m-d H:i:s') }} </td>
+                <td nowrap>{{ sold_workshop.dateSold ? sold_workshop.dateSold|date('Y-m-d H:i:s'): '' }} </td>
+                <td>{{ sold_workshop.uid }} </td>
+                <td>{{ sold_workshop.liqpayStatus }} </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">{{ 'No tickets sold'|trans }}.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var elementsCount = '{{ sold_workshops|length }}';
+
+            if ( 0 < elementsCount) {
+                $('#sold_workshops').dataTable({
+                    "iDisplayLength": 50,
+                    "sDom": "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
+                    "sPaginationType": "bootstrap",
+                    "oLanguage": {
+                        "sLengthMenu": "_MENU_ records per page"
+                    },
+                    "aaSorting": [[1, 'desc']]
+                });
+            }
+        });
+    </script>
+{% endblock %}

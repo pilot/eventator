@@ -189,7 +189,6 @@ backend_ticket_delete:
     defaults: { _controller: EventEventBundle:Backend/Ticket:delete }
     requirements: { id: \d+ }
 
-
 # Sold tickets
 backend_sold_ticket:
     path:  /sold_tickets
@@ -247,4 +246,14 @@ backend_wsh_schedule_edit:
 backend_wsh_schedule_delete:
     path:  /workshop/deleteSchedule/{id}
     defaults: { _controller: EventEventBundle:Backend/Workshop:deleteSchedule }
+    requirements: { id: \d+ }
+
+# Sold workshops
+backend_sold_workshop:
+    path:  /sold_workshop
+    defaults: { _controller: EventEventBundle:Backend/SoldWorkshop:index }
+
+backend_sold_workshop_delete:
+    path:  /sold_workshop/deleteSchedule/{id}
+    defaults: { _controller: EventEventBundle:Backend/SoldWorkshop:delete }
     requirements: { id: \d+ }

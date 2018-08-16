@@ -2398,6 +2398,7 @@ footer .footer_text {
 
 .list_tickets .workshop_item {
     padding: 0;
+    height: auto;
 }
 
 .workshop_item .ticket_name {
@@ -2422,6 +2423,7 @@ footer .footer_text {
     display: block;
     padding: 15px 25px;
     border-bottom: 1px solid #eee;
+    height: 15px;
 }
 
 .workshop_item .wsh-buy-button-container {
@@ -2429,10 +2431,10 @@ footer .footer_text {
     padding: 15px 25px;
     width: auto;
     background-color: #eee;
+    position: relative;
 }
 
 .workshop_item .wsh_time, .workshop_item .wsh_count {
-    position: absolute;
     padding:15px 25px;
     border-bottom: 1px solid #EEEEEE;
     border-top: 1px solid #333;

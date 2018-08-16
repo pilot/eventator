@@ -24,6 +24,7 @@ class Builder implements ContainerAwareInterface
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav nav-list nav-stacked');
+        $menu->setChildrenAttribute('style', 'font-size: 13px');
 
         $event = $menu->addChild('Event');
         $event->addChild('Settings', array('route' => 'backend_setting'));
@@ -38,6 +39,7 @@ class Builder implements ContainerAwareInterface
         $event->addChild('Sold tickets', array('route' => 'backend_sold_ticket'));
         $event->addChild('Discount', array('route' => 'backend_discount'));
         $event->addChild('Workshops', array('route' => 'backend_workshop'));
+        $event->addChild('Sold workshops', array('route' => 'backend_sold_workshop'));
 
         return $menu;
     }

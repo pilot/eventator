@@ -24,6 +24,12 @@
                                 <li>{{ item.text }}</li>
                                 {% endif %}
                             {% endfor %}
+                            {% if count > workshop.schedule|length %}
+                                {% set empty = count - workshop.schedule|length %}
+                                {% for i in 1..empty %}
+                                    <li></li>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
                         <div class="wsh_time">
                             {{ 'Time'|trans }}: {{ workshop.time }}
@@ -31,7 +37,7 @@
                         <div class="wsh_count ">
                             {{ 'Remaining Count'|trans }}: {{ workshop.remainingCount }}
                         </div>
-                        <input type="hidden" name="ticket_id" value="{{ workshop.id }}" />
+                        <input type="hidden" name="wsh_id" value="{{ workshop.id }}" />
                         <div class="tickets-submit-container wsh-buy-button-container">
                             <button type="submit" class="buy_tickets_button btn btn_blue">
                                 <span>{{ 'Buy tickets'|trans }}</span>
@@ -39,6 +45,7 @@
                         </div>
                     </form>
                 </li>
+            {% else 'Coming soon...' %}
             {% endfor %}
         </ul>
     </div>

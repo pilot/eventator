@@ -5,7 +5,9 @@ namespace Event\EventBundle\Controller;
 use Behat\Mink\Exception\ResponseTextException;
 use Event\EventBundle\Entity\Discount;
 use Event\EventBundle\Entity\SoldTicket;
+use Event\EventBundle\Entity\SoldWorkshop;
 use Event\EventBundle\Entity\Ticket;
+use Event\EventBundle\Entity\Workshop;
 use Event\EventBundle\Form\Type\SoldTicketType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -104,8 +106,18 @@ class EventController extends Controller
 
     public function workshopsAction()
     {
+        $event = $this->getEvent();
+        $workshops = $event->getWorkshops();
+        $max = 0; 
+        foreach ($workshops as $wsh){
+            if($max < count($wsh->getSchedule())){
+                $max = count($wsh->getSchedule());
+            }
+        }
+        
         return $this->render('EventEventBundle:Component:_workshops.html.twig', [
-            'event' => $this->getEvent()
+            'event' => $event,
+            'count' => $max
         ]);
     }
 
@@ -294,7 +306,7 @@ class EventController extends Controller
     }
 
     public function viewPDFHtmlAction(Request $request) {
-        $soldTicket = $ticket = $this->findOr404('EventEventBundle:SOldTicket', 5);
+        $soldTicket = $ticket = $this->findOr404('EventEventBundle:SoldTicket', 5);
         $this->get('knp_snappy.pdf')->generateFromHtml(
             $this->renderView('EventEventBundle:Event:ticketPDF.html.twig', [
                 'soldTicket' => $soldTicket,
@@ -449,5 +461,193 @@ class EventController extends Controller
     protected function callForPaper(CallForPaper $entity = null)
     {
         return $this->createForm(CallForPaperType::class, $entity);
+    }
+
+    public function buyWorkshopAction (Request $request){
+        if(is_null( $request->request->get('wsh_id'))){
+            return $this->redirectToRoute('event_homepage');
+        }
+        $workshop = $this->findOr404('EventEventBundle:Workshop', $request->request->get('wsh_id'));
+        $label = Workshop::getCurrencyLabels($workshop->getCurrency());
+        $total = $workshop->getPrice();
+
+        if ($request->isMethod('POST') && $sold_workshops = $request->request->get('soldWorkshops')) {
+            $available = $workshop->getRemainingCount();
+
+           $count = count($sold_workshops);
+            if($available < $count) {
+                return $this->render('EventEventBundle:Event:buyWorkshop.html.twig', [
+                    'event'       => $this->getEvent(),
+                    'workshop'      => $workshop,
+                    'hosts'       => $this->getHostYear(),
+                    'total'       => $total,
+                    'label'       => $label,
+                    'error'       => "Only $available workshop tickets are available.",
+                ]);
+            }
+            $uid = time();
+
+            foreach ($sold_workshops as $sold_workshop) {
+                $entity = new SoldWorkshop();
+                $entity->setWorkshop($workshop);
+                $entity->setFirstName($sold_workshop['firstName']);
+                $entity->setLastName($sold_workshop['lastName']);
+                $entity->setCompany($sold_workshop['company']);
+                $entity->setPosition($sold_workshop['position']);
+                $entity->setCity($sold_workshop['city']);
+                $entity->setEmail($request->request->get('email'));
+                $entity->setPhone($request->request->get('phone'));
+                $entity->setStatus(SoldTicket::STATUS_RESERVED);
+                $entity->setUid($uid);
+                $entity->setDateCreated(new \DateTime());
+                $total = round($total, 2);
+
+                $this->getManager()->persist($entity);
+                $this->getManager()->flush();
+            }
+            
+            $public_key = $this->container->getParameter('liqpay.publickey');
+            $private_key = $this->container->getParameter('liqpay.privatekey');
+            $liqpay = new \LiqPay($public_key, $private_key);
+            $amount = $total * count($sold_workshops);
+
+//            if(false){
+//                $this->changeWorkshopStatusByUid($uid);
+//                return $this->redirectToRoute('tickets_payment_success');
+//            }
+
+            $liqpayData = array(
+                'action'         => 'pay',
+                'amount'         => $amount,
+                'currency'       => $workshop->getCurrencylabel(),
+                'description'    => 'buying workshop ticket(s)',
+                'order_id'       => $uid,
+                'version'        => '3',
+                'server_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('workshops_handle_liqpay'),
+                'result_url'     => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->generateUrl('tickets_payment_success'),
+            );
+            if($this->container->getParameter('liqpay.sandbox') == 1){
+                $liqpayData['sandbox'] = '1';
+            }
+            $html = $liqpay->cnb_form($liqpayData);
+
+            return $this->render('EventEventBundle:Event:liqPay.html.twig', [
+                'event'  => $this->getEvent(),
+                'hosts'  => $this->getHostYear(),
+                'button' => $html,
+                'amount' => $amount . ' ' . $workshop->getCurrencyLabel(),
+                'count' => count($sold_workshops),
+            ]);
+        }
+        return $this->render('EventEventBundle:Event:buyWorkshop.html.twig', [
+            'event'       => $this->getEvent(),
+            'workshop'    => $workshop,
+            'hosts'       => $this->getHostYear(),
+            'total'       => $total,
+            'label'       => $label,
+            'error'       => '',
+        ]);
+    }
+
+    protected function changeWorkshopStatusByUid($uid, $liqpayStatus = null){
+        $repository = $this->getDoctrine()->getRepository(SoldWorkshop::class);
+        $tickets = $repository->findBy(
+            ['uid' => $uid]
+        );
+        foreach ($tickets as $ticket){
+            $ticket->setStatus(SoldWorkshop::STATUS_SOLD);
+            $ticket->setDateSold(new \DateTime());
+            if($liqpayStatus){
+                $ticket->setLiqpayStatus($liqpayStatus);
+            }
+            $this->getManager()->persist($ticket);
+            $this->getManager()->flush();
+            $this->sendWshTicket($ticket);
+        }
+        return $tickets;
+    }
+
+    public function sendWshTicket(SoldWorkshop $soldWorkshop){
+        $attachmentData = [
+            'data' => $this->createWshPDF($soldWorkshop),
+            'filename' => $soldWorkshop->getWorkshop()->getName() . '_ticket.pdf',
+            'contentType' => 'application/pdf',
+        ];
+
+        $this->get('eventator_mailer')->sendWithPdfPathAttach(
+            $soldWorkshop->getEmail(),
+            'Your ticket for Workshop:  ' . $soldWorkshop->getTicket()->getName(),
+            $this->renderView('EventEventBundle:Email:_workshop.html.twig', [
+                'soldWorkshop' => $soldWorkshop,
+                'from' => $soldWorkshop->getWorkshop()->getEvent()->getEmail(),
+                'languages' => $this->container->getParameter('event.speech_languages'),
+                'levels' => $this->container->getParameter('event.speech_levels'),
+            ]),
+            [$soldWorkshop->getWorkshop()->getEvent()->getEmail() => $this->container->getParameter('mail-from-name')],
+            null,
+            $attachmentData
+        );
+
+        return true;
+    }
+
+    public function createWshPDF(SoldWorkshop $soldWorkshop){
+        $path = __DIR__ . '/../../../../web/uploads/workshops/' . $soldWorkshop->getId() . '.pdf';
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $this->renderView('EventEventBundle:Event:workshopPDF.html.twig', [
+                'soldWorkshop' => $soldWorkshop,
+            ]),
+            $path,
+            [],
+            true
+        );
+        return $path;
+    }
+
+    public function viewWorkshopPDFHtmlAction(Request $request, $id) {
+        $soldWorkshop = $this->findOr404('EventEventBundle:SoldWorkshop', $id);
+//        $this->get('knp_snappy.pdf')->generateFromHtml(
+//            $this->renderView('EventEventBundle:Event:workshopPDF.html.twig', [
+//                'soldWorkshop' => $soldWorkshop,
+//            ]),
+//            __DIR__ . '/../../../../web/uploads/workshops/' . $soldWorkshop->getId() . '.pdf',
+//            [],
+//            true
+//        );
+        return $this->render('EventEventBundle:Event:workshopPDF.html.twig', [
+            'soldWorkshop' => $soldWorkshop,
+        ]);
+    }
+
+    public function handleWorkshopLiqPayRequestAction(Request $request){
+        $data = $request->request->get('data');
+        $signature = $request->request->get('signature');
+        $privateKey = $this->container->getParameter('liqpay.privatekey');
+        $publicKey = $this->container->getParameter('liqpay.publickey');
+        $liqpay = new \LiqPay($publicKey, $privateKey);
+        $check = base64_encode( sha1( $privateKey . $data . $privateKey, 1) );
+        $data = $liqpay->decode_params($data);
+        $uid = $data['order_id'];
+        $status = $data['status'];
+        if($check == $signature){
+            if($status == 'sandbox' || $status == 'success' || $status == 'wait_accept') {
+                $this->changeWorkshopStatusByUid($uid, $status);
+            } else {
+                file_put_contents(__DIR__. '/../../../../web/uploads/test', $status . PHP_EOL, FILE_APPEND);
+                file_put_contents(__DIR__. '/../../../../web/uploads/test', $uid . PHP_EOL, FILE_APPEND);
+            }
+        } else {
+            file_put_contents(__DIR__. '/../../../../web/uploads/test', "$check = $signature" . PHP_EOL, FILE_APPEND);
+        }
+        return new Response();
+    }
+
+    public function setWorkshopSoldAction (Request $request, $id){
+        $this->isGrantedAdmin();
+        $soldWorkshop = $this->findOr404('EventEventBundle:SoldWorkshop', $id);
+        $uid = $soldWorkshop->getUid();
+        $tickets = $this->changeWorkshopStatusByUid($uid, 'byTestAction');
+        
+        return $this->redirect('workshopPDF', $tickets[0]->getId());
     }
 }

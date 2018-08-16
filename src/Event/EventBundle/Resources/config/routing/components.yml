@@ -74,14 +74,14 @@ event_component_workshop:
     path: /buy-workshop
     defaults: { _controller: EventEventBundle:Event:buyWorkshop }
 
-workshops_payment_success:
-    path: /workshop-payment-success
-    defaults: { _controller: EventEventBundle:Event:workshopPaymentSuccess }
-
 workshops_handle_liqpay:
     path: /workshop-liqpay-handle
     defaults: { _controller: EventEventBundle:Event:handleWorkshopLiqPayRequest }
 
 workshopPDF:
-    path: /workshopPDF
+    path: /workshopPDF/{id}
     defaults: { _controller: EventEventBundle:Event:viewWorkshopPDFHtml }
+
+setWorkshopSold:
+    path: /setWorkshopSold/{id}
+    defaults: { _controller: EventEventBundle:Event:setWorkshopSold }

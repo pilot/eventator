@@ -9,17 +9,17 @@
                 </div>
             </div>
             <div class="logo">
-                {% for host in hosts %}
-                    {% if loop.last %}
-                        <a href="{{host.host}}">
+                {#{% for host in hosts %}#}
+                    {#{% if loop.last %}#}
+                        <a href="{{ url('event_homepage' )}}">
                             {% if event.logo %}
                                 <img src="{{ event.logo }}" alt="">
                             {% else %}
                                 <img src="{{ asset('bundles/eventevent/img/logo.png') }}" alt="">
                             {% endif %}
                         </a>
-                    {% endif %}
-                {% endfor %}
+                    {#{% endif %}#}
+                {#{% endfor %}#}
 
             </div>
             <div class="lang_switcher_container">
