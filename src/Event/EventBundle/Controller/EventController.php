@@ -102,6 +102,13 @@ class EventController extends Controller
         ]);
     }
 
+    public function workshopsAction()
+    {
+        return $this->render('EventEventBundle:Component:_workshops.html.twig', [
+            'event' => $this->getEvent()
+        ]);
+    }
+
     public function updateTotalAjaxAction(Request $request){
         $discount = $request->request->get('discount');
         $count = $request->request->get('count');

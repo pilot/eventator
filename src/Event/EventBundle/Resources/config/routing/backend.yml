@@ -213,3 +213,38 @@ backend_discount_delete:
     path:  /discount/delete/{id}
     defaults: { _controller: EventEventBundle:Backend/Discount:delete }
     requirements: { id: \d+ }
+
+# Workshops
+backend_workshop:
+    path:  /workshops
+    defaults: { _controller: EventEventBundle:Backend/Workshop:index }
+
+backend_workshop_add:
+    path:  /workshop/add
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manage }
+
+backend_workshop_edit:
+    path:  /workshop/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_workshop_delete:
+    path:  /workshop/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:delete }
+    requirements: { id: \d+ }
+
+#Workshop schedule
+backend_wsh_schedule_add:
+    path:  /workshop/{w_id}/addSchedule
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manageSchedule }
+    requirements: { w_id: \d+ }
+
+backend_wsh_schedule_edit:
+    path:  /workshop/{w_id}/editSchedule/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manageSchedule, id: null }
+    requirements: { id: \d+, w_id: \d+ }
+
+backend_wsh_schedule_delete:
+    path:  /workshop/deleteSchedule/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:deleteSchedule }
+    requirements: { id: \d+ }

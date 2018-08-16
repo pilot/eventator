@@ -69,3 +69,19 @@ update_total:
 lang_switch:
     path:  /change-locale/{lang}
     defaults: { _controller: EventEventBundle:Event:changeLanguage, lang: null }
+
+event_component_workshop:
+    path: /buy-workshop
+    defaults: { _controller: EventEventBundle:Event:buyWorkshop }
+
+workshops_payment_success:
+    path: /workshop-payment-success
+    defaults: { _controller: EventEventBundle:Event:workshopPaymentSuccess }
+
+workshops_handle_liqpay:
+    path: /workshop-liqpay-handle
+    defaults: { _controller: EventEventBundle:Event:handleWorkshopLiqPayRequest }
+
+workshopPDF:
+    path: /workshopPDF
+    defaults: { _controller: EventEventBundle:Event:viewWorkshopPDFHtml }

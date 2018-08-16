@@ -276,6 +276,14 @@ class Event
     private $tickets;
 
     /**
+     * @var Workshop
+     *
+     * @ORM\OneToMany(targetEntity="Workshop", mappedBy="event", cascade={"all"})
+     * @ORM\OrderBy({"price" = "ASC"})
+     */
+    private $workshops;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="meta_title", type="string", length=255, nullable=true)
@@ -329,6 +337,7 @@ class Event
         $this->organizers = new ArrayCollection();
         $this->papers = new ArrayCollection();
         $this->tickets = new ArrayCollection();
+        $this->workshops = new ArrayCollection();
     }
 
     /**
@@ -1092,6 +1101,39 @@ class Event
     {
         $this->tickets->removeElement($ticket);
     }
+
+    /**
+     * Get workshop
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWorkshops()
+    {
+        return $this->workshops;
+    }
+
+    /**
+     * Add workshop
+     *
+     * @param Workshop $workshop
+     */
+    public function addWorkshop(Workshop $workshop)
+    {
+        $this->workshops[] = $workshop;
+
+        $workshop->setEvent($this);
+    }
+
+    /**
+     * Remove workshop
+     *
+     * @param Workshop $workshop
+     */
+    public function removeWorkshop(Workshop $workshop)
+    {
+        $this->workshops->removeElement($workshop);
+    }
+
 
     /**
      * get metaTitle
