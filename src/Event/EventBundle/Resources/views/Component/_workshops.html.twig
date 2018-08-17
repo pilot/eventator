@@ -39,7 +39,12 @@
                         </div>
                         <input type="hidden" name="wsh_id" value="{{ workshop.id }}" />
                         <div class="tickets-submit-container wsh-buy-button-container">
-                            <button type="submit" class="buy_tickets_button btn btn_blue">
+                            {% if workshop.remainingCount > 0 %}
+                                {% set disabled = '' %}
+                            {%  else %}
+                                {% set disabled = 'disabled="disabled"' %}
+                            {% endif %}
+                            <button type="submit" class="buy_tickets_button btn btn_blue" {{ disabled }}>
                                 <span>{{ 'Buy tickets'|trans }}</span>
                             </button>
                         </div>
