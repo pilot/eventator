@@ -2452,6 +2452,7 @@ footer .footer_text {
 }
 .workshop_item .wsh_schedule {
     border-top: 1px solid #333;
+    font-size: 16px;
 }
 .workshop_item .wsh_time {
     bottom:115px;
