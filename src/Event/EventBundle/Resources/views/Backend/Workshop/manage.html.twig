@@ -24,7 +24,7 @@
             </div>
 
             {{ form_rest(form) }}
-
+            {% if workshop.id %}
             <div class="page-header">
                 <h3>{{ 'Schedule'|trans }}</h3>
                 <a href="{{ path('backend_wsh_schedule_add', { 'w_id': workshop.id }) }}" class="btn btn-small btn-success">{{ 'Add Schedule Item'|trans }}</a>
@@ -61,7 +61,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-
+            {% endif %}
             <input type="submit" value="{{ workshop.id ? 'Update'|trans : 'Add'|trans }}" class="btn btn-success" />
         </div>
         {{ form_end(form) }}

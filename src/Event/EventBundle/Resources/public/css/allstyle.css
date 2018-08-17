@@ -2407,6 +2407,7 @@ footer .footer_text {
     padding: 15px 5px;
     font-size: 1em;
     font-weight: bold;
+    height: 25px;
 }
 
 .workshop_item .ticket_price {
@@ -2423,7 +2424,8 @@ footer .footer_text {
     display: block;
     padding: 15px 25px;
     border-bottom: 1px solid #eee;
-    height: 15px;
+    height: 30px;
+    overflow-y: auto;
 }
 
 .workshop_item .wsh-buy-button-container {

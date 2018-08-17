@@ -510,12 +510,7 @@ class EventController extends Controller
             $private_key = $this->container->getParameter('liqpay.privatekey');
             $liqpay = new \LiqPay($public_key, $private_key);
             $amount = $total * count($sold_workshops);
-
-//            if(false){
-//                $this->changeWorkshopStatusByUid($uid);
-//                return $this->redirectToRoute('tickets_payment_success');
-//            }
-
+            
             $liqpayData = array(
                 'action'         => 'pay',
                 'amount'         => $amount,
@@ -606,14 +601,14 @@ class EventController extends Controller
 
     public function viewWorkshopPDFHtmlAction(Request $request, $id) {
         $soldWorkshop = $this->findOr404('EventEventBundle:SoldWorkshop', $id);
-//        $this->get('knp_snappy.pdf')->generateFromHtml(
-//            $this->renderView('EventEventBundle:Event:workshopPDF.html.twig', [
-//                'soldWorkshop' => $soldWorkshop,
-//            ]),
-//            __DIR__ . '/../../../../web/uploads/workshops/' . $soldWorkshop->getId() . '.pdf',
-//            [],
-//            true
-//        );
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $this->renderView('EventEventBundle:Event:workshopPDF.html.twig', [
+                'soldWorkshop' => $soldWorkshop,
+            ]),
+            __DIR__ . '/../../../../web/uploads/workshops/' . $soldWorkshop->getId() . '.pdf',
+            [],
+            true
+        );
         return $this->render('EventEventBundle:Event:workshopPDF.html.twig', [
             'soldWorkshop' => $soldWorkshop,
         ]);
@@ -642,12 +637,4 @@ class EventController extends Controller
         return new Response();
     }
 
-    public function setWorkshopSoldAction (Request $request, $id){
-        $this->isGrantedAdmin();
-        $soldWorkshop = $this->findOr404('EventEventBundle:SoldWorkshop', $id);
-        $uid = $soldWorkshop->getUid();
-        $tickets = $this->changeWorkshopStatusByUid($uid, 'byTestAction');
-        
-        return $this->redirect('workshopPDF', $tickets[0]->getId());
-    }
 }

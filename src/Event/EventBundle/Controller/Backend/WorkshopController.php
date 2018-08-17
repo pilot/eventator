@@ -42,7 +42,7 @@ class WorkshopController extends Controller
                 }
                 $this->setSuccessFlash($successFlashText);
 
-                return $this->redirectToRoute('backend_workshop');
+                return $this->redirectToRoute('backend_workshop_edit', ['id' => $workshop->getId()]);
             }
         }
 
