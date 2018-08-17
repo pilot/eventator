@@ -19,7 +19,6 @@
                         <div class="ticket_price">{{ workshop.PriceWithLabel}} </div>
                         <div class="ticket_date">{{ 'Date'|trans }}: {{ workshop.date|date('Y-m-d')}} </div>
                         <ul class="wsh_schedule">
-                            <li>{{ 'Schedule'|trans }}:</li>
                             {% for item in workshop.schedule %}
                                 {% if item.isActive %}
                                 <li>{{ item.text }}</li>
