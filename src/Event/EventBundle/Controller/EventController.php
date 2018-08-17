@@ -571,7 +571,7 @@ class EventController extends Controller
 
         $this->get('eventator_mailer')->sendWithPdfPathAttach(
             $soldWorkshop->getEmail(),
-            'Your ticket for Workshop:  ' . $soldWorkshop->getTicket()->getName(),
+            'Your ticket for Workshop:  ' . $soldWorkshop->getWorkshop()->getName(),
             $this->renderView('EventEventBundle:Email:_workshop.html.twig', [
                 'soldWorkshop' => $soldWorkshop,
                 'from' => $soldWorkshop->getWorkshop()->getEvent()->getEmail(),
