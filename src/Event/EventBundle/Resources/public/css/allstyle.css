@@ -2483,3 +2483,8 @@ footer .footer_text {
 .heightAuto {
     height: auto !important;
 }
+@media screen and (max-width: 767px) {
+    .sponsors .modal-dialog {
+        left: 0;
+    }
+}
