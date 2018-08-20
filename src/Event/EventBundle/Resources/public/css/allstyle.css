@@ -2484,7 +2484,11 @@ footer .footer_text {
     height: auto !important;
 }
 @media screen and (max-width: 767px) {
-    .sponsors .modal-dialog {
+    .sponsors .modal-dialog, .schedule .modal-dialog {
+        left: 0;
+    }
+    .speakers .wrap_modal {
+        margin-left: 0;
         left: 0;
     }
 }
