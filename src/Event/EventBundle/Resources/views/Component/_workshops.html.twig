@@ -2,7 +2,7 @@
     <div id="tickets" class="indent"></div>
     <div class="container">
         <h2><i class="ico_tickets"></i>{{ 'Workshop'|trans }}</h2>
-        <ul class="list_tickets">
+        <div class="list_tickets">
             {%  set counter = 1 %}
             {% for workshop in event.workshops if workshop.isActive %}
                 {% if counter == event.tickets|length %}
@@ -13,24 +13,33 @@
                     {% set class = '' %}
                 {% endif %}
                 {% set counter = counter + 1 %}
-                <li class="ticket-item workshop_item {{ class }}">
+                <div class="ticket-item workshop_item {{ class }}">
                     <form class="buy-tickets" method="POST" action="{{ url('event_component_workshop') }}">
                         <div class="ticket_name">{{ workshop.name }}</div>
                         <div class="ticket_price">{{ workshop.PriceWithLabel}} </div>
-                        <div class="ticket_date">{{ 'Date'|trans }}: {{ workshop.date|date('d F Y')}} </div>
-                        <ul class="wsh_schedule">
-                            {% for item in workshop.schedule %}
-                                {% if item.isActive %}
-                                <li>{{ item.text }}</li>
-                                {% endif %}
-                            {% endfor %}
-                            {% if count > workshop.schedule|length %}
-                                {% set empty = count - workshop.schedule|length %}
-                                {% for i in 1..empty %}
-                                    <li></li>
+                        <div class="wsh_schedule">
+                            <div class="wsh_schedule_button wsh_schedule_item">
+                                <a href="javascript:">
+                                    {{ 'Schedule'|trans }}
+                                    <span class="wsh_arrow_down">&#9660;</span>
+                                    <span class="wsh_arrow_up hidden">&#9650;</span>
+                                </a>
+                            </div>
+                            <div class="wsh_schedule_container">
+                                {% for item in workshop.schedule %}
+                                    {% if item.isActive %}
+                                        <div class="wsh_schedule_item">{{ item.text }}</div>
+                                    {% endif %}
                                 {% endfor %}
-                            {% endif %}
-                        </ul>
+                                {% if count > workshop.schedule|length %}
+                                    {% set empty = count - workshop.schedule|length %}
+                                    {% for i in 1..empty %}
+                                        <div class="wsh_schedule_item"></div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="ticket_date">{{ 'Date'|trans }}: {{ workshop.date|date('d F Y')}} </div>
                         <div class="wsh_time">
                             {{ 'Time'|trans }}: {{ workshop.time }}
                         </div>
@@ -49,11 +58,20 @@
                             </button>
                         </div>
                     </form>
-                </li>
+                </div>
             {% else  %}
                 {{ 'Coming soon...' }}
             {% endfor %}
-        </ul>
+        </div>
     </div>
 </section>
-
+<script>
+    $(document). ready(function(){
+        $('.wsh_schedule_button').on('click', function(){
+            $(this).closest('.wsh_schedule').children('.wsh_schedule_container').toggle('fast');
+            $(this).closest('.workshop_item').toggleClass('heightAuto');
+            $(this).find('.wsh_arrow_up').toggleClass('hidden');
+            $(this).find('.wsh_arrow_down').toggleClass('hidden');
+        });
+    });
+</script>

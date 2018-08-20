@@ -2396,9 +2396,14 @@ footer .footer_text {
     background-color: #240456 !important;
 }
 
+.list_tickets {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .list_tickets .workshop_item {
     padding: 0;
-    height: auto;
+    min-height: 350px;
     width: 300px;
 }
 
@@ -2406,8 +2411,8 @@ footer .footer_text {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #262627;
-    color: white;
+    /*background-color: #262627;*/
+    /*color: white;*/
     padding: 15px 5px;
     font-size: 1em;
     font-weight: bold;
@@ -2415,7 +2420,7 @@ footer .footer_text {
 }
 
 .workshop_item .ticket_price {
-    background-color: #eee;
+    /*background-color: #eee;*/
     color: #333;
     font-size: 1.25em;
     font-weight: 100;
@@ -2423,11 +2428,11 @@ footer .footer_text {
     padding: 15px 25px;
 }
 
-.wsh_schedule li {
+.wsh_schedule .wsh_schedule_item {
     padding: 15px 25px;
     border-bottom: 1px solid #eee;
-    height: 30px;
-    overflow-y: auto;
+    height: 15px;
+    overflow-y: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2443,8 +2448,8 @@ footer .footer_text {
 
 .workshop_item .wsh_time, .workshop_item .wsh_count {
     padding:15px 25px;
-    border-bottom: 1px solid #EEEEEE;
-    border-top: 1px solid #333;
+    /*border-bottom: 1px solid #EEEEEE;*/
+    /*border-top: 1px solid #333;*/
     width: 250px;
     font-weight: bold;
     text-align: center;
@@ -2467,4 +2472,11 @@ footer .footer_text {
     padding: 15px 25px;
     text-align: center;
     font-weight: bold;
+}
+.wsh_schedule_container {
+    display: none;
+    /*transition: 0.5s;*/
+}
+.heightAuto {
+    height: auto !important;
 }
