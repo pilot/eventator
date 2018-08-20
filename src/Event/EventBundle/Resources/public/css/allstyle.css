@@ -274,6 +274,7 @@ header {
 
 .menu ul li a {
     color: #000;
+    font-size: 12px;
 }
 
 a:hover, a:focus {
@@ -1499,6 +1500,8 @@ footer .footer_text {
     .menu ul li a.btn_blue {
         color: #fff;
         padding: 0;
+        margin-top: 15px;
+        width: 250px;
     }
 
     .menu ul li.dropdown i {
