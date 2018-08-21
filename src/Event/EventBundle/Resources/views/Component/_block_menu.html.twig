@@ -38,7 +38,7 @@
             <div class="menu">
                 <ul>
                     {{ app.request.get('event_component_call_for_paper_view')}}
-                    <li><a class="{{  home_page ? 'active' : "" }}" href="{{ home_page ? '' : path('event_homepage') }}#home">{{ 'Home'|trans }}</a></li>
+                    {#<li><a class="{{  home_page ? 'active' : "" }}" href="{{ home_page ? '' : path('event_homepage') }}#home">{{ 'Home'|trans }}</a></li>#}
                     <li><a href="{{ home_page ? '' : path('event_homepage') }}#speakers">{{ 'Speakers'|trans }}</a></li>
                     <li><a href="{{ home_page ? '' : path('event_homepage') }}#schedule">{{ 'Schedule'|trans }}</a></li>
                     <li><a href="{{ home_page ? '' : path('event_homepage') }}#venue">{{ 'Venue'|trans }}</a></li>
