@@ -12,6 +12,7 @@
                 <th></th>
                 <th>id</th>
                 <th>{{ 'Workshop'|trans }}</th>
+                <th>{{ 'Price'|trans }}</th>
                 <th>{{ 'Event'|trans }}</th>
                 <th>{{ 'Fullname'|trans }}</th>
                 <th>{{ 'Email'|trans }}</th>
@@ -36,6 +37,7 @@
                 </td>
                 <td>{{ sold_workshop.id }}</td>
                 <td>{{ sold_workshop.workshop.name }}</td>
+                <td>{{ sold_workshop.workshop.getPriceWithLabel(true)git }}</td>
                 <td>{{ sold_workshop.workshop.event.title }}</td>
                 <td>{{ sold_workshop.fullName }}</td>
                 <td nowrap>{{ sold_workshop.email }}</td>
