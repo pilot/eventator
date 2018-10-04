@@ -18,7 +18,7 @@
         "incenteev/composer-parameter-handler": "^2.1",
         "knplabs/knp-menu": "^2.1",
         "knplabs/knp-menu-bundle": "^2.1",
-        "symfony/finder": "2.3.*",
+        "symfony/finder": "2.8",
         "kriswallsmith/assetic": "^1.3",
         "symfony/assetic-bundle": "dev-master",
         "twig/twig": "^1.24",
