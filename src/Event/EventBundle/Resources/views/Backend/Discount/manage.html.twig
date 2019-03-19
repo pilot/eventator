@@ -1,0 +1,57 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>{{ discount.id ? 'Edit'|trans : 'Add'|trans }} {{ 'discount'|trans }}</h3>
+            <a href="{{ path('backend_discount') }}" class="btn btn-small">&larr; {{ 'Back to the list'|trans }}</a>
+        </div>
+
+
+        {{ form_start(form, {'method': 'POST', 'action': path('backend_discount_edit', {'id': discount.id})}) }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="{{ app.request.locale }}">
+                {{ form_row(form.name) }}
+                {{ form_row(form.discount) }}
+                {{ form_row(form.type) }}
+                <div class="type-condition" id="discount_type_amount" style="display:{{ discount.type == 1 ? 'block' : 'none'}}">
+                    {{ form_row(form.amount) }}
+                </div>
+                <div class="type-condition" id="discount_type_date" style="display:{{ discount.type == 3 ? 'block' : 'none'}}">
+                    {{ form_row(form.dateTo) }}
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        {{ form_row(form.isActive) }}
+                    </label>
+                </div>
+
+            </div>
+
+            {{ form_rest(form) }}
+
+            <input type="submit" value="{{ discount.id ? 'Update'|trans : 'Add'|trans }}" class="btn btn-success" />
+        </div>
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $( document ).ready(function(){
+            $('#discount_type').on('change', function(){
+                console.log(this.value);
+                $('.type-condition').css('display', 'none');
+                if(this.value == '1'){
+                    $('#discount_type_amount').css('display', 'block');
+                }
+                if(this.value == '3'){
+                    $('#discount_type_date').css('display', 'block');
+                }
+            })
+        });
+
+    </script>
+{% endblock %}

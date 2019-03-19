@@ -2,16 +2,18 @@
     <div id="speakers" class="indent"></div>
     <div class="container">
         <div class="speakers">
-            <h2><i class="ico_speakers"></i>Speakers</h2>
-            <h3 class="subtitle">{{ 'Apply to speak through our'|trans }} <a href="javascript:void(0)" class="call-for-paper">{{ 'Call for Paper'|trans }}</a></h3>
+            <h2><i class="ico_speakers"></i>{{ 'Speakers'|trans }}</h2>
+            <h3 class="subtitle">{{ 'Apply to speak through our'|trans }} <a href="javascript:void(0)" class="call-for-paper">{{ 'call for paper'|trans }}</a></h3>
 
             {% if speakers %}
                 <ul class="list_speakers">
                     {% for speaker in speakers %}
                         <li>
-                            <a href="#{{ speaker.firstName }}-{{ speaker.lastName }}-{{ speaker.id }}" role="button" data-toggle="modal">
-                                <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.fullName }}" src="{{ speaker.photo ?: '' }}" width="140" />
-                                <span>{{ speaker.fullName }}</span>
+                            {% set id = speaker.firstName ~ '-' ~ speaker.lastName ~ '-' ~ speaker.id %}
+                            {% set id = id|replace(' ', '_') %}
+                            <a href="#{{ id }}" role="button" data-toggle="modal">
+                                <img class="img-circle" data-src="holder.js/140x140/text:{{ speaker.translated('firstName', app.request.locale) ~ ' ' ~ speaker.translated('lastName', app.request.locale) }}" src="{{ speaker.photo ?: '' }}" width="140" />
+                                <span>{{ speaker.translated('firstName', app.request.locale) ~ ' ' ~ speaker.translated('lastName', app.request.locale) }}</span>
                             </a>
                         </li>
                         {% include 'EventEventBundle:Event:_speaker-modal.html.twig' %}

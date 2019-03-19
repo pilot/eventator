@@ -1,0 +1,20 @@
+{% extends 'EventEventBundle::base.html.twig' %}
+{% set event = app.request.attributes.get('event') %}
+
+{% block title %}{{ 'Buy ticket(s)'|trans }}{% endblock %}
+
+{% block body %}
+    {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}
+    {{ render(controller('EventEventBundle:Event:blockMenu', { 'homepage': false })) }}
+    <div class="container">
+        <div class="liqpay_ticket" id="buyTicketForm">
+                <h3 class="liqpay-price">
+                    <strong>{{ 'Total price for'|trans ~ ' ' ~ count ~ ' ' ~ 'ticket(s)'|trans }}:</strong>
+                    <span>{{ amount }}</span>
+                </h3>
+            {{ button|raw }}
+        </div>
+    </div>
+    {% include 'EventEventBundle:Event:_footer.html.twig' %}
+{% endblock %}
+

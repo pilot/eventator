@@ -169,3 +169,91 @@ backend_call_for_paper_delete:
         id: \d+
     options:
         expose: true
+
+# Tickets
+backend_ticket:
+    path:  /tickets
+    defaults: { _controller: EventEventBundle:Backend/Ticket:index }
+
+backend_ticket_add:
+    path:  /ticket/add
+    defaults: { _controller: EventEventBundle:Backend/Ticket:manage }
+
+backend_ticket_edit:
+    path:  /ticket/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Ticket:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_ticket_delete:
+    path:  /ticket/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Ticket:delete }
+    requirements: { id: \d+ }
+
+# Sold tickets
+backend_sold_ticket:
+    path:  /sold_tickets
+    defaults: { _controller: EventEventBundle:Backend/SoldTicket:index }
+
+# Discount
+backend_discount:
+    path:  /discounts
+    defaults: { _controller: EventEventBundle:Backend/Discount:index }
+
+backend_discount_add:
+    path:  /discount/add
+    defaults: { _controller: EventEventBundle:Backend/Discount:manage }
+
+backend_discount_edit:
+    path:  /discount/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Discount:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_discount_delete:
+    path:  /discount/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Discount:delete }
+    requirements: { id: \d+ }
+
+# Workshops
+backend_workshop:
+    path:  /workshops
+    defaults: { _controller: EventEventBundle:Backend/Workshop:index }
+
+backend_workshop_add:
+    path:  /workshop/add
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manage }
+
+backend_workshop_edit:
+    path:  /workshop/edit/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manage, id: null }
+    requirements: { id: \d+ }
+
+backend_workshop_delete:
+    path:  /workshop/delete/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:delete }
+    requirements: { id: \d+ }
+
+#Workshop schedule
+backend_wsh_schedule_add:
+    path:  /workshop/{w_id}/addSchedule
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manageSchedule }
+    requirements: { w_id: \d+ }
+
+backend_wsh_schedule_edit:
+    path:  /workshop/{w_id}/editSchedule/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:manageSchedule, id: null }
+    requirements: { id: \d+, w_id: \d+ }
+
+backend_wsh_schedule_delete:
+    path:  /workshop/deleteSchedule/{id}
+    defaults: { _controller: EventEventBundle:Backend/Workshop:deleteSchedule }
+    requirements: { id: \d+ }
+
+# Sold workshops
+backend_sold_workshop:
+    path:  /sold_workshop
+    defaults: { _controller: EventEventBundle:Backend/SoldWorkshop:index }
+
+backend_sold_workshop_delete:
+    path:  /sold_workshop/deleteSchedule/{id}
+    defaults: { _controller: EventEventBundle:Backend/SoldWorkshop:delete }
+    requirements: { id: \d+ }

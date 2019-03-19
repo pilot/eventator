@@ -2,11 +2,11 @@
     <div id="venue" class="indent"></div>
     <div class="container">
         <div class="wrapper">
-            <h2><i class="ico_venue"></i>Venue</h2>
+            <h2><i class="ico_venue"></i>{{ 'Venue'|trans }}</h2>
             <h3 class="subtitle">
-                {{ event.venue }} /
+                {{ event.translated('venue', app.request.locale) }} /
                 {{ event.startDate|date }} /
-                {{ event.venueAddress ? event.venueAddress ~ ' / ' : '' }}{{ event.country ~ ' ' ~ event.city }}
+                {{ event.translated('venueAddress', app.request.locale) }}{{ event.translated('country', app.request.locale) ~ ' ' ~ event.translated('city', app.request.locale)}}
             </h3>
         </div>
     </div>

@@ -274,6 +274,7 @@ header {
 
 .menu ul li a {
     color: #000;
+    font-size: 13px;
 }
 
 a:hover, a:focus {
@@ -1499,6 +1500,8 @@ footer .footer_text {
     .menu ul li a.btn_blue {
         color: #fff;
         padding: 0;
+        margin-top: 15px;
+        width: 250px;
     }
 
     .menu ul li.dropdown i {
@@ -2009,7 +2012,7 @@ footer .footer_text {
     }
 
     .btn_blue {
-        margin: 20px 0 0 27%;
+        margin: 20px 0 0 0px;
     }
 
     .conferens {
@@ -2030,4 +2033,483 @@ footer .footer_text {
     }
 }
 
+/* Tickets */
+.ico_tickets {
+    background: url(../img/ticket.png) no-repeat;
+    background-size: 46px;
+    top: 11px;
+    position: relative;
+    right: 0;
+    margin-right: 10px;
+    width: 50px;
+    height: 43px;
+}
+.list_tickets {
+    display: flex;
+    justify-content: center;
+}
+.list_tickets .ticket-item {
+    border: 1px solid #000;
+    padding: 15px 25px;
+    margin: 15px;
+    height: 360px;
+    position: relative;
+    justify-content: center;
+    width: 200px;
+}
+.list_tickets .first {
+    margin-left: 0;
+}
+.list_tickets .last {
+    margin-right: 0;
+}
+.tickets-submit-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.ticket_name {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(29, 31, 50, 0.2);
+    padding-bottom: 10px;
+    font-size: 21px;
+}
+.ticket_price {
+    font-size: 33px;
+    color: #05A5D1;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+.buy_tickets_button {
+    display: block;
+    margin: 0 auto;
+}
+.total_price {
+    /*margin-top: 65px;*/
+    color: #05A5D1;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 82px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+.lunch_price {
+    margin-top: 70px;
+    margin-bottom: 15px;
+}
 
+.ticket-features-checkbox, .ticket-features-label {
+    cursor: pointer;
+}
+
+.buy_tickets_button[disabled] {
+    background-color: #BDBDBD;
+}
+.cross_out {
+    text-decoration: line-through;
+}
+
+#buyTicketForm, #successPaymentContainer {
+    margin-top: 100px;
+}
+
+.ticket-container .remove-add-ticket{
+    /*display: none;*/
+}
+
+.liqpay_ticket form{
+    /*text-align: center;*/
+    margin-left: 65px;
+    margin-top: 10px;
+}
+
+.tickets {
+    position: relative;
+}
+
+.block_menu_btn.active {
+    color: #fff !important;
+}
+
+.ticket_price_container {
+    margin-bottom: 15px;
+}
+#soldTickets_discount{
+    display: inline;
+    width: 25%;
+}
+#discountHelp{
+    display: block;
+}
+#update_total {
+    margin-left: 12px;
+    display: none;
+}
+
+.ap_no_lunch{
+    margin-top: 104px;
+}
+.error-count-tickets{
+    color: red;
+    font-size: 20pt;
+    margin-bottom: 15px;
+}
+#buyTicketForm{
+    margin-left: 33%;
+}
+#soldTickets_email, #soldTickets_discount, #soldTickets_phone   {
+    /*width: calc(100% - 15px);*/
+    width: 100%;
+    box-sizing: border-box;
+    height: 38px;
+}
+
+.ticket_email_container, .discount_container {
+    flex-wrap: wrap;
+}
+
+.ticket_email_container .form-group, .discount_container .form-group {
+    width: 60%;
+}
+
+#successPaymentContainer {
+    text-align: center;
+}
+
+.lang_switcher_container {
+    display: block;
+    margin: auto;
+    font-size: 17px;
+}
+
+.lang_switcher_container a {
+    color: #000;
+}
+
+.lang_switcher_container .active_locale {
+    color: #2D9CDB;
+}
+
+.languages_ul li {
+    margin-right: 5px;
+    border-left: 1px solid black;
+    padding-left: 6px;
+}
+
+.languages_ul li:first-child {
+    border-left: 0 !important;
+}
+
+@media only screen and (max-width: 700px) {
+
+    .list_tickets .ticket-item {
+        width: 50%;
+    }
+
+    .list_tickets {
+        flex-wrap: wrap;
+    }
+
+    .list_tickets .first {
+        margin-left: 15px;
+    }
+}
+.sponsors .sponsors_desc {
+
+}
+
+.main_fields_container, .add_fields_container {
+    width: 60%;
+    display: flex;
+}
+.main_fields_container .form-group  {
+    width: calc(50% - 5px);
+    margin-right: 15px;
+}
+
+.add_fields_container .form-group {
+    width: calc(33% - 5px);
+    margin-right: 15px;
+}
+
+.ticket-container{
+    flex-wrap: wrap;
+}
+
+.ticket-container .form-control {
+    width:100%;
+    box-sizing: border-box;
+    height: 38px;
+}
+
+.main_fields_container .last-ticket-field, .add_fields_container .last-ticket-field{
+    margin-right: 0;
+}
+
+.additional-tickets .flex {
+    border-top: 1px solid black;
+}
+
+.remove-add-ticket {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.additional-tickets .flex {
+    position: relative;
+}
+
+.additional-tickets .ticket-container{
+    width: 62%;
+}
+
+.additional-tickets .main_fields_container, .additional-tickets .add_fields_container {
+    width: 100%;
+}
+
+@media only screen and (max-width: 1090px) {
+    .additional-tickets .ticket-container{
+        width: 100%;
+    }
+
+    #buyTicketForm .form-control{
+        float: none;
+    }
+
+    .ticket-container, .additional-tickets{
+        flex-direction: column;
+    }
+
+    #buyTicketForm .form-control{
+        float: none;
+        width: 90%;
+    }
+
+    #buyTicketForm .form-group{
+        width: 100%;
+    }
+
+    #update_total {
+        margin-left: 25px;
+    }
+
+    .additional-tickets .flex {
+        display: block;
+        /*position: relative;*/
+    }
+
+    .lang_switcher_container {
+        margin: 30px;
+    }
+
+    .languages_ul {
+        font-size: 10px;
+    }
+
+    .main_fields_container, .add_fields_container {
+        width: calc(100% - 47px);
+    }
+
+    .main_fields_container .form-group, .add_fields_container .form-group {
+        margin-right: 0;
+    }
+
+    .main_fields_container .form-group  {
+        width: calc(50% - 5px) !important;
+    }
+
+    .add_fields_container .form-group {
+        width: calc(33% - 5px) !important;
+    }
+    #soldTickets_discount {
+         display: block;
+    }
+
+    #buyTicketForm {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    #buyTicketForm {
+        margin-left: 0;
+    }
+
+    .liqpay_ticket form {
+        margin-left: 0;
+    }
+
+    .liqpay-price {
+        font-size: 16px;
+    }
+
+    .main_fields_container, .add_fields_container {
+        display: block;
+    }
+
+    .main_fields_container .form-group  {
+        width: 100% !important;
+    }
+
+    .add_fields_container .form-group {
+        width: 100% !important;
+    }
+
+    #buyTicketForm .form-control{
+        box-sizing: border-box;
+        height: 38px;
+    }
+
+    .main_fields_container, .add_fields_container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    #buyTicketForm {
+        margin-left: 0;
+    }
+
+    .liqpay_ticket form {
+        margin-left: 0;
+    }
+
+    .lang_switcher_container {
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .menu, .languages_ul {
+        font-size: 11px;
+    }
+}
+
+.tickets-modal-close {
+    /*position: absolute;*/
+    /*top: -19px;*/
+    /*right: -17px;*/
+    opacity: 1;
+}
+
+.tickets-modal-bg {
+    background-image: url('/bundles/eventevent/img/tickets-modal-bg.png');
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    height: 460px;
+    box-shadow: none;
+}
+
+.tickets-modal-buy-button {
+    position: absolute;
+    bottom: 100px;
+    text-align: center;
+}
+
+.tickets-modal-buy-button a {
+    background-color: #240456 !important;
+}
+
+.list_tickets {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.list_tickets .workshop_item {
+    padding: 0;
+    min-height: 350px;
+    width: 300px;
+}
+
+.workshop_item .ticket_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background-color: #262627;*/
+    /*color: white;*/
+    padding: 15px 5px;
+    font-size: 1em;
+    font-weight: bold;
+    height: 30px;
+}
+
+.workshop_item .ticket_price {
+    /*background-color: #eee;*/
+    color: #333;
+    font-size: 1.25em;
+    font-weight: 100;
+    margin-top: 0;
+    padding: 15px 25px;
+}
+
+.wsh_schedule .wsh_schedule_item {
+    padding: 15px 25px;
+    border-bottom: 1px solid #eee;
+    height: 15px;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workshop_item .wsh-buy-button-container {
+    bottom: 0;
+    padding: 15px 25px;
+    width: auto;
+    background-color: #eee;
+    position: relative;
+}
+
+.workshop_item .wsh_time, .workshop_item .wsh_count {
+    padding:15px 25px;
+    /*border-bottom: 1px solid #EEEEEE;*/
+    /*border-top: 1px solid #333;*/
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+
+}
+.workshop_item .wsh_schedule {
+    border-top: 1px solid #333;
+    font-size: 16px;
+}
+.workshop_item .wsh_time {
+    bottom:115px;
+}
+
+.workshop_item .wsh_count {
+    bottom: 70px;
+}
+
+.ticket_date {
+    height: 15px;
+    padding: 15px 25px;
+    text-align: center;
+    font-weight: bold;
+}
+.wsh_schedule_container {
+    display: none;
+    /*transition: 0.5s;*/
+}
+.heightAuto {
+    height: auto !important;
+}
+@media screen and (max-width: 767px) {
+    .sponsors .modal-dialog, .schedule .modal-dialog {
+        left: 0;
+    }
+    .speakers .wrap_modal {
+        margin-left: 0;
+        left: 0;
+    }
+}

@@ -6,7 +6,7 @@
             <div class="field_text">
                 {{ form_errors(form.name) }}
                 {{ form_widget(form.name) }}
-                <span>Name:</span>
+                <span>{{ 'Name'|trans }}:</span>
             </div>
             <div class="field_text">
                 {{ form_errors(form.email) }}
@@ -30,17 +30,17 @@
             <div class="field_text">
                 {{ form_errors(form.title) }}
                 {{ form_widget(form.title) }}
-                <span>Title:</span>
+                <span>{{ 'Title'|trans }}:</span>
             </div>
             <div class="field_text select">
                 {{ form_errors(form.language) }}
                 {{ form_widget(form.language) }}
-                <span>Talk level:</span>
+                <span>{{ 'Language'|trans }}:</span>
             </div>
             <div class="field_text">
                 {{ form_errors(form.level) }}
                 {{ form_widget(form.level) }}
-                <span>Language:</span>
+                <span>{{ 'Talk level'|trans }}:</span>
             </div>
         </div>
 
@@ -48,12 +48,12 @@
             <div class="field_text">
                 {{ form_errors(form.abstract) }}
                 {{ form_widget(form.abstract) }}
-                <span>Abstract of your talk:</span>
+                <span>{{ 'Abstract of your talk'|trans }}:</span>
             </div>
             <div class="field_text">
                 {{ form_errors(form.note) }}
                 {{ form_widget(form.note) }}
-                <span>Notes:</span>
+                <span>{{ 'Notes'|trans }}:</span>
             </div>
         </div>
 
