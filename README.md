@@ -27,6 +27,14 @@ events managing with easiest ticketing systems
 * login and password to the backend `admin` / `admin`
 * bingo!
 
+## online payments with liqpay.com 
+
+* register liqpay.com account
+* obtain your private and public keys
+* update the `app/config/parameters.yml` file
+* setup the http://wkhtmltopdf.org lib on your server, to generate a ticket in pdf
+* add new tickets in the admin panel
+
 ## run tests
 
 * behat `./bin/beahat features`
@@ -35,7 +43,8 @@ events managing with easiest ticketing systems
 ## who use it
 
 * http://symfonycamp.org.ua
-* http://botcamp.org.ua
+* http://reactnative.com.ua
+* http://laracamp.com.ua
 
 *If you use Eventator platform please send email to `alex[at]lazy-ants.com`, I'll add you to the list*
 
