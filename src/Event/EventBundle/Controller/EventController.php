@@ -55,7 +55,7 @@ class EventController extends Controller
         ]);
     }
 
-    public function aboutSymfonyAction()
+    public function aboutAction()
     {
         return $this->render('EventEventBundle:Component:_about.html.twig', [
             'event' => $this->getEvent()
