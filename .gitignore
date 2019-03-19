@@ -6,6 +6,7 @@ vendor/*
 */logs/*
 */cache/*
 web/uploads/*
+!web/uploads/tickets/.gitkeep
 web/bundles/*
 bin/*
 
@@ -15,3 +16,4 @@ app/config/parameters.yml
 
 composer.phar
 behat.yml
+.idea

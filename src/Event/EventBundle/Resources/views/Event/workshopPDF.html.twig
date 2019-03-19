@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>WorkshopTicketPDF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        body {
+            width: 900px;
+        }
+        .ticket-container{
+            border: 1px solid black;
+            color: black;
+            background-size: 108%;
+            width: 100%;
+            font: 26px PermianSansTypeface;
+        }
+        .ticket-container:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .event_logo {
+            width: 40%;
+            margin-left: 50px;
+            margin-top: 35px;
+        }
+        .left_side{
+            width: 60%;
+            float: left;
+        }
+        .right_side{
+            width: 40%;
+            text-align: right;
+            float: left;
+            padding-top: 52px;
+        }
+        .ticket_qr_container img {
+            width: 60%;
+            margin-right: 50px;
+        }
+        .eventator_logo_container img{
+            width: 60%;
+            margin-bottom: 25px;
+            margin-right: 50px;
+        }
+        .name_container, .venue_container {
+            margin-left: 50px;
+        }
+        .name_container {
+            font: 27pt PT sans-serif;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        .venue_container {
+            margin-bottom: 25px;
+            font-size: 17pt;
+        }
+        .name_container p, .venue_container p{
+            margin: 5px;
+        }
+        .venue_container img {
+            width: 20px;
+            margin-right: 35px;
+        }
+        span.social_link {
+            position: relative;
+        }
+        span.social_link:before {
+            display: inline-block;
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-size: contain !important;
+            position: absolute;
+            left: -25px;
+            top: 5px;
+        }
+        .site_url_container {
+            margin-right: 55px;
+            margin-top: 60px;
+            font-size: 12pt;
+            position: absolute;
+            left: 644px;
+        }
+        .workshop_title_container {
+            font: 24pt PT sans-serif;
+            margin-left: 50px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="ticket-container">
+    <div class="left_side">
+        {% if soldWorkshop.workshop.event.logo %}
+            {% set src = soldWorkshop.workshop.event.logo %}
+        {% else %}
+            {% set src = app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/logo.png') %}
+        {% endif %}
+        <img class="event_logo" src="{{ src }}" alt />
+        <div class="workshop_title_container">
+            <p class="workshop_title">
+                {{ soldWorkshop.workshop.name }}
+            </p>
+        </div>
+        <div class="name_container">
+            <p class="guest_firstname">{{ soldWorkshop.firstName }}</p>
+            <p class="guest_lastname">{{ soldWorkshop.lastName }}</p>
+        </div>
+        <div class="venue_container">
+            <p class="social">
+                <span class="social_link">
+                        {{ soldWorkshop.workshop.date|date("d F Y") }}
+                </span>
+            </p>
+            <p class="social">
+                <span class="social_link">
+                    {{ soldWorkshop.workshop.time }}
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="right_side">
+        <div class="eventator_logo_container">
+            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/eventevent/img/eventator-logo-pdf.png') }}" alt />
+        </div>
+        <div class="ticket_qr_container">
+            <img src="{{ soldWorkshop.QRCode }}" alt />
+        </div>
+        <div class="site_url_container">
+            {{ app.request.getSchemeAndHttpHost() }}
+        </div>
+    </div>
+</div>
+</body>
+</html>

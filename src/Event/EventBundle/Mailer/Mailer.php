@@ -45,4 +45,30 @@ class Mailer
 
         $this->mailer->send($message);
     }
+
+    public function sendWithPdfPathAttach($to, $subject, $body, $from = null, $cc = null, $attachmentData = [])
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($from ?: $this->from)
+            ->setTo($to)
+            ->setBody($body)
+            ->setContentType('text/html')
+        ;
+
+        if (isset($attachmentData['filename']) && isset($attachmentData['contentType']) && isset($attachmentData['data'])) {
+            $attachment = \Swift_Attachment::fromPath($attachmentData['data'])
+                ->setFilename($attachmentData['filename'])
+                ->setContentType($attachmentData['contentType'])
+            ;
+            $message->attach($attachment);
+        }
+
+        // set carbon copy
+        if ($cc) {
+            $message->setCc($cc);
+        }
+
+        $this->mailer->send($message);
+    }
 }

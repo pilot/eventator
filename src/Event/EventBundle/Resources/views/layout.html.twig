@@ -1,7 +1,7 @@
 {% extends 'EventEventBundle::base.html.twig' %}
 {% set event = app.request.attributes.get('event') %}
 
-{% block title %}{{ event.title }}!{% endblock %}
+{% block title %}{{ event.logicMetaTitle }}{% endblock %}
 
 {% block body %}
     {% block menu %}
@@ -12,15 +12,15 @@
 
     <article class="info bg">
         <div class="event-place-wrap">
-            <h2>Where will it be?</h2>
+            <h2>{{ 'Where will it be'|trans }}?</h2>
             <p>
-                <i class="ico_map_pin_min"></i> <strong>{{ event.venue }}, {{ event.country ~ ' ' ~ event.city }} /</strong>
-                <i class="ico_group"></i> <strong>{{ event.startDate|date }}</strong>
+                <i class="ico_map_pin_min"></i> <strong>{{ event.translated('venue', app.request.locale) }}, {{ event.translated('country', app.request.locale) ~ ' ' ~ event.translated('city', app.request.locale) }} /</strong>
+                <i class="ico_group"></i> <strong>{{ event.startDate|date|trans }}</strong>
             </p>
         </div>
         <div class="container">
             <div class="wrapper">
-                <h2>{{ event.description|raw }}</h2>
+                <h2>{{ event.translated('description', app.request.locale)|raw }}</h2>
             </div>
         </div>
     </article>
@@ -34,6 +34,10 @@
             {{ render(controller('EventEventBundle:Event:venue')) }}
 
             {{ render(controller('EventEventBundle:Event:conferences')) }}
+
+            {{ render(controller('EventEventBundle:Event:tickets')) }}
+
+            {{ render(controller('EventEventBundle:Event:workshops')) }}
 
             {{ render(controller('EventEventBundle:Event:sponsors')) }}
 
@@ -52,5 +56,4 @@
             </script>
 
     {% include 'EventEventBundle:Event:_footer.html.twig' %}
-
 {% endblock %}

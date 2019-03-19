@@ -43,9 +43,9 @@
         </div>
         <div class="text_part">
             <div>
-                <h2><i class="ico_about"></i>About symfony camp</h2>
-                <p>{{ event.aboutdescription|raw }}</p>
-                <a href="https://www.youtube.com/channel/UCd1Ds7u1mAjEwHrZ9jG1Arg" class="btn_blue">watch video</a>
+                <h2><i class="ico_about"></i>{{ 'About symfony camp'|trans }}</h2>
+                <p>{{ event.translated('aboutDescription', app.request.locale)|raw }}</p>
+                <a href="https://www.youtube.com/channel/UCd1Ds7u1mAjEwHrZ9jG1Arg" class="btn_blue">{{ 'watch video'|trans }}</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,86 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+<section>
+    <div class="page-header">
+        <h3>{{ 'Tickets'|trans }}</h3>
+        <a href="{{ path('backend_ticket_add') }}" class="btn btn-small btn-success">{{ 'Add Ticket'|trans }}</a>
+    </div>
+
+    <table class="table table-striped table-bordered" id="tickets">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>{{ 'Name'|trans }}</th>
+                <th>{{ 'Event'|trans }}</th>
+                <th>{{ 'Price'|trans }}</th>
+                <th>{{ 'Status'|trans }}</th>
+                <th>{{ 'Lunch'|trans }}</th>
+                <th>{{ 'After Party'|trans }}</th>
+                <th>{{ 'Count'|trans }}</th>
+                <th>{{ 'Available'|trans }}</th>
+                <th width="10%">{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td><a href="{{ url('backend_ticket_edit', {'id': ticket.id}) }}">{{ ticket.name }}</a></td>
+                <td>{{ ticket.event.title }}</td>
+                <td>{{ ticket.getPriceWithLabel(true) }}</td>
+                <td>{{ ticket.isActive ? 'Yes'|trans : 'No'|trans }}</td>
+                <td>{{ ticket.getLunch(true) }}</td>
+                <td>{{ ticket.getAp(true) }}</td>
+                <td>{{ ticket.count }}</td>
+                <td>{{ ticket.remainingCount }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-small" href="{{ url('backend_ticket_edit', {'id': ticket.id}) }}"><i class="icon-pencil"></i> {{ 'Edit'|trans }}</a>
+                        <a class="btn btn-small" onclick="return confirm('{{ 'Are You sure?'|trans }}')" href="{{ url('backend_ticket_delete', {'id': ticket.id}) }}"><i class="icon-trash"></i> {{ 'Delete'|trans }}</a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">{{ 'No tickets found'|trans }}.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var elementsCount = '{{ tickets|length }}';
+
+            if ( 0 < elementsCount) {
+                $('#tickets').dataTable({
+                    "iDisplayLength": 50,
+                    "sDom": "<'row'<'span7'l><'span2'f>r>t<'row'<'span3'i><'span6'p>>",
+                    "sPaginationType": "bootstrap",
+                    "oLanguage": {
+                        "sLengthMenu": "_MENU_ records per page"
+                    },
+                    "aoColumns": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        { "bSearchable": false, "bSortable": false }
+                    ],
+                    "aaSorting": [[0, 'desc']]
+                });
+            }
+        });
+    </script>
+{% endblock %}

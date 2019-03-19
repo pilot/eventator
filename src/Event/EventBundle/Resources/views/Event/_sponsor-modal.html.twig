@@ -19,12 +19,12 @@
                 {% if sponsor.description %}
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3>Description</h3>
+                            <h3>{{ 'Description'|trans }}</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p>{{ sponsor.description|nl2br|raw }}</p>
+                            <p>{{ sponsor.translated('description', app.request.locale)|nl2br|raw }}</p>
                         </div>
                     </div>
                 {% endif %}

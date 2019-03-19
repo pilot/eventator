@@ -11,6 +11,30 @@
         <link href="{{ asset('bundles/eventevent/css/slick.css') }}" media="screen" rel="stylesheet" type="text/css">
         <link href="{{ asset('bundles/eventevent/css/allstyle.css') }}" media="screen" rel="stylesheet" type="text/css">
 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        {% if event.MetaDesc %}
+        <meta name="description" content="{{ event.logicMetaDesc }}">
+        {% endif %}
+
+        {%  if event.metaKw  %}
+        <meta name="keywords" content="{{ event.metaKw }}">
+        {% endif %}
+
+        <meta property="og:title" content="{{ event.logicOgTitle }}" />
+
+        {% if event.MetaDesc %}
+        <meta property="og:description" content="{{ event.logicOgDesc }}" />
+        {% endif %}
+
+        {% if event.ogUrl %}
+        <meta property="og:url" content="{{ event.ogUrl }}" />
+        {% endif %}
+
+        {% if event.ogImage %}
+        <meta property="og:image" content="{{ event.ogImage }}" />
+        {% endif %}
+
         {% block stylesheets %}{% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />

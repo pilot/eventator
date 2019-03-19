@@ -1,0 +1,77 @@
+<section class="tickets">
+    <div id="workshops" class="indent"></div>
+    <div class="container">
+        <h2><i class="ico_tickets"></i>{{ 'Workshop'|trans }}</h2>
+        <div class="list_tickets">
+            {%  set counter = 1 %}
+            {% for workshop in event.workshops if workshop.isActive %}
+                {% if counter == event.tickets|length %}
+                    {% set class = 'last' %}
+                {% elseif counter == 1 %}
+                    {% set class = 'first' %}
+                {% else %}
+                    {% set class = '' %}
+                {% endif %}
+                {% set counter = counter + 1 %}
+                <div class="ticket-item workshop_item {{ class }}">
+                    <form class="buy-tickets" method="POST" action="{{ url('event_component_workshop') }}">
+                        <div class="ticket_name">{{ workshop.name }}</div>
+                        <div class="ticket_price">{{ workshop.PriceWithLabel}} </div>
+                        <div class="wsh_schedule">
+                            <div class="wsh_schedule_button wsh_schedule_item">
+                                <a href="javascript:">
+                                    {{ 'workshop.schedule'|trans }}
+                                    <span class="wsh_arrow_down">&#9660;</span>
+                                    <span class="wsh_arrow_up hidden">&#9650;</span>
+                                </a>
+                            </div>
+                            <div class="wsh_schedule_container">
+                                {% for item in workshop.schedule %}
+                                    {% if item.isActive %}
+                                        <div class="wsh_schedule_item">{{ item.text }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if count > workshop.schedule|length %}
+                                    {% set empty = count - workshop.schedule|length %}
+                                    {% for i in 1..empty %}
+                                        <div class="wsh_schedule_item"></div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="ticket_date">{{ 'Date'|trans }}: {{ workshop.date|date('d F Y')}} </div>
+                        <div class="wsh_time">
+                            {{ 'Time'|trans }}: {{ workshop.time }}
+                        </div>
+                        <div class="wsh_count ">
+                            {{ 'Remaining Count'|trans }}: {{ workshop.remainingCount }}
+                        </div>
+                        <input type="hidden" name="wsh_id" value="{{ workshop.id }}" />
+                        <div class="tickets-submit-container wsh-buy-button-container">
+                            {% if workshop.remainingCount > 0 %}
+                                {% set disabled = '' %}
+                            {%  else %}
+                                {% set disabled = 'disabled="disabled"' %}
+                            {% endif %}
+                            <button type="submit" class="buy_tickets_button btn btn_blue" {{ disabled }}>
+                                <span>{{ 'Buy tickets'|trans }}</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            {% else  %}
+                {{ 'Coming soon...' }}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<script>
+    $(document). ready(function(){
+        $('.wsh_schedule_button').on('click', function(){
+            $(this).closest('.wsh_schedule').children('.wsh_schedule_container').toggle('fast');
+            $(this).closest('.workshop_item').toggleClass('heightAuto');
+            $(this).find('.wsh_arrow_up').toggleClass('hidden');
+            $(this).find('.wsh_arrow_down').toggleClass('hidden');
+        });
+    });
+</script>

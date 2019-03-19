@@ -1,0 +1,144 @@
+{% extends 'EventEventBundle::base.html.twig' %}
+{% set event = app.request.attributes.get('event') %}
+
+{% block title %}{{ 'Buy Workshop ticket(s)'|trans }} - {{ event.logicMetaTitle }}{% endblock %}
+
+{% block body %}
+    {{ render(controller('EventEventBundle:Event:blockMenu', { 'homepage': false })) }}
+    <div class="container">
+        <div class="form_but_ticket" id="buyTicketForm">
+            <p class="error-count-tickets">
+                {{ error }}
+            </p>
+            <form name="soldWorkshops" method="post" action="{{ url('event_component_workshop') }}">
+                <div class="flex ticket_price_container">
+                    <h3>
+                        {{ 'Price for one Workshop ticket'|trans }}:
+                        {{ total }}
+                        {{ label }}
+                    </h3>
+                </div>
+                <div class="flex ticket_email_container">
+                    <div class="form-group">
+                        <label for="soldWorkshops_email">{{ 'Email'|trans }}:</label>
+                        <input type="email" id="soldWorkshops_email" name="email" required="required" class="form-control">
+                        <small id="emailHelp" class="form-text">
+                            {{ 'Please, be sure You entered right Email. You\'ll receive your ticket(s) there'|trans }}
+                        </small>
+                    </div>
+                </div>
+                <div class="flex ticket_email_container">
+                    <div class="form-group">
+                        <label for="soldWorkshops_phone">{{ 'Phone'|trans }}:</label>
+                        <input type="text" id="soldWorkshops_phone" name="phone" required="required" class="form-control">
+                    </div>
+                </div>
+                <div class="flex ticket-container">
+                    <div class="main_fields_container">
+                        <div class="form-group">
+                            <label for="soldWorkshops_firstName">{{ 'First Name'|trans }}:</label>
+                            <input type="text" id="soldWorkshops_firstName" name="soldWorkshops[0][firstName]" required="required" class="form-control">
+                        </div>
+                        <div class="form-group last-ticket-field">
+                            <label for="soldWorkshops_lastName">{{ 'Last Name'|trans }}:</label>
+                            <input type="text" id="soldWorkshops_lastName" name="soldWorkshops[0][lastName]" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="add_fields_container">
+                        <div class="form-group">
+                            <label for="soldWorkshops_company">{{ 'Company'|trans }}:</label>
+                            <input type="text" id="soldWorkshops_company" name="soldWorkshops[0][company]" required='required' class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="soldWorkshops_position">{{ 'Position'|trans }}:</label>
+                            <input type="text" id="soldWorkshops_position" name="soldWorkshops[0][position]" required='required' class="form-control">
+                        </div>
+                        <div class="form-group last-ticket-field">
+                            <label for="soldWorkshops_city">{{ 'City'|trans }}:</label>
+                            <input type="text" id="soldWorkshops_city" name="soldWorkshops[0][city]" required='required' class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="additional-tickets"></div>
+                <a href="javascript:" id="add_one_more_ticket" class="btn btn-link">
+                    + {{ 'Add one more ticket'|trans }}
+                </a>
+                <input name="price" id="ticket_price" type="hidden" value="{{ total }}" />
+                <span class="hidden" id="tickets_count" data-count="1"></span>
+                <input type="hidden" name="wsh_id" value="{{ workshop.id }}"  />
+                <div class="flex">
+                    <div class="form-group">
+                        <h3>
+                            {{ 'Total price'|trans }}:
+                            <span id="total_price">{{ total }}</span>
+                            {{  label }}
+                        </h3>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            <span>{{ 'Pay'|trans }}</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'EventEventBundle:Event:_footer.html.twig' %}
+<script>
+    $(document).ready(function(){
+        var $count = $('#tickets_count').data('count');
+        var price = $('#ticket_price').val();
+
+        function setTotal(count){
+            var total = price * count;
+            total = total.toFixed(2);
+            $('#total_price').text(total);
+        }
+
+        $('#add_one_more_ticket').on('click', function(){
+            var $ticket_container = "<div class='flex ticket-container'>" +
+                    "<div class='main_fields_container'>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldWorkshops_firstName'>" + "{{ 'First Name'|trans }}" + ":</label>" +
+            "<input type='text' id='soldWorkshops_firstName' name='soldWorkshops[" + $count + "][firstName]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldWorkshops_lastName'>" + "{{ 'Last Name'|trans }}" + ":</label>" +
+            "<input type='text' id='soldWorkshops_lastName' name='soldWorkshops[" + $count + "][lastName]' required='required' class='form-control'>" +
+                    "</div></div>" +
+                    "<div class='add_fields_container'>" +
+                    "<div class='form-group'>" +
+            "<label for='soldWorkshops_company'>" + "{{ 'Company'|trans }}" + ":</label>" +
+            "<input type='text' id='soldWorkshops_company' name='soldWorkshops[" + $count + "][company]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldWorkshops_position'>" + "{{ 'Position'|trans }}" + ":</label>" +
+            "<input type='text' id='soldWorkshops_position' name='soldWorkshops[" + $count + "][position]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldWorkshops_city'>" + "{{ 'City'|trans }}" + ":</label>" +
+            "<input type='text' id='soldWorkshops_city' name='soldWorkshops[" + $count + "][city]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "</div>" + "<a href='javascript:' class='remove-add-ticket'>X</a>" + "</div>";
+            $( ".additional-tickets" ).append($ticket_container);
+            $count = +$count + 1;
+            setTotal($count);
+        });
+
+        $('.additional-tickets').on('click', '.remove-add-ticket', function(){
+            $(this).closest('.flex').remove();
+            $count = +$count - 1;
+            setTotal($count);
+        });
+    });
+</script>
+
+{% endblock %}
+

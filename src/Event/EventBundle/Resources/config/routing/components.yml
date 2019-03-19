@@ -45,3 +45,43 @@ event_component_call_for_paper_view:
     defaults: { _controller: EventEventBundle:Event:callForPaperView }
     requirements:
         methods: POST
+
+event_component_ticket:
+    path: /buy-ticket
+    defaults: { _controller: EventEventBundle:Event:buyTicket }
+
+tickets_payment_success:
+    path: /payment-success
+    defaults: { _controller: EventEventBundle:Event:ticketPaymentSuccess }
+
+tickets_handle_liqpay:
+    path: /liqpay-handle
+    defaults: { _controller: EventEventBundle:Event:handleLiqPayRequest }
+
+ticketPDF:
+    path: /ticketPDF
+    defaults: { _controller: EventEventBundle:Event:viewPDFHtml }
+
+update_total:
+    path: /update-total-ajax
+    defaults: { _controller: EventEventBundle:Event:updateTotalAjax }
+
+lang_switch:
+    path:  /change-locale/{lang}
+    defaults: { _controller: EventEventBundle:Event:changeLanguage, lang: null }
+
+event_component_workshop:
+    path: /buy-workshop
+    defaults: { _controller: EventEventBundle:Event:buyWorkshop }
+
+workshops_handle_liqpay:
+    path: /workshop-liqpay-handle
+    defaults: { _controller: EventEventBundle:Event:handleWorkshopLiqPayRequest }
+
+workshopPDF:
+    path: /workshopPDF/{id}
+    defaults: { _controller: EventEventBundle:Event:viewWorkshopPDFHtml }
+
+setWorkshopSold:
+    path: /setWorkshopSold/{id}
+    defaults: { _controller: EventEventBundle:Event:setWorkshopSold }

@@ -1,0 +1,215 @@
+{% extends 'EventEventBundle::base.html.twig' %}
+{% set event = app.request.attributes.get('event') %}
+
+{% block title %}{{ 'Buy ticket(s)'|trans }} - {{ event.logicMetaTitle }}{% endblock %}
+
+{% block body %}
+    {#{% include 'EventEventBundle:Component:_block_menu.html.twig' with {'home_page': false} %}#}
+    {{ render(controller('EventEventBundle:Event:blockMenu', { 'homepage': false })) }}
+    <div class="container">
+        <div class="form_but_ticket" id="buyTicketForm">
+            <p class="error-count-tickets">
+                {{ error }}
+            </p>
+            <form name="soldTickets" method="post" action="{{ url('event_component_ticket') }}">
+                <div class="flex ticket_price_container">
+                    <h3>
+                        {{ 'Price for one ticket'|trans }}:
+                        {{  total+lunch_price+ap_price }}
+                        {{  label }}
+                    </h3>
+                </div>
+                <div class="flex ticket_email_container">
+                    <div class="form-group">
+                        <label for="soldTickets_email">{{ 'Email'|trans }}:</label>
+                        <input type="email" id="soldTickets_email" name="email" required="required" class="form-control">
+                        <small id="emailHelp" class="form-text">
+                            {{ 'Please, be sure You entered right Email. You\'ll receive your ticket(s) there'|trans }}
+                        </small>
+                    </div>
+                </div>
+                <div class="flex ticket_email_container">
+                    <div class="form-group">
+                        <label for="soldTickets_phone">{{ 'Phone'|trans }}:</label>
+                        <input type="text" id="soldTickets_phone" name="phone" required="required" class="form-control">
+                    </div>
+                </div>
+                <div class="flex ticket-container">
+                    <div class="main_fields_container">
+                        <div class="form-group">
+                            <label for="soldTickets_firstName">{{ 'First Name'|trans }}:</label>
+                            <input type="text" id="soldTickets_firstName" name="soldTickets[0][firstName]" required="required" class="form-control">
+                        </div>
+                        <div class="form-group last-ticket-field">
+                            <label for="soldTickets_lastName">{{ 'Last Name'|trans }}:</label>
+                            <input type="text" id="soldTickets_lastName" name="soldTickets[0][lastName]" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="add_fields_container">
+                        <div class="form-group">
+                            <label for="soldTickets_company">{{ 'Company'|trans }}:</label>
+                            <input type="text" id="soldTickets_company" name="soldTickets[0][company]" required='required' class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="soldTickets_position">{{ 'Position'|trans }}:</label>
+                            <input type="text" id="soldTickets_position" name="soldTickets[0][position]" required='required' class="form-control">
+                        </div>
+                        <div class="form-group last-ticket-field">
+                            <label for="soldTickets_city">{{ 'City'|trans }}:</label>
+                            <input type="text" id="soldTickets_city" name="soldTickets[0][city]" required='required' class="form-control">
+                        </div>
+                    </div>
+                    {#<a href="javascript:" class="remove-add-ticket" onclick="$(this).closest('.flex').remove();">X</a>#}
+                </div>
+                <div class="additional-tickets"></div>
+                <a href="javascript:" id="add_one_more_ticket" class="btn btn-link">
+                    + {{ 'Add one more ticket'|trans }}
+                </a>
+                <input name="lunch" type="hidden" value="{{ lunch }}" />
+                <input name="price" id="ticket_price" type="hidden" value="{{ total }}" />
+                <input name="lunch_price" id="lunch_price" type="hidden" value="{{ lunch_price }}" />
+                <input name="after-party" type="hidden" value="{{ ap }}" />
+                <input name="ap_price" id="ap_price" type="hidden" value="{{ ap_price }}" />
+                <input name="discountAmount" id="discountAmount" type="hidden" value="1" />
+                <span class="hidden" id="tickets_count" data-count="1"></span>
+                <input type="hidden" name="ticket_id" value="{{ ticket.id }}"  />
+                <div class="flex discount_container">
+                    <div class="form-group">
+                        <label for="soldTickets_discount">{{ 'Discount'|trans }}:</label>
+                        <input type="text" id="soldTickets_discount" name="discount" class="form-control">
+                        <a href="javascript:" id="update_total" >
+                            [{{ 'OK'|trans }}]
+                        </a>
+                        <small id="discountHelp" class="form-text">
+                            {{ 'Is You have the discount code, please enter it here'|trans }}
+                        </small>
+                        <small class="form-text">
+                            *{{ 'If you change the number of tickets, promo code will be canceled!'|trans }}
+                        </small>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+                        <h3>
+                            {{ 'Total price'|trans }}:
+                            <span id="total_price">{{  total+lunch_price+ap_price }}</span>
+                            {{  label }}
+                        </h3>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            <span>{{ 'Pay'|trans }}</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'EventEventBundle:Event:_footer.html.twig' %}
+<script>
+    $(document).ready(function(){
+        $('#add_one_more_ticket').on('click', function(){
+            var $count = $('#tickets_count').data('count');
+            var $ticket_container = "<div class='flex ticket-container'>" +
+                    "<div class='main_fields_container'>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldTickets_firstName'>" + "{{ 'First Name'|trans }}" + ":</label>" +
+            "<input type='text' id='soldTickets_firstName' name='soldTickets[" + $count + "][firstName]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldTickets_lastName'>" + "{{ 'Last Name'|trans }}" + ":</label>" +
+            "<input type='text' id='soldTickets_lastName' name='soldTickets[" + $count + "][lastName]' required='required' class='form-control'>" +
+                    "</div></div>" +
+                    "<div class='add_fields_container'>" +
+                    "<div class='form-group'>" +
+            "<label for='soldTickets_company'>" + "{{ 'Company'|trans }}" + ":</label>" +
+            "<input type='text' id='soldTickets_company' name='soldTickets[" + $count + "][company]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldTickets_position'>" + "{{ 'Position'|trans }}" + ":</label>" +
+            "<input type='text' id='soldTickets_position' name='soldTickets[" + $count + "][position]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label for='soldTickets_city'>" + "{{ 'City'|trans }}" + ":</label>" +
+            "<input type='text' id='soldTickets_city' name='soldTickets[" + $count + "][city]' required='required' class='form-control'>" +
+                    "</div>" +
+                    "</div>" + "<a href='javascript:' class='remove-add-ticket'>X</a>" + "</div>";
+            $( ".additional-tickets" ).append($ticket_container);
+            $count = +$count + 1;
+            $('#tickets_count').data('count', $count)
+            var totalPrice = $('#ticket_price').val();
+            var lunchPrice = $('#lunch_price').val();
+            var apPrice = $('#ap_price').val();
+            var discount = $('#discountAmount').val();
+            var total = (totalPrice * discount + (+lunchPrice) + (+apPrice)) * $count;
+            $('#total_price').text(total);
+        });
+        $('#update_total').on('click', function(){
+            $.ajax({
+                url:'{{ (path('update_total')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "discount": $('#soldTickets_discount').val(),
+                    "count": $('#tickets_count').data('count')
+                },
+                async: true,
+                success: function (data)
+                {
+                    updateTotal(data.discount);
+                    if(data.discount != 1) {
+                        var $discountAmount = 100 - data.discount * 100;
+                        var text = '{{'Promo code has been successfully activated! Discount'}}: ' + $discountAmount + '%';
+                        $('#discountHelp').text(text).css('color', 'green');
+                    } else {
+                        $('#discountHelp').text('{{ 'Not found promocode'|trans }}').css('color', 'red');
+                    }
+                }
+            });
+            return false;
+        });
+        function updateTotal($discount){
+            $('#discountAmount').val($discount);
+            var totalPrice = $('#ticket_price').val();
+            var lunchPrice = $('#lunch_price').val();
+            var apPrice = $('#ap_price').val();
+            var count = $('#tickets_count').data('count');
+            var total = (totalPrice * $discount + (+lunchPrice) + (+apPrice)) * count;
+            console.log($discount);
+            console.log(totalPrice);
+            console.log(total);
+            total = total.toFixed(2);
+            $('#total_price').text(total);
+        }
+        var $discountInput = $('#soldTickets_discount');
+        $discountInput.on('keyup', function(){
+            showTotalButton($(this));
+        });
+        $discountInput.on('change', function(){
+            showTotalButton($(this));
+        });
+        function showTotalButton($input){
+            if($input.val().length > 0) {
+                $('#update_total').css('display', 'inline');
+            } else {
+                $('#update_total').css('display', 'none');
+            }
+        }
+        $('.additional-tickets').on('click', '.remove-add-ticket', function(){
+            $(this).closest('.flex').remove();
+            var $count = $('#tickets_count').data('count');
+            $('#tickets_count').data('count', $count-1);
+            updateTotal($('#discountAmount').val());
+        });
+    });
+</script>
+
+{% endblock %}
+

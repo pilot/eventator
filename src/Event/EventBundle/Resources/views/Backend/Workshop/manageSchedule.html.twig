@@ -1,0 +1,27 @@
+{% extends 'EventEventBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="page-header">
+            <h3>{{ schedule.id ? 'Edit'|trans : 'Add'|trans }}&nbsp;{{ 'schedule item'|trans }}</h3>
+            <a href="{{ path('backend_workshop_edit', {'id': schedule.workshop.id}) }}" class="btn btn-small">&larr; {{ 'Back to the list'|trans }}</a>
+        </div>
+
+
+        {{ form_start(form, {'method': 'POST', 'action': path('backend_wsh_schedule_edit', {'id': schedule.id, 'w_id': schedule.workshop.id})}) }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="{{ app.request.locale }}">
+                {{ form_row(form.text) }}
+                {{ form_row(form.position) }}
+                {{ form_row(form.isActive) }}
+            </div>
+
+            {{ form_rest(form) }}
+
+            <input type="submit" value="{{ schedule.id ? 'Update'|trans : 'Add'|trans }}" class="btn btn-success" />
+        </div>
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}
+
