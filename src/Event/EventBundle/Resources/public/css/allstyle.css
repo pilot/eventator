@@ -2057,7 +2057,7 @@ footer .footer_text {
     border: 1px solid #000;
     padding: 15px 25px;
     margin: 15px;
-    height: 360px;
+    height: 200px;
     position: relative;
     justify-content: center;
     width: 200px;
@@ -2423,11 +2423,6 @@ footer .footer_text {
 
 .tickets-modal-buy-button a {
     background-color: #240456 !important;
-}
-
-.list_tickets {
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .list_tickets .workshop_item {
