@@ -902,12 +902,17 @@ a:hover, a:focus {
     text-align: center;
     font-size: 19px;
     color: #2D9CDB;
-    margin: 10px 0;
+    margin: 10px auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .list_speakers li img {
     max-width: 150px;
     min-width: 150px;
+    min-height: 150px !important;
+    max-height: 150px !important;
     border-radius: 50%;
 }
 
