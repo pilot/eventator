@@ -8,7 +8,7 @@ event_component_speakers:
 
 event_component_about:
     path:  /about
-    defaults: { _controller: EventEventBundle:Event:aboutSymfony }
+    defaults: { _controller: EventEventBundle:Event:about }
 
 event_component_venue:
     path:  /venue
