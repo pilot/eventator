@@ -24,6 +24,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:          
+        google_map_apikey: %google_map_apikey%
 
 # Assetic Configuration
 assetic:
