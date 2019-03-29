@@ -902,12 +902,17 @@ a:hover, a:focus {
     text-align: center;
     font-size: 19px;
     color: #2D9CDB;
-    margin: 10px 0;
+    margin: 10px auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .list_speakers li img {
     max-width: 150px;
     min-width: 150px;
+    min-height: 150px !important;
+    max-height: 150px !important;
     border-radius: 50%;
 }
 
@@ -2052,7 +2057,7 @@ footer .footer_text {
     border: 1px solid #000;
     padding: 15px 25px;
     margin: 15px;
-    height: 360px;
+    height: 200px;
     position: relative;
     justify-content: center;
     width: 200px;
@@ -2418,11 +2423,6 @@ footer .footer_text {
 
 .tickets-modal-buy-button a {
     background-color: #240456 !important;
-}
-
-.list_tickets {
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .list_tickets .workshop_item {
