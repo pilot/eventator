@@ -1,5 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/pilot/eventator.png?label=ready&title=Ready)](https://waffle.io/pilot/eventator?utm_source=badge)
-eventator
+eventator, events management platform
 =========
 
 events managing with easiest ticketing systems
