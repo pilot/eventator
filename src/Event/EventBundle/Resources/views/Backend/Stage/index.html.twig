@@ -11,7 +11,7 @@
         <h3>Event speeches</h3>
         <div class="row">
             <div class="span3">
-                <a href="{{ path('backend_speech_add') }}" class="btn btn-small btn-success">Add speech</a>
+                <a href="{{ path('backend_speech_add') }}" class="btn btn-small btn-success">Add stage</a>
             </div>
             {% include 'EventEventBundle:Backend:_events_select.html.twig' %}
         </div>
@@ -21,7 +21,6 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>Speaker Name</th>
                 <th>Title</th>
                 <th width="10%">Actions</th>
             </tr>
@@ -29,11 +28,10 @@
     </table>
 </section>
     {% include 'EventEventBundle:Backend:_confirm_modal.html.twig'
-        with {'title': 'Confirm action', 'body': 'Do you really want to delete this speech?'} %}
+        with {'title': 'Confirm action', 'body': 'Do you really want to delete this stage?'} %}
 {% endblock %}
 
 {% block data_tables_js %}
     <script src="{{ asset('bundles/eventevent/js/libs/DataTables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('bundles/eventevent/js/confirm.js') }}"></script>
-    <script src="{{ asset('bundles/eventevent/js/speech/speech.js') }}"></script>
 {% endblock %}
