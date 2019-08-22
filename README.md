@@ -13,20 +13,22 @@ events managing with easiest ticketing systems
 * access to the admin panel by `/event/admin`
 * with `admin/admin`
 
-## install
+## install with Docker
 
 * download or clone repo `git clone https://github.com/pilot/eventator my_event/`
-* create `app/cache` and `app/logs` directories with 777 permissions
-* get composer `curl -S https://getcomposer.org/installer | php`
-* install dependencies `php composer.phar install`
-* create database `php app/console doctrine:database:create`
-* create schema `php app/console doctrine:schema:create`
-* install assets `php app/console assets:install`
-* open browser and follow to the `http://your-events.loc/event/admin` for initial setup
+* `$ docker-compose up -d --build`
+* `$ docker exec -it eve composer install`
+* create schema `$ docker exec -it eve php app/console doctrine:schema:create`
+* install assets `$ docker exec -it eve php app/console assets:install`
+* open browser and follow to the `http://localhost/event/admin` for initial setup
 * login and password to the backend `admin` / `admin`
 * bingo!
 
-## online payments with liqpay.com 
+## cache clear
+
+* `$ docker exec -it eve php app/console ca:cl -e prod`
+
+## (optional) online payments with liqpay.com 
 
 * register liqpay.com account
 * obtain your private and public keys
