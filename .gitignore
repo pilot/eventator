@@ -9,6 +9,7 @@ web/uploads/*
 !web/uploads/tickets/.gitkeep
 web/bundles/*
 bin/*
+dbdata/*
 
 # Configuration files
 app/config/parameters.ini

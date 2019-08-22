@@ -1,0 +1,26 @@
+version: '3'
+services:
+    mysql:
+        image: mysql:5.7
+        restart: always
+        container_name: eve_mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: eve
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        ports:
+            - 3307:3306
+        volumes:
+            - ./dbdata:/var/lib/mysql
+
+    php:
+        build: .
+        restart: always
+        container_name: eve
+        links:
+            - mysql
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/app
