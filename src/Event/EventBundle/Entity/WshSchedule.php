@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: angeluss
- * Date: 14.08.18
- * Time: 18:09
- */
 
 namespace Event\EventBundle\Entity;
 
@@ -164,6 +158,7 @@ class WshSchedule
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
+        
         return $this;
     }
 
