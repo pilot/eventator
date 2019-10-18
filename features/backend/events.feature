@@ -10,6 +10,7 @@ Background:
         | event  | My event       | My another awesome event!  | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@email.com | http://localhost:8000     |
         | event2 | My other event | My other awesome event!    | 2016-03-01 10:00 | 2016-03-01 18:00 | Burj Khalifa Tower | eventator@gmail.com | http://eventator.loc:8080 |
         | event3 | His event      | His another awesome event! | 2016-04-01 10:00 | 2016-04-01 18:00 | Kuala-lumpur Tower | eventator@gmail.com | http://event.com          |
+        | event4 | Local event    | My local awesome event!    | 2016-04-01 10:00 | 2016-04-01 18:00 | Kuala-lumpur Tower | eventator@gmail.com | http://eventator.loc      |
     And following "EventTranslation":
         | event  | locale |
         | event  | ru_RU  |
@@ -17,10 +18,11 @@ Background:
         | event2 | ru_RU  |
         | event2 | de_DE  |
         | event3 | ru_RU  |
+        | event4 | ru_RU  |
     And following "Organizer":
-        | ref        | title         | description                    | isActive | events              |
-        | organizer  | My organizer  | My another awesome organizer!  | 1        | event,event2,event3 |
-        | organizer2 | His organizer | His another awesome organizer! | 1        | event2,event3       |
+        | ref        | title         | description                    | isActive | events               |
+        | organizer  | My organizer  | My another awesome organizer!  | 1        | event,event2,event3  |
+        | organizer2 | His organizer | His another awesome organizer! | 1        | event2,event3,event4 |
     And following "OrganizerTranslation":
         | organizer   | locale |
         | organizer   | ru_RU  |
@@ -105,7 +107,7 @@ Background:
     And following "Sponsor":
         | ref      | company          | description             | homepage            | type | isActive | events              |
         | sponsor  | Reseach Supplier | NASA research center    | http://nasa.gov.us  | 1    | 1        | event,event2,event3 |
-        | sponsor2 | KnpLabs          | Happy awesome developer | http://knplabs.com  | 2    | 1        | event               |
+        | sponsor2 | KnpLabs          | Happy awesome developer | http://knplabs.com  | 2    | 1        | event,event4        |
     And following "SponsorTranslation":
         | sponsor   | locale |
         | sponsor   | de_DE  |
@@ -145,7 +147,26 @@ Scenario: Admin should have able to add event
     And I press "Add"
     Then I wait for a form
     Then I should see "Event Test event added."
-    Then I should see the row containing "4;Test event;UA;May 1, 2016 10:00;May 1, 2016 18:00"
+    Then I should see the row containing "5;Test event;UA;May 1, 2016 10:00;May 1, 2016 18:00"
+
+@javascript
+Scenario: Admin should be able to clone event
+    Given I am sign in as admin
+    When I click "Events"
+    Then I wait for a form
+    Then I should see "Add Event"
+    And I should see the row containing "1;My event;March 1, 2016 10:00;March 1, 2016 18:00"
+    When I click "expand-1" on the row containing "1;My event;March 1, 2016 10:00;March 1, 2016 18:00"
+    When I click "Clone" on the row containing "1;My event;March 1, 2016 10:00;March 1, 2016 18:00"
+    Then I wait for a form
+    Then I should see "Event settings"
+    And I fill in "Host" with "http://testevent.loc"
+    And I fill in "Title" with "Cloned event"
+    And I check "Is active"
+    And I press "Add"
+    Then I wait for a form
+    Then I should see "Event Cloned event added."
+    Then I should see the row containing "5;Cloned event;UA;May 1, 2016 10:00;May 1, 2016 18:00"
 
 @javascript
 Scenario: Admin should have able to update event settings
